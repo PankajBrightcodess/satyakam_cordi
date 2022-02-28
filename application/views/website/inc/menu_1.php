@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" style="color:white!important;background: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContentt" aria-controls="navbarSupportedContentt" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContentt">
+    <ul class="navbar-nav mx-auto">
+
+      <li class="nav-item dropdown  active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">E-Contract</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?= base_url('website/econtractdocx');?>" style="color:white">My Documents</a>
+          <a class="dropdown-item" href="<?= base_url('website/econtractkyc');?>" style="color:white">KYC</a>
+          <a class="dropdown-item" href="<?= base_url('website/econtractmyteam');?>" style="color:white">My Team Office</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown  active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">My Office</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?= base_url('website/myofficereport');?>" style="color:white">My Report</a>
+          <a class="dropdown-item" href="<?= base_url('website/myofficeexpense');?>" style="color:white">Office Expense</a>
+          <a class="dropdown-item" href="<?= base_url('website/myofficemyteam');?>" style="color:white">My Team Office</a>
+        </div>
+      </li>
+      <!-- <li class="nav-item  active"><a class="nav-link" href="myproject.php">My Project</a></li> -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+          My Project
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#" style="color:white">Aajeevika</a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#" style="color:white">Group</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" href="<?= base_url('website/ajeevikageneralgrp');?>" style="color:white">General Group</a>
+                    <li><a class="dropdown-item" href="<?= base_url('website/ajeevikamyclubgrp');?>" style="color:white">My Club Group</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('website/ajeevikamyclubincome');?>" style="color:white">My Club Income</a></li>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#" style="color:white">4WS Saving </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" href="ajeevika4wssaving.php" style="color:white">Open Account / Weekly Deposit</a>
+                    
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a class="dropdown-item dropdown-toggle" href="#" style="color:white">Loan </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item" href="#" style="color:white">Self Loan</a>
+                    <li><a class="dropdown-item" href="myproject.php" style="color:white">Personal Loan</a></li>
+                    <li><a class="dropdown-item" href="myproject.php" style="color:white">Enterprise Loan</a></li>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+          <li><a class="dropdown-item" href="#" style="color:white">I-CON INDIA</a></li>
+          <li><a class="dropdown-item" href="#" style="color:white">Village Mart</a></li>
+          
+        </ul>
+      </li>
+      <li class="nav-item  active"><a class="nav-link" href="#">Events</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="#">Gallery</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="officialservicevacency.php">Vacancy</a></li>
+
+    </ul>
+  </div>
+</nav>

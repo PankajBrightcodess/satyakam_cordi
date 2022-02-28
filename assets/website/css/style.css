@@ -1,0 +1,507 @@
+
+/*******************************/
+/********* Contact CSS *********/
+/*******************************/
+.contact {
+    position: relative;
+    width: 100%;
+    padding: 45px 0 15px 0;
+}
+
+.contact .contact-information {
+    min-height: 150px;
+    margin: 0 0 30px 0;
+    padding: 30px 15px 0 15px;
+    background: rgb(255 0 0 / 16%);
+}
+
+.contact .contact-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.contact .contact-icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2e3192;
+    border-radius: 50px;
+}
+
+.contact .contact-icon i {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.contact .contact-text {
+    position: relative;
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+}
+
+.contact .contact-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #719a0a;
+}
+
+.contact .contact-text p {
+    margin: 0;
+    font-size: 16px;
+    color: #454545;
+}
+
+.loginbox{
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.contact .contact-social a {
+       margin-right: 10px;
+    font-size: 24px;
+    color: #00a3ff;
+}
+
+.contact .contact-social a:hover {
+    color: #719a0a;
+}
+
+.contact .contact-form iframe {
+    width: 100%;
+    height: 380px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.contact .contact-form input {
+    padding: 15px;
+    background: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.contact .contact-form textarea {
+    height: 150px;
+    padding: 8px 15px;
+    background: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.contact .help-block ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+nav.navbar{
+	background-color:#2e3192;
+}
+nav .navbar-nav .nav-item .nav-link {
+    padding: 5px;
+    font-size: 20px;
+    color: #ffffff!important;
+    background-color: #ff0000;
+    margin-right: 1px;
+}
+nav .navbar-nav .nav-item .nav-link:hover {
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid white;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #2e3192;
+    background-clip: padding-box;
+    border: 1px solid rgb(46 49 146);
+    border-radius: 0.25rem;
+    color: white;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #ff0000;
+}
+.misvis{ padding-top: 40px;padding-bottom: 40px;
+}
+.misvis table tr th {
+    background: #ff0000;
+    border: 1px solid #2e3192;
+    color: #ffffff;
+}
+.misvis table tr td {
+    background: #2e319200;
+    border: 1px solid #2e3192;
+}
+.officialservices table tr th{
+    background: #ff0000ba;
+    border: 1px solid #2e3192;
+    color: #ffffff;
+}
+.officialservices table tr td{
+     background: #2e319200;
+    border: 1px solid #2e3192;
+    font-weight: 700;
+}
+.misvis .tittle{
+    background:#ff0000;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.tittle{
+    background:#ff0000;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.map{padding-top: 20px;padding-bottom: 20px;}
+.gallery{padding-top: 40px;padding-bottom: 40px;}
+#gallery .gallery-image{
+    width:100%;
+    height:auto;
+    padding: 5px;
+    border:2px solid #000071;
+    border-radius:5px;
+    margin-top:10px 0;
+}
+.gallery-image img{
+    width:100%;
+    /*height: 180px;*/
+    margin-bottom: 20px;
+    padding: 5px;
+    border:2px solid #e09300;
+    border-radius:5px;
+}
+/*******************************/
+/*********** Team CSS **********/
+/*******************************/
+.team {
+    position: relative;
+    width: 100%;
+    padding: 45px 0 15px 0;
+}
+.team .team-item {
+    position: relative;
+    margin-bottom: 30px;
+    background: #ffffff;
+}
+.team .team-img {
+    position: relative;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+}
+.team .team-img img {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    transform: scale(1.1);
+    transition: .3s;
+}
+.team .team-item:hover img {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.team .team-social {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s;
+}
+.team .team-social a {
+    position: relative;
+    margin: 0 3px;
+    margin-top: 100px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #ffffff;
+    background:#2e3192;
+    opacity: 0;
+}
+.team .team-social a:hover {
+    color: #ffffff;
+    background: #ff0000;
+}
+.team .team-item:hover .team-social {
+    background: rgba(256, 256, 256, .5);
+}
+.team .team-item:hover .team-social a:first-child {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s 0s;
+}
+.team .team-item:hover .team-social a:nth-child(2) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .1s;
+}
+.team .team-item:hover .team-social a:nth-child(3) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .2s;
+}
+.team .team-item:hover .team-social a:nth-child(4) {
+    opacity: 1;
+    margin-top: 0;
+    transition: .3s .3s;
+}
+.team .team-text {
+    position: relative;
+    padding: 25px 15px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, .07);
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+}
+.team h2 {
+    font-size: 20px;
+    font-weight: 700;
+    background: #ff0000;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+
+}
+.team .team-text h2 {
+    font-size: 13px;
+    font-weight: 700;
+    background: #2e3192;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.team .team-text p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/*******************************/
+/********* Footer CSS **********/
+/*******************************/
+.footer {
+    position: relative;
+    /*margin-top: 33px;*/
+    padding-top: 48px;
+    background: #2e3192;
+}
+.footer .footer-contact,.footer .footer-link,.footer .footer-newsletter {
+    position: relative;
+    margin-bottom: 45px;
+    color: #fff;
+    text-align: center;
+}
+.footer .footer-contact h2, .footer .footer-link h2, .footer .footer-newsletter h2 {
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+/*.footer .footer-contact h2::after,
+.footer .footer-link h2::after,
+.footer .footer-newsletter h2::after {
+   position: absolute;
+    content: "";
+    width: 59px;
+    height: 2px;
+    bottom: 0;
+    left: 90px;
+    background: #4bb2f7;
+}*/
+.footer .footer-link a {
+    display: block;
+    margin-bottom: 10px;
+    color: #fff;
+    transition: .3s;
+}
+.footer .footer-link a::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 6px;
+    color: #ff0000;
+}
+.footer .footer-link a:hover {
+    color: #fbaf32;
+    letter-spacing: 1px;
+}
+.footer .footer-contact p i {
+    width: 28px;
+    color: #ff0000;
+}
+.footer .footer-social {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+}
+.footer .footer-social a {
+    display: inline-block;
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2e3192;
+    border-radius: 35px;
+    font-size: 16px;
+    color: #ffffff;
+}
+.footer .footer-social a:hover {
+    background: #ff0000a1;
+}
+.footer .footer-social a:last-child {
+    margin: 0;
+}
+.footer .footer-newsletter .form {
+    position: relative;
+    width: 100%;
+}
+.footer .footer-newsletter input {
+    height: 60px;
+    background: transparent;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+}
+.footer .footer-newsletter .btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    height: 44px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.footer .copyright {
+    position: relative;
+    width: 100%;
+    padding: 9px 0;
+    text-align: center;
+    background: #ff0000;
+}
+.footer .copyright p {
+    margin: 0;
+    display: inline-block;
+    color: #fff;
+}
+.footer .copyright p a {
+    color: #000000;
+    font-size: 17px;
+    font-weight: 700;
+}
+.footer .copyright p a:hover {
+    color: #ffffff;
+}
+.back-to-top {
+    position: fixed;
+    display: none;
+    background: red;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 1;
+    font-size: 22px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 5px;
+    transition: background 0.5s;
+    z-index: 9;
+}
+.back-to-top i {
+    color: #ffffff;
+    padding-top: 10px;
+}
+.back-to-top:hover {
+    background: #719a0a;
+}
+.privacypolicy{padding-top: 40px;padding-bottom: 40px;
+}
+.privacypolicy h2{
+    font-size: 20px;
+    font-weight: 700;
+    background: #ff0000;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.privacypolicy p{
+    text-align: justify;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------- Start Media Queries ----------------*/
+
+@media(max-width:2560px){
+    nav .navbar-nav .nav-item .nav-link {
+    padding: 16px;
+}
+@media(max-width:1440px){
+    nav .navbar-nav .nav-item .nav-link {
+    padding: 19px;
+}
+@media(max-width:1024px){
+    nav .navbar-nav .nav-item .nav-link {
+    padding:7px;
+    font-size: 18px;
+}

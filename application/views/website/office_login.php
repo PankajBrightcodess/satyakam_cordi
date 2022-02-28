@@ -1,0 +1,57 @@
+  <title>LOGIN | Satyakam Foundation</title>
+    <link rel="shortcut icon" href="<?= base_url('assets/website/images/logo3.png');?>">
+  <style type="text/css">
+      .login{
+             background-image:url(<?= base_url('assets/website/images/491677.jpg');?>); background-size:cover; width:100%; height:100vh;
+      }
+      .loginbox {
+          background-color: rgba(0,0,0,0.6);
+          color: #f2f2f2;
+          padding: 9px;
+          margin-top: 27px;
+      }
+  </style>
+<section class="login">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-md-12">
+            <div class="text-center">
+              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
+            </div>
+            <div class="loginbox">
+              <div class="row">
+              <div class="col-md-12">
+                <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
+              </div>
+              <div class="col-md-12">
+               
+                  <label>USER ID</label>
+                  <input name="txtUserid" type="text" class="form-control" placeholder="User Id">
+                 
+              </div>
+              <div class="col-md-12 mb-5">
+               
+                  <label>PASSWORD</label>
+                  <input name="txtPassword" type="password" class="form-control" placeholder="Password">
+                
+              </div>
+             
+              <div class="col-md-6">
+                   <a href="<?= base_url('website/signup');?>"><input type="submit"  name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
+              </div>
+              <div class="col-md-6 mb-3" >
+                  <a href="<?= base_url('website/econtractdocx');?>"><input type="submit" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block"></a>
+              </div>
+               <div class="col-md-12">
+                <div class="form-group text-right">
+                  <a href="#" style="color:#fff;">FORGOT PASSWORD?</a>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section>
