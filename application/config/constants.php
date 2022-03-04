@@ -109,8 +109,9 @@ if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 	defined('DB_NAME')		? null : define('DB_NAME','db_satyakam');
 }
 else{
-	defined('DB_HOST')      ? null : define('DB_HOST', 'localhost');
-	defined('DB_USER')      ? null : define('DB_USER', 'root');
-	defined('DB_PASSWORD')  ? null : define('DB_PASSWORD', '');
-	defined('DB_NAME')      ? null : define('DB_NAME', '');
+	defined('DB_HOST')      ? null : define('DB_HOST', 'Localhost ');
+	defined('DB_USER')      ? null : define('DB_USER', 'softwarebss_satyakama');
+	defined('DB_PASSWORD')  ? null : define('DB_PASSWORD', 'Satyakama@2022
+');
+	defined('DB_NAME')      ? null : define('DB_NAME', 'softwarebss_satyakama');
 }

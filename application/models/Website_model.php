@@ -110,7 +110,6 @@ class Website_model extends CI_Model{
 		return $query;
 		
 	}
-
 	public function add_post($data){
 		$table="post";  
 		$data['added_on']=date('Y-m-d');
@@ -123,7 +122,6 @@ class Website_model extends CI_Model{
 			return false;
 		}
 	}
-
 	public function get_postlist(){
 		$this->db->where('t1.status',1);
 		$this->db->Select('t1.*,t2.department');
@@ -134,7 +132,6 @@ class Website_model extends CI_Model{
 		return $records;
 		// $query = $this->db->get_where('post',array('status'=>1));
 	}
-
 	public function delete_post($id){
 		 $status['status'] = 0;
 		 $this->db->set($status); 
@@ -142,7 +139,6 @@ class Website_model extends CI_Model{
          $query= $this->db->update("post", $status); 
 		 return $query;
 	}
-
 	public function updt_post($data){
 		$id = $data['id'];
 		$post['depart_id'] =$data['depart_id'];
@@ -153,5 +149,6 @@ class Website_model extends CI_Model{
 		return $query;
 	}
 }
+?>
 
 	
