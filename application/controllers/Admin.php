@@ -20,13 +20,13 @@ class Admin extends CI_Controller {
 		$id = $data['id'];
 		// print_r($id);die;
 		$run = $this->Website_model->update_officerrecords($data);
-
+		// print_r($run);die;
 		if($run){
 			$this->send_mail($id);
 			redirect('admin/officer_details');
 			$this->session->set_flashdata("msg","Userid And Password Updated!!");
 		}else{
-			$this->session->set_flashdata("Not Updated");
+			$this->session->set_flashdata("err_msg","Userid Already Avaliable");
 			redirect('admin/officer_details');
 		}
 
@@ -96,8 +96,8 @@ class Admin extends CI_Controller {
 		$data['datatable'] = true;	
 		$data['depart'] = $this->Website_model->get_departlist($data);	
 		$data['post'] = $this->Website_model->get_postlist($data);
-		echo PRE;
-		print_r($data['post']);die;
+		// echo PRE;
+		// print_r($data['post']);die;
 		$this->template->load('pages','depart_post',$data);
 	}
 	public function savepost(){
@@ -119,5 +119,17 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata("err_msg","Something Error!");
 		}
 		redirect('admin/department');
+	}
+
+	public function update_post(){
+		$data= $this->input->post();
+
+		$result=$this->Website_model->updt_post($data);
+		if($result){
+			$this->session->set_flashdata("msg","Department Updated Successfully");
+		}else{
+			$this->Session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/post_details');
 	}
 }

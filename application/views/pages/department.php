@@ -83,7 +83,7 @@
                    
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-12">
-                            <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'department','class'=>'form-control department','placeholder'=>'Enter  Menu Name','required'=>'true'));?>
+                            <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'department','class'=>'form-control department','placeholder'=>'Enter Department','required'=>'true'));?>
                             <input type="hidden" name="id" id="id">
                         </div>                                    
                     </div>

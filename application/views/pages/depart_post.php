@@ -60,14 +60,11 @@
                                             <td ><?php echo $i ?></td>
                                             <td ><?php echo $val['department'] ?></td>
                                             <td ><?php echo $val['post'] ?></td>
-                                            
                                             <td><span class="float-right">
-                                            <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   <!-- <?php echo base_url("home/delete_sidebar/");?> -->
-                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-depart_id="<?php echo $val['depart_id'];?>"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   
+                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-depart_id="<?php echo $val['depart_id'];?>" data-post="<?php echo $val['post'];?>"><i class="fa fa-edit"></i></button>
                                            </td>
                                         </tr>
-                                       
-                                       
                                        <?php 
                                         }
                                             }
@@ -94,14 +91,28 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-           <?php echo form_open_multipart('admin/update_department');?>
+           <?php echo form_open_multipart('admin/update_post');?>
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                    
                     <div class="form-group row">
-                        <div class="col-sm-12 col-md-12">
-                            <?php echo form_input(array('type'=>'text','name'=>'depart_id','id'=>'depart_id','class'=>'form-control department','placeholder'=>'Enter  Menu Name','required'=>'true'));?>
+                         <div class="col-sm-12 col-md-12 mb-3">
+                             <select class="form-control" name="depart_id" id="depart_id" required id="activate_menu">
+                                <option value="">---SELECT---</option>
+                                <?php
+                                    if(!empty($depart)){
+                                        foreach ($depart as $key => $value) {
+                                           ?>
+                                           <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
+                                           <?php
+                                        }
+                                    }
+                                ?> 
+                            </select>
+                        </div>  
+                        <div class="col-sm-12 col-md-12 mb-3">
+                            <?php echo form_input(array('type'=>'text','name'=>'post','id'=>'post','class'=>'form-control','placeholder'=>'Enter Post','required'=>'true'));?>
                             <input type="hidden" name="id" id="id">
                         </div>                                    
                     </div>
@@ -122,10 +133,12 @@
     <script type="text/javascript">
         $('.updt').click(function(e){
         var id = $(this).data('id');
-        var department = $(this).data('department');
+        var depart_id = $(this).data('depart_id');
+        var post = $(this).data('post');
       
         $('#id').val(id);
-        $('#department').val(department);
+        $('#depart_id').val(depart_id);
+        $('#post').val(post);
        });
     </script>
 
@@ -219,7 +232,6 @@ $('.delete').click(function(e){
             url:"<?PHP echo base_url('admin/delete_post'); ?>",
             data: {id:id},
             success: function(result){
-                console.log(result);
                 location.reload();
                 },
                 error: function(){

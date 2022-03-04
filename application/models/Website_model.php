@@ -41,14 +41,20 @@ class Website_model extends CI_Model{
 		$username =$data['username'];
 		$query=$this->db->get_where('officer_details',array('username' => $username));
     	$no_of_rows= $query->num_rows();
-		$final['username'] = $data['username'];
-		$final['password'] = $data['password'];
-		$final['verify_status']=1;
-		$id = $data['id'];
-		  $this->db->set($final); 
-         $this->db->where("id", $id); 
-         $query= $this->db->update("officer_details", $final); 
-		return $query;
+    	if($no_of_rows!=0){
+    		return false;
+    	}else{
+    		$final['username'] = $data['username'];
+			$final['password'] = $data['password'];
+			$final['verify_status']=1;
+			$id = $data['id'];
+			 $this->db->set($final); 
+	         $this->db->where("id", $id); 
+	         $query= $this->db->update("officer_details", $final); 
+			return $query;
+
+    	}
+		
 	}
 
 	public function get_idpass($id){
@@ -129,12 +135,22 @@ class Website_model extends CI_Model{
 		// $query = $this->db->get_where('post',array('status'=>1));
 	}
 
-	public function delete_post(){
+	public function delete_post($id){
 		 $status['status'] = 0;
 		 $this->db->set($status); 
          $this->db->where("id", $id); 
          $query= $this->db->update("post", $status); 
 		 return $query;
+	}
+
+	public function updt_post($data){
+		$id = $data['id'];
+		$post['depart_id'] =$data['depart_id'];
+		$post['post'] =$data['post'];
+		$this->db->set($post);
+		$this->db->where("id",$id);
+		$query = $this->db->update("post",$post);
+		return $query;
 	}
 }
 
