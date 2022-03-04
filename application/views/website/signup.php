@@ -13,13 +13,25 @@
                   <input type="text" name="join_in_branch" placeholder="Join In Branch :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <input type="text" name="department" placeholder="Department :" class="form-control" required>
-                </div>
-                <div class="col-md-12 mb-2">
-                  <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control" required>
+                  <!-- <input type="text" name="department" placeholder="Department :" class="form-control" required> -->
+                 <select class="form-control" name="depart_id" id="dpartment" required>
+                          <option value="">Department :</option>
+                          <?php
+                              if(!empty($depart)){
+                                  foreach ($depart as $key => $value) {
+                                     ?>
+                                     <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
+                                     <?php
+                                  }
+                              }
+                          ?> 
+                  </select>
                 </div>
                 <div class="col-md-12 mb-2"> 
                   <input type="text" name="name_of_post" placeholder="Name Of Post :" class="form-control" required>
+                </div>
+                <div class="col-md-12 mb-2">
+                  <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
                     <input type="text" name="officer_name" placeholder="Name Of The Officer :" class="form-control" required>
@@ -64,3 +76,30 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(e) {
+  $('body').on('change','#dpartment',function(){
+      debugger;
+      var depart_id=$(this).val();
+      /*var option="<select name='position' id='position' class='form-control' required>";
+      option+="<option value=''>Select </option>";
+      option+="<option value='0'>Top</option>";*/
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/getpost"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console(data);
+          // $(data).each(function(i, val) {
+          //   option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
+          // });
+          // option+='</select>';
+          // $('#position').replaceWith(option);
+          // $('.box-overlay').hide();
+        }
+      });
+    });
+});
+
+</script>

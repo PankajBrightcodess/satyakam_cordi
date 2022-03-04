@@ -45,3 +45,27 @@ $("#filePhoto").change(function() {
        
        });
     </script>
+
+    <script type="text/javascript">
+  $(document).ready(function(e) {
+  $('body').on('change','#dpartment',function(){
+      debugger;
+      var depart_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/get_postlistbyid"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console(data);
+          // $(data).each(function(i, val) {
+          //   option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
+          // });
+          // option+='</select>';
+          // $('#position').replaceWith(option);
+          // $('.box-overlay').hide();
+        }
+      });
+    });
+});
+
+</script>

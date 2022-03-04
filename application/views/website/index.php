@@ -130,7 +130,7 @@
               </div>
               <div class="team-text">
                 <h2>Raza Haider Khan</h2>
-                <p> M.D (Aajeevika)</p>
+                <p> Managing Director (Aajeevika)</p>
               </div>
             </div>
           </div>

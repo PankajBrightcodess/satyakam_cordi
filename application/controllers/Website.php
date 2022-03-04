@@ -94,6 +94,7 @@ class Website extends CI_Controller {
 
 		public function signup(){
 			$d['v'] = 'website/signup';
+			$d['depart'] = $this->Website_model->get_departlist();
 			$this->load->view('website/template',$d);
 		}
 
@@ -220,6 +221,12 @@ class Website extends CI_Controller {
 			$this->session->unset_userdata($data);
 		}	
 		redirect('website/office_login');
+	}
+
+	public function getpost(){
+		$id = $this->input->post();
+		$postdata = $this->Website_model->get_postlistbyid($id);
+		print_r($postdata);
 	}
 
 	// ................................Admin Panel Area.............................

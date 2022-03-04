@@ -148,6 +148,12 @@ class Website_model extends CI_Model{
 		$query = $this->db->update("post",$post);
 		return $query;
 	}
+
+	public function get_postlistbyid($id){
+		$id = $data['id'];
+		$query = $this->db->get_where('post',array('depart_id'=>$id));
+		return  $query->result_array();
+	}
 }
 ?>
 
