@@ -13,8 +13,8 @@
                   <input type="text" name="join_in_branch" placeholder="Join In Branch :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <!-- <input type="text" name="department" placeholder="Department :" class="form-control" required> -->
-                 <select class="form-control" name="depart_id" id="dpartment" required>
+                  <input type="text" name="department" placeholder="Department :" class="form-control" required>
+                <!--  <select class="form-control" name="depart_id" id="dpartment" required>
                           <option value="">Department :</option>
                           <?php
                               if(!empty($depart)){
@@ -25,7 +25,7 @@
                                   }
                               }
                           ?> 
-                  </select>
+                  </select> -->
                 </div>
                 <div class="col-md-12 mb-2"> 
                   <input type="text" name="name_of_post" placeholder="Name Of Post :" class="form-control" required>
