@@ -20,6 +20,7 @@
               <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
             </div>
             <div class="loginbox">
+              <form method="POST" action="<?= base_url('website/logincheck')?>">  
               <div class="row">
               <div class="col-md-12">
                 <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
@@ -27,21 +28,22 @@
               <div class="col-md-12">
                
                   <label>USER ID</label>
-                  <input name="txtUserid" type="text" class="form-control" placeholder="User Id">
+                  <input name="txtUserid" type="text" id="txtUserid" class="form-control" required placeholder="User Id">
                  
               </div>
               <div class="col-md-12 mb-5">
                
                   <label>PASSWORD</label>
-                  <input name="txtPassword" type="password" class="form-control" placeholder="Password">
+                  <input name="txtPassword" type="password" id="txtPassword" class="form-control" required placeholder="Password">
                 
               </div>
              
               <div class="col-md-6">
-                   <a href="<?= base_url('website/signup');?>"><input type="submit"  name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
+                   <a href="<?= base_url('website/signup');?>"><input type="button"   name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
               </div>
               <div class="col-md-6 mb-3" >
-                  <a href="<?= base_url('website/econtractdocx');?>"><input type="submit" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block"></a>
+                <button type="submit" name="btnLogin" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
+                 <!--  <input type="button" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block     confrmidpass"> -->
               </div>
                <div class="col-md-12">
                 <div class="form-group text-right">
@@ -49,9 +51,19 @@
                 </div>
               </div>
             </div>
+            </form>
             </div>
           </div>
          
         </div>
       </div>
     </section>
+    <!--  <script type="text/javascript">
+
+        $('body').on('click','.confrmidpass',function(){
+          alert('jhdfs');
+        var userid = $('#txtUserid').val();
+        var password = $('#txtPassword').val();
+       
+       });
+    </script> -->

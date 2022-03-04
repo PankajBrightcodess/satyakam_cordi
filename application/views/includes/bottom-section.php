@@ -60,5 +60,10 @@
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo file_url("includes/dist/js/demo.js"); ?>"></script>
         <script src="<?php echo file_url("includes/custom/custom.js"); ?>"></script>
+        <script src="<?= base_url('includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js');?>"></script>
+		<script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
+		<script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
+
+		
     </body>
 </html>

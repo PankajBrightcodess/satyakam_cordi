@@ -17,3 +17,31 @@
   return false;
 });
 </script>
+<script>
+ $(document).ready(function(){
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#previewHolder').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#filePhoto").change(function() {
+  readURL(this);
+});
+ });
+ </script>
+ <script type="text/javascript">
+
+        $('body').on('click','#confrmidpass',function(){
+          // alert('jhdfs');
+      debugger;
+        var userid = $('#txtUserid').val();
+        var password = $('#txtPassword').val();
+       
+       });
+    </script>

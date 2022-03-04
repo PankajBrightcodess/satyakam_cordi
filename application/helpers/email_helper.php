@@ -10,17 +10,25 @@
 			if(!function_exists('upload')){
 				$CI->load->helper('upload');
 			} 
-			$from="prateek.atal@gmail.com";
+			$from="indiaskfoundation468@gmail.com";
 			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 				ini_set('smtp','localhost');
 				ini_set('smtp_port',25);
 				
 				$config['protocol']='smtp';
-				$config['smtp_host']='ssl://smtp.ionos.com';
+				$config['smtp_host']='smtp.gmail.com';
 				$config['smtp_port']='465';
 				$config['smtp_timeout']='30';
-				$config['smtp_user']='';
-				$config['smtp_pass']='';
+				$config['smtp_user']='indiaskfoundation468@gmail.com';
+				$config['smtp_pass']='bk12345#';
+				$from=$config['smtp_user'];
+			}else{
+				$config['protocol']='smtp';
+				$config['smtp_host']='smtp.gmail.com';
+				$config['smtp_port']='465';
+				$config['smtp_timeout']='30';
+				$config['smtp_user']='indiaskfoundation468@gmail.com';
+				$config['smtp_pass']='bk12345#';
 				$from=$config['smtp_user'];
 			}
 			
@@ -30,7 +38,7 @@
 			$config['mailtype'] = "html";
 			
 			$CI->email->initialize($config);
-			$CI->email->from($from,SITE_SALT);
+			$CI->email->from($from,"Satyakam");
 			$CI->email->to($email);
 			$CI->email->subject($subject);
 			$CI->email->message($message);

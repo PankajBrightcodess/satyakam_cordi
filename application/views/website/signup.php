@@ -1,63 +1,42 @@
  <section class="officialservices">
       <div class="container">
         <div class="row">
-          <!--   <div class="col-md-6 col-6" style="margin-bottom:5px">
-              <a href="login.php"><button type="submit" class="mt-4 btn btn-sm btn-block" style="background:#233799;color:white">LOGIN</button></a>
-            </div>
-            <div class="col-md-6 col-6" style="margin-bottom:5px">
-              <a href="signup.php"><button type="submit" class="mt-4 btn btn-sm btn-block" style="background:#233799;color:white;">SIGN UP</button></a></div> -->
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
             <center class="tittle"><h3>Sign Up Form</h3></center>
-            <form action="#"style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
+            <form action="<?= base_url('website/create_signup')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                 <div class="col-md-12 mb-2">
-                  <input type="text" name="student-name" placeholder="Batch Number :" class="form-control" required>
+                     <input type="text" name="batch_no" placeholder="Batch Number :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <select name="gender" class="form-control" required >
-                    <option value="">Joining In Branch :</option>
-                    <option value="Male">A - Branch</option>
-                    <option value="Female">B - Branch</option>
-                  </select>
+                  <input type="text" name="join_in_branch" placeholder="Join In Branch :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <select name="gender" class="form-control" required >
-                    <option value="">Department :</option>
-                    <option value="state">A - Department</option>
-                    <option value="central">B - Department</option>
-                  </select>
+                  <input type="text" name="department" placeholder="Department :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <select name="gender" class="form-control" required >
-                    <option value="">Branch Code :</option>
-                    <option value="state">A - Branch Code</option>
-                    <option value="central">B - Branch Code</option>
-                  </select>
+                  <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control" required>
+                </div>
+                <div class="col-md-12 mb-2"> 
+                  <input type="text" name="name_of_post" placeholder="Name Of Post :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <select name="gender" class="form-control" required >
-                    <option value="">Name Of Post :</option>
-                    <option value="state">A - Post</option>
-                    <option value="central">B - Post</option>
-                  </select>
+                    <input type="text" name="officer_name" placeholder="Name Of The Officer :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <input type="text" name="requested-class" placeholder="Name Of The Officer :" class="form-control" required>
+                    <input type="text" name="mobile_no" placeholder="Mobile Number :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <input type="text" name="session" placeholder="Mobile Number :" class="form-control" required>
+                    <input type="email" name="email_id" placeholder="Email Id :" class="form-control" required>
                 </div>
-                <div class="col-md-12 mb-2">
-                  <input type="email" name="session" placeholder="Email Id :" class="form-control" required>
-                </div>
-                <div class="col-md-12 mb-2">
-                  <a href="<?= base_url('website/econtractform');?>" class="mt-4 btn btn-sm btn-block" data-toggle="modal" data-target=".bd-example-modal-sm" style="background:#233799;color:white">Sign Up</a>
+                 <div class="col-md-12 mb-2">
+                  <input type="submit" class="mt-4 btn btn-sm btn-block" name="" value="Sign Up" style="background:#233799;color:white">
+                   <!-- <a href="<?= base_url('website/econtractform');?>" class="mt-4 btn btn-sm btn-block"  style="background:#233799;color:white">Sign Up</a> -->  
+                   <!-- data-toggle="modal" data-target=".bd-example-modal-sm" -->
                 </div>
               </div>
             </form>
-            
-
           </div>
         </div>
       </div>

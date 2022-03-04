@@ -7,12 +7,13 @@ class Home extends CI_Controller {
 	}
 	
 	public function index(){
+		checklogin();
 		$data['title']="Home";
 		$this->template->load('pages','home',$data);
 	}
 
 	public function sidebar(){
-		//checklogin();
+		checklogin();
 		//validateurl_withrole('1');
 		$data['title'] = "Sidebar Entry";
 		$data['breadcrumb'] = array('admin/' => 'Dashboard');

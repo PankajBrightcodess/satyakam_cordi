@@ -86,11 +86,11 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 ///////////////////////////////////////////////
 $curyear = date('Y',strtotime(date('Y-m-d'))); 
-defined('PROJECT_NAME')        OR define('PROJECT_NAME','Admin Template'); 
+defined('PROJECT_NAME')        OR define('PROJECT_NAME','Satyakam'); 
 defined('OUR_BRAND')       	   OR define('OUR_BRAND',"Brightcode Software Services Pvt Ltd.");
 defined('SESSION_YEAR')        OR define('SESSION_YEAR',"$curyear");
 defined('SITE_SALT')           OR define('SITE_SALT',"Admin Template");
-defined('TP')        		   OR define('TP',"tmp_"); // Table Prefix
+defined('TP')        		   OR define('TP',"stk_"); // Table Prefix
 defined('PRE')                 OR define('PRE',"<pre>");
 defined('NTYPE')                 OR define('NTYPE',"toastr"); //Notification Type
 //////////////////////////////////////////////
@@ -106,7 +106,7 @@ if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 	defined('DB_HOST')		? null : define('DB_HOST','localhost');
 	defined('DB_USER')		? null : define('DB_USER', 'root');
 	defined('DB_PASSWORD')	? null : define('DB_PASSWORD','');
-	defined('DB_NAME')		? null : define('DB_NAME','db_admintemplate');
+	defined('DB_NAME')		? null : define('DB_NAME','db_satyakam');
 }
 else{
 	defined('DB_HOST')      ? null : define('DB_HOST', 'localhost');

@@ -7,7 +7,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function index(){
-		loginredirect();
+		// loginredirect();
 		$this->session->unset_userdata("username");
 		$data['title']="Login";
 		$data['body_class']="login-page";
@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 		$result=$this->Account_model->login($data);
 		if($result['verify']===true){
 			$this->startsession($result);
-			loginredirect();
+			redirect('home');
 		}
 		else{ 
 			$this->session->set_flashdata('logerr',$result['verify']);
