@@ -112,7 +112,7 @@
                 </div>
               </div>
               <div class="team-text">
-                <h2>Mr. Mukram Raza</h2>
+                <h2>Mr. Mukarram Raza</h2>
                 <p>Joint Finance Director</p>
               </div>
             </div>
