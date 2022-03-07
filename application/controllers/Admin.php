@@ -132,4 +132,521 @@ class Admin extends CI_Controller {
 		}
 		redirect('admin/post_details');
 	}
+
+	public function my_documents(){
+		$data['title']="My Document (E-Contract)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','my_document',$data);
+	}
+
+	public function getpost(){
+		$depart_id = $this->input->post();
+
+		$data = $this->Website_model->get_postlistbyid($depart_id);
+
+		$option="<select name='post_id' id='post_id' class='form-control' required>";
+		$option.="<option value=''>--Select--</option>";
+		foreach ($data  as $key => $value) {
+			$option.="<option value='".$value['id']."'>".$value['post']."</option>";
+		}
+		$option.="</select>";
+		print_r($option);
+		// $results=json_encode($data);
+		// echo $results;
+	}
+
+	public function mydocument_create()
+	   {
+		    $records =$this->input->post();
+		    if(!empty($_FILES['office_quotation']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("office_quotation", $upload_path, $allowed_types, time());
+        	print_r($result1);
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['office_quotation'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['service_did']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("service_did", $upload_path, $allowed_types, time());
+        	print_r($result2);
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['service_did'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['service_book']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("service_book", $upload_path, $allowed_types, time());
+        	print_r($result3);
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['service_book'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['training_proc']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("training_proc", $upload_path, $allowed_types, time());
+        	print_r($result4);
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['training_proc'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['appointment_proc']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("appointment_proc", $upload_path, $allowed_types, time());
+        	print_r($result5);
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['appointment_proc'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['official_order']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("official_order", $upload_path, $allowed_types, time());
+        	print_r($result6);
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['official_order'] = $src6;
+          }
+		    }
+		    if(!empty($_FILES['ultimatum']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result7 = upload_file("ultimatum", $upload_path, $allowed_types, time());
+        	print_r($result7);
+		   	  $src7=$result7['path'];
+       	  if(!empty($src7)){
+            $data['ultimatum'] = $src7;
+          }
+		    }
+		    if(!empty($_FILES['transfer_proc']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result8 = upload_file("transfer_proc", $upload_path, $allowed_types, time());
+        	print_r($result8);
+		   	  $src8=$result8['path'];
+       	  if(!empty($src8)){
+            $data['transfer_proc'] = $src8;
+          }
+		    }
+		    if(!empty($_FILES['promotion_proc']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result9 = upload_file("promotion_proc", $upload_path, $allowed_types, time());
+        	print_r($result9);
+		   	  $src9=$result9['path'];
+       	  if(!empty($src9)){
+            $data['promotion_proc'] = $src9;
+          }
+		    }
+		    if(!empty($_FILES['security_fund_rec']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result10 = upload_file("security_fund_rec", $upload_path, $allowed_types, time());
+        	print_r($result10);
+		   	  $src10=$result10['path'];
+       	  if(!empty($src10)){
+            $data['security_fund_rec'] = $src10;
+          }
+		    }
+		    if(!empty($_FILES['my_pf']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/';
+        	$allowed_types = 'pdf';
+        	$result11 = upload_file("my_pf", $upload_path, $allowed_types, time());
+        	print_r($result11);
+		   	  $src11=$result11['path'];
+       	  if(!empty($src11)){
+            $data['my_pf'] = $src11;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   $result = $this->Website_model->add_mydocument($data);
+		   if($result){
+			$this->session->set_flashdata('msg','My Document Inserted Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/my_documents');
+	}
+
+	 public function ec_myteamoffice(){
+		$data['title']="My Team Office (E-Contract)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','my_team_office',$data);
+	}
+
+
+	public function my_office_create(){
+		$records =$this->input->post();
+		// echo PRE;
+		// print_r($_FILES);die;
+		    if(!empty($_FILES['e_contract_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("e_contract_status", $upload_path, $allowed_types, time());
+        	print_r($result1);
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['e_contract_status'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['service_did_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("service_did_status", $upload_path, $allowed_types, time());
+        	print_r($result2);
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['service_did_status'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['service_book_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("service_book_status", $upload_path, $allowed_types, time());
+        	print_r($result3);
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['service_book_status'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['training_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("training_status", $upload_path, $allowed_types, time());
+        	print_r($result4);
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['training_status'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['appointment_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("appointment_status", $upload_path, $allowed_types, time());
+        	print_r($result5);
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['appointment_status'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['order_status']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("order_status", $upload_path, $allowed_types, time());
+        	print_r($result6);
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['order_status'] = $src6;
+          }
+		    }
+		    if(!empty($_FILES['ultimatum_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result7 = upload_file("ultimatum_status", $upload_path, $allowed_types, time());
+        	print_r($result7);
+		   	  $src7=$result7['path'];
+       	  if(!empty($src7)){
+            $data['ultimatum_status'] = $src7;
+          }
+		    }
+		    if(!empty($_FILES['transfer_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result8 = upload_file("transfer_status", $upload_path, $allowed_types, time());
+        	print_r($result8);
+		   	  $src8=$result8['path'];
+       	  if(!empty($src8)){
+            $data['transfer_status'] = $src8;
+          }
+		    }
+		    if(!empty($_FILES['promotion_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result9 = upload_file("promotion_status", $upload_path, $allowed_types, time());
+        	print_r($result9);
+		   	  $src9=$result9['path'];
+       	  if(!empty($src9)){
+            $data['promotion_status'] = $src9;
+          }
+		    }
+		    if(!empty($_FILES['security_fund_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result10 = upload_file("security_fund_status", $upload_path, $allowed_types, time());
+        	print_r($result10);
+		   	  $src10=$result10['path'];
+       	  if(!empty($src10)){
+            $data['security_fund_status'] = $src10;
+          }
+		    }
+		    if(!empty($_FILES['my_pf_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_office/';
+        	$allowed_types = 'pdf';
+        	$result11 = upload_file("my_pf_status", $upload_path, $allowed_types, time());
+        	print_r($result11);
+		   	  $src11=$result11['path'];
+       	  if(!empty($src11)){
+            $data['my_pf_status'] = $src11;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   $result = $this->Website_model->add_myoffice($data);
+		   if($result){
+			$this->session->set_flashdata('msg','My Office Inserted Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/ec_myteamoffice');
+	}
+
+	 public function my_report(){
+		$data['title']="My Report(My Office)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','my_report',$data);
+	}
+
+	public function add_my_report(){
+			$records =$this->input->post();
+		    if(!empty($_FILES['progress_report']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("progress_report", $upload_path, $allowed_types, time());
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['progress_report'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['monthly_progress']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("monthly_progress", $upload_path, $allowed_types, time());
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['monthly_progress'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['annual_progress']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("annual_progress", $upload_path, $allowed_types, time());
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['annual_progress'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['honorarium_slip']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("honorarium_slip", $upload_path, $allowed_types, time());
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['honorarium_slip'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['house_found']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("house_found", $upload_path, $allowed_types, time());
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['house_found'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['emergency_leave']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_report/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("emergency_leave", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['emergency_leave'] = $src6;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   $result = $this->Website_model->add_myreport($data);
+		   if($result){
+			$this->session->set_flashdata('msg','My Office Inserted Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/my_report');
+	}
+
+	public function office_expense(){
+		$data['title']=" Office Expense(My Office)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','office_expense',$data);
+	}
+
+	public function add_office_epense(){
+		  $records =$this->input->post();
+			if(!empty($_FILES['office_rent']['name'])){
+		    	$upload_path = './assets/admin_upload/my_expense/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("office_rent", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['office_rent'] = $src6;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   $result = $this->Website_model->add_office_expense($data);
+		   if($result){
+			$this->session->set_flashdata('msg','Office Rent Added Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/office_expense');
+	}
+
+	public function myteamoffice(){
+		$data['title']=" My Team Office(My Office)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','office_team_status',$data);
+	}
+
+	public function add_myteamoffice(){
+		$records =$this->input->post();
+		    if(!empty($_FILES['daily_progress_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("daily_progress_status", $upload_path, $allowed_types, time());
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['daily_progress_status'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['monthly_progress_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("monthly_progress_status", $upload_path, $allowed_types, time());
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['monthly_progress_status'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['annual_progress_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("annual_progress_status", $upload_path, $allowed_types, time());
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['annual_progress_status'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['house_fund_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("house_fund_status", $upload_path, $allowed_types, time());
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['house_fund_status'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['leave_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("leave_status", $upload_path, $allowed_types, time());
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['leave_status'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['office_rent_status']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("office_rent_status", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['office_rent_status'] = $src6;
+          }
+		    }
+		    if(!empty($_FILES['daily_expense_status']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/my_team_office/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("daily_expense_status", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['daily_expense_status'] = $src6;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   $result = $this->Website_model->add_myteamoffice_model($data);
+		   if($result){
+			$this->session->set_flashdata('msg','My Office Inserted Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/myteamoffice');
+	}
+
+
+
+
+
+
+
+
+
+
+
 }

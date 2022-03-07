@@ -135,7 +135,7 @@ class Website_model extends CI_Model{
 	public function delete_post($id){
 		 $status['status'] = 0;
 		 $this->db->set($status); 
-         $this->db->where("id", $id); 
+         $this->db->where("id", $sid); 
          $query= $this->db->update("post", $status); 
 		 return $query;
 	}
@@ -149,10 +149,74 @@ class Website_model extends CI_Model{
 		return $query;
 	}
 
-	public function get_postlistbyid($id){
-		$id = $data['id'];
-		$query = $this->db->get_where('post',array('depart_id'=>$id));
+	public function get_postlistbyid($depart_id){
+		$depart_ids= $depart_id['depart_id'];
+		// print_r($depart_ids);die;
+		$query = $this->db->get_where('post',array('depart_id'=>$depart_ids,'status'=>1));
 		return  $query->result_array();
+	}
+
+	public function add_mydocument($data){
+		$table="my_document";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
+	public function add_myoffice($data){
+		$table="myoffice";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function add_myreport($data){
+		$table="myreport";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function add_office_expense($data){
+		$table="office_expense";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
+	public function add_myteamoffice_model($data){
+		$table="myteamoffice";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+
 	}
 }
 ?>

@@ -224,8 +224,8 @@ class Website extends CI_Controller {
 	}
 
 	public function getpost(){
-		$id = $this->input->post();
-		$postdata = $this->Website_model->get_postlistbyid($id);
+		$depart_id = $this->input->post();
+		$postdata = $this->Website_model->get_postlistbyid($depart_id);
 		print_r($postdata);
 	}
 

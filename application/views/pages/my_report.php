@@ -1,4 +1,4 @@
-<section class="content">
+    <section class="content">
       <div class="container-fluid">
     	<div class="row">
         	<div class="col-md-12">
@@ -9,55 +9,78 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                     <div class="row">
-                        	<div class="col-md-5 col-lg-4">
-                                <?php echo form_open_multipart('admin/savedepart');?>
+                        	<div class="col-md-12 col-lg-12">
+                                <?php echo form_open_multipart('admin/add_my_report');?>
+                                 <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <!-- <label>Department</label> -->
+                                        <select class="form-control" name="depart_id" required id="depart_id">
+                                            <option value="">DEPARTMENT :</option>
+                                            <?php
+                                                if(!empty($depart)){
+                                                    foreach ($depart as $key => $value) {
+                                                       ?>
+                                                       <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
+                                                       <?php
+                                                    }
+                                                }
+                                            ?> 
+                                        </select>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12" >
+                                        <!-- <label>Post</label> -->
+                                         <select class="form-control posts" name="posts" id="posts" required>
+                                            <option value="">POST :</option>
+                                            
+                                        </select>
+                                    </div>                                    
+                                </div>
+                               <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Daily Activity / Progress Report</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'progress_report','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
+                                    </div>                                    
+                                </div> 
                                 <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Department','required'=>'true'));?>
+                                        <label>Monthly Progress</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'monthly_progress','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Annual Progress</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'annual_progress','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Honorarium Slip</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'honorarium_slip','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>House Fund</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'house_found','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Emergency Leave</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'emergency_leave','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
                                     </div>                                    
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_dep','id'=>'save_dep','value'=>'Save Menu','class'=>'form-control btn btn-success'));?>
+                                        <?php echo form_submit(array('name'=>'save_status','id'=>'save_dep','value'=>'Save','class'=>'form-control btn btn-success'));?>
                                     </div>
                                     <div class="col-md-4"></div>                                    
                                 </div>
                                 <?php echo form_close();?>
-                            </div>
-                            <div class="col-md-2 col-lg-2"></div>
-                        	<div class="col-md-5 col-lg-6 table-responsive">
-                            	<table class="table data-table stripe hover nowrap table-bordered">
-                                    <thead>
-                                        <tr>    
-                                            <th>S.no</th>
-                                            <th>Department Name</th>                
-                                            <th>Action</th>                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i=0;
-                                         if(!empty($depart)){
-                                            foreach($depart as $val){$i++; $id=$val['id']; ?>
-                                        <tr>
-                                            <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['department'] ?></td>
-                                            
-                                            <td><span class="float-right">
-                                            <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   <!-- <?php echo base_url("home/delete_sidebar/");?> -->
-                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-department="<?php echo $val['department'];?>"><i class="fa fa-edit"></i></button>
-                                           </td>
-                                        </tr>
-                                       
-                                       
-                                       <?php 
-                                        }
-                                            }
-                                            ?>
-                                       
-                                        
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -164,30 +187,24 @@
 			},
 		});		
         
-		$('body').on('change','#parent_id',function(){
+		$('body').on('change','#depart_id',function(){
+            // debugger;
 			var parent_id=$(this).val();
-			var option="<select name='position' id='position' class='form-control' required>";
-			option+="<option value=''>Select </option>";
-			option+="<option value='0'>Top</option>";
 			$.ajax({
 				type:"POST",
-				url:"<?php echo base_url("home/getOrderList"); ?>",
-				data:{parent_id:parent_id},
-				dataType:"json",
+				url:"<?php echo base_url("admin/getpost"); ?>",
+				data:{depart_id:parent_id},
+				// dataType:"json",
 				beforeSend: function(){
-					//$(".box-overlay").show();
+					
 				},
 				success: function(data){
-					$(data).each(function(i, val) {
-						option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
-					});
-					option+='</select>';
-					$('#position').replaceWith(option);
-					$('.box-overlay').hide();
+                    console.log(data);
+                    $('#posts').html(data);
 				}
 			});
 		});
-        $('#parent_id').trigger('change');
+        $('#posts').trigger('change');
     });
 
 
