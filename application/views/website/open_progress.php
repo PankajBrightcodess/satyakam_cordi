@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 mb-2">
                 <div class="table-responsive">
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
@@ -21,8 +21,35 @@
                     </thead>
                   </table> 
                 </div>
-                 
-                    </div>
+             </div>
+             <div class="col-md-12 mb-2">
+                <div class="table-responsive">
+                 <table class="table table-hover" style="text-align: center;">
+                    <thead>
+                      <tr>
+                        <th scope="col">Branch Unit : &nbsp;&nbsp;</th>
+                        <th scope="col">Code No : </th>
+                      </tr> 
+                      <tr>
+                        <th scope="col">Unit Incharge : &nbsp;&nbsp;</th>
+                        <th scope="col">Mobile No : </th>
+                      </tr> 
+                      <tr>
+                        <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
+                      </tr> 
+                      <tr>
+                        <th scope="col">Email : &nbsp;&nbsp;</th>
+                        <th scope="col">HelpLine No. : </th>
+                      </tr> 
+                       <tr>
+                        <th scope="col" colspan="2"><select name="type_of_revenue" class="form-control">
+                          <option>TYPE OF  REVENUE</option>
+                        </select></th>
+                      </tr>
+                    </thead>
+                  </table> 
+                </div>
+             </div>
               <div class="col-md-12 mb-2">
                 <button class="accordion"><label><strong>Revenue Received From Candidate Application</strong></label></button>
                 <div class="panel">
