@@ -22,11 +22,13 @@ class Account_model extends CI_Model{
 	}
 	
 	public function login($data){
+
 		$table=TP."users";
 		$username=$data['username'];		
 		$password=$data['password'];
 		$this->db->where('username', $username);
 		$query = $this->db->get($table);
+		$last = $this->db->last_query();
 		$result=$query->unbuffered_row('array');
 		if(!empty($result)){
 			$salt=$result['salt'];

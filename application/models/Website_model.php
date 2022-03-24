@@ -216,7 +216,30 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
+	}
 
+	public function create_generalgroup($data){
+		$table="generalgroup";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function create_clubgroup($data){
+		$table="my_clubgroup";  
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
 ?>

@@ -639,6 +639,198 @@ class Admin extends CI_Controller {
 		redirect('admin/myteamoffice');
 	}
 
+	public function general_group(){
+		$data['title']=" General Group(Ajeevika)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','generalgroup',$data);
+
+	}
+
+	public function add_generalgroup(){
+		// echo PRE;
+		// print_r($_FILES);die;
+		$records = $this->input->post();
+		if(!empty($_FILES['registered_group_list']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("registered_group_list", $upload_path, $allowed_types, time());
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['registered_group_list'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['new_group_creative']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("new_group_creative", $upload_path, $allowed_types, time());
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['new_group_creative'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['group_saving_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("group_saving_status", $upload_path, $allowed_types, time());
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['group_saving_status'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['banking']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("banking", $upload_path, $allowed_types, time());
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['banking'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['e_received']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("e_received", $upload_path, $allowed_types, time());
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['e_received'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['group_loan_status']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("group_loan_status", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['group_loan_status'] = $src6;
+          }
+		    }
+		    if(!empty($_FILES['emi_banking']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/general_group/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("emi_banking", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['emi_banking'] = $src6;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   	$result = $this->Website_model->create_generalgroup($data);
+		   	if($result){
+				$this->session->set_flashdata('msg','My Office Inserted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/myteamoffice');
+	}
+
+	public function club_group(){
+		$data['title']="My Club Group(Ajeevika)";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_departlist($data);	
+		$data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','my_clubgroup',$data);
+
+	}
+
+	public function add_myclubgroup(){
+		// echo PRE;
+		// print_r($_POST);
+		// print_r($_FILES);die;
+		$records = $this->input->post();
+		if(!empty($_FILES['registered_group_list']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result1 = upload_file("registered_group_list", $upload_path, $allowed_types, time());
+;		   	  $src1=$result1['path'];
+       	  if(!empty($src1)){
+            $data['registered_group_list'] = $src1;
+          }
+		    }
+		    if(!empty($_FILES['new_group_creative']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result2 = upload_file("new_group_creative", $upload_path, $allowed_types, time());
+		   	  $src2=$result2['path'];
+       	  if(!empty($src2)){
+            $data['new_group_creative'] = $src2;
+          }
+		    }
+		    if(!empty($_FILES['group_saving_status']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result3 = upload_file("group_saving_status", $upload_path, $allowed_types, time());
+		   	  $src3=$result3['path'];
+       	  if(!empty($src3)){
+            $data['group_saving_status'] = $src3;
+          }
+		    }
+		    if(!empty($_FILES['banking']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result4 = upload_file("banking", $upload_path, $allowed_types, time());
+		   	  $src4=$result4['path'];
+       	  if(!empty($src4)){
+            $data['banking'] = $src4;
+          }
+		    }
+		    if(!empty($_FILES['e_received']['name'])){
+		    	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result5 = upload_file("e_received", $upload_path, $allowed_types, time());
+		   	  $src5=$result5['path'];
+       	  if(!empty($src5)){
+            $data['e_received'] = $src5;
+          }
+		    }
+		     if(!empty($_FILES['group_loan_status']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("group_loan_status", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['group_loan_status'] = $src6;
+          }
+		    }
+		    if(!empty($_FILES['emi_banking']['name'])){
+		     	// $this->load->helper('upload');
+		    	$upload_path = './assets/admin_upload/ajeevika/club_group/';
+        	$allowed_types = 'pdf';
+        	$result6 = upload_file("emi_banking", $upload_path, $allowed_types, time());
+		   	  $src6=$result6['path'];
+       	  if(!empty($src6)){
+            $data['emi_banking'] = $src6;
+          }
+		    }
+		    $data['depart_id'] = $records['depart_id'];
+		    $data['posts'] = $records['posts'];
+		   	$result = $this->Website_model->create_clubgroup($data);
+		   	if($result){
+				$this->session->set_flashdata('msg','My Office Inserted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/club_group');
+	}
+
+
+
+
 
 
 

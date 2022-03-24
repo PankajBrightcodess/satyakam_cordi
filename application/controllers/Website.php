@@ -229,6 +229,11 @@ class Website extends CI_Controller {
 		print_r($postdata);
 	}
 
+	public function open_progress_report(){
+		$d['v'] = 'website/open_progress';
+			$this->load->view('website/template_1',$d);
+	}
+
 	// ................................Admin Panel Area.............................
 
 	public function officer_details(){

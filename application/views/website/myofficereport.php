@@ -16,7 +16,8 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Daily Activity / Progress Report</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="<?= base_url('website/open_progress_report');?>" class="form-control btn btn-sm btn-success">Open</a></td>
+                 <!--    <a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a> -->
                   </tr>
                   <tr>
                     <th scope="row">2</th>
