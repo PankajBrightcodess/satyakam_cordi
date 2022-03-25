@@ -104,7 +104,7 @@
                         <th colspan="3">Banking ID No.</th> 
                       </tr>
                       <tr>
-                        <th colspan="13"><button class="btn-sm btn-success btn add_form">+</button></th>
+                        <th colspan="13"><button class="btn-sm btn-success btn add_form1">+</button></th>
                         
                       </tr>
                     </thead>
@@ -156,7 +156,7 @@
                         <th colspan="2">Banking Id No./date/Time</th>
                       </tr>
                       <tr>
-                        <th colspan="11"><button class="btn-sm btn-success btn add_form">+</button></th>
+                        <th colspan="11"><button class="btn-sm btn-success btn add_form2">+</button></th>
                         
                       </tr>
                     </thead>
@@ -195,7 +195,7 @@
                         <th colspan="2">Banking ID No./Date</th>
                       </tr>
                       <tr>
-                        <th colspan="9"><button class="btn-sm btn-success btn add_form">+</button></th>
+                        <th colspan="9"><button class="btn-sm btn-success btn add_form3">+</button></th>
                         
                       </tr>
                     </thead>
@@ -275,7 +275,7 @@
                         <th colspan="2">Result</th>
                       </tr>
                       <tr>
-                        <th colspan="9"><button class="btn-sm btn-success btn add_form">+</button></th>
+                        <th colspan="9"><button class="btn-sm btn-success btn add_form4">+</button></th>
                         
                       </tr>
                     </thead>

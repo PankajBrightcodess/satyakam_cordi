@@ -93,7 +93,7 @@ $("#filePhoto").change(function() {
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
   var wrapper       = $(".registration1"); //Fields wrapper
-  var add_button      = $(".add_form"); //Add button ID
+  var add_button      = $(".add_form1"); //Add button ID
   
   var x = 1; //initlal text box count
   $(add_button).click(function(e){ //on add input button click
@@ -113,7 +113,7 @@ $("#filePhoto").change(function() {
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
   var wrapper       = $(".registration2"); //Fields wrapper
-  var add_button      = $(".add_form"); //Add button ID
+  var add_button      = $(".add_form2"); //Add button ID
   
   var x = 1; //initlal text box count
   $(add_button).click(function(e){ //on add input button click
@@ -133,7 +133,7 @@ $("#filePhoto").change(function() {
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
   var wrapper       = $(".registration3"); //Fields wrapper
-  var add_button      = $(".add_form"); //Add button ID
+  var add_button      = $(".add_form3"); //Add button ID
   
   var x = 1; //initlal text box count
   $(add_button).click(function(e){ //on add input button click
@@ -153,7 +153,7 @@ $("#filePhoto").change(function() {
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
   var wrapper       = $(".registration4"); //Fields wrapper
-  var add_button      = $(".add_form"); //Add button ID
+  var add_button      = $(".add_form4"); //Add button ID
   
   var x = 1; //initlal text box count
   $(add_button).click(function(e){ //on add input button click
