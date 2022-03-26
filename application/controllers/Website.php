@@ -233,6 +233,13 @@ class Website extends CI_Controller {
 		$d['v'] = 'website/open_progress';
 			$this->load->view('website/template_1',$d);
 	}
+	// ''''''''''''''''''''''''''''daily report''''''''''''''''''''''''''''''''''''''
+
+	public function daily_report(){
+		$data = $this->input->post();
+		echo PRE;
+		print_r($data);die;
+	}
 
 	// ................................Admin Panel Area.............................
 
@@ -240,6 +247,7 @@ class Website extends CI_Controller {
 		$data['title']="Home";
 		$this->template->load('pages','home',$data);
 	}
+
 
 
 
