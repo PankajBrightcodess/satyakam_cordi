@@ -84,6 +84,9 @@
                       </tr>
                     </tbody>
                   </table>
+                  <div class="mb-2">
+                  <input type="text" name="total_revenue" class="form-control" placeholder="Total Revenue">
+                </div>
                 </div>
 
                 <button class="accordion"><label><strong>Security Fund Deposit Revenue</strong></label></button>
@@ -125,17 +128,10 @@
                       </tr>
                     </tbody>
                   </table>
-                 <div class="row">
-                    
-                   
-                     
-                   <!--  <div class="col-md-12 col-12 mb-3">
-                      <label>Total Revenue</label>
-                      <input type="text" name="total_revenue" placeholder="Enter Total Revenue" class="form-control">
-                    </div> -->
-
-
-                  </div>
+                   <div class="mb-2">
+                  <input type="text" name="total_revenue_1 " class="form-control" placeholder="Total Revenue">
+                </div>
+               
                 </div>
 
                 <button class="accordion"><label><strong>Group Composition And Weekly Savings/ EMI Revenue</strong></label></button>
@@ -177,6 +173,9 @@
                       </tr>
                     </tbody>
                   </table>
+                   <div class="mb-2">
+                    <input type="text" name="total_revenue_2 " class="form-control" placeholder="Total Revenue">
+                  </div>
                
                 </div>
                 <button class="accordion"><label><strong>Club Member Revenue</strong></label></button>
@@ -198,6 +197,7 @@
                         <th colspan="9"><button class="btn-sm btn-success btn add_form3">+</button></th>
                         
                       </tr>
+
                     </thead>
                     <tbody class="registration3">
                       <tr>
@@ -213,50 +213,12 @@
                       </tr>
                     </tbody>
                   </table>
-                  <!-- <div class="row">
-                    <div class="col-md-6 col-6 mb-3">
-                      <label> Group No.</label>
-                      <input type="text" name="group_no" class="form-control" placeholder="Enter Group No.">
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Group Name</label>
-                      <input type="text" name="group_name" class="form-control" placeholder="Enter Group Name">
-                    </div>
-                      <div class="col-md-6 col-6 mb-3">
-                      <label>Club Id No.</label>
-                      <input type="text" name="club_id_no" class="form-control" placeholder="Enter Club Id No.">
-                    </div>
-                     <div class="col-md-6 col-6 mb-3">
-                      <label>Club Member Name</label>
-                      <input type="text" name="club_member_name" placeholder="Enter Club Member Name" class="form-control">
-                    </div>
-                  
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Sponsor ID No.</label>
-                      <input type="text" name="sponsor_no" class="form-control" placeholder="Enter Sponsor ID No.">
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Sponsor Level</label>
-                      <input type="text" name="sponsor_level" placeholder="Enter Sponsor Level" class="form-control">
-                    </div>
-                     <div class="col-md-6 col-6 mb-3">
-                      <label>Joining Fee</label>
-                      <input type="text" name="other_fee" placeholder="Enter Joining Fee" class="form-control">
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Banking ID No./Date</label>
-                      <input type="text" name="banking_id" placeholder=" Enter Banking ID No./Date" class="form-control">
-                    </div>
-                    <div class="col-md-12 col-12 mb-3">
-                      <label>Total Revenue</label>
-                      <input type="text" name="total_revenue" placeholder="Enter Total Revenue" class="form-control">
-                    </div>
-                    <div class="col-md-12 col-12 mb-5">
-                      <h5> Ground Total Revenue :</h5><label> </label>
-                    </div>
-
-
-                  </div> -->
+                   <div class="mb-2">
+                    <input type="text" name="total_revenue_3" class="form-control" placeholder="Total Revenue">
+                  </div>
+                   <div class="mb-2">
+                    <input type="text" name="grand_total_revamue" class="form-control" placeholder="Grand Total Revenue(A+B+C+D)">
+                  </div>
                 </div>
 
                 <button class="accordion"><label><strong>Travelling Allowance Report</strong></label></button>
@@ -293,48 +255,6 @@
                       </tr>
                     </tbody>
                   </table>
-                  <!-- <div class="row">
-                    <div class="col-md-6 col-6 mb-3">
-                      <label> Inspection Area Name.</label>
-                      <input type="text" name="inspection_area" class="form-control" placeholder="Enter Inspection Area Name.">
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Objective</label>
-                      <input type="text" name="objective" class="form-control" placeholder="Enter Objective">
-                    </div>
-                      <div class="col-md-6 col-6 mb-3">
-                      <label>Arrival Time</label>
-                      <input type="time" name="arrival_time" class="form-control" placeholder="Enter Arrival Time.">
-                    </div>
-                     <div class="col-md-6 col-6 mb-3">
-                      <label>Arrival K.M.</label>
-                      <input type="text" name="arrival_km" placeholder="Enter Arrival K.M." class="form-control">
-                    </div>
-                  
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Port Of Departure.</label>
-                      <select class="form-control" name="port_of_department">
-                        <option>---SELECT---</option>
-                        <option value="Home">Home</option>
-                        <option value="Office">Office</option>
-                        <option value="new_inspection_area">New Inspection Area</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Departure K.M.</label>
-                      <input type="text" name="departure_km" placeholder="Enter Departure K.M." class="form-control">
-                    </div>
-                     <div class="col-md-6 col-6 mb-3">
-                      <label>Total K.M.</label>
-                      <input type="text" name="other_fee" placeholder="Enter Total K.M." class="form-control">
-                    </div>
-                    <div class="col-md-6 col-6 mb-3">
-                      <label>Result</label>
-                      <input type="text" name="result" placeholder=" Enter Result" class="form-control">
-                    </div>
-                  
-                  </div> -->
                 </div>
                  
               </div>
