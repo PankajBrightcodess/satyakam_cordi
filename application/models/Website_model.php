@@ -241,6 +241,97 @@ class Website_model extends CI_Model{
 			return false;
 		}
 	}
+
+	public function add_state($data){
+		// echo PRE;
+		unset($data['save_state']);
+		$table="state";
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+	}
+
+	public function get_statelist(){
+		$query = $this->db->get_where('state',array('status'=>1));
+		return  $query->result_array();
+	}
+
+	public function updt_state($data){
+		$id = $data['id'];
+		$menu['menu'] =$data['menu'];
+		$this->db->set($menu);
+		$this->db->where("id",$id);
+		$query = $this->db->update("menu",$menu);
+		return $query;
+	}
+
+	public function delete_states($id){
+		$status['status'] = 0;
+		 $this->db->set($status); 
+         $this->db->where("id", $id); 
+         $query= $this->db->update("state", $status); 
+		 return $query;
+	}
+
+	public function add_menu($data){
+		unset($data['save_menu']);
+		$table="menu";
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
+
+	public function get_menulist($data){
+		$query = $this->db->get_where('menu',array('status'=>1));
+		return  $query->result_array();
+	}
+	public function get_submenulist($id){
+		$query = $this->db->get_where('submenu',array('status'=>1,'menu_id'=>$id));
+		return  $query->result_array();
+	}
+	public function updt_menu($data){
+		// print_r($data);die;
+		$id = $data['id'];
+		$menu['menu'] =$data['menu'];
+		$this->db->set($menu);
+		$this->db->where("id",$id);
+		$query = $this->db->update("menu",$menu);
+		return $query;
+	}
+
+	public function	delete_menus($id){
+		$status['status'] = 0;
+		 $this->db->set($status); 
+         $this->db->where("id", $id); 
+         $query= $this->db->update("menu", $status); 
+		 return $query;
+
+	}
+
+	public function add_submenu($data){
+		unset($data['save_submenu']);
+		$table="submenu";
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 }
 ?>
 

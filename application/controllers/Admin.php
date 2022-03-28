@@ -57,6 +57,122 @@ class Admin extends CI_Controller {
 		$this->template->load('pages','department',$data);
 
 	}
+	public function state(){
+		$data['title']="State";
+		$data['datatable'] = true;	
+		$data['state'] = $this->Website_model->get_statelist($data);	
+		// print_r($data['state']);die;
+		$this->template->load('pages','state',$data);
+	}
+
+	public function savestate(){
+		$data = $this->input->post();
+		$result = $this->Website_model->add_state($data);
+			if($result){
+			$this->session->set_flashdata('msg','State Add Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/state');
+
+	}
+
+	public function update_state(){
+		$data= $this->input->post();
+		$result=$this->Website_model->updt_state($data);
+
+		if($result){
+			$this->session->set_flashdata('msg','State Updated Successfully');
+		}else{
+			$this->session->set_flashdata('err_msg','Something Error!');
+		}
+		redirect('admin/state');
+	}
+	public function delete_state(){
+			$id = $this->input->get('id');
+			$result = $this->Website_model->delete_states($id);
+			if($result){
+				$this->session->set_flashdata('msg','Department deleted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/department');
+
+	}
+	public function menu(){
+		$data['title']="Menu";
+		$data['datatable'] = true;	
+		$data['menu'] = $this->Website_model->get_menulist($data);	
+		// print_r($data['menu']);die;
+		$this->template->load('pages','menu',$data);
+	}
+
+	public function savemenu(){
+		$data = $this->input->post();
+		$result = $this->Website_model->add_menu($data);
+	
+		if($result){
+			$this->session->set_flashdata('msg','Menu Add Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/menu');
+		
+	} 
+	public function update_menu(){
+		  $data= $this->input->post();
+		  $result=$this->Website_model->updt_menu($data);
+			if($result){
+				$this->session->set_flashdata('msg','Menu Updated Successfully');
+			}else{
+				$this->session->set_flashdata('err_msg','Something Error!');
+			}
+			redirect('admin/menu');
+
+	}
+	public function delete_menu(){
+			$id = $this->input->get('id');
+			$result = $this->Website_model->delete_menus($id);
+			if($result){
+				$this->session->set_flashdata('msg','Menu deleted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/menu');
+
+	}
+
+	public function submenu(){
+		$data['title']="Sub Menu";
+		$data['datatable'] = true;	
+		$data['menu'] = $this->Website_model->get_menulist($data);	
+		// print_r($data['menu']);die;
+		$this->template->load('pages','submenu',$data);
+	}
+
+	public function get_submenu_byid(){
+		$id = $this->input->post;
+		$data = $this->Website_model->get_menulist($id);
+		print_r($data);
+
+	}
+
+	public function savesubmenu(){
+		$data = $this->input->post();
+		// echo PRE;
+		// print_r($data);die;
+		$result = $this->Website_model->add_submenu($data);
+	
+		if($result){
+			$this->session->set_flashdata('msg','Menu Add Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/submenu');
+	}
+
+
+
 	public function savedepart(){
 		$data = $this->input->post();
 		$result = $this->Website_model->add_depart($data);
