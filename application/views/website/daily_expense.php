@@ -64,7 +64,7 @@
                         <th colspan="2">UPI Transation To Neft Check No.</th>  
                       </tr>
                       <tr>
-                        <th colspan="10"><button class="btn-sm btn-success btn add_form">+</button></th>
+                        <th colspan="10"><button class="btn-sm btn-success btn add_expense">+</button></th>
                         
                       </tr>
                     </thead>

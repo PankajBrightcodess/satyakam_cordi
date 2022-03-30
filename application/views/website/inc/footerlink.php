@@ -169,6 +169,26 @@ $("#filePhoto").change(function() {
   })
 });
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 500; //maximum input boxes allowed
+  var wrapper       = $(".registration"); //Fields wrapper
+  var add_button      = $(".add_expense"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name" id="post_name" class="form-control"></td><td><input type="text" name="fee" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+    }
+  });
+  
+  $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+    e.preventDefault(); $(this).parent('tr').remove(); x--;
+  })
+});
+</script>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
