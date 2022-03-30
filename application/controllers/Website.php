@@ -248,6 +248,12 @@ class Website extends CI_Controller {
 		$this->template->load('pages','home',$data);
 	}
 
+	public function daily_expense(){
+		$d['v'] = 'website/daily_expense';
+		$this->load->view('website/template_1',$d);
+
+	}
+
 
 
 

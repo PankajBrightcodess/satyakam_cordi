@@ -151,11 +151,25 @@ class Admin extends CI_Controller {
 	}
 
 	public function get_submenu_byid(){
-		$id = $this->input->post;
+		$id = $this->input->post();
 		$data = $this->Website_model->get_menulist($id);
 		print_r($data);
 
 	}
+	public function get_submenu_byides(){
+		$id = $this->input->post('menu_id');
+			$data = $this->Website_model->get_submenulist($id);
+
+			if(!empty($data)){
+				$html ='<option value="">---SELECT---</option>';
+				foreach ($data as $key => $value) {
+					$html.="<option value=".$value['id'].">".$value['submenu']."</option>";
+				}
+			}
+			echo $html;
+	}
+
+	
 
 	public function savesubmenu(){
 		$data = $this->input->post();
@@ -192,6 +206,37 @@ public function update_submenu(){
 				$this->session->set_flashdata("err_msg","Something Error!");
 			}
 			redirect('admin/submenu');
+	}
+
+	public function child_submenu(){
+		$data['title']="Child Submenu";
+		$data['datatable'] = true;	
+		$data['menu'] = $this->Website_model->get_menulist($data);	
+		$data['submenu'] = $this->Website_model->get_submenulist_all();
+		$data['child_submenu_list'] = $this->Website_model->get_childsubmenulist($data);	
+		$this->template->load('pages','child_submenu',$data);
+	}
+
+	public function savechildsubmenu(){
+			$data = $this->input->post();
+			$result = $this->Website_model->add_childsubmenu($data);
+			if($result){
+				$this->session->set_flashdata('msg','Add Child Submenu Add Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/child_submenu');
+	}
+
+	public function update_childsubmenu(){
+		  $data = $this->input->post();
+			$result = $this->Website_model->updt_childsubmenu($data);
+			if($result){
+				$this->session->set_flashdata('msg','Update Child Submenu Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/child_submenu');
 	}
 
 

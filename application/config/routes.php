@@ -57,3 +57,4 @@ $route['forgotpassword'] = 'login/forgotpassword';
 $route['enterotp'] = 'login/enterotp';
 $route['resetpassword'] = 'login/resetpassword';
 $route['logout'] = 'login/logout';
+

@@ -292,7 +292,7 @@ class Website_model extends CI_Model{
 		}	
 	}
 
-	public function get_menulist($data){
+	public function get_menulist(){
 		$query = $this->db->get_where('menu',array('status'=>1));
 		return  $query->result_array();
 	}
@@ -361,9 +361,6 @@ class Website_model extends CI_Model{
 		$id = $data['id'];
 		$submenu['menu_id'] =$data['menu_id'];
 		$submenu['submenu'] =$data['submenu'];
-		// echo PRE;
-		// print_r($data);
-		// print_r($submenu);die;
 		$this->db->set($submenu);
 		$this->db->where("id",$id);
 		$query = $this->db->update("submenu",$submenu);
@@ -378,6 +375,49 @@ class Website_model extends CI_Model{
 		 return $query;
 	}
 
+	public function add_childsubmenu($data){
+		unset($data['save_submenu']);
+		$table="childsubmenu";
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
+	public function get_childsubmenulist($data){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.submenu,t3.menu');
+		$this->db->from('childsubmenu t1');
+		$this->db->join('submenu t2','t1.submenu_id=t2.id','left');
+		$this->db->join('menu t3','t1.menu_id=t3.id','left');
+		$qry = $this->db->get();
+		// $qry = $this->db->get();
+
+		if($qry->num_rows()>0)
+		{
+			return $result = $qry->result_array();
+
+		}else
+		{
+			return 0;
+		}
+	}
+
+	public function updt_childsubmenu($data){
+		$id = $data['id'];
+		$submenu['menu_id'] =$data['menu_id'];
+		$submenu['submenu_id'] =$data['submenu_id'];
+		$submenu['child_submenu'] =$data['child_submenu'];
+		$this->db->set($submenu);
+		$this->db->where("id",$id);
+		$query = $this->db->update("childsubmenu",$submenu);
+		return $query;
+	}
 }
 ?>
 

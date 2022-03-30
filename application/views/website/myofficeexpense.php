@@ -18,11 +18,15 @@
                     <td>Office Rent</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                   </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Daily Authorise Expense</td>
+                    <td><a target="_blank" href="<?= base_url('website/daily_expense');?>" class="btn btn-sm btn-success">Daily Expense</a></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
-           
         </div>
       </div>
     </section>
