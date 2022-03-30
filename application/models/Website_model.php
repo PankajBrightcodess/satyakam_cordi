@@ -300,6 +300,31 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('submenu',array('status'=>1,'menu_id'=>$id));
 		return  $query->result_array();
 	}
+	public function get_submenulist_all(){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.menu');
+		$this->db->from('stk_submenu t1');
+		$this->db->join('stk_menu t2','t1.menu_id=t2.id','left');
+		$qry = $this->db->get();
+		// $quiery = $this->db->last_query();
+		// print_r($quiery);die;
+		// $qry = $this->db->get();
+
+		if($qry->num_rows()>0)
+		{
+			return $result = $qry->result_array();
+
+		}else
+		{
+			return 0;
+		}
+
+
+
+
+		// $query = $this->db->get_where('submenu',array('status'=>1));
+		// $result = $query->result_array();
+	}
 	public function updt_menu($data){
 		// print_r($data);die;
 		$id = $data['id'];
@@ -330,6 +355,27 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
+	}
+
+	public function updt_submenu($data){
+		$id = $data['id'];
+		$submenu['menu_id'] =$data['menu_id'];
+		$submenu['submenu'] =$data['submenu'];
+		// echo PRE;
+		// print_r($data);
+		// print_r($submenu);die;
+		$this->db->set($submenu);
+		$this->db->where("id",$id);
+		$query = $this->db->update("submenu",$submenu);
+		return $query;
+	}
+
+	public function delete_submenus($id){
+		$status['status'] = 0;
+		 $this->db->set($status); 
+         $this->db->where("id", $id); 
+         $query= $this->db->update("submenu", $status); 
+		 return $query;
 	}
 
 }

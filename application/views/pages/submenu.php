@@ -48,21 +48,23 @@
                                     <thead>
                                         <tr>    
                                             <th>S.no</th>
-                                            <th>menu Name</th>                
+                                            <th>menu</th>                
+                                            <th>Sub Menu</th>                
                                             <th>Action</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=0;
-                                         if(!empty($menu)){
-                                            foreach($menu as $val){$i++; $id=$val['id']; ?>
+                                         if(!empty($submenu)){
+                                            foreach($submenu as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td ><?php echo $i ?></td>
                                             <td ><?php echo $val['menu'] ?></td>
+                                            <td ><?php echo $val['submenu'] ?></td>
                                             
                                             <td><span class="float-right">
                                             <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   <!-- <?php echo base_url("home/delete_sidebar/");?> -->
-                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-menu="<?php echo $val['menu'];?>"><i class="fa fa-edit"></i></button>
+                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-menu_id="<?php echo $val['menu_id'];?>" data-submenu="<?php echo $val['submenu'];?>"><i class="fa fa-edit"></i></button>
                                            </td>
                                         </tr>
                                        
@@ -95,15 +97,30 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-           <?php echo form_open_multipart('admin/update_menu');?>
+           <?php echo form_open_multipart('admin/update_submenu');?>
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-12">
-                            <?php echo form_input(array('type'=>'text','name'=>'menu','id'=>'menu','class'=>'form-control menu','placeholder'=>'Enter Department','required'=>'true'));?>
+                                  <select class="form-control" id="menu_id" name="menu_id">
+                                      <option>---SELECT---</option>
+                                      <?php 
+                                        foreach ($menu as $key => $value) {
+                                           ?>
+                                            <option value="<?= $value['id'];?>"><?= $value['menu'];?></option>
+                                           <?php
+                                        }
+                                      ?>
+                                      
+                                  </select>
                             <input type="hidden" name="id" id="id">
                         </div>                                    
+                    </div>
+                    <div class="form-group row">
+                         <div class="col-sm-12">
+                            <?php echo form_input(array('type'=>'text','name'=>'submenu','id'=>'submenu','class'=>'form-control','placeholder'=>'Enter Sub Menu','required'=>'true'));?>
+                        </div>                                   
                     </div>
                    
                     
@@ -122,10 +139,12 @@
     <script type="text/javascript">
         $('.updt').click(function(e){
         var id = $(this).data('id');
-        var menu = $(this).data('menu');
+        var menu_id = $(this).data('menu_id');
+        var submenu = $(this).data('submenu');
       
         $('#id').val(id);
-        $('#menu').val(menu);
+        $('#menu_id').val(menu_id);
+        $('#submenu').val(submenu);
        });
     </script>
 
@@ -217,7 +236,7 @@ $('.delete').click(function(e){
     if(confirm('Are you Sure !')){
     $.ajax({
             type:'GET',
-            url:"<?PHP echo base_url('admin/delete_menu'); ?>",
+            url:"<?PHP echo base_url('admin/delete_submenu'); ?>",
             data: {id:id},
             success: function(result){
                 console.log(result);

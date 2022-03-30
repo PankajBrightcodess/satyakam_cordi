@@ -146,7 +146,7 @@ class Admin extends CI_Controller {
 		$data['title']="Sub Menu";
 		$data['datatable'] = true;	
 		$data['menu'] = $this->Website_model->get_menulist($data);	
-		// print_r($data['menu']);die;
+		$data['submenu'] = $this->Website_model->get_submenulist_all();
 		$this->template->load('pages','submenu',$data);
 	}
 
@@ -164,11 +164,34 @@ class Admin extends CI_Controller {
 		$result = $this->Website_model->add_submenu($data);
 	
 		if($result){
-			$this->session->set_flashdata('msg','Menu Add Successfully');
+			$this->session->set_flashdata('msg','Submenu Add Successfully');
 		}else{
 			$this->session->set_flashdata("err_msg","Something Error!");
 		}
 		redirect('admin/submenu');
+	}
+
+public function update_submenu(){
+		$data= $this->input->post();
+		$result=$this->Website_model->updt_submenu($data);
+
+		if($result){
+			$this->session->set_flashdata("msg","Submenu Updated Successfully");
+		}else{
+			$this->Session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/submenu');
+	} 
+
+	public function delete_submenu(){
+		$id = $this->input->get('id');
+			$result = $this->Website_model->delete_submenus($id);
+			if($result){
+				$this->session->set_flashdata('msg','Submenu deleted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/submenu');
 	}
 
 
