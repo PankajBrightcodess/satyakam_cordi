@@ -230,7 +230,7 @@ public function update_submenu(){
 
 	public function update_childsubmenu(){
 		  $data = $this->input->post();
-			$result = $this->Website_model->updt_childsubmenu($data);
+			$result = $this->Website_model->updt_childsubmenus($data);
 			if($result){
 				$this->session->set_flashdata('msg','Update Child Submenu Successfully');
 			}else{
@@ -1010,6 +1010,57 @@ public function update_submenu(){
 				$this->session->set_flashdata("err_msg","Something Error!");
 			}
 			redirect('admin/club_group');
+	}
+
+
+
+
+// '''''''''''''''''''''''''''''''''''''''''''Vecency'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	public function vecency(){
+		$data['title']=" Office Vecency";
+		$data['datatable'] = true;
+		$data['state'] = $this->Website_model->get_statelist($data);	
+		$data['vacencylist'] = $this->Website_model->list_vecency();
+		// echo PRE;	
+		// print_r($data['vacencylist']);die;
+		// $data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','vecency',$data);
+	}
+
+	public function addvecency(){
+		$data = $this->input->post();
+		$result = $this->Website_model->add_vecency($data);
+		   if($result){
+			$this->session->set_flashdata('msg','Office Vecency Added Successfully');
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/vecency');
+
+	}
+
+	public function updatevecency(){
+		$data = $this->input->post();
+		$run = $this->Website_model->update_vecency($data);
+		if($run){
+			
+			$this->session->set_flashdata("msg","Vecency Updated!!");
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!");
+		}
+		redirect('admin/vecency');
+
+	}
+
+	public function deletevecency(){
+			$id = $this->input->get('id');
+			$result = $this->Website_model->delete_vecency($id);
+			if($result){
+				$this->session->set_flashdata('msg','Vecency deleted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/vecency');
 	}
 
 

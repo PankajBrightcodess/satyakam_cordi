@@ -24,6 +24,23 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 
 		}
+
+		public function apply_online(){
+			$d['v'] = 'website/apply_online';
+			$this->load->view('website/template',$d);
+		}
+		public function applyform(){
+			$data = $this->input->post();
+			$result = $this->Website_model->insert_applyform($data);
+			if($result){
+				$this->session->set_flashdata("msg","Form Create Successfully !!");
+				redirect('website/econtractform/');
+		    }else{
+				$this->session->set_flashdata("err_msg","Try Again !!");
+				redirect('website/signup/');
+		    }
+			
+		}
 		public function econtractdocx(){
 			$d['v'] = 'website/econtractdocx';
 			$this->load->view('website/template_1',$d);

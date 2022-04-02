@@ -306,10 +306,6 @@ class Website_model extends CI_Model{
 		$this->db->from('stk_submenu t1');
 		$this->db->join('stk_menu t2','t1.menu_id=t2.id','left');
 		$qry = $this->db->get();
-		// $quiery = $this->db->last_query();
-		// print_r($quiery);die;
-		// $qry = $this->db->get();
-
 		if($qry->num_rows()>0)
 		{
 			return $result = $qry->result_array();
@@ -418,6 +414,76 @@ class Website_model extends CI_Model{
 		$query = $this->db->update("childsubmenu",$submenu);
 		return $query;
 	}
+
+	// '''''''''''''''''''''''''''''''''''''''''''''''''''''Vacency''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	public function add_vecency($data){
+		// print_r($data);die;
+		$table="vecency";
+		$state_id = $data['state_id'];
+		$query = $this->db->get_where('vecency',array('status'=>1,'state_id'=>$state_id));
+		$check = $query->num_rows();
+		if($check==0){
+			$data['added_on']=date('Y-m-d');
+			$status=$this->db->insert($table,$data);
+			if($status){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}
+		
+	}
+
+	public function list_vecency(){
+		$this->db->where('t1.status',1);
+		$this->db->select('t1.*,t2.state');
+		$this->db->from('vecency t1');
+		$this->db->join('state t2','t1.state_id=t2.id','left');
+		$qry = $this->db->get();
+		if($qry->num_rows()>0)
+		{
+			return $result = $qry->result_array();
+
+		}else
+		{
+			return 0;
+		}
+
+	}
+
+	public function update_vecency($data){
+		$id = $data['id'];
+		$vecency['state_id'] =$data['state_id'];
+		$vecency['code'] =$data['code'];
+		$state_id = $data['state_id'];
+		$query = $this->db->get_where('vecency',array('status'=>1,'state_id'=>$state_id));
+		$check = $query->num_rows();
+			$this->db->set($vecency);
+		    $this->db->where("id",$id);
+		    $query = $this->db->update("vecency",$vecency);
+		    return $query;
+	}
+
+	public function delete_vecency($id){
+		 $status['status'] = 0;
+		 $this->db->set($status); 
+         $this->db->where("id", $id); 
+         $query= $this->db->update("vecency", $status); 
+		 return $query;	
+	}
+
+
+	public function applyform($data){
+		
+	}
+
+
+
+
 }
 ?>
 
