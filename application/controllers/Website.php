@@ -258,6 +258,14 @@ class Website extends CI_Controller {
 		print_r($data);die;
 	}
 
+	// '''''''''''''''''''''''''''''''''''''vacency Area'''''''''''''''''''''''''''''''
+	public function login_member(){
+		// echo PRE;
+		// print_r($_POST);
+		$d['v'] = 'website/admit_card';
+			$this->load->view('website/template',$d);
+	}
+
 	// ................................Admin Panel Area.............................
 
 	public function officer_details(){
