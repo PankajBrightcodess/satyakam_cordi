@@ -112,36 +112,6 @@
                                 </div>
                                 <?php echo form_close();?>
                             </div>
-                           <!--  <div class="col-md-2 col-lg-2"></div>
-                        	<div class="col-md-5 col-lg-6 table-responsive">
-                            	<table class="table data-table stripe hover nowrap table-bordered">
-                                    <thead>
-                                        <tr>    
-                                            <th>S.no</th>
-                                            <th>Menu Name</th>                
-                                            <th>Action</th>                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i=0;
-                                         if(!empty($depart)){
-                                            foreach($depart as $val){$i++; $id=$val['id']; ?>
-                                        <tr>
-                                            <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['department'] ?></td>
-                                            
-                                            <td><span class="float-right">
-                                            <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>  
-                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-department="<?php echo $val['department'];?>"><i class="fa fa-edit"></i></button>
-                                           </td>
-                                        </tr>
-                                       <?php 
-                                        }
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div> -->
                         </div>
                     </div>
                 </div>

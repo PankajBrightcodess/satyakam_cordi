@@ -477,8 +477,24 @@ class Website_model extends CI_Model{
 	}
 
 
-	public function applyform($data){
-		
+	public function insert_applyform($data){
+		$data['added_on']=date('Y-m-d');
+		// echo PRE;
+		// print_r($data);die;
+		$table = 'vacency_apply';
+		$status=$this->db->insert($table,$data);
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
+
+	public function get_applylist($data){
+		$query = $this->db->get_where('vacency_apply',array('status'=>1));
+		return  $query->result_array();
+
 	}
 
 

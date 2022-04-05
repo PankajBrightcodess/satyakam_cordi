@@ -7,30 +7,38 @@
             <form action="<?= base_url('website/applyform')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                 <div class="col-md-12 mb-2">
+                  <label><strong>Name :</strong></label>
                      <input type="text" name="name" placeholder="Name :" class="form-control" required>
                 </div>
                 
             
                 <div class="col-md-12 mb-2"> 
+                  <label><strong>Father's Name :</strong></label>
                   <input type="text" name="fname" placeholder="Father's Name :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
+                  <label><strong>Date Of Birth :</strong></label>
                   <input type="date" name="dob" placeholder="Date Of Birth :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
+                  <label><strong>Last Qualification Details :</strong></label>
                   <input type="text" name="last_qualification" placeholder="Last Qualification Details :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <textarea rows="3" name="paddress" class="form-control" placeholder="Enter Parmanent Address" required></textarea>
+                  <label><strong>Enter Parmanent Address :</strong></label>
+                  <textarea rows="3" name="paddress" class="form-control" placeholder="Enter Parmanent Address :" required></textarea>
                    
                 </div>
                 <div class="col-md-6 mb-2">
-                  <textarea rows="3" name="caddress" class="form-control" placeholder="Enter Current Address" required></textarea>
+                  <label><strong>Enter Current Address :</strong></label>
+                  <textarea rows="3" name="caddress" class="form-control" placeholder="Enter Current Address :" required></textarea>
                 </div>
                 <div class="col-md-12 mb-2">
+                  <label><strong>Mobile Number :</strong></label>
                     <input type="text" name="mobile_no" placeholder="Mobile Number :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
+                   <label><strong>Email Id :</strong></label>
                     <input type="email" name="email_id" placeholder="Email Id :" class="form-control" required>
                 </div>
                  <div class="col-md-12 mb-2">
