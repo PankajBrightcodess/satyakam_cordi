@@ -48,13 +48,13 @@
                                          if(!empty($applylist)){
                                             foreach($applylist as $val){$i++; $id=$val['id']; ?>
                                         <tr>
-                                            <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['name']; ?></td>
-                                            <td ><?php echo $val['fname'] ;?></td>
-                                            <td ><?php echo date('d-m-Y',strtotime($val['dob'])); ?></td>
-                                            <td ><?php echo $val['last_qualification'] ;?></td>
-                                            <td ><?php echo $val['paddress'] ;?></td>
-                                            <td ><?php echo $val['caddress'] ;?></td>
+                                            <td><?php echo $i ?></td>
+                                            <td><?php echo $val['name']; ?></td>
+                                            <td><?php echo $val['fname'] ;?></td>
+                                            <td><?php echo date('d-m-Y',strtotime($val['dob'])); ?></td>
+                                            <td><?php echo $val['last_qualification'] ;?></td>
+                                            <td><?php echo $val['paddress'] ;?></td>
+                                            <td><?php echo $val['caddress'] ;?></td>
                                             <td ><?php echo $val['mobile_no']; ?></td>
                                             <td ><?php echo $val['email_id'] ;?></td>
                                             <td ><?php echo date('d-m-Y',strtotime($val['added_on'])) ;?></td>
