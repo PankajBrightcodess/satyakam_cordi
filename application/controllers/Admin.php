@@ -1013,6 +1013,26 @@ public function update_submenu(){
 	}
 
 
+	public function permission(){
+		$data['title']="Permission";
+		$data['datatable'] = true;	
+		$data['depart'] = $this->Website_model->get_alldepartpostlist();	
+		// $data['post'] = $this->Website_model->get_postlist($data);
+		$this->template->load('pages','permission',$data);
+	}
+
+	public function insert_data(){
+		$data = $this->input->post();
+		$result = $this->Website_model->permissiongenerate($data);
+		   	if($result){
+				$this->session->set_flashdata('msg','My Office Inserted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+			redirect('admin/club_group');
+	}
+
+
 
 
 // '''''''''''''''''''''''''''''''''''''''''''Vecency'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -1070,6 +1090,10 @@ public function update_submenu(){
 		$data['applylist'] = $this->Website_model->get_applylist($data);
 		$this->template->load('pages','online_apply_list',$data);
 	}
+
+
+
+
 
 
 

@@ -13,7 +13,18 @@
                            <!--  <input type="text" name="department" placeholder="Department :" class="form-control mb-3" required> -->
                             <select name="department" class="form-control mb-3" required >
                               <option value="">Department :</option>
-                              <option value="SPDO">STATE PROJECT DIRECTOR OFFICE(S.P.D.O.)</option>
+                              <?php
+                                foreach ($department as $key => $value) {
+                                  ?>
+                                    <option value="<?php echo $value['id'];?>"><?php echo $value['department'];?></option>
+
+
+                                  <?php
+                                }
+
+
+                              ?>
+                              
                               <option value="FD">FINANCE DEPARTMENT</option>
                               <option value="IRD">INFORMATION RESOURCES DEPARTMENT</option>
                               <option value="SWCD">STAFF WORK CONSULTING DEPARTMENT</option>

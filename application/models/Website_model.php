@@ -93,6 +93,16 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
+	public function get_alldepartpostlist(){
+		$this->db->select('t1.*,t2.department');
+		$this->db->from('post t1');
+		$this->db->join('department t2','t1.depart_id=t2.id','left');
+		$this->db->order_by('t1.depart_id','desc');
+		$query = $this->db->get();
+		return  $query->result_array();
+
+	}
+
 	public function delete_department($id){
 		 $status['status'] = 0;
 		 $this->db->set($status); 
@@ -121,6 +131,29 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
+	}
+
+	public function permissiongenerate($data){
+		print_r($data);die;
+		$post_id = $data['post_id'];
+		$query = $this->db->get_where('menu_control',array('post_id'=>$post_id,'status'=>1));
+		$check = $query->num_rows();
+		if($check>0){
+			$this->db->where("id", $sid); 
+            $query= $this->db->update('menu_control', $data); 
+		    return $query;
+		}else{
+			$table="menu_control";  
+			$data['added_on']=date('Y-m-d');
+			$status=$this->db->insert($table,$data);
+			if($status){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+
 	}
 	public function get_postlist(){
 		$this->db->where('t1.status',1);

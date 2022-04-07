@@ -117,8 +117,21 @@ class Website extends CI_Controller {
 
 		public function econtractform(){
 			$d['v'] = 'website/econtractform';
+			$d['department'] = $this->Website_model->get_departlist();
 			$this->load->view('website/template',$d);
 		}
+		public function get_post(){
+		$id = $this->input->post('depart_id');
+			$data = $this->Website_model->get_submenulist($id);
+
+			if(!empty($data)){
+				$html ='<option value="">---SELECT---</option>';
+				foreach ($data as $key => $value) {
+					$html.="<option value=".$value['id'].">".$value['submenu']."</option>";
+				}
+			}
+			echo $html;
+	}
 
 		public function create_signup(){
 			$data = $this->input->post();
@@ -254,8 +267,8 @@ class Website extends CI_Controller {
 
 	public function daily_report(){
 		$data = $this->input->post();
-		echo PRE;
-		print_r($data);die;
+		// echo PRE;
+		// print_r($data);die;
 	}
 
 	// '''''''''''''''''''''''''''''''''''''vacency Area'''''''''''''''''''''''''''''''
@@ -272,25 +285,11 @@ class Website extends CI_Controller {
 		$data['title']="Home";
 		$this->template->load('pages','home',$data);
 	}
-
 	public function daily_expense(){
 		$d['v'] = 'website/daily_expense';
 		$this->load->view('website/template_1',$d);
 
 	}
-
-
-
-
-
-
-
-
-
-	
-    
-    
-    
     public function alldata($token=''){
 		$this->load->library('alldata');
 		$this->alldata->viewall($token);
