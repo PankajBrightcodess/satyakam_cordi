@@ -33,12 +33,12 @@
                                         <tr>
                                             <td ><?php echo $val['department'] ?></td>
                                             <td ><?php echo $val['post'] ?> <input type="hidden" id="post_id" name="post_id" value="<?php echo $val['id'] ?>"></td>
-                                            <td><input type="checkbox" checked id="e_contract" name="e_contract"></td>
-                                            <td><input type="checkbox" checked  id="my_office" name="my_office"></td>
-                                            <td><input type="checkbox" checked id="my_project" name="my_project"></td>
-                                            <td><input type="checkbox" checked id="vecency" name="vecency"></td>
-                                            <td><input type="checkbox"  checked id="events" name="events"></td>
-                                            <td><input type="checkbox"  checked id="gallery" name="gallery"></td>
+                                            <td><input type="checkbox"  id="e_contract" name="e_contract"></td>
+                                            <td><input type="checkbox"   id="my_office" name="my_office"></td>
+                                            <td><input type="checkbox"  id="my_project" name="my_project"></td>
+                                            <td><input type="checkbox"  id="vecency" name="vecency"></td>
+                                            <td><input type="checkbox"   id="events" name="events"></td>
+                                            <td><input type="checkbox"   id="gallery" name="gallery"></td>
                                             <td><span class="float-right"> 
                                              <button type="button" class="btn btn-success btn-xs departm" >Update</button>
                                            </td>
