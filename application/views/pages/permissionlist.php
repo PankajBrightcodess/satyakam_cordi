@@ -13,17 +13,16 @@
                             <label>State</label>
                             <select class="form-control state_id" id="state">
                                 <option>--SELECT STATE--</option>
-                                <?php 
-                                  if(!empty($state)){
-                                    foreach ($state as $key => $value) {
-                                        ?><option value="<?php echo $value['id'];?>"><?php echo $value['state'];?></option><?php
-                                    }
-                                  }
-
-                                ?>
+                                    <?php 
+                                      if(!empty($state)){
+                                        foreach ($state as $key => $value) {
+                                            ?><option value="<?php echo $value['id'];?>"><?php echo $value['state'];?></option><?php
+                                        }
+                                      }
+                                    ?>
                             </select>
                         </div>
-                        	<div class="col-md-12 col-lg-12 table-responsive">
+                        	<div class="col-md-12 col-lg-12 table-responsive tbdy">
                             	<table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -39,32 +38,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i=0;
-                                        // echo PRE;
-                                         if(!empty($depart)){
-                                            // print_r($depart);
-                                            foreach($depart as $val){$i++; ?>
-                                        <tr>
-                                            <td ><?php echo $val['department'] ?></td>
-                                            <td ><?php echo $val['post'] ?> 
-                                            <!-- <input type="text" id="post_id" name="post_id" value="<?php echo $val['id']; ?>"> -->
-                                        </td>
-                                            <td><input type="checkbox" class="e_contract" id="e_contract" name="e_contract"></td>
-                                            <td><input type="checkbox" class="my_office" id="my_office" name="my_office"></td>
-                                            <td><input type="checkbox" class="my_project" ssid="my_project" name="my_project"></td>
-                                            <td><input type="checkbox" class="vecency"  id="vecency" name="vecency"></td>
-                                            <td><input type="checkbox" class="events" id="events" name="events"></td>
-                                            <td><input type="checkbox" class="gallery" id="gallery" value="1" name="gallery"></td>
-                                            <td><span class="float-right"> 
-                                             <button type="button" class="btn btn-success btn-xs departm" value="<?php echo $val['id']; ?>">Update</button>
-                                           </td>
-                                        </tr>
-                                       <?php 
-                                        }
-                                            }
-                                            ?>
-                                       
-                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -150,7 +123,8 @@
         });
 
         
-        $('body').on('click','.departm',function(){
+            $('body').on('click','.departm',function(){
+                debugger;
             var post_id = $(this).val();
             var state = $("#state").val();
             var e_contract=$(this).closest('tr').find('.e_contract').prop('checked');
@@ -165,20 +139,37 @@
                 data:{post_id:post_id,state:state,e_contract:e_contract,my_office:my_office,my_project:my_project,vecency:vecency,events:events,gallery:gallery},
                 success:function(data){
                     console.log(data);
-                     if(data){
+                    if(data){
                        swal("Good job!", "You clicked the button!", "success"); 
-                    }
-                    else{
-                     swal("Good job!", "You clicked the button!", "error");
                    }
+                   else{
+                    swal("Good job!", "You clicked the button!", "error");
+                   }
+                    
                 }
             });
         });
+
+             $('body').on('change','#state',function(){
+                // debugger;
+                 var state = $(this).val(); 
+                $.ajax({
+                    url:"<?php echo base_url('admin/menucontrollist') ;?>",
+                    method:"POST",
+                    data:{state:state},
+                    success:function(data){
+                        $('.tbdy').html(data);
+                        console.log(data);
+                    }
+                }); 
+
+
+             });
         
 		var table=$('.data-table').DataTable({
 			scrollCollapse: true,
 			autoWidth: false,
-			responsive: false,
+			responsive: true,
 			columnDefs: [{
 				targets: "no-sort",
 				orderable: false,

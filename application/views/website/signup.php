@@ -1,4 +1,4 @@
- <section class="officialservices">
+   <section class="officialservices">
       <div class="container">
         <div class="row">
               <div class="col-md-12 mb-3"></div>
@@ -6,14 +6,22 @@
             <center class="tittle"><h3>Sign Up Form</h3></center>
             <form action="<?= base_url('website/create_signup')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
-                <div class="col-md-12 mb-2">
-                     <input type="text" name="batch_no" placeholder="Batch Number :" class="form-control" required>
-                </div>
-                <div class="col-md-6 mb-2">
-                  <input type="text" name="join_in_branch" placeholder="Join In Branch :" class="form-control" required>
-                </div>
-                <div class="col-md-6 mb-2">
+                 <div class="col-md-12 mb-2">
                   <!-- <input type="text" name="department" placeholder="Department :" class="form-control" required> -->
+                  <select class="form-control" name="state"  id="state" required>
+                          <option value="">State :</option>
+                          <?php
+                              if(!empty($state)){
+                                  foreach ($state as $key => $value) {
+                                     ?>
+                                     <option value="<?= $value['id'];?>"><?= $value['state'];?></option>
+                                     <?php
+                                  }
+                              }
+                          ?> 
+                  </select> 
+                </div>
+                 <div class="col-md-6 mb-2">
                   <select class="form-control" name="depart_id" id="dpartment" required>
                           <option value="">Department :</option>
                           <?php
@@ -27,25 +35,33 @@
                           ?> 
                   </select> 
                 </div>
-                <div class="col-md-12 mb-2"> 
-                  <input type="text" name="name_of_post" placeholder="Name Of Post :" class="form-control" required>
+                <div class="col-md-6 mb-2"> 
+                  <select class="form-control post" id="post" required name="post_id">
+                    <option value=" ">Post :</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-2">
+                     <input type="text" name="batch_no" id="batch_no" required placeholder="Batch Number :" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <input type="text" name="join_in_branch" id="join_in_branch" placeholder="Join In Branch :" class="form-control" required>
+                </div>
+               
+                
+                <div class="col-md-12 mb-2">
+                  <input type="text" name="branch_code" id="branch_code" placeholder="Branch Code :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control" required>
+                    <input type="text" name="officer_name" id="officer_name" placeholder="Name Of The Officer :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                    <input type="text" name="officer_name" placeholder="Name Of The Officer :" class="form-control" required>
+                    <input type="text" name="mobile_no" id="mobile_no" placeholder="Mobile Number :" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                    <input type="text" name="mobile_no" placeholder="Mobile Number :" class="form-control" required>
-                </div>
-                <div class="col-md-12 mb-2">
-                    <input type="email" name="email_id" placeholder="Email Id :" class="form-control" required>
+                    <input type="email" name="email_id" id="email_id" placeholder="Email Id :" class="form-control" required>
                 </div>
                  <div class="col-md-12 mb-2">
-                  <input type="submit" class="mt-4 btn btn-sm btn-block" name="" value="Sign Up" style="background:#233799;color:white">
-                   <!-- <a href="<?= base_url('website/econtractform');?>" class="mt-4 btn btn-sm btn-block"  style="background:#233799;color:white">Sign Up</a> -->  
-                   <!-- data-toggle="modal" data-target=".bd-example-modal-sm" -->
+                  <input type="button" class="mt-4 btn btn-sm  signup" id="signup" name="" value="Sign Up" style="background:#233799;color:white">
                 </div>
               </div>
             </form>
@@ -77,29 +93,3 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function(e) {
-  $('body').on('change','#dpartment',function(){
-      debugger;
-      var depart_id=$(this).val();
-      /*var option="<select name='position' id='position' class='form-control' required>";
-      option+="<option value=''>Select </option>";
-      option+="<option value='0'>Top</option>";*/
-      $.ajax({
-        type:"POST",
-        url:"<?php echo base_url("website/getpost"); ?>",
-        data:{depart_id:depart_id},
-        success: function(data){
-          console(data);
-          // $(data).each(function(i, val) {
-          //   option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
-          // });
-          // option+='</select>';
-          // $('#position').replaceWith(option);
-          // $('.box-overlay').hide();
-        }
-      });
-    });
-});
-
-</script>

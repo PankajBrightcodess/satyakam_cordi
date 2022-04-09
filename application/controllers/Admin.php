@@ -1016,20 +1016,98 @@ public function update_submenu(){
 	public function permission(){
 		$data['title']="Permission";
 		$data['datatable'] = true;	
-		$data['depart'] = $this->Website_model->get_alldepartpostlist();	
-		// $data['post'] = $this->Website_model->get_postlist($data);
+		$data['state'] = $this->Website_model->get_statelist($data);
+		$data['depart'] = $this->Website_model->get_alldepartpostlist();
 		$this->template->load('pages','permission',$data);
 	}
 
 	public function insert_data(){
 		$data = $this->input->post();
-		$result = $this->Website_model->permissiongenerate($data);
-		   	if($result){
-				$this->session->set_flashdata('msg','My Office Inserted Successfully');
-			}else{
-				$this->session->set_flashdata("err_msg","Something Error!");
+				$result = $this->Website_model->permissiongenerate($data);
+				print_r($result);die;
+	}
+
+	public function permissionlist(){
+		$data['title']="Permission";
+		$data['datatable'] = true;	
+		$data['state'] = $this->Website_model->get_statelist($data);
+		$data['depart'] = $this->Website_model->get_alldepartpostlist();
+		$this->template->load('pages','permissionlist',$data);
+	}
+
+	public function menucontrollist(){
+		$data = $this->input->post();
+		$result = $this->Website_model->get_menucontrollist($data);
+		$html ='<table class="table data-table stripe hover nowrap table-bordered">';
+        $html.='<thead>';
+          $html.='<tr>';    
+            $html.='<th>Sl No.</th>';
+            $html.='<th>Department</th>';
+            $html.='<th>Post</th>';              
+            $html.='<th>E-Contract</th>';                
+            $html.='<th>My Office</th>';                                           
+            $html.='<th>My Project</th>';                                            
+            $html.='<th>Vecency</th>';                                            
+            $html.='<th>Events</th>';                                            
+            $html.='<th>Gallery</th>';                                            
+            $html.='<th>Action</th>';                                            
+            $html.='</tr>';
+            $html.='</thead>';
+
+		if(!empty($result)){
+			$i=0;
+			foreach ($result as $key => $val) {$i++;
+				
+						$html.= '<tr>';
+				    $html.= '<td>'.$i.'</td>';
+				    $html.= '<td>'.$val['department'].'</td>';
+            $html.='<td >'.$val['post'].'</td>';
+            if($val['e_contract']=='true'){
+            	$html.='<td><input type="checkbox" checked class="e_contract" id="e_contract" name="e_contract"></td>';
+            }else{
+            	$html.='<td><input type="checkbox" class="e_contract" id="e_contract" name="e_contract"></td>';
+            }
+            if($val['my_office']=='true'){
+            	$html.='<td><input type="checkbox" checked class="my_office" id="my_office" name="my_office"></td>';
+            }
+            else{
+            	$html.='<td><input type="checkbox" class="my_office" id="my_office" name="my_office"></td>';
+            }
+            if($val['my_project']=='true'){
+            	$html.='<td><input type="checkbox" checked class="my_project" id="my_project" name="my_project"></td>';
+            }else{
+            	$html.='<td><input type="checkbox" class="my_project" id="my_project" name="my_project"></td>';
+            }
+            if($val['vecency']=='true'){
+            		$html.='<td><input type="checkbox" checked class="vecency"  id="vecency" name="vecency"></td>';
+            }
+            else{
+            	$html.='<td><input type="checkbox" class="vecency"  id="vecency" name="vecency"></td>';
+            }
+            if($val['events']=='true'){
+            	$html.='<td><input type="checkbox" checked class="events" id="events" name="events"></td>';
+            }
+            else{
+            	$html.='<td><input type="checkbox" class="events" id="events" name="events"></td>';
+            }
+            if($val['gallery']=='true'){
+            	 $html.='<td><input type="checkbox"  checked class="gallery" id="gallery" value="1" name="gallery"></td>';
+            }
+            else{
+            	 $html.='<td><input type="checkbox" class="gallery" id="gallery" value="1" name="gallery"></td>';
+            }
+            $html.='<td><span class="float-right">';
+             $html.='<button type="button" class="btn btn-success btn-xs departm" value="'.$val['post_id'].'">Update</button>';
+           $html.='</td>';
+           $html.='</tr>';
+           
+        
 			}
-			redirect('admin/club_group');
+
+		}
+		$html.='</tbody>';
+    $html.='</table>';
+			echo $html;
 	}
 
 

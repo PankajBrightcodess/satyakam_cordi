@@ -1,6 +1,13 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
+
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   if (!$(this).next().hasClass('show')) {
     $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
@@ -47,26 +54,53 @@ $("#filePhoto").change(function() {
     </script>
 
     <script type="text/javascript">
-  $(document).ready(function(e) {
   $('body').on('change','#dpartment',function(){
-      debugger;
       var depart_id=$(this).val();
       $.ajax({
         type:"POST",
-        url:"<?php echo base_url("website/get_postlistbyid"); ?>",
+        url:"<?php echo base_url("website/getpost"); ?>",
         data:{depart_id:depart_id},
         success: function(data){
-          console(data);
-          // $(data).each(function(i, val) {
-          //   option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
-          // });
-          // option+='</select>';
-          // $('#position').replaceWith(option);
-          // $('.box-overlay').hide();
+          console.log(data);
+          $('#post').html(data);
         }
       });
     });
-});
+
+   $('body').on('click','#signup',function(){
+    debugger;
+      var state=$('#state').val();
+      var dpartment=$('#dpartment').val();
+      var post=$('.post').val();
+      var batch_no=$('#batch_no').val();
+      var branch_code=$('#branch_code').val();
+      var officer_name=$('#officer_name').val();
+      var mobile_no=$('#mobile_no').val();
+      var email_id=$('#email_id').val();
+      var join_in_branch=$('#join_in_branch').val();
+       if(state==""||dpartment==""||post==""||batch_no==""||branch_code==""||officer_name==""||mobile_no==""|| email_id==""|| join_in_branch==""){
+        alert("Please Fill All Required Field");
+        return false;
+      }else{
+          $.ajax({
+          type:"POST",
+          url:"<?php echo base_url("website/create_signup"); ?>",
+          data:{state:state,dpartment:dpartment,post:post,batch_no:batch_no,branch_code:branch_code,officer_name:officer_name,mobile_no:mobile_no,email_id:email_id,join_in_branch:join_in_branch},
+          success: function(data){
+            if(data){
+                swal("Good job!", "You are registered successfully!", "success");
+                window.location.href = "<?php echo base_url('website/econtractform');?>";
+            }
+            else{ 
+               swal("Opps!", "Something error!", "error");
+                window.location.href = "<?php echo base_url('website/signup');?>";
+            }
+            
+          }
+        });
+      }
+      
+    });
 
 </script>
  <script type="text/javascript">
@@ -205,3 +239,20 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 </script>
+<!-- <script type="text/javascript">
+  $(document).ready(function(e) {
+  $('body').on('change','#dpartment',function(){
+      debugger;
+      var depart_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/getpost"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console(data);
+        }
+      });
+    });
+});
+
+</script> -->

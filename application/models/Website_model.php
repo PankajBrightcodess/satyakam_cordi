@@ -7,16 +7,34 @@ class Website_model extends CI_Model{
 	}
 
 	public function savesignup($data){
-
-		$table=TP."signup";
-		$data['added_on']=date('Y-m-d');
-		$data['status']=1;
-		if($this->db->insert($table,$data)){
-			return $this->db->insert_id();
-		}
-		else{
-			return false;
-		}
+		// echo PRE;
+		// print_r($data);die;
+		$batchno = $data['batch_no'];
+		$query=$this->db->get_where('signup',array('batch_no' => $batchno));
+    	$rows= $query->num_rows();
+    	if($rows==0){
+    		$table=TP."signup";
+    		$final['state']=$data['state'];
+    		$final['depart_id']=$data['dpartment'];
+    		$final['post_id']=$data['post'];
+    		$final['batch_no']=$data['batch_no'];
+    		$final['branch_code']=$data['branch_code'];
+    		$final['officer_name']=$data['officer_name'];
+    		$final['mobile_no']=$data['mobile_no'];
+    		$final['email_id']=$data['email_id'];
+    		$final['join_in_branch']=$data['join_in_branch'];
+			$final['added_on']=date('Y-m-d');
+			if($this->db->insert($table,$final)){
+				return $this->db->insert_id();
+			}
+			else{
+				return false;
+			}
+    	}
+    	else{
+    		   return false;
+    	}
+		
 	}
 
 	public function officer_details_model($data){
@@ -134,13 +152,13 @@ class Website_model extends CI_Model{
 	}
 
 	public function permissiongenerate($data){
-		print_r($data);die;
 		$post_id = $data['post_id'];
-		$query = $this->db->get_where('menu_control',array('post_id'=>$post_id,'status'=>1));
+		$state = $data['state'];
+		$query = $this->db->get_where('menu_control',array('post_id'=>$post_id,'state'=>$state,'status'=>1));
 		$check = $query->num_rows();
-		if($check>0){
-			$this->db->where("id", $sid); 
-            $query= $this->db->update('menu_control', $data); 
+		if($check>>0){
+			$this->db->where(['post_id'=>$post_id,'state'=>$state]);
+            $query= $this->db->update('menu_control',$data); 
 		    return $query;
 		}else{
 			$table="menu_control";  
@@ -154,6 +172,17 @@ class Website_model extends CI_Model{
 			}
 		}
 
+	}
+	public function get_menucontrollist($data){
+		$state= $data['state'];
+		$this->db->where('t1.state',$state);
+		$this->db->select('t1.*,t2.post,t3.department');
+		$this->db->from('menu_control t1');
+		$this->db->join('post t2','t1.post_id=t2.id','left');
+		$this->db->join('department t3','t2.depart_id=t3.id','left');
+		$query = $this->db->get();
+		// return $query->num_rows();
+		return $query->result_array();
 	}
 	public function get_postlist(){
 		$this->db->where('t1.status',1);
@@ -184,10 +213,11 @@ class Website_model extends CI_Model{
 
 	public function get_postlistbyid($depart_id){
 		$depart_ids= $depart_id['depart_id'];
-		// print_r($depart_ids);die;
 		$query = $this->db->get_where('post',array('depart_id'=>$depart_ids,'status'=>1));
 		return  $query->result_array();
 	}
+
+	
 
 	public function add_mydocument($data){
 		$table="my_document";  

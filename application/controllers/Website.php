@@ -112,6 +112,7 @@ class Website extends CI_Controller {
 		public function signup(){
 			$d['v'] = 'website/signup';
 			$d['depart'] = $this->Website_model->get_departlist();
+			$d['state'] = $this->Website_model->get_statelist();
 			$this->load->view('website/template',$d);
 		}
 
@@ -135,15 +136,12 @@ class Website extends CI_Controller {
 
 		public function create_signup(){
 			$data = $this->input->post();
-
 			$status['signupid'] = $this->Website_model->savesignup($data);
-			$this->session->set_userdata($status);
-			if($status){
-				$this->session->set_flashdata("msg","Create Successfully !!");
-				redirect('website/econtractform/');
+			$signupid = $this->session->set_userdata($status);
+			if(!empty($signupid)){
+				return true;
 		    }else{
-				$this->session->set_flashdata("err_msg","Try Again !!");
-				redirect('website/signup/');
+		    	return false;
 		    }
 		}
 
@@ -256,7 +254,13 @@ class Website extends CI_Controller {
 	public function getpost(){
 		$depart_id = $this->input->post();
 		$postdata = $this->Website_model->get_postlistbyid($depart_id);
-		print_r($postdata);
+		if(!empty($postdata)){
+			$html = '<option value=" ">Post :</option>';
+			foreach ($postdata as $key => $value) {
+				$html.= '<option value="'.$value['id'].'">'.$value['post'].'</option>';
+			}
+			echo $html;
+		}
 	}
 
 	public function open_progress_report(){
