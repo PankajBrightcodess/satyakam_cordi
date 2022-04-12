@@ -63,11 +63,11 @@
                                             foreach($officer as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['branch_no']; ?></td>
+                                            <td ><?php echo $val['batch_no']; ?></td>
                                             <td ><?php echo $val['Join_in_branch']; ?></td>
                                             <td ><?php echo $val['branch_code']; ?></td>
                                             <td ><?php echo $val['department']; ?></td>
-                                            <td ><?php echo $val['name_of_post'] ;?></td>
+                                            <td ><?php echo $val['post'] ;?></td>
                                             <td ><?php echo $val['mobile_no']; ?></td>
                                             <td ><?php echo $val['email_id']; ?></td>
                                             <td ><?php echo $val['service_did']; ?></td>

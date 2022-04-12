@@ -38,10 +38,13 @@ class Website_model extends CI_Model{
 	}
 
 	public function officer_details_model($data){
-
 		$table="officer_details";  
 		$data['added_on']=date('Y-m-d');
+		unset($data['department']);
+		unset($data['post']);
 		$status=$this->db->insert($table,$data);
+		$str = $this->db->last_query();
+		// print_r($str);die;
 		if($status){
 			return true;
 		}
@@ -50,9 +53,29 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function signup_list($signup_id){
+		$this->db->where('t1.id',$signup_id);
+		$this->db->select('t1.*,t2.department,t3.post');
+		$this->db->from('signup t1');
+		$this->db->join('department t2','t1.depart_id=t2.id','left');
+		$this->db->join('post t3','t1.post_id=t3.id','left');
+		// $this->db->order_by('t1.depart_id','desc');
+		$query = $this->db->get();
+		return  $query->result_array();
+		
+		// $query=$this->db->get_where('signup',array('id' => $signup_id));
+		// return $query->result_array();
+	}
+
 	public function getofficerdetails(){
-		$query=$this->db->get('officer_details');
-    	return $query->result_array();
+		$this->db->select('t1.*,t2.department,t3.post');
+		$this->db->from('officer_details t1');
+		$this->db->join('department t2','t1.department_id=t2.id','left');
+		$this->db->join('post t3','t1.post_id=t3.id','left');
+		$query = $this->db->get();
+		return  $query->result_array();
+		// $query=$this->db->get('officer_details');
+  //   	return $query->result_array();
 	}
 
 	public function update_officerrecords($data){
@@ -79,6 +102,17 @@ class Website_model extends CI_Model{
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();
 
+	}
+
+	public function kyc_details(){
+		$id =$_SESSION['user_id'];
+		$query=$this->db->get_where('officer_details',array('id' => $id));
+    	return $query->row_array();
+	}
+
+	public function menu_list($batch){
+		// $this->db->select('state');
+		// $this->db->from()
 	}
 
 	public function getlogindetails($data){
@@ -109,6 +143,18 @@ class Website_model extends CI_Model{
 	public function get_departlist(){
 		$query = $this->db->get_where('department',array('status'=>1));
 		return  $query->result_array();
+	}
+
+	public function userdetails(){
+		$batch_no = $_SESSION['batch_no'];
+		$this->db->where('t1.batch_no',$batch_no);
+		$this->db->select('t1.*,t2.code');
+		$this->db->from('signup t1');
+		$this->db->join('vecency t2','t1.state=t2.state_id','left');
+		// $qry = $this->db->last_query();
+		// print_r($qry);die;
+		$query = $this->db->get();
+		return  $query->row_array();
 	}
 
 	public function get_alldepartpostlist(){
@@ -400,7 +446,6 @@ class Website_model extends CI_Model{
          $this->db->where("id", $id); 
          $query= $this->db->update("menu", $status); 
 		 return $query;
-
 	}
 
 	public function add_submenu($data){
@@ -446,6 +491,91 @@ class Website_model extends CI_Model{
 			return false;
 		}
 
+	}
+
+
+	public function insert_reports($form_1,$form_2,$form_3,$form_4,$form_5){
+		$status1 = $this->revenue($form_1);
+		$status2 =$this->security($form_2);
+		$status3 =$this->group($form_3);
+		$status4 =$this->club($form_4);
+		$status5 =$this->travelling($form_5);
+		print_r($status1);
+		print_r($status2);
+		print_r($status3);
+		print_r($status4);
+		if($status1 && $status2 && $status3 && $status4 && $status5){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function revenue($form_1){
+		$revenue = json_decode($form_1);
+		$table="revenue_report";
+		foreach ($revenue as $key => $value) {
+		  $qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function security($form_2){
+		$security = json_decode($form_2);
+		$table="security_report";
+		foreach ($security as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function group($form_3){
+		$group = json_decode($form_3);
+		$table="group_report";
+		foreach ($group as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function club($form_4){
+		$club = json_decode($form_4);
+		$table="club_report";
+		foreach ($club as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function travelling($form_5){
+		$travelling = json_decode($form_5);
+		$table="travelling_report";
+		foreach ($travelling as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public function get_childsubmenulist($data){

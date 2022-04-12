@@ -1,3 +1,4 @@
+<!-- <?php print_r($state_code);?> -->
 <section class="officialservices">
       <div class="container">
         <div class="row justify-content-center">
@@ -10,9 +11,9 @@
                     <thead>
                       <tr>
                         <th scope="col">Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
-                        <th scope="col" rowspan="2">Reporting Time : 10:00 A.M.</th>
+                        <th scope="col" rowspan="2">Reporting Time : <?php echo date('h:i A');?></th>
                         <th scope="col" rowspan="2"><h5 class="tittle">Daily Activity / Progress Report</h5></th>
-                        <th scope="col">State Unit Code : 00365</th>
+                        <th scope="col">State Unit Code : <?php echo $state_code['code'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col">Day : &nbsp;&nbsp;<?php echo date('l');?></th>
@@ -28,18 +29,18 @@
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
                       <tr>
-                        <th scope="col">Branch Unit : &nbsp;&nbsp;</th>
-                        <th scope="col">Code No : </th>
+                        <th scope="col">Branch Unit : <?php echo $state_code['Join_in_branch'];?>&nbsp;&nbsp;</th>
+                        <th scope="col">Code No : <?php echo $state_code['branch_code'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col">Unit Incharge : &nbsp;&nbsp;</th>
-                        <th scope="col">Mobile No : </th>
+                        <th scope="col">Mobile No : <?php echo $state_code['mobile_no'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Email : &nbsp;&nbsp;</th>
+                        <th scope="col">Email : <?php echo $state_code['email_id'];?>&nbsp;&nbsp;</th>
                         <th scope="col">HelpLine No. : </th>
                       </tr> 
                        <tr>
@@ -112,7 +113,7 @@
                     </thead>
                     <tbody class="registration1">
                       <tr>
-                        <td><input type="text" name="reg_no" id="reg_no[]" class="form-control"></td>
+                        <td><input type="text" name="reg_no[]" id="reg_no" class="form-control"></td>
                         <td><input type="text" name="name[]" id="name" class="form-control"></td>
                         <td><input type="text" name="name_of_post[]" id="name_of_post" class="form-control"></td>
                         <td><input type="text" name="security_fund[]" id="security_fund" class="form-control"></td>
@@ -126,7 +127,7 @@
                     </tbody>
                   </table>
                    <div class="mb-2">
-                  <input type="text" name="total_revenue_1 " class="form-control" placeholder="Total Revenue">
+                  <input type="text" name="total_revenue_1" class="form-control" placeholder="Total Revenue">
                 </div>
                
                 </div>
@@ -278,3 +279,14 @@
         </div>
       </div>
     </section>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("status");
+    if(c==1){
+       swal("Good job!", "You Report Submit successfully!", "success");
+     }else if(c==0){
+       swal("Opps!", "Something Error !", "error");
+     }
+</script>

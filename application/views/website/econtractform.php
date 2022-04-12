@@ -1,4 +1,4 @@
- <section class="officialservices">
+    <section class="officialservices">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -7,49 +7,15 @@
                     <form action="<?= base_url('website/create_officer_details');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
-                            <input type="text" name="branch_no" placeholder="Batch Number :" class="form-control mb-3" required>
-                            <input type="text" name="Join_in_branch" placeholder="Joining In Branch :" class="form-control mb-3" required>
-                            <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control mb-3" required>
-                           <!--  <input type="text" name="department" placeholder="Department :" class="form-control mb-3" required> -->
-                            <select name="department" class="form-control mb-3" required >
-                              <option value="">Department :</option>
-                              <?php
-                                foreach ($department as $key => $value) {
-                                  ?>
-                                    <option value="<?php echo $value['id'];?>"><?php echo $value['department'];?></option>
-
-
-                                  <?php
-                                }
-
-
-                              ?>
-                              
-                              <option value="FD">FINANCE DEPARTMENT</option>
-                              <option value="IRD">INFORMATION RESOURCES DEPARTMENT</option>
-                              <option value="SWCD">STAFF WORK CONSULTING DEPARTMENT</option>
-                              <option value="GCD">GROUP CREATIVE DEPARTMENT</option>
-                              <option value="4WSSD">4WS SAVINGS DEPARTMENT</option>
-                              <option value="ELSD">ENTERPRISES LOAN SCHEME DEPARTMENT</option>
-                              <option value="DIVISI-O">DIVISIONAL OFFICE</option>
-                              <option value="DIST-O">DISTRICT OFFICER</option>
-                            </select>
-                           <!--  <input type="text" name="name_of_post" placeholder="Name Of The Post :" class="form-control mb-3" required> -->
-                            <select name="name_of_post" class="form-control mb-3" required >
-                              <option value="">Name Of The Post :</option>
-                              <option value="DIRECTOR">DIRECTOR</option>
-                              <option value="PS">PERSONAL SECRETARY(P/S)</option>
-                              <option value="FD">FINANCE DIRECTOR</option>
-                              <option value="AUDITOR">AUDITOR</option>
-                              <option value="GM">GENERAL MANAGER</option>
-                              <option value="SUPERVISOR">SUPERVISOR</option>
-                              <option value="WMO">WEB MONITORING OPERATOR</option>
-                              <option value="REC">RECEPTIONIST/HELPLINE</option>
-                              <option value="SUPERVISOR">SUPERVISOR</option>
-                              <option value="SUPERVISOR">SUPERVISOR</option>
-                            </select>
-                            <input type="text" name="mobile_no" placeholder="Mobile Number :" class="form-control mb-3" required>
-                            <input type="text" name="email_id" placeholder="Email Id :" class="form-control mb-3" required>
+                            <input type="text" name="batch_no" readonly value="<?php echo $signuplist[0]['batch_no'];?>" placeholder="Batch Number :" class="form-control mb-3" required>
+                            <input type="text" name="Join_in_branch" readonly value="<?php echo $signuplist[0]['Join_in_branch'];?>" placeholder="Joining In Branch :" class="form-control mb-3" required>
+                            <input type="text" name="branch_code" readonly value="<?php echo $signuplist[0]['branch_code'];?>" placeholder="Branch Code :" class="form-control mb-3" required>
+                            <input type="text" name="department" readonly value="<?php echo $signuplist[0]['department'];?>" placeholder="Department :" class="form-control mb-3" required>
+                            <input type="hidden" name="department_id" readonly value="<?php echo $signuplist[0]['depart_id'];?>">
+                             <input type="text" name="post" readonly value="<?php echo $signuplist[0]['post'];?>" placeholder="Post :" class="form-control mb-3" required>
+                             <input type="hidden" name="post_id" readonly value="<?php echo $signuplist[0]['post_id'];?>">
+                            <input type="text" name="mobile_no" readonly value="<?php echo $signuplist[0]['mobile_no'];?>" placeholder="Mobile Number :" class="form-control mb-3" required>
+                            <input type="text" name="email_id" readonly value="<?php echo $signuplist[0]['email_id'];?>" placeholder="Email Id :" class="form-control mb-3" required>
                             <input type="text" name="service_did" placeholder="Service DID / Contract No :" class="form-control mb-3" required>
                           </div>
                           <div class="col-md-4">
@@ -100,7 +66,7 @@
                             <h6 class="tittle">Parents Occupation & Annual Income & Other Information</h6>
                           </div>
                           <div class="col-md-6 mb-3">
-                            <input type="text" name="" placeholder="Mother Occupation" name="mother_occupation" class="form-control" required>
+                            <input type="text" placeholder="Mother Occupation" name="mother_occupation" class="form-control" required>
                           </div>
                           <div class="col-md-6 mb-3">
                             <input type="text" name="m_annual_encome" placeholder="Annual Income" class="form-control" required>

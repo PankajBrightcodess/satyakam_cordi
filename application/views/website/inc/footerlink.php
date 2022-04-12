@@ -67,6 +67,19 @@ $("#filePhoto").change(function() {
       });
     });
 
+   $('body').on('change','#department_id',function(){
+      var depart_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/getpost"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console.log(data);
+          $('#post_id').html(data);
+        }
+      });
+    });
+
    $('body').on('click','#signup',function(){
     debugger;
       var state=$('#state').val();
@@ -114,7 +127,7 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name" id="post_name" class="form-control"></td><td><input type="text" name="fee" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name[]" id="post_name" class="form-control"></td><td><input type="text" name="fee[]" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
@@ -134,7 +147,7 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="reg_no[]" id="reg_no[]" class="form-control"></td><td><input type="text" name="name" id="name" class="form-control"></td><td><input type="text" name="name_of_post[]" id="name_of_post" class="form-control"></td><td><input type="text" name="security_fund[]" id="security_fund" class="form-control"></td><td><input type="text" name="training_fee[]" id="training_fee" class="form-control"></td><td><input type="text" name="processing_fee[]" id="processing_fee" class="form-control"></td><td><input type="text" name="other_fee[]" id="other_fee" class="form-control"></td><td><input type="text" name="total_banking" id="total_banking" class="form-control"></td><td><input type="text" name="banking_id2[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field1" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="reg_no[]" id="reg_no[]" class="form-control"></td><td><input type="text" name="name[]" id="name" class="form-control"></td><td><input type="text" name="name_of_post[]" id="name_of_post" class="form-control"></td><td><input type="text" name="security_fund[]" id="security_fund" class="form-control"></td><td><input type="text" name="training_fee[]" id="training_fee" class="form-control"></td><td><input type="text" name="processing_fee[]" id="processing_fee" class="form-control"></td><td><input type="text" name="other_fee1[]" id="other_fee" class="form-control"></td><td><input type="text" name="total_banking[]" id="total_banking" class="form-control"></td><td><input type="text" name="banking_id2[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field1" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
@@ -194,7 +207,7 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="inspection_area[]" id="inspection_area" class="form-control"></td><td><input type="text" name="objective[]" id="objective" class="form-control"></td><td><input type="text" name="arrival_time[]" id="arrival_time" class="form-control"></td><td><input type="text" name="arrival_km" id="arrival_km" class="form-control"></td><td><select class="form-control" name="port_of_department[]"><option>---SELECT---</option><option value="Home">Home</option><option value="Office">Office</option><option value="new_inspection_area">New Inspection Area</option><option value="other">Other</option></select></td><td><input type="text" name="departure_km[]" id="departure_km" class="form-control"></td><td><input type="text" name="other_fee[]" id="other_fee" class="form-control"></td><td><input type="text" name="result[]" id="result" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field4" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="inspection_area[]" id="inspection_area" class="form-control"></td><td><input type="text" name="objective[]" id="objective" class="form-control"></td><td><input type="text" name="arrival_time[]" id="arrival_time" class="form-control"></td><td><input type="text" name="arrival_km[]" id="arrival_km" class="form-control"></td><td><select class="form-control" name="port_of_department[]"><option>---SELECT---</option><option value="Home">Home</option><option value="Office">Office</option><option value="new_inspection_area">New Inspection Area</option><option value="other">Other</option></select></td><td><input type="text" name="departure_km[]" id="departure_km" class="form-control"></td><td><input type="text" name="other_fee2[]" id="other_fee" class="form-control"></td><td><input type="text" name="result[]" id="result" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field4" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
@@ -214,7 +227,7 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name" id="post_name" class="form-control"></td><td><input type="text" name="fee" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name[]" id="post_name" class="form-control"></td><td><input type="text" name="fee[]" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
@@ -239,20 +252,4 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 </script>
-<!-- <script type="text/javascript">
-  $(document).ready(function(e) {
-  $('body').on('change','#dpartment',function(){
-      debugger;
-      var depart_id=$(this).val();
-      $.ajax({
-        type:"POST",
-        url:"<?php echo base_url("website/getpost"); ?>",
-        data:{depart_id:depart_id},
-        success: function(data){
-          console(data);
-        }
-      });
-    });
-});
 
-</script> -->

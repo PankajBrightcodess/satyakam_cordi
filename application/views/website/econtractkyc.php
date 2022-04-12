@@ -17,20 +17,20 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Aadhar Upload</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>">
+                    <td><a target="_blank" href="<?= base_url($kyc['aadhar']);?>">
                       <img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Pan Card Upload</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a target="_blank" href="<?= base_url($kyc['pan']);?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Bank A/C Upload</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a target="_blank" href="<?= base_url($kyc['bank_account']);?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>

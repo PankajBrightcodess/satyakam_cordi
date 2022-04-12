@@ -11,8 +11,6 @@ class Admin extends CI_Controller {
 		$data['title']="Office Member";
 		$data['datatable'] = true;	
 		$data['officer']= $this->Website_model->getofficerdetails();
-		// echo PRE;
-		// print_r($data['officer']);die;
 		$this->template->load('pages','office_member',$data);
 	}
 	public function update_userpass(){
