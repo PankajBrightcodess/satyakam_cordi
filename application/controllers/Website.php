@@ -401,14 +401,6 @@ class Website extends CI_Controller {
 			$this->session->set_flashdata('err_msg',$result['verify']);
 			redirect('website/open_progress_report/?status=0');
 		}
-
-
-
-		
-		
-
-		
-
 	}
 
 	// '''''''''''''''''''''''''''''''''''''vacency Area'''''''''''''''''''''''''''''''

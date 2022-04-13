@@ -11,9 +11,8 @@
                     <div class="row">
                         	<div class="col-md-12 col-lg-12">
                                 <?php echo form_open_multipart('admin/add_my_report');?>
-                                 <div class="form-group row">
+                                 <!-- <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <!-- <label>Department</label> -->
                                         <select class="form-control" name="depart_id" required id="depart_id">
                                             <option value="">DEPARTMENT :</option>
                                             <?php
@@ -27,60 +26,54 @@
                                             ?> 
                                         </select>
                                     </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12" >
-                                        <!-- <label>Post</label> -->
-                                         <select class="form-control posts" name="posts" id="posts" required>
-                                            <option value="">POST :</option>
-                                            
-                                        </select>
-                                    </div>                                    
-                                </div>
-                               <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Daily Activity / Progress Report</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'progress_report','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div> 
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Monthly Progress</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'monthly_progress','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Annual Progress</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'annual_progress','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Honorarium Slip</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'honorarium_slip','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>House Fund</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'house_found','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Emergency Leave</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'emergency_leave','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_status','id'=>'save_dep','value'=>'Save','class'=>'form-control btn btn-success'));?>
-                                    </div>
-                                    <div class="col-md-4"></div>                                    
-                                </div>
-                                <?php echo form_close();?>
+                                </div> -->
+                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <table class="table data-table stripe hover nowrap table-bordered">
+                                    <thead>
+                                        <tr>    
+                                            <th>S.NO.</th>
+                                            <th>NAME</th>                
+                                            <th>DEPARTMENT</th>                
+                                            <th>POST</th>                                            
+                                            <th>BATCH NO.</th>                                            
+                                            <th>BRANCH</th>                                            
+                                            <th>STATE</th>                                            
+                                            <th>CODE</th>                                            
+                                            <th>MOBILE</th>                                            
+                                            <th>EMAIL</th>
+                                            <th>ACTION</th>                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i=0;
+                                         if(!empty($officer_list)){
+                                            foreach($officer_list as $val){$i++; $id=$val['id']; ?>
+                                        <tr>
+                                            <td ><?php echo $i ?></td>
+                                            <td ><?php echo $val['officer_first_name'].' '.$val['officer_middle_name'].' '.$val['officer_last_name']; ?></td>
+                                            <td ><?php echo $val['department'] ?></td>
+                                            <td ><?php echo $val['post'] ?></td>
+                                            <td ><?php echo $val['batch_no'] ?></td>
+                                            <td ><?php echo $val['Join_in_branch'] ?></td>
+                                            <td ><?php echo $val['state'] ?></td>
+                                            <td ><?php echo $val['code'] ?></td>
+                                            <td ><?php echo $val['mobile_no'] ?></td>
+                                            <td ><?php echo $val['email_id'] ?></td>
+                                            <td><span class="float-right">
+                                                <a href="<?php echo base_url('admin/daily_report_list?id='.$val['id'])?>" class="btn btn-success btn-xs">View Reports</a>
+                                             <!-- <button type="button" class="btn btn-success btn-xs updt" data-id="<?php echo $val['id'];?>">View Reports</button> -->
+                                           </td>
+                                        </tr>
+                                       <?php 
+                                        }
+                                            }
+                                            ?>
+                                       
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php echo form_close();?>
                             </div>
                         </div>
                     </div>
@@ -124,13 +117,25 @@
       </div>
     </div>
     <!-- '''''''''''''''''''''''''''''''''model end................................... -->  
+   
     <script type="text/javascript">
-        $('.updt').click(function(e){
+        $('body').on('click','.updt',function(e){
+            // debugger;
         var id = $(this).data('id');
-        var department = $(this).data('department');
+        $.ajax({
+                type:"POST",
+                url:"<?php echo base_url('admin/daily_report_list')?>",
+                data:{id:id},
+                // dataType:"json",
+                 beforeSend: function(){
+                    
+                },
+                success:function(data){
+                    console.log(data);
+                }
+        });
       
-        $('#id').val(id);
-        $('#department').val(department);
+       
        });
     </script>
 

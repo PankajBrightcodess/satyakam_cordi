@@ -238,8 +238,52 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		$records= $query->result_array();
 		return $records;
-		// $query = $this->db->get_where('post',array('status'=>1));
 	}
+
+	public function get_officer_list_for_myofficedetails(){
+		$this->db->where('t1.verify_status',1);
+		$this->db->select('t1.batch_no,t1.Join_in_branch,t1.id,t1.mobile_no,t1.email_id,t1.officer_first_name,t1.officer_middle_name,t1.officer_last_name,t3.code,t4.department,t5.post,t6.state');
+		$this->db->from('officer_details t1');
+		$this->db->join('signup t2','t1.batch_no=t2.batch_no','left');
+		$this->db->join('vecency t3','t2.state=t3.state_id','left');
+		$this->db->join('department t4','t1.department_id=t4.id','left');
+		$this->db->join('post t5','t1.post_id=t5.id','left');
+		$this->db->join('state t6','t2.state=t6.id','left');
+		$query = $this->db->get();
+	    return $query->result_array();
+	}
+
+	public function revenuelist($user_id){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('revenue_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+
+	}
+
+	public function securitylist($user_id){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('security_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function grouplist($user_id){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('group_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function clublist($user_id){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('club_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+	}
+	public function travellinglist($user_id){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('travelling_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+	}
+
+
 	public function delete_post($id){
 		 $status['status'] = 0;
 		 $this->db->set($status); 

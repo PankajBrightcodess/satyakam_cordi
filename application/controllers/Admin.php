@@ -619,13 +619,36 @@ public function update_submenu(){
 		redirect('admin/ec_myteamoffice');
 	}
 
-	 public function my_report(){
-		$data['title']="My Report(My Office)";
+	public function my_report(){
+		$data['title']="Daily Activity Report(My Office)";
 		$data['datatable'] = true;	
 		$data['depart'] = $this->Website_model->get_departlist($data);	
 		$data['post'] = $this->Website_model->get_postlist($data);
+		$data['officer_list']= $this->Website_model->get_officer_list_for_myofficedetails();
+
 		$this->template->load('pages','my_report',$data);
 	}
+	public function daily_report_list(){
+		$user_id = $this->input->get();
+		$data['revenue'] = $this->Website_model->revenuelist($user_id);
+		$data['security'] = $this->Website_model->securitylist($user_id);
+		$data['group'] = $this->Website_model->grouplist($user_id);
+		$data['club'] = $this->Website_model->clublist($user_id);
+		$data['travelling'] = $this->Website_model->travellinglist($user_id);
+		if(!empty($data['revenue'])||!empty($data['security'])||!empty($data['group'])||!empty($data['club'])||!empty($data['travelling'])){
+			$data['title']="Daily Activity Report List ";
+			$data['datatable'] = true;	
+			$data['depart'] = $this->Website_model->get_departlist($data);	
+			$data['post'] = $this->Website_model->get_postlist($data);
+			$this->template->load('pages','daily_report_list',$data);
+		}
+		else{ 
+		$this->session->set_flashdata("err_msg","Opps No Such Data!");
+			$this->my_report();
+		}
+	}
+
+
 
 	public function add_my_report(){
 			$records =$this->input->post();
