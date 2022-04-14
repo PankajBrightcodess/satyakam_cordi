@@ -489,7 +489,7 @@ class Website extends CI_Controller {
                                 $html4='<table class="table data-table stripe hover nowrap table-bordered">';
                                     $html4.='<thead>';
                  
-                                            $html4='<th>ARIVEL TIME</th>';                                  
+                                            $html4.='<th>ARIVEL TIME</th>';                                  
                                             $html4.='<th>ARIVEL KM</th>';                                    
                                             $html4.='<th>POST</th>'; 
 
