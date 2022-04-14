@@ -68,4 +68,19 @@
 			}
 		}
 	}
+	if(!function_exists('check_and_setcookie')){
+		function check_and_setcookie(){
+			// if present not in session add in session takin value from cookie
+			$CI = get_instance();
+			if($CI->session->cuserid === NULL || $CI->session->role != '2' || $CI->session->role != '3'){
+				$CI->load->helper('cookie');
+				$cookie = $CI->input->cookie('login_cookie',true);
+				if(!empty($cookie)){
+					$base_cookie = base64_decode($cookie);
+					$cookie_json_array = json_decode($base_cookie,true);				
+					$CI->session->set_userdata($cookie_json_array);
+				}
+			}
+		}
+	}
 ?>

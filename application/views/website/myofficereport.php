@@ -22,7 +22,7 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>Monthly Progress</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="<?= base_url('website/open_monthly_progress_report');?>" class="form-control btn btn-sm btn-success">Monthly Report</a></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>

@@ -1,10 +1,12 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+   <script src="<?php echo file_url("includes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+  <!-- <script src="<?= base_url('includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js');?>"></script> -->
+    <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
+    <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
@@ -237,9 +239,9 @@ $("#filePhoto").change(function() {
 });
 </script>
 <script>
+   $(document).ready(function() {
 var acc = document.getElementsByClassName("accordion");
 var i;
-
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -251,5 +253,32 @@ for (i = 0; i < acc.length; i++) {
     } 
   });
 }
+
+   $('body').on('change','#month', function(){
+    debugger;
+    var month = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/get_monthly_progress_list')?>',
+      data:{month:month},
+      dataType:'JSON',
+      success:function(results){
+        console.log(results);
+        $('#table1').html(results.htm);
+        $('#table2').html(results.htm1);
+        $('#table3').html(results.htm2);
+        $('#table4').html(results.htm3);
+        $('#table5').html(results.htm4);
+
+      },
+
+    });
+   });
+});
+
+
+
 </script>
+
+
 

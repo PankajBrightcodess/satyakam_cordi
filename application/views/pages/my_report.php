@@ -21,6 +21,7 @@
                                                        ?>
                                                        <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
                                                        <?php
+                                               
                                                     }
                                                 }
                                             ?> 

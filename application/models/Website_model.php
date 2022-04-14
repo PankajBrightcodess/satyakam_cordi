@@ -151,10 +151,12 @@ class Website_model extends CI_Model{
 		$this->db->select('t1.*,t2.code');
 		$this->db->from('signup t1');
 		$this->db->join('vecency t2','t1.state=t2.state_id','left');
-		// $qry = $this->db->last_query();
-		// print_r($qry);die;
 		$query = $this->db->get();
 		return  $query->row_array();
+	}
+
+	public function open_monthly_report($id){
+
 	}
 
 	public function get_alldepartpostlist(){
@@ -280,6 +282,38 @@ class Website_model extends CI_Model{
 	public function travellinglist($user_id){
 		$user_id= $user_id['id'];
 		$query = $this->db->get_where('travelling_report',array('user_id'=>$user_id,'status'=>1));
+		return  $query->result_array();
+	}
+
+	// '''''''''''''''''''''''''''''''find report list BY MONTH''''''''''''''''''''''''''''''''
+	public function revenuelistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('revenue_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+
+	public function securitylistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('security_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function grouplistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('group_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function clublistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('club_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function travellinglistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('stk_travelling_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'status'=>1));
 		return  $query->result_array();
 	}
 
