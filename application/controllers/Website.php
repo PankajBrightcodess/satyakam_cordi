@@ -47,12 +47,14 @@ class Website extends CI_Controller {
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			// $batch = $_SESSION['batch_no'];
-			// $d['kyc']= $this->Website_model->menu_list($batch);
 			$d['v'] = 'website/econtractdocx';
 			$this->load->view('website/template_1',$d);
 		}
 		public function econtractkyc(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/econtractkyc';
 			$d['kyc']= $this->Website_model->kyc_details();
 			// echo PRE;
@@ -60,34 +62,62 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 		public function econtractmyteam(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/econtractmyteam';
 			$this->load->view('website/template_1',$d);
 		}
 		public function myofficereport(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/myofficereport';
 			$this->load->view('website/template_1',$d);
 		}
 
 		public function myofficeexpense(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/myofficeexpense';
 			$this->load->view('website/template_1',$d);
 		}
 		public function myofficemyteam(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/myofficemyteam';
 			$this->load->view('website/template_1',$d);
 		}
 
 		public function ajeevikageneralgrp(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/ajeevikageneralgrp';
 			$this->load->view('website/template_1',$d);
 		}
 
 		public function ajeevikamyclubgrp(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/ajeevikamyclubgrp';
 			$this->load->view('website/template_1',$d);
 		}
 
 		public function ajeevikamyclubincome(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/ajeevikamyclubincome';
 			$this->load->view('website/template_1',$d);
 		}
@@ -304,12 +334,20 @@ class Website extends CI_Controller {
 	}
 
 	public function open_progress_report(){
+		$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
 		$d['v'] = 'website/open_progress';
         $this->load->view('website/template_1',$d);
 	}
 
 	public function open_monthly_progress_report(){
+		$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
 		$month = date('m');
 		$d['revenue'] = $this->Website_model->revenuelistbymonth($user_id,$month);
@@ -766,6 +804,10 @@ class Website extends CI_Controller {
 	}
 	// ''''''''''''''''''''''''''''daily report''''''''''''''''''''''''''''''''''''''
 	public function open_annual_progress_report(){
+		$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
 		$year = date('Y');
 		$d['revenue'] = $this->Website_model->revenuelistbyyear($user_id,$year);
@@ -912,6 +954,10 @@ class Website extends CI_Controller {
 		$this->template->load('pages','home',$data);
 	}
 	public function daily_expense(){
+		$id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['v'] = 'website/daily_expense';
 		$this->load->view('website/template_1',$d);
 
