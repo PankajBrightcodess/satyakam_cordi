@@ -16,43 +16,49 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
+                    <td>Create Team</td>
+                    <td><a href="<?= base_url('website/create_team');?>" class="form-control btn btn-sm btn-success">Create Team</a></td>
+                    
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
                     <td>Daily Progress Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                    <th scope="row">3</th>
                     <td>Monthly Progress Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
+                    <th scope="row">4</th>
                     <td>Annual Progress Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">4</th>
+                    <th scope="row">5</th>
                     <td>House Fund Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   
                   <tr>
-                    <th scope="row">5</th>
+                    <th scope="row">6</th>
                     <td>Leave Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">6</th>
+                    <th scope="row">7</th>
                     <td>Office Rent Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">7</th>
+                    <th scope="row">8</th>
                     <td>Daily Expense Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     

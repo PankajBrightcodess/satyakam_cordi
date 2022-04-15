@@ -35,10 +35,10 @@ class Website extends CI_Controller {
 			$result = $this->Website_model->insert_applyform($data);
 			if($result){
 				$this->session->set_flashdata("msg","Form Create Successfully !!");
-				redirect('website/econtractform/');
+				redirect('website/apply_online/');
 		    }else{
 				$this->session->set_flashdata("err_msg","Try Again !!");
-				redirect('website/signup/');
+				redirect('website/apply_online/');
 		    }
 			
 		}
@@ -76,6 +76,23 @@ class Website extends CI_Controller {
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/myofficereport';
 			$this->load->view('website/template_1',$d);
+		}
+
+		public function create_team(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['depart'] = $this->Website_model->get_departlist();
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/create_team';
+			$this->load->view('website/template_1',$d);
+
+		}
+
+		public function add_team(){
+			echo PRE;
+			print_r($_POST);die;
 		}
 
 		public function myofficeexpense(){
