@@ -27,7 +27,7 @@
                   <tr>
                     <th scope="row">3</th>
                     <td>Annual Progress</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="<?= base_url('website/open_annual_progress_report');?>" class="form-control btn btn-sm btn-success">Annual Report</a></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>

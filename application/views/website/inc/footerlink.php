@@ -263,12 +263,42 @@ for (i = 0; i < acc.length; i++) {
       data:{month:month},
       dataType:'JSON',
       success:function(results){
+        console.log(results.first);
+        console.log(results.second);
+        console.log(results.third);
+        console.log(results.forth);
+        console.log(results.fifth);
+        $('#table1').html(results.first);
+        $('#table2').html(results.second);
+        $('#table3').html(results.third);
+        $('#table4').html(results.forth);
+        $('#table5').html(results.fifth);
+
+      },
+
+    });
+   });
+
+    $('body').on('change','#year', function(){
+    debugger;
+    var year = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/get_annualy_progress_list')?>',
+      data:{year:year},
+      dataType:'JSON',
+      success:function(results){
         console.log(results);
-        $('#table1').html(results.htm);
-        $('#table2').html(results.htm1);
-        $('#table3').html(results.htm2);
-        $('#table4').html(results.htm3);
-        $('#table5').html(results.htm4);
+        console.log(results.first);
+        console.log(results.second);
+        console.log(results.third);
+        console.log(results.forth);
+        console.log(results.fifth);
+        $('#tables1').html(results.first);
+        $('#tables2').html(results.second);
+        $('#tables3').html(results.third);
+        $('#tables4').html(results.forth);
+        $('#tables5').html(results.fifth);
 
       },
 

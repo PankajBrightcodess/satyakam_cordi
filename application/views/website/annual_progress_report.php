@@ -3,29 +3,22 @@
     	<div class="row">
              <div class="col-md-12 mb-3">
                 <div class="card">
-                     <div class="card-header">
-                        <h3 class="card-title text-center">Monthly Progress Report</h3>
+                    <div class="card-header">
+                        <h3 class="card-title text-center">Annual Progress Report</h3>
                     </div>
-                    
-                    
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 col-12">
-                                <label><strong>Month</strong></label>
-                                <select class="form-control" name="month" id="month">
+                                <label><strong>Year</strong></label>
+                                <select class="form-control" name="year" id="year">
                                     <option value="">---SELECT---</option>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
+                                    <?php 
+                                        $year = date('Y');
+                                        print_r($year);
+                                        for ($i=2001; $i <= $year; $i++) { 
+                                            ?><option value="<?php echo $i;?>"><?php echo $i;?></option><?php
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -48,7 +41,7 @@
                     <div class="row">
                             <div class="col-md-12 col-lg-12">
                                 <?php echo form_open_multipart('admin/add_my_report');?>
-                                <div class="col-md-12 col-lg-12 table-responsive table1" id="table1">
+                                <div class="col-md-12 col-lg-12 table-responsive tables1" id="tables1">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -84,9 +77,7 @@
                                        <?php 
                                         }
                                             }
-                                            ?>
-                                       
-                                        
+                                            ?> 
                                     </tbody>
                                 </table>
                             </div>
@@ -130,7 +121,7 @@
                                         </select> -->
                                     </div>                                    
                                 </div>
-                                <div class="col-md-12 col-lg-12 table-responsive table2" id="table2">
+                                <div class="col-md-12 col-lg-12 table-responsive tables2" id="tables2">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -215,7 +206,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive table3" id="table3">
+                                <div class="col-md-12 col-lg-12 table-responsive tables3" id="tables3">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -303,7 +294,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive table4" id="table4">
+                                <div class="col-md-12 col-lg-12 table-responsive tables4" id="tables4">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                          <tr>    
@@ -390,7 +381,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive table5" id="table5">
+                                <div class="col-md-12 col-lg-12 table-responsive tables5" id="tables5">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                        <tr>    
