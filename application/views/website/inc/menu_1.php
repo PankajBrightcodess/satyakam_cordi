@@ -5,15 +5,24 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContentt">
     <ul class="navbar-nav mx-auto">
-
-      <li class="nav-item dropdown  active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">E-Contract</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?= base_url('website/econtractdocx');?>" style="color:white">My Documents</a>
-          <a class="dropdown-item" href="<?= base_url('website/econtractkyc');?>" style="color:white">KYC</a>
-          <a class="dropdown-item" href="<?= base_url('website/econtractmyteam');?>" style="color:white">My Team Office</a>
-        </div>
-      </li>
+      <!-- <?php 
+      print_r($records);?>  -->
+      <?php
+          if($records['e_contract']=='true'){
+            ?>
+            <li class="nav-item dropdown  active">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">E-Contract</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?= base_url('website/econtractdocx');?>" style="color:white">My Documents</a>
+                <a class="dropdown-item" href="<?= base_url('website/econtractkyc');?>" style="color:white">KYC</a>
+                <a class="dropdown-item" href="<?= base_url('website/econtractmyteam');?>" style="color:white">My Team Office</a>
+              </div>
+            </li>
+      <?php
+      }
+    ?>
+    <?php if($records['my_office']=='true'){
+      ?>
       <li class="nav-item dropdown  active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">My Office</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -22,7 +31,11 @@
           <a class="dropdown-item" href="<?= base_url('website/myofficemyteam');?>" style="color:white">My Team Office</a>
         </div>
       </li>
-      <!-- <li class="nav-item  active"><a class="nav-link" href="myproject.php">My Project</a></li> -->
+      <?php
+    }?>
+
+    <?php if($records['my_project']=='true'){
+      ?>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
           My Project
@@ -68,9 +81,22 @@
           
         </ul>
       </li>
-      <li class="nav-item  active"><a class="nav-link" href="#">Events</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="#">Gallery</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="officialservicevacency.php">Vacancy</a></li>
+      <?php
+    }?>
+      <?php if($records['events']=='true'){
+        ?><li class="nav-item  active"><a class="nav-link" href="#">Events</a></li><?php
+      }?>
+
+      <?php if($records['gallery']=='true'){
+        ?><li class="nav-item  active"><a class="nav-link" href="#">Gallery</a></li><?php
+      }?>
+      <?php if($records['vecency']=='true'){
+        ?><li class="nav-item  active"><a class="nav-link" href="officialservicevacency.php">Vacancy</a></li><?php
+      }?>
+      
+      
+      
+      
       <li class="nav-item dropdown  active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Setting</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

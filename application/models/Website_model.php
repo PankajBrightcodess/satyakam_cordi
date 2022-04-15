@@ -109,10 +109,22 @@ class Website_model extends CI_Model{
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();
 	}
+// ,t2.e_contract,t2.my_office,t2.my_project,t2.vecency,t2.events,t2.gallery
+	public function getuser($id){
+		$this->db->where('t1.id',$id);
+		$this->db->select('t1.post_id,t3.state');
+		$this->db->from('officer_details t1');
+		$this->db->join('signup t3','t1.signup_id=t3.id','left');
+		$query = $this->db->get();
+		return  $query->result_array();
+	}
+	public function getmenudetailsbyid($finalrecord){
+		$post_id = $finalrecord['post_id'];
+		$state = $finalrecord['state'];
+		$query=$this->db->get_where('menu_control',array('post_id' => $post_id,'state'=>$state));
+    	return $query->row_array();
 
-	public function menu_list($batch){
-		// $this->db->select('state');
-		// $this->db->from()
+
 	}
 
 	public function getlogindetails($data){

@@ -43,8 +43,12 @@ class Website extends CI_Controller {
 			
 		}
 		public function econtractdocx(){
-			$batch = $_SESSION['batch_no'];
-			$d['kyc']= $this->Website_model->menu_list($batch);
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			// $batch = $_SESSION['batch_no'];
+			// $d['kyc']= $this->Website_model->menu_list($batch);
 			$d['v'] = 'website/econtractdocx';
 			$this->load->view('website/template_1',$d);
 		}
@@ -245,7 +249,8 @@ class Website extends CI_Controller {
 		// print_r($result);die;
 		if($result['verify']===true){
 			$this->createsession($result);
-			redirect('website/econtractdocx');
+			
+			redirect('website/econtractdocx',$final);
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$result['verify']);
