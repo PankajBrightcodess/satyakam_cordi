@@ -496,6 +496,109 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
+	public function addteam_model($data){
+		$batch_no =$data['batch_no'];
+		$user_id =$data['user_id'];
+		$query = $this->db->get_where('team',array('user_id'=>$user_id,'batch_no'=>$batch_no));
+		// echo $this->db->last_query();die;
+		$count =  $query->num_rows();
+		if($count==0){
+			$table="team";
+			$data['added_on']=date('Y-m-d');
+			$status=$this->db->insert($table,$data);
+			if($status){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}	
+	}
+
+
+	public function my_team_insert_reports($form_1,$form_2,$form_3,$form_4,$form_5){
+		$status1 = $this->revenue_team($form_1);
+		$status2 =$this->security_team($form_2);
+		$status3 =$this->group_team($form_3);
+		$status4 =$this->club_team($form_4);
+		$status5 =$this->travelling_team($form_5);
+		
+		if($status1 && $status2 && $status3 && $status4 && $status5){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function revenue_team($form_1){
+		$revenue = json_decode($form_1);
+		$table="revenue_report_team";
+		foreach ($revenue as $key => $value) {
+		  $qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function security_team($form_2){
+		$security = json_decode($form_2);
+		$table="security_report_team";
+		foreach ($security as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function group_team($form_3){
+		$group = json_decode($form_3);
+		$table="group_report_team";
+		foreach ($group as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function club_team($form_4){
+		$club = json_decode($form_4);
+		$table="club_report_team";
+		foreach ($club as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function travelling_team($form_5){
+		$travelling = json_decode($form_5);
+		$table="travelling_report_team";
+		foreach ($travelling as $key => $value) {
+			$qry=$this->db->insert($table,$value);
+		}
+		if($qry){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	public function updt_state($data){
 		$id = $data['id'];
 		$menu['menu'] =$data['menu'];

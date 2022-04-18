@@ -22,20 +22,26 @@
                   </tr>
                   <tr>
                     <th scope="row">2</th>
+                    <td>Daily Progress Entry</td>
+                    <td><a href="<?= base_url('website/myteam_progress_report');?>" class="form-control btn btn-sm btn-success">Open</a></td>
+                    
+                  </tr>
+                   <tr>
+                    <th scope="row">3</th>
                     <td>Daily Progress Status</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="#" class="form-control btn btn-sm btn-success">Daily Progress Report</a></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Monthly Progress Status</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="#" class="form-control btn btn-sm btn-success">Monthly Progress Report</a></td>
                     
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td>Annual Progress Status</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td><a href="#" class="form-control btn btn-sm btn-success">Annual Progress Report</a></td>
                     
                   </tr>
                   <tr>
