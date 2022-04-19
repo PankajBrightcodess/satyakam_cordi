@@ -982,11 +982,45 @@ class Website extends CI_Controller {
 	}
 	public function daily_expense(){
 		$id = $_SESSION['user_id'];
+	
 		$record= $this->Website_model->getuser($id);
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['v'] = 'website/daily_expense';
 		$this->load->view('website/template_1',$d);
+
+	}
+	public function expense_insert(){
+		$data = $this->input->post();
+		$expense['equipment'] = $data['equipment'];
+		$expense['quantity'] = $data['quantity'];
+		$expense['rate'] = $data['rate'];
+		$expense['amount'] = $data['amount'];
+		$expense['bill'] = $data['bill'];
+		$expense['payment_receipt'] = $data['payment_receipt'];
+		$expense['payment_method'] = $data['payment_method'];
+		$expense['neft_check'] = $data['neft_check'];
+		$expense['total_revenue'] = $data['total_revenue'];
+		$expense['user_id'] = $_SESSION['user_id'];
+		$expense['added_on'] = date('Y-m-d');
+		$count = count($expense['equipment']);
+		for ($i=0; $i < $count; $i++) { 
+			$arr = array('equipment'=>$expense['equipment'][$i],'quantity'=>$expense['quantity'][$i],'rate'=>$expense['rate'][$i],'amount'=>$expense['amount'][$i],'bill'=>$expense['bill'][$i],'payment_receipt'=>$expense['payment_receipt'][$i],'payment_method'=>$expense['payment_method'][$i],'neft_check'=>$expense['neft_check'][$i],'total_revenue'=>$expense['total_revenue'],'user_id'=>$expense['user_id'],'added_on'=>$expense['added_on']);
+			$finalexpense[] = $arr;
+		}
+		$expenses = json_encode($finalexpense);
+		$reult = $this->Website_model->insert_expense($expenses);
+
+		if($reult===true){
+			$this->createsession($result);
+			redirect('website/daily_expense/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/daily_expense/?status=0');
+		}
+
+		
 
 	}
 	// '''''''''''''''''''''''''''''''My Team Office'''''''''''''''''''''''''''''''''''''''''
@@ -1115,8 +1149,502 @@ class Website extends CI_Controller {
 		else{ 
 			$this->session->set_flashdata('err_msg',$result['verify']);
 			redirect('website/open_annual_progress_report/?status=0');
-   }
-}
+   		}
+	}
+
+	public function myteam_daily_progress_report(){
+		$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$date = date('Y-m-d');
+		$d['revenue'] = $this->Website_model->myteam_revenuelistbydaily($user_id,$date);
+		$d['security'] = $this->Website_model->myteam_securitylistbydaily($user_id,$date);
+		$d['group'] = $this->Website_model->myteam_grouplistbydaily($user_id,$date);
+		$d['club'] = $this->Website_model->myteam_clublistbydaily($user_id,$date);
+		$d['travelling'] = $this->Website_model->myteam_travellinglistbydaily($user_id,$date);
+		$d['v'] = 'website/daily_team_progress_report';
+        $this->load->view('website/template_1',$d);
+	}
+
+	public function myteam_monthly_progress_report(){
+		$id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = date('m');
+		$d['revenue'] = $this->Website_model->myteam_revenuelistbymonthly($user_id,$month);
+		$d['security'] = $this->Website_model->myteam_securitylistbymonthly($user_id,$month);
+		$d['group'] = $this->Website_model->myteam_grouplistbymonthly($user_id,$month);
+		$d['club'] = $this->Website_model->myteam_clublistbymonthly($user_id,$month);
+		$d['travelling'] = $this->Website_model->myteam_travellinglistbymonthly($user_id,$month);
+
+		$d['v'] = 'website/monthly_team_progress_report';
+        $this->load->view('website/template_1',$d);
+	}
+
+	public function team_get_monthly_progress_list(){
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = $_POST['month'];
+		$revenuelist = $this->Website_model->myteam_revenuelistbymonthly($user_id,$month);
+		$securitylist = $this->Website_model->myteam_securitylistbymonthly($user_id,$month);
+		$grouplist = $this->Website_model->myteam_grouplistbymonthly($user_id,$month);
+		$clublist = $this->Website_model->myteam_clublistbymonthly($user_id,$month);
+		$travellinglist = $this->Website_model->myteam_travellinglistbymonthly($user_id,$month);
+		// print_r($revenuelist);
+		// print_r($securitylist);
+		// print_r($grouplist);
+		// print_r($clublist);
+		// print_r($travellinglist);die;
+		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
+                    $html.='<thead>';
+                        $html.='<tr>';   
+                            $html.='<th>S.NO.</th>';
+                            $html.='<th>REGISTRATION No.</th>';                
+                            $html.='<th>APPLICANT Name</th>';                
+                            $html.='<th>FATHER/HUSBAND</th>';
+                            $html.='<th>DOB</th>';
+                            $html.='<th>POST NAME</th>';
+                            $html.='<th>FEE</th>';
+                            $html.='<th>PAYMENT DATE</th>';
+                            $html.='<th>BANKING ID</th>';
+                            $html.='<th>CREATED DATE</th>';
+                           $html.='</tr>';
+                    $html.='</thead>';
+                    $html.='<tbody>';
+                     $i=0;
+                         if(!empty($revenuelist)){
+                            foreach($revenuelist as $val){$i++; $id=$val['id']; 
+                        $html.='<tr>';
+                            $html.='<td>'.$i.'</td>';
+                            $html.='<td>'.$val['registration_no'].'</td>';
+                            $html.='<td>'.$val['applicant_name'].'</td>';
+                            $html.='<td>'.$val['father_husband'].'</td>';
+                            $html.='<td>'.date('d-m-Y',strtotime($val['dob'])).'</td>';
+                            $html.='<td>'.$val['post_name'].'</td>';
+                            $html.='<td>'.$val['fee'].'</td>';
+                            $html.='<td >'.date('d-m-Y',strtotime($val['date_payment'])).'</td>';
+                            $html.='<td>'.$val['banking_id1'].'</td>';
+                            $html.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                        $html.='</tr>'; 
+                    }}
+                    $html.='</tbody>';
+                $html.='</table>';
+                // ''''''''''''''''''''''''''''''''revenure''''''''''''''''''''''''
+                $html1='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html1.='<thead>';
+                                        $html1.='<tr>';    
+                                            $html1.='<th>S.NO.</th>';
+                                            $html1.='<th>REGISTRATION No.</th>';                
+                                            $html1.='<th>APPLICANT NAME</th>';                
+                                            $html1.='<th>POST NAME</th>';
+                                            $html1.='<th>SECURITY FUND</th>';
+                                            $html1.='<th>TRAINING FEE</th>';
+                                            $html1.='<th>PROCESSING FEE</th>';
+                                            $html1.='<th>OTHER FEE</th>';
+                                            $html1.='<th>TOTAL BANKING</th>';
+                                            $html1.='<th>BANKING ID</th>';
+                                            $html1.='<th>CREATED DATE</th>';
+                                            $html1.='<th>TOTAL REVENUE</th>';
+                                        $html1.='</tr>';
+                                    $html1.='</thead>';
+                                    $html1.='<tbody>';
+                                         $i=0;
+                                         if(!empty($securitylist)){
+                                            foreach($securitylist as $val){$i++; $id=$val['id'];
+                                        $html1.='<tr>';
+                                            $html1.='<td>'.$i.'</td>';
+                                            $html1.='<td >'.$val['reg_no'].'</td>';
+                                            $html1.='<td >'.$val['name'].'</td>';
+                                            $html1.='<td >'.$val['name_of_post'].'</td>';
+                                            $html1.='<td >'.$val['security_fund'].'</td>';
+                                            $html1.='<td>'.$val['training_fee'].'</td>';
+                                            $html1.='<td >'.$val['processing_fee'].'</td>';
+                                            $html1.='<td >'.$val['other_fee1'].'</td>';
+                                            $html1.='<td >'.$val['total_banking'].'</td>';
+                                            $html1.='<td >'.$val['banking_id2'].'</td>';
+                                            $html1.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html1.='<td >'.$val['total_revenue_1'].'</td>'; 
+                                        $html1.='</tr>';
+                                    }}
+                                    $html1.='</tbody>';
+                                $html1.='</table>';
+                    // ''''''''''''''''''''''''''security'''''''''''''''''''''''''''''
+                                $html2 ='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html2.='<thead>';
+                                        $html2.='<tr>';    
+                                            $html2.='<th>S.NO.</th>';
+                                            $html2.='<th>GROUP NO.</th>';                
+                                            $html2.='<th>GROUP NAME</th>';                
+                                            $html2.='<th>GROUP ADDRESS</th>';
+                                            $html2.='<th>MEETING NO.</th>';
+                                            $html2.='<th>PASSBOOK ISSUE FEE</th>';
+                                            $html2.='<th>WEEKLY SAVING DEPOSIT</th>';
+                                            $html2.='<th>EMI DEPOSIT</th>';
+                                            $html2.='<th>BOUNCING FEE</th>';
+                                            $html2.='<th>LATE FINE FEE</th>';
+                                            $html2.='<th>BANKING ID</th>';
+                                            $html2.='<th>CREATED DATE</th>';
+                                            $html2.='<th>TOTAL REVENUE</th>';                                       
+                                        $html2.='</tr>';
+                                    $html2.='</thead>';
+                                    $html2.='<tbody>';
+                                    $i=0;
+                                         if(!empty($grouplist)){
+                                            foreach($grouplist as $val){$i++; $id=$val['id'];
+                                        $html2.='<tr>';
+                                            $html2.='<td >'.$i.'</td>';
+                                            $html2.='<td >'.$val['group_no_a'].'</td>';
+                                            $html2.='<td >'.$val['group_name_a'].'</td>';
+                                            $html2.='<td >'.$val['group_address'].'</td>';
+                                            $html2.='<td >'.$val['meeting_no'].'</td>';
+                                            $html2.='<td >'.$val['passbook_issue_fee'].'</td>';
+                                            $html2.='<td >'.$val['weekly_saving_deposit'].'</td>';
+                                            $html2.='<td >'.$val['emi_deposit'].'</td>';
+                                            $html2.='<td >'.$val['bouncing_fee'].'</td>';
+                                            $html2.='<td >'.$val['late_fine_fee'].'</td>';
+                                            $html2.='<td >'.$val['banking_id3'].'</td>';
+                                            $html2.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html2.='<td >'.$val['total_revenue_2_'].'</td>';
+                                        $html2.='</tr>';  
+                                        }
+                                 }
+                                    $html2.='</tbody>';
+                                $html2.='</table>;';
+         // <!-- '''''''''''''''''''''''''''''''Group''''''''''''''''''''''''''''''''''' -->
+                                $html3 ='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html3.='<thead>';
+
+                                         $html3.='<tr>';    
+                                            $html3.='<th>S.NO.</th>';
+                                            $html3.='<th>GROUP NO.</th>';                
+                                            $html3.='<th>GROUP NAME</th>';                
+                                            $html3.='<th>CLUB ID NO.</th>';               
+                                            $html3.='<th>CLUB MEMBER NAME</th>';
+                                            $html3.='<th>SPONSOR NO.</th>';
+                                            $html3.='<th>SPONSOR LEVEL</th>';
+                                            $html3.='<th>JOINING FEE</th>';
+                                            $html3.='<th>BANKING ID</th>';
+                                            $html3.='<th>CREATED DATE</th>';
+                                            $html3.='<th>TOTAL REVENUE</th>';
+                                            $html3.='<th>GRAND TOTAL REVENUE</th>';
+                                         $html3.='</tr>';
+                                          $html3.='</thead>';
+                                           $html3.='<tbody>';
+                                    $i=0;
+                                         if(!empty($clublist)){
+                                            foreach($clublist as $val){$i++; $id=$val['id'];
+                                         $html3.='<tr>';
+                                            $html3.='<td >'.$i.'</td>';
+                                            $html3.='<td >'.$val['group_no_b'].'</td>';
+                                            $html3.='<td >'.$val['group_name_b'].'</td>';
+                                            $html3.='<td >'.$val['club_id_no'].'</td>';
+                                            $html3.='<td >'.$val['club_member_name'].'</td>';
+                                            $html3.='<td >'.$val['sponsor_no'].'</td>';
+                                            $html3.='<td >'.$val['sponsor_level'].'</td>';
+                                            $html3.='<td >'.$val['joining_fee'].'</td>';
+                                            $html3.='<td >'.$val['banking_id4'].'</td>';
+                                            $html3.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html3.='<td >'.$val['total_revenue_3'].'</td>';
+                                            $html3.='<td >'.$val['grand_total_revamue'].'</td>';
+                                        $html3.='</tr>';
+                                        }
+                                    }   
+                                    $html3.='</tbody>';
+                                $html3.='</table>';
+
+	     // <!-- ''''''''''''''''''Club''''''''''''''''''''''' -->
+                                $html4='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html4.='<thead>';
+                 
+                                            $html4.='<th>S.NO.</th>';
+                                            $html4.='<th>INSPECTION AREA</th>';                
+                                            $html4.='<th>OBJECTIVE</th>';                
+                                            $html4.='<th>ARIVEL TIME</th>';
+                                            $html4.='<th>ARIVEL KM</th>';
+                                            $html4.='<th>POST</th>';                             
+                                            $html4.='<th>DEPARTURE KM</th>';
+                                            $html4.='<th>OTHER FEE</th>';
+                                            $html4.='<th>RESULT</th>';
+                                            $html4.='<th>CREATED DATE</th>';                                       
+                                        $html4.='</tr>';
+                                    $html4.='</thead>';
+                                    $html4.='<tbody>';
+                                    $i=0;
+                                         if(!empty($travellinglist)){
+                                            foreach($travellinglist as $val){$i++; $id=$val['id'];
+
+                                         $html4.='<tr>';
+                                            $html4.='<td >'.$i.'</td>';
+                                            $html4.='<td >'.$val['inspection_area'].'</td>';
+                                            $html4.='<td >'.$val['objective'].'</td>';
+                                            $html4.='<td >'.$val['arrival_time'].'</td>';
+                                            $html4.='<td >'.$val['arrival_km'].'</td>';
+                                            $html4.='<td >'.$val['port_of_department'].'</td>';
+                                            $html4.='<td >'.$val['departure_km'].'</td>';
+                                            $html4.='<td >'.$val['other_fee2'].'</td>';
+                                            $html4.='<td >'.$val['result'].'</td>';
+                                            $html4.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                        $html4.='</tr>';
+                                        }
+                                    }  
+                                    $html4.='</tbody>';
+                                    $html4.='</table>';
+                                    
+                                    
+                                    // $alldata=array();
+                                    // $alldata[]='';
+                                $alldata['first'] = $html;
+                                $alldata['second'] = $html1;
+                                $alldata['third'] = $html2;
+                                $alldata['forth'] = $html3;
+                                $alldata['fifth'] = $html4;
+                                $results = json_encode($alldata);
+                                echo $results;
+
+                // <!-- ''''''''''''''''''''''travelling'''''''''''''''''''''''''''' -->
+	}
+
+	public function myteam_annualy_progress_report(){
+		$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$d['revenue'] = $this->Website_model->myteam_revenuelistbyyearly($user_id,$year);
+		$d['security'] = $this->Website_model->myteam_securitylistbyyearly($user_id,$year);
+		$d['group'] = $this->Website_model->myteam_grouplistbyyearly($user_id,$year);
+		$d['club'] = $this->Website_model->myteam_clublistbyyearly($user_id,$year);
+		$d['travelling'] = $this->Website_model->myteam_travellinglistbyyearly($user_id,$year);
+
+		$d['v'] = 'website/annualy_team_progress_report';
+        $this->load->view('website/template_1',$d);
+	}
+
+	public function team_get_annualy_progress_list(){
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = $_POST['year'];
+		$revenuelist = $this->Website_model->myteam_revenuelistbyyearly($user_id,$year);
+		$securitylist = $this->Website_model->myteam_securitylistbyyearly($user_id,$year);
+		$grouplist = $this->Website_model->myteam_grouplistbyyearly($user_id,$year);
+		$clublist = $this->Website_model->myteam_clublistbyyearly($user_id,$year);
+		$travellinglist = $this->Website_model->myteam_travellinglistbyyearly($user_id,$year);
+		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
+                    $html.='<thead>';
+                        $html.='<tr>';   
+                            $html.='<th>S.NO.</th>';
+                            $html.='<th>REGISTRATION No.</th>';                
+                            $html.='<th>APPLICANT Name</th>';                
+                            $html.='<th>FATHER/HUSBAND</th>';
+                            $html.='<th>DOB</th>';
+                            $html.='<th>POST NAME</th>';
+                            $html.='<th>FEE</th>';
+                            $html.='<th>PAYMENT DATE</th>';
+                            $html.='<th>BANKING ID</th>';
+                            $html.='<th>CREATED DATE</th>';
+                           $html.='</tr>';
+                    $html.='</thead>';
+                    $html.='<tbody>';
+                     $i=0;
+                         if(!empty($revenuelist)){
+                            foreach($revenuelist as $val){$i++; $id=$val['id']; 
+                        $html.='<tr>';
+                            $html.='<td>'.$i.'</td>';
+                            $html.='<td>'.$val['registration_no'].'</td>';
+                            $html.='<td>'.$val['applicant_name'].'</td>';
+                            $html.='<td>'.$val['father_husband'].'</td>';
+                            $html.='<td>'.date('d-m-Y',strtotime($val['dob'])).'</td>';
+                            $html.='<td>'.$val['post_name'].'</td>';
+                            $html.='<td>'.$val['fee'].'</td>';
+                            $html.='<td >'.date('d-m-Y',strtotime($val['date_payment'])).'</td>';
+                            $html.='<td>'.$val['banking_id1'].'</td>';
+                            $html.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                        $html.='</tr>'; 
+                    }}
+                    $html.='</tbody>';
+                $html.='</table>';
+                // ''''''''''''''''''''''''''''''''revenure''''''''''''''''''''''''
+                $html1='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html1.='<thead>';
+                                        $html1.='<tr>';    
+                                            $html1.='<th>S.NO.</th>';
+                                            $html1.='<th>REGISTRATION No.</th>';                
+                                            $html1.='<th>APPLICANT NAME</th>';                
+                                            $html1.='<th>POST NAME</th>';
+                                            $html1.='<th>SECURITY FUND</th>';
+                                            $html1.='<th>TRAINING FEE</th>';
+                                            $html1.='<th>PROCESSING FEE</th>';
+                                            $html1.='<th>OTHER FEE</th>';
+                                            $html1.='<th>TOTAL BANKING</th>';
+                                            $html1.='<th>BANKING ID</th>';
+                                            $html1.='<th>CREATED DATE</th>';
+                                            $html1.='<th>TOTAL REVENUE</th>';
+                                        $html1.='</tr>';
+                                    $html1.='</thead>';
+                                    $html1.='<tbody>';
+                                         $i=0;
+                                         if(!empty($securitylist)){
+                                            foreach($securitylist as $val){$i++; $id=$val['id'];
+                                        $html1.='<tr>';
+                                            $html1.='<td>'.$i.'</td>';
+                                            $html1.='<td >'.$val['reg_no'].'</td>';
+                                            $html1.='<td >'.$val['name'].'</td>';
+                                            $html1.='<td >'.$val['name_of_post'].'</td>';
+                                            $html1.='<td >'.$val['security_fund'].'</td>';
+                                            $html1.='<td>'.$val['training_fee'].'</td>';
+                                            $html1.='<td >'.$val['processing_fee'].'</td>';
+                                            $html1.='<td >'.$val['other_fee1'].'</td>';
+                                            $html1.='<td >'.$val['total_banking'].'</td>';
+                                            $html1.='<td >'.$val['banking_id2'].'</td>';
+                                            $html1.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html1.='<td >'.$val['total_revenue_1'].'</td>'; 
+                                        $html1.='</tr>';
+                                    }}
+                                    $html1.='</tbody>';
+                                $html1.='</table>';
+                    // ''''''''''''''''''''''''''security'''''''''''''''''''''''''''''
+                                $html2 ='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html2.='<thead>';
+                                        $html2.='<tr>';    
+                                            $html2.='<th>S.NO.</th>';
+                                            $html2.='<th>GROUP NO.</th>';                
+                                            $html2.='<th>GROUP NAME</th>';                
+                                            $html2.='<th>GROUP ADDRESS</th>';
+                                            $html2.='<th>MEETING NO.</th>';
+                                            $html2.='<th>PASSBOOK ISSUE FEE</th>';
+                                            $html2.='<th>WEEKLY SAVING DEPOSIT</th>';
+                                            $html2.='<th>EMI DEPOSIT</th>';
+                                            $html2.='<th>BOUNCING FEE</th>';
+                                            $html2.='<th>LATE FINE FEE</th>';
+                                            $html2.='<th>BANKING ID</th>';
+                                            $html2.='<th>CREATED DATE</th>';
+                                            $html2.='<th>TOTAL REVENUE</th>';                                       
+                                        $html2.='</tr>';
+                                    $html2.='</thead>';
+                                    $html2.='<tbody>';
+                                    $i=0;
+                                         if(!empty($grouplist)){
+                                            foreach($grouplist as $val){$i++; $id=$val['id'];
+                                        $html2.='<tr>';
+                                            $html2.='<td >'.$i.'</td>';
+                                            $html2.='<td >'.$val['group_no_a'].'</td>';
+                                            $html2.='<td >'.$val['group_name_a'].'</td>';
+                                            $html2.='<td >'.$val['group_address'].'</td>';
+                                            $html2.='<td >'.$val['meeting_no'].'</td>';
+                                            $html2.='<td >'.$val['passbook_issue_fee'].'</td>';
+                                            $html2.='<td >'.$val['weekly_saving_deposit'].'</td>';
+                                            $html2.='<td >'.$val['emi_deposit'].'</td>';
+                                            $html2.='<td >'.$val['bouncing_fee'].'</td>';
+                                            $html2.='<td >'.$val['late_fine_fee'].'</td>';
+                                            $html2.='<td >'.$val['banking_id3'].'</td>';
+                                            $html2.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html2.='<td >'.$val['total_revenue_2_'].'</td>';
+                                        $html2.='</tr>';  
+                                        }
+                                 }
+                                    $html2.='</tbody>';
+                                $html2.='</table>;';
+         // <!-- '''''''''''''''''''''''''''''''Group''''''''''''''''''''''''''''''''''' -->
+                                $html3 ='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html3.='<thead>';
+
+                                         $html3.='<tr>';    
+                                            $html3.='<th>S.NO.</th>';
+                                            $html3.='<th>GROUP NO.</th>';                
+                                            $html3.='<th>GROUP NAME</th>';                
+                                            $html3.='<th>CLUB ID NO.</th>';               
+                                            $html3.='<th>CLUB MEMBER NAME</th>';
+                                            $html3.='<th>SPONSOR NO.</th>';
+                                            $html3.='<th>SPONSOR LEVEL</th>';
+                                            $html3.='<th>JOINING FEE</th>';
+                                            $html3.='<th>BANKING ID</th>';
+                                            $html3.='<th>CREATED DATE</th>';
+                                            $html3.='<th>TOTAL REVENUE</th>';
+                                            $html3.='<th>GRAND TOTAL REVENUE</th>';
+                                         $html3.='</tr>';
+                                          $html3.='</thead>';
+                                           $html3.='<tbody>';
+                                    $i=0;
+                                         if(!empty($clublist)){
+                                            foreach($clublist as $val){$i++; $id=$val['id'];
+                                         $html3.='<tr>';
+                                            $html3.='<td >'.$i.'</td>';
+                                            $html3.='<td >'.$val['group_no_b'].'</td>';
+                                            $html3.='<td >'.$val['group_name_b'].'</td>';
+                                            $html3.='<td >'.$val['club_id_no'].'</td>';
+                                            $html3.='<td >'.$val['club_member_name'].'</td>';
+                                            $html3.='<td >'.$val['sponsor_no'].'</td>';
+                                            $html3.='<td >'.$val['sponsor_level'].'</td>';
+                                            $html3.='<td >'.$val['joining_fee'].'</td>';
+                                            $html3.='<td >'.$val['banking_id4'].'</td>';
+                                            $html3.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                            $html3.='<td >'.$val['total_revenue_3'].'</td>';
+                                            $html3.='<td >'.$val['grand_total_revamue'].'</td>';
+                                        $html3.='</tr>';
+                                        }
+                                    }   
+                                    $html3.='</tbody>';
+                                $html3.='</table>';
+
+	// <!-- ''''''''''''''''''''''''''''''Club''''''''''''''''''''''''''''''''''''''''''' -->
+                                $html4='<table class="table data-table stripe hover nowrap table-bordered">';
+                                    $html4.='<thead>';
+                 
+                                            $html4.='<th>S.NO.</th>';
+                                            $html4.='<th>INSPECTION AREA</th>';                
+                                            $html4.='<th>OBJECTIVE</th>';                
+                                            $html4.='<th>ARIVEL TIME</th>';
+                                            $html4.='<th>ARIVEL KM</th>';
+                                            $html4.='<th>POST</th>';                             
+                                            $html4.='<th>DEPARTURE KM</th>';
+                                            $html4.='<th>OTHER FEE</th>';
+                                            $html4.='<th>RESULT</th>';
+                                            $html4.='<th>CREATED DATE</th>';                                       
+                                        $html4.='</tr>';
+                                    $html4.='</thead>';
+                                    $html4.='<tbody>';
+                                    $i=0;
+                                         if(!empty($travellinglist)){
+                                            foreach($travellinglist as $val){$i++; $id=$val['id'];
+										$html4.='<tr>';
+                                            $html4.='<td >'.$i.'</td>';
+                                            $html4.='<td >'.$val['inspection_area'].'</td>';
+                                            $html4.='<td >'.$val['objective'].'</td>';
+                                            $html4.='<td >'.$val['arrival_time'].'</td>';
+                                            $html4.='<td >'.$val['arrival_km'].'</td>';
+                                            $html4.='<td >'.$val['port_of_department'].'</td>';
+                                            $html4.='<td >'.$val['departure_km'].'</td>';
+                                            $html4.='<td >'.$val['other_fee2'].'</td>';
+                                            $html4.='<td >'.$val['result'].'</td>';
+                                            $html4.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                                        $html4.='</tr>';
+                                        }
+                                    }  
+                                    $html4.='</tbody>';
+                                    $html4.='</table>';
+                                    
+                                    
+                                    // $alldata=array();
+                                    // $alldata[]='';
+                                $alldata['first'] = $html;
+                                $alldata['second'] = $html1;
+                                $alldata['third'] = $html2;
+                                $alldata['forth'] = $html3;
+                                $alldata['fifth'] = $html4;
+                                $results = json_encode($alldata);
+                                echo $results;
+
+                // <!-- ''''''''''''''''''''''travelling'''''''''''''''''''''''''''' -->
+	}
+
+
+
+
+// ...................team close......................................
 		
     public function alldata($token=''){
 		$this->load->library('alldata');

@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <form method="POST" action="<?= base_url('website/daily_report')?>">
+            <form method="POST" action="<?= base_url('website/expense_insert')?>">
             <div class="row">
               <div class="col-md-12 mb-2">
                 <div class="table-responsive">
@@ -53,7 +53,7 @@
                   <table class="table-responsive table">
                     <thead>
                       <tr>
-                        <th>SL No.</th>
+                        <!-- <th>SL No.</th> -->
                         <th>Name Of The Equipment/Expense Details</th>
                         <th>Quantity</th>
                         <th>Rate</th>
@@ -68,17 +68,16 @@
                         
                       </tr>
                     </thead>
-                    <tbody class="registration">
+                    <tbody class="expenses">
                       <tr>
-                        <td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td>
-                        <td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td>
-                        <td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td>
-                        <td><input type="date" name="dob[]" id="dob" class="form-control"></td>
-                        <td><input type="text" name="post_name[]" id="post_name" class="form-control"></td>
-                        <td><input type="text" name="fee[]" id="fee" class="form-control"></td>
-                        <td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td>
-                        <td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td>
-                        <td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td>
+                        <td><input type="text" name="equipment[]" id="equipment" class="form-control"></td>
+                        <td><input type="text" name="quantity[]" id="quantity" class="form-control"></td>
+                        <td><input type="text" name="rate[]" id="rate" class="form-control"></td>
+                        <td><input type="text" name="amount[]" id="amount" class="form-control"></td>
+                        <td><input type="text" name="bill[]" id="bill" class="form-control"></td>
+                        <td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td>
+                        <td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td>
+                        <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td>
                         <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>

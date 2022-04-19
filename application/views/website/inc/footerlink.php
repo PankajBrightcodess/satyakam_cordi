@@ -221,7 +221,7 @@ $("#filePhoto").change(function() {
 <script type="text/javascript">
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
-  var wrapper       = $(".registration"); //Fields wrapper
+  var wrapper       = $(".expenses"); //Fields wrapper
   var add_button      = $(".add_expense"); //Add button ID
   
   var x = 1; //initlal text box count
@@ -229,13 +229,15 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name[]" id="post_name" class="form-control"></td><td><input type="text" name="fee[]" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="equipment[]" id="equipment" class="form-control"></td><td><input type="text" name="quantity[]" id="quantity" class="form-control"></td><td><input type="text" name="rate[]" id="rate" class="form-control"></td><td><input type="text" name="amount[]" id="amount" class="form-control"></td><td><input type="text" name="bill[]" id="bill" class="form-control"></td><td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td><td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td><td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td><td><button class="btn btn-info btn-xs " id="remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+  wrapper.on("click","#remove_field", function(e){ 
+  debugger;//user click on remove text
+    e.preventDefault(); $(this).parent('tr').remove(); 
+    x--;
+  });
 });
 </script>
 <script>
@@ -299,6 +301,60 @@ for (i = 0; i < acc.length; i++) {
         $('#tables3').html(results.third);
         $('#tables4').html(results.forth);
         $('#tables5').html(results.fifth);
+
+      },
+
+    });
+   });
+
+       $('body').on('change','.year', function(){
+    debugger;
+    var year = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/team_get_annualy_progress_list')?>',
+      data:{year:year},
+      dataType:'JSON',
+      success:function(results){
+        // alert(results);
+        console.log(results);
+        console.log(results.first);
+        console.log(results.second);
+        console.log(results.third);
+        console.log(results.forth);
+        console.log(results.fifth);
+        $('.tables1').html(results.first);
+        $('.tables2').html(results.second);
+        $('.tables3').html(results.third);
+        $('.tables4').html(results.forth);
+        $('.tables5').html(results.fifth);
+
+      },
+
+    });
+   });
+
+
+    $('body').on('change','.month', function(){
+    // debugger;
+    var month = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/team_get_monthly_progress_list')?>',
+      data:{month:month},
+      dataType:'JSON',
+      success:function(results){
+        // alert(results);
+        console.log(results.first);
+        console.log(results.second);
+        console.log(results.third);
+        console.log(results.forth);
+        console.log(results.fifth);
+        $('.table1').html(results.first);
+        $('.table2').html(results.second);
+        $('.table3').html(results.third);
+        $('.table4').html(results.forth);
+        $('.table5').html(results.fifth);
 
       },
 

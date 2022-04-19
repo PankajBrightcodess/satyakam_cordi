@@ -127,6 +127,93 @@ class Website_model extends CI_Model{
 
 	}
 
+	public function myteam_revenuelistbydaily($user_id,$date){
+		$user_id= $user_id['id'];
+		
+		$query = $this->db->get_where('revenue_report_team',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+	public function myteam_revenuelistbymonthly($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('revenue_report_team',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+	public function myteam_revenuelistbyyearly($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('revenue_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+	public function myteam_securitylistbydaily($user_id,$date){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('security_report_team',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_securitylistbymonthly($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('security_report_team',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_securitylistbyyearly($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('security_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_grouplistbydaily($user_id,$date){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('group_report_team',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_grouplistbymonthly($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('group_report_team',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_grouplistbyyearly($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('group_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_clublistbydaily($user_id,$date){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('club_report_team',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_clublistbymonthly($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('club_report_team',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function myteam_clublistbyyearly($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('club_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function myteam_travellinglistbydaily($user_id,$date){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('travelling_report_team',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_travellinglistbymonthly($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('travelling_report_team',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+	public function myteam_travellinglistbyyearly($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('travelling_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		return  $query->result_array();
+	}
+
 	public function getlogindetails($data){
 		$username = $data['txtUserid'];
 		$query = $this->db->get_where('officer_details',array('username'=>$username));
@@ -156,6 +243,24 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('department',array('status'=>1));
 		return  $query->result_array();
 	}
+
+    public function insert_expense($expenses){
+    	$data = json_decode($expenses);
+    	if(!empty($data)){
+    		$table = 'expense';
+    		foreach ($data as $key => $value) {
+    			$status=$this->db->insert($table,$value);
+				
+    		}
+    		
+    		if($status){
+				     return true;
+				}
+				else{
+					return false;
+				}
+    	}
+    }
 
 	public function userdetails(){
 		$batch_no = $_SESSION['batch_no'];
