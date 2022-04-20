@@ -17,7 +17,7 @@
                       <tr>
                         <th scope="col">Day : &nbsp;&nbsp;<?php echo date('l');?></th>
                        
-                        <th scope="col">State : Jharkhand</th>
+                        <th scope="col">State : <?php  echo $state_code['state']?></th>
                       </tr>  
                     </thead>
                   </table> 

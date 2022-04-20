@@ -243,6 +243,13 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('department',array('status'=>1));
 		return  $query->result_array();
 	}
+	public function get_expenselist(){
+		$this->db->select('t1.*,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name');
+		$this->db->from('expense t1');
+		$this->db->join('officer_details t2','t1.user_id=t2.id','left');
+	    $query = $this->db->get();
+		return  $query->result_array();
+	}
 
     public function insert_expense($expenses){
     	$data = json_decode($expenses);
@@ -265,9 +272,10 @@ class Website_model extends CI_Model{
 	public function userdetails(){
 		$batch_no = $_SESSION['batch_no'];
 		$this->db->where('t1.batch_no',$batch_no);
-		$this->db->select('t1.*,t2.code');
+		$this->db->select('t1.*,t2.code,t3.state');
 		$this->db->from('signup t1');
 		$this->db->join('vecency t2','t1.state=t2.state_id','left');
+		$this->db->join('state t3','t1.state = t3.id','left');
 		$query = $this->db->get();
 		return  $query->row_array();
 	}
@@ -403,10 +411,10 @@ class Website_model extends CI_Model{
 	}
 
 	// '''''''''''''''''''''''''''''''find report list BY MONTH''''''''''''''''''''''''''''''''
-	public function revenuelistbymonth($id,$month){
-		// $user_id= $user_id['id'];
+	public function revenuelistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
 		$year = date('Y');
-		$query = $this->db->get_where('revenue_report',array('user_id'=>$id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		$query = $this->db->get_where('revenue_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
 		// $lastquery = $this->db->last_query();
 		return  $query->result_array();
 	}
@@ -417,10 +425,10 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
-	public function securitylistbymonth($id,$month){
-		// $user_id= $user_id['id'];
+	public function securitylistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
 		$year = date('Y');
-		$query = $this->db->get_where('security_report',array('user_id'=>$id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		$query = $this->db->get_where('security_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
 		return  $query->result_array();
 	}
 
@@ -430,10 +438,10 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
-	public function grouplistbymonth($id,$month){
-		// $user_id= $user_id['id'];
+	public function grouplistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
 		$year = date('Y');
-		$query = $this->db->get_where('group_report',array('user_id'=>$id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		$query = $this->db->get_where('group_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
 		return  $query->result_array();
 	}
 
@@ -443,10 +451,10 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
-	public function clublistbymonth($id,$month){
-		// $user_id= $user_id['id'];
+	public function clublistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
 		$year = date('Y');
-		$query = $this->db->get_where('club_report',array('user_id'=>$id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		$query = $this->db->get_where('club_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
 		return  $query->result_array();
 	}
 
@@ -456,10 +464,10 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
-	public function travellinglistbymonth($id,$month){
-		// $user_id= $user_id['id'];
+	public function travellinglistbymonth($user_id,$month){
+		$user_id= $user_id['id'];
 		$year = date('Y');
-		$query = $this->db->get_where('stk_travelling_report',array('user_id'=>$id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		$query = $this->db->get_where('stk_travelling_report',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
 		return  $query->result_array();
 	}
 

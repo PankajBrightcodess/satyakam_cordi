@@ -12,12 +12,12 @@
                         <th scope="col">Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
                         <!-- <th scope="col" rowspan="2">Reporting Time : 10:00 A.M.</th> -->
                         <th scope="col" rowspan="4"><h5 class="tittle">DAILY EXPENSES</h5></th>
-                        <th scope="col">State Unit Code : 00365</th>
+                        <th scope="col">State Unit Code :&nbsp;&nbsp;<?php echo $state_code['code'];?></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Day : &nbsp;&nbsp;<?php echo date('l');?></th>
+                        <th scope="col">Day :&nbsp;&nbsp;<?php echo date('l');?></th>
                        
-                        <th scope="col">State : Jharkhand</th>
+                        <th scope="col">State :&nbsp;&nbsp;<?php  echo $state_code['state'];?></th>
                       </tr>  
                     </thead>
                   </table> 
@@ -28,18 +28,18 @@
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
                       <tr>
-                        <th scope="col">Branch Unit : &nbsp;&nbsp;</th>
+                        <th scope="col">Branch Unit : &nbsp;&nbsp;<?php  echo $state_code['branch_code'];?></th>
                         <th scope="col">Code No : </th>
                       </tr> 
                       <tr>
                         <th scope="col">Unit Incharge : &nbsp;&nbsp;</th>
-                        <th scope="col">Mobile No : </th>
+                        <th scope="col">Mobile No :  &nbsp;&nbsp;<?php  echo $state_code['mobile_no'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Email : &nbsp;&nbsp;</th>
+                        <th scope="col">Email : &nbsp;&nbsp;<?php  echo $state_code['email_id'];?></th>
                         <th scope="col">HelpLine No. : </th>
                       </tr> 
                        <!-- <tr>

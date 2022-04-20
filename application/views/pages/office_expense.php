@@ -1,4 +1,4 @@
-    <section class="content">
+<section class="content">
       <div class="container-fluid">
     	<div class="row">
         	<div class="col-md-12">
@@ -9,48 +9,50 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                     <div class="row">
-                        	<div class="col-md-12 col-lg-12">
-                                <?php echo form_open_multipart('admin/add_office_epense');?>
-                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <!-- <label>Department</label> -->
-                                        <select class="form-control" name="depart_id" required id="depart_id">
-                                            <option value="">DEPARTMENT :</option>
-                                            <?php
-                                                if(!empty($depart)){
-                                                    foreach ($depart as $key => $value) {
-                                                       ?>
-                                                       <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
-                                                       <?php
-                                                    }
-                                                }
+                        	<div class="col-md-12 col-lg-12 col-12 table-responsive">
+                                <table class="table data-table stripe hover nowrap table-bordered">
+                                    <thead>
+                                        <tr>    
+                                            <th>S.no</th>
+                                            <th>Equipment</th>
+                                            <th>Quantity</th>   
+                                            <th>Rate</th>   
+                                            <th>Amount</th>
+                                            <th>Bill</th>
+                                            <th>Payment Receipt</th>
+                                            <th>Payment Method</th>
+                                            <th>Neft Check</th>
+                                            <th>Total Revenue</th>
+                                            <th>Officer Name</th>
+                                            <th>Added On</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     <?php $i=0;
+                                         if(!empty($expense_list)){
+                                            foreach($expense_list as $val){$i++; $id=$val['id']; ?>
+                                        <tr>
+                                            <td ><?php echo $i ?></td>
+                                            <td ><?php echo $val['equipment']; ?></td>
+                                            <td ><?php echo $val['quantity']; ?></td>
+                                            <td ><?php echo $val['rate']; ?></td>
+                                            <td ><?php echo $val['amount']; ?></td>
+                                            <td ><?php echo $val['bill'] ;?></td>
+                                            <td ><?php echo $val['payment_receipt']; ?></td>
+                                            <td ><?php echo $val['payment_method']; ?></td>
+                                            <td ><?php echo $val['neft_check']; ?></td>
+                                            <td ><?php echo $val['total_revenue']; ?></td>
+                                            <td ><?php echo $val['officer_first_name'].' '.$val['officer_middle_name'].' '.$val['officer_last_name']; ?></td>
+                                           
+                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on'])) ;?></td>
+                                           
+                                        </tr>
+                                       <?php 
+                                        }
+                                            }
                                             ?> 
-                                        </select>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12" >
-                                        <!-- <label>Post</label> -->
-                                         <select class="form-control posts" name="posts" id="posts" required>
-                                            <option value="">POST :</option>
-                                            
-                                        </select>
-                                    </div>                                    
-                                </div>
-                               <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label>Office Rent</label>
-                                        <?php echo form_input(array('type'=>'file','name'=>'office_rent','id'=>'activate_menu','class'=>'form-control','accept'=>'.pdf','required'=>'true'));?>
-                                    </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_expense','id'=>'save_dep','value'=>'Save','class'=>'form-control btn btn-success'));?>
-                                    </div>
-                                    <div class="col-md-4"></div>                                    
-                                </div>
-                                <?php echo form_close();?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

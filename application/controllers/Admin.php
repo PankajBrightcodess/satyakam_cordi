@@ -725,8 +725,9 @@ public function update_submenu(){
 
 	public function office_expense(){
 		$data['title']=" Office Expense(My Office)";
-		$data['datatable'] = true;	
-		$data['depart'] = $this->Website_model->get_departlist($data);	
+		// $data['datatable'] = true;	
+		$data['expense_list'] = $this->Website_model->get_expenselist();
+		
 		$data['post'] = $this->Website_model->get_postlist($data);
 		$this->template->load('pages','office_expense',$data);
 	}

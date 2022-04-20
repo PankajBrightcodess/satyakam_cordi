@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Website extends CI_Controller {
 	function __construct(){
 		parent::__construct();
@@ -376,13 +377,13 @@ class Website extends CI_Controller {
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-		// $user_id['id'] = $_SESSION['user_id'];
+		$user_id['id'] = $_SESSION['user_id'];
 		$month = date('m');
-		$d['revenue'] = $this->Website_model->revenuelistbymonth($id,$month);
-		$d['security'] = $this->Website_model->securitylistbymonth($id,$month);
-		$d['group'] = $this->Website_model->grouplistbymonth($id,$month);
-		$d['club'] = $this->Website_model->clublistbymonth($id,$month);
-		$d['travelling'] = $this->Website_model->travellinglistbymonth($id,$month);
+		$d['revenue'] = $this->Website_model->revenuelistbymonth($user_id,$month);
+		$d['security'] = $this->Website_model->securitylistbymonth($user_id,$month);
+		$d['group'] = $this->Website_model->grouplistbymonth($user_id,$month);
+		$d['club'] = $this->Website_model->clublistbymonth($user_id,$month);
+		$d['travelling'] = $this->Website_model->travellinglistbymonth($user_id,$month);
 		$d['v'] = 'website/monthly_progress_report';
         $this->load->view('website/template_1',$d);
 		
@@ -391,6 +392,7 @@ class Website extends CI_Controller {
 		$user_id['id'] = $_SESSION['user_id'];
 		$month = $_POST['month'];
 		$revenuelist = $this->Website_model->revenuelistbymonth($user_id,$month);
+		print_r($revenuelist);die;
 		$securitylist = $this->Website_model->securitylistbymonth($user_id,$month);
 		$grouplist = $this->Website_model->grouplistbymonth($user_id,$month);
 		$clublist = $this->Website_model->clublistbymonth($user_id,$month);
@@ -637,6 +639,7 @@ class Website extends CI_Controller {
                             $html.='<th>CREATED DATE</th>';
                            $html.='</tr>';
                     $html.='</thead>';
+                     $html.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createexcel').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                     $html.='<tbody>';
                      $i=0;
                          if(!empty($revenuelist)){
@@ -982,14 +985,54 @@ class Website extends CI_Controller {
 	}
 	public function daily_expense(){
 		$id = $_SESSION['user_id'];
-	
 		$record= $this->Website_model->getuser($id);
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$d['state_code']= $this->Website_model->userdetails();
 		$d['v'] = 'website/daily_expense';
 		$this->load->view('website/template_1',$d);
 
 	}
+	public function createExcel() {
+		$fileName = 'employee.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$employeeData = $this->Website_model->revenuelistbyyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Registration No');
+        $sheet->setCellValue('C1','Applicant Name');
+        $sheet->setCellValue('D1','Father/Husband ');
+		$sheet->setCellValue('E1','DOB');
+        $sheet->setCellValue('F1','Post Name');       
+        $sheet->setCellValue('G1','Fee');       
+        $sheet->setCellValue('H1','Payment Date');       
+        $sheet->setCellValue('I1','Banking ID');       
+        $sheet->setCellValue('J1','Total Revenue');       
+        $sheet->setCellValue('K1','Batch No.');       
+        $sheet->setCellValue('L1','Added On');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['registration_no']);
+            $sheet->setCellValue('C' . $rows, $val['applicant_name']);
+            $sheet->setCellValue('D' . $rows, $val['father_husband']);
+	    $sheet->setCellValue('E' . $rows, $val['dob']);
+            $sheet->setCellValue('F' . $rows, $val['post_name']);
+            $sheet->setCellValue('G' . $rows, $val['fee']);
+            $sheet->setCellValue('H' . $rows, $val['date_payment']);
+            $sheet->setCellValue('I' . $rows, $val['banking_id1']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue']);
+            $sheet->setCellValue('K' . $rows, $val['batch_no']);
+            $sheet->setCellValue('L' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName);              
+    } 
 	public function expense_insert(){
 		$data = $this->input->post();
 		$expense['equipment'] = $data['equipment'];

@@ -1,4 +1,4 @@
-    <section class="content">
+<section class="content">
       <div class="container">
     	<div class="row">
              <div class="col-md-12 mb-3">
@@ -6,13 +6,11 @@
                      <div class="card-header">
                         <h3 class="card-title text-center">Monthly Progress Report</h3>
                     </div>
-                    
-                    
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 col-12">
                                 <label><strong>Month</strong></label>
-                                <select class="form-control" name="month" id="month">
+                                <select class="form-control month" name="month" id="month">
                                     <option value="">---SELECT---</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -36,14 +34,12 @@
             </div>
             <?php 
                 if(!empty($revenue)){
-                    // echo PRE; print_r($revenue); 
                     ?>
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
                         <h3 class="card-title">Revenue Received From Candidate Application List</h3>
                     </div> 
-                    <!-- /.card-header -->
                     <div class="card-body">
                     <div class="row">
                             <div class="col-md-12 col-lg-12">
@@ -55,13 +51,13 @@
                                             <th>S.NO.</th>
                                             <th>REGISTRATION No.</th>                
                                             <th>APPLICANT Name</th>                
-                                            <th>FATHER/HUSBAND</th>                                        
-                                            <th>DOB</th>                                            
-                                            <th>POST NAME</th>                                            
-                                            <th>FEE</th>                                            
-                                            <th>PAYMENT DATE</th>                                            
-                                            <th>BANKING ID</th>                                            
-                                            <th>CREATED DATE</th>                                            
+                                            <th>FATHER/HUSBAND</th>
+                                            <th>DOB</th>
+                                            <th>POST NAME</th>
+                                            <th>FEE</th>
+                                            <th>PAYMENT DATE</th>
+                                            <th>BANKING ID</th>
+                                            <th>CREATED DATE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,7 +75,6 @@
                                             <td ><?php echo date('d-m-Y',strtotime($val['date_payment']));?></td>
                                             <td ><?php echo $val['banking_id1'] ?></td>
                                             <td ><?php echo date('d-m-Y',strtotime($val['added_on'])); ?></td>
-                                            
                                         </tr>
                                        <?php 
                                         }
