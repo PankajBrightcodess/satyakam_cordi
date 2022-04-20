@@ -21,7 +21,7 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>Daily Authorise Expense</td>
-                    <td><a target="_blank" href="<?= base_url('website/daily_expense');?>" class="btn btn-sm btn-success">Daily Expense</a></td>
+                    <td><a href="<?= base_url('website/daily_expense');?>" class="btn btn-sm btn-success">Daily Expense</a></td>
                   </tr>
                 </tbody>
               </table>

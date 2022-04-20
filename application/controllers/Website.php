@@ -360,6 +360,7 @@ class Website extends CI_Controller {
 
 	public function open_progress_report(){
 		$id = $_SESSION['user_id'];
+		// print_r($_SESSION);die;
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
@@ -371,17 +372,17 @@ class Website extends CI_Controller {
 	
 
 	public function open_monthly_progress_report(){
-		$id = $_SESSION['user_id'];
+		    $id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-		$user_id['id'] = $_SESSION['user_id'];
+		// $user_id['id'] = $_SESSION['user_id'];
 		$month = date('m');
-		$d['revenue'] = $this->Website_model->revenuelistbymonth($user_id,$month);
-		$d['security'] = $this->Website_model->securitylistbymonth($user_id,$month);
-		$d['group'] = $this->Website_model->grouplistbymonth($user_id,$month);
-		$d['club'] = $this->Website_model->clublistbymonth($user_id,$month);
-		$d['travelling'] = $this->Website_model->travellinglistbymonth($user_id,$month);
+		$d['revenue'] = $this->Website_model->revenuelistbymonth($id,$month);
+		$d['security'] = $this->Website_model->securitylistbymonth($id,$month);
+		$d['group'] = $this->Website_model->grouplistbymonth($id,$month);
+		$d['club'] = $this->Website_model->clublistbymonth($id,$month);
+		$d['travelling'] = $this->Website_model->travellinglistbymonth($id,$month);
 		$d['v'] = 'website/monthly_progress_report';
         $this->load->view('website/template_1',$d);
 		
@@ -831,20 +832,19 @@ class Website extends CI_Controller {
 	}
 	// ''''''''''''''''''''''''''''daily report''''''''''''''''''''''''''''''''''''''
 	public function open_annual_progress_report(){
-		$id = $_SESSION['user_id'];
+		    $id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-		$user_id['id'] = $_SESSION['user_id'];
-		$year = date('Y');
-		$d['revenue'] = $this->Website_model->revenuelistbyyear($user_id,$year);
-		$d['security'] = $this->Website_model->securitylistbyyear($user_id,$year);
-		$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
-		$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
-		$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
-		
-		$d['v'] = 'website/annual_progress_report';
-        $this->load->view('website/template_1',$d);
+			$user_id['id'] = $_SESSION['user_id'];
+			$year = date('Y');
+			$d['revenue'] = $this->Website_model->revenuelistbyyear($user_id,$year);
+			$d['security'] = $this->Website_model->securitylistbyyear($user_id,$year);
+			$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
+			$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
+			$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
+			$d['v'] = 'website/annual_progress_report';
+	        $this->load->view('website/template_1',$d);
 	}
 
 	public function daily_report(){
@@ -957,7 +957,7 @@ class Website extends CI_Controller {
 		$form_5 = json_encode($travellingarray);
 		$postdata = $this->Website_model->insert_reports($form_1,$form_2,$form_3,$form_4,$form_5);
 		if($postdata===true){
-			$this->createsession($result);
+			// $this->createsession($result);
 			redirect('website/open_progress_report/?status=1');
 		}
 		else{ 
@@ -1012,7 +1012,6 @@ class Website extends CI_Controller {
 		$reult = $this->Website_model->insert_expense($expenses);
 
 		if($reult===true){
-			$this->createsession($result);
 			redirect('website/daily_expense/?status=1');
 		}
 		else{ 
@@ -1143,7 +1142,7 @@ class Website extends CI_Controller {
 		$form_5 = json_encode($travellingarray);
 		$postdatas = $this->Website_model->my_team_insert_reports($form_1,$form_2,$form_3,$form_4,$form_5);
 		if($postdatas==true){
-			$this->createsession($result);
+			// $this->createsession($result);
 			redirect('website/open_annual_progress_report/?status=1');
 		}
 		else{ 
