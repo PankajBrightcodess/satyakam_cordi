@@ -234,6 +234,7 @@
                                             <th>TOTAL REVENUE</th>                                       
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_group_month_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($group)){
@@ -322,6 +323,7 @@
                                                                                     
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_club_month_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($club)){
@@ -406,6 +408,7 @@
                                             <th>CREATED DATE</th>                                       
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_travelling_month_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($travelling)){

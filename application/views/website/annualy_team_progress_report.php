@@ -57,6 +57,7 @@
                                             <th>CREATED DATE</th>                                            
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_revenue_annual_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($revenue)){
@@ -139,6 +140,7 @@
                                             <th>TOTAL REVENUE</th>                                            
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createexcel_security_annual_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($security)){
@@ -225,6 +227,7 @@
                                             <th>TOTAL REVENUE</th>                                       
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_group_annual_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($group)){
@@ -313,6 +316,7 @@
                                                                                     
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_club_annual_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($club)){
@@ -397,6 +401,7 @@
                                             <th>CREATED DATE</th>                                       
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_travelling_annual_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($travelling)){
