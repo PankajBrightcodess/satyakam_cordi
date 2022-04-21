@@ -677,6 +677,7 @@ class Website extends CI_Controller {
                                             $html1.='<th>TOTAL REVENUE</th>';
                                         $html1.='</tr>';
                                     $html1.='</thead>';
+                                     $html1.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createExcel_security').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                                     $html1.='<tbody>';
                                          $i=0;
                                          if(!empty($securitylist)){
@@ -717,6 +718,7 @@ class Website extends CI_Controller {
                                             $html2.='<th>TOTAL REVENUE</th>';                                       
                                         $html2.='</tr>';
                                     $html2.='</thead>';
+                                    $html2.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createExcel_group').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                                     $html2.='<tbody>';
                                     $i=0;
                                          if(!empty($grouplist)){
@@ -759,6 +761,7 @@ class Website extends CI_Controller {
                                             $html3.='<th>GRAND TOTAL REVENUE</th>';
                                          $html3.='</tr>';
                                           $html3.='</thead>';
+                                          $html3.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createExcel_club').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                                            $html3.='<tbody>';
                                     $i=0;
                                          if(!empty($clublist)){
@@ -798,13 +801,14 @@ class Website extends CI_Controller {
                                             $html4.='<th>CREATED DATE</th>';                                       
                                         $html4.='</tr>';
                                     $html4.='</thead>';
+                                    $html4.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createExcel_travelling').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                                     $html4.='<tbody>';
                                     $i=0;
                                          if(!empty($travellinglist)){
                                             foreach($travellinglist as $val){$i++; $id=$val['id'];
 
                                          $html4.='<tr>';
-                                            $html4.='<td ><?php echo $i ?></td>';
+                                            $html4.='<td >'.$i.'</td>';
                                             $html4.='<td >'.$val['inspection_area'].'</td>';
                                             $html4.='<td >'.$val['objective'].'</td>';
                                             $html4.='<td >'.$val['arrival_time'].'</td>';
@@ -818,6 +822,7 @@ class Website extends CI_Controller {
                                         }
                                     }  
                                     $html4.='</tbody>';
+
                                     $html4.='</table>';
                                     
                                     
@@ -994,7 +999,7 @@ class Website extends CI_Controller {
 
 	}
 	public function createExcel() {
-		$fileName = 'employee.xlsx';
+		$fileName = 'revenue.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
 		$year = date('Y');
 		$employeeData = $this->Website_model->revenuelistbyyear($user_id,$year);
@@ -1026,6 +1031,173 @@ class Website extends CI_Controller {
             $sheet->setCellValue('J' . $rows, $val['total_revenue']);
             $sheet->setCellValue('K' . $rows, $val['batch_no']);
             $sheet->setCellValue('L' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName);              
+    } 
+    public function createExcel_security() {
+		$fileName = 'security.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$securitylist = $this->Website_model->securitylistbyyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Registration No');
+        $sheet->setCellValue('C1','Name');
+        $sheet->setCellValue('D1','Post Name ');
+		$sheet->setCellValue('E1','Security Fund');
+        $sheet->setCellValue('F1','Training Fee');       
+        $sheet->setCellValue('G1','Processing Fee');       
+        $sheet->setCellValue('H1','Other Fee');       
+        $sheet->setCellValue('I1','Total Banking');       
+        $sheet->setCellValue('J1','Banking Id');       
+        $sheet->setCellValue('K1','Total Revenue');       
+        $sheet->setCellValue('L1','Batch No');       
+        $sheet->setCellValue('M1','Added On');       
+        $rows = 2;
+        foreach ($securitylist as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['reg_no']);
+            $sheet->setCellValue('C' . $rows, $val['name']);
+            $sheet->setCellValue('D' . $rows, $val['name_of_post']);
+	   		$sheet->setCellValue('E' . $rows, $val['security_fund']);
+            $sheet->setCellValue('F' . $rows, $val['training_fee']);
+            $sheet->setCellValue('G' . $rows, $val['processing_fee']);
+            $sheet->setCellValue('H' . $rows, $val['other_fee1']);
+            $sheet->setCellValue('I' . $rows, $val['total_banking']);
+            $sheet->setCellValue('J' . $rows, $val['banking_id2']);
+            $sheet->setCellValue('K' . $rows, $val['total_revenue_1']);
+            $sheet->setCellValue('L' . $rows, $val['batch_no']);
+            $sheet->setCellValue('M' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+            $rows++;
+        }
+    }
+
+    public function createExcel_group() {
+		$fileName = 'group.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		
+		$grouplist = $this->Website_model->grouplistbyyear($user_id,$year);
+		// $clublist = $this->Website_model->clublistbyyear($user_id,$year);
+		// $travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Group No');
+        $sheet->setCellValue('C1','Group Name');
+        $sheet->setCellValue('D1','Group Address ');
+		$sheet->setCellValue('E1','Meeting No.');
+        $sheet->setCellValue('F1','Passbook Issue Fee');       
+        $sheet->setCellValue('G1','Weekly Saving Deposit');       
+        $sheet->setCellValue('H1','EMI Deposit');       
+        $sheet->setCellValue('I1','Bouncing Fee');       
+        $sheet->setCellValue('J1','Late Fine Fee');       
+        $sheet->setCellValue('K1','Banking ID');       
+        $sheet->setCellValue('L1','Total Revenue');       
+        $sheet->setCellValue('M1','Batch No.');       
+        $sheet->setCellValue('N1','Added On');       
+        $rows = 2;
+        foreach ($grouplist as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['group_no_a']);
+            $sheet->setCellValue('C' . $rows, $val['group_name_a']);
+            $sheet->setCellValue('D' . $rows, $val['group_address']);
+	   		$sheet->setCellValue('E' . $rows, $val['meeting_no']);
+            $sheet->setCellValue('F' . $rows, $val['passbook_issue_fee']);
+            $sheet->setCellValue('G' . $rows, $val['weekly_saving_deposit']);
+            $sheet->setCellValue('H' . $rows, $val['emi_deposit']);
+            $sheet->setCellValue('I' . $rows, $val['bouncing_fee']);
+            $sheet->setCellValue('J' . $rows, $val['late_fine_fee']);
+            $sheet->setCellValue('K' . $rows, $val['banking_id3']);
+            $sheet->setCellValue('L' . $rows, $val['total_revenue_2_']);
+            $sheet->setCellValue('M' . $rows, $val['batch_no']);
+            $sheet->setCellValue('N' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName);              
+    }
+    public function createExcel_club() {
+		$fileName = 'club.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$clublist = $this->Website_model->clublistbyyear($user_id,$year);
+		// $travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Group No');
+        $sheet->setCellValue('C1','Group Name');
+        $sheet->setCellValue('D1','Club Id');
+		$sheet->setCellValue('E1','Club Member Name');
+        $sheet->setCellValue('F1','Sponsor No.');       
+        $sheet->setCellValue('G1','Sponsor Level');       
+        $sheet->setCellValue('H1','Joining Fee');       
+        $sheet->setCellValue('I1','Banking ID');       
+        $sheet->setCellValue('J1','Total Revenue');       
+        $sheet->setCellValue('K1','Grand Total Revenue');       
+        $sheet->setCellValue('L1','Batch No.');       
+        $sheet->setCellValue('M1','Added On');        
+        $rows = 2;
+        foreach ($clublist as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['group_no_b']);
+            $sheet->setCellValue('C' . $rows, $val['group_name_b']);
+            $sheet->setCellValue('D' . $rows, $val['club_id_no']);
+	   		$sheet->setCellValue('E' . $rows, $val['club_member_name']);
+            $sheet->setCellValue('F' . $rows, $val['sponsor_no']);
+            $sheet->setCellValue('G' . $rows, $val['sponsor_level']);
+            $sheet->setCellValue('H' . $rows, $val['joining_fee']);
+            $sheet->setCellValue('I' . $rows, $val['banking_id4']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue_3']);
+            $sheet->setCellValue('K' . $rows, $val['grand_total_revamue']);
+            $sheet->setCellValue('L' . $rows, $val['batch_no']);
+            $sheet->setCellValue('M' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName);              
+    } 
+    public function createExcel_travelling() {
+		$fileName = 'travellinglist.xlsx';	
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Inspection Area');
+        $sheet->setCellValue('C1','Objective');
+        $sheet->setCellValue('D1','Arrival Time');
+		$sheet->setCellValue('E1','Arrival Km');
+        $sheet->setCellValue('F1','Post Of Department');       
+        $sheet->setCellValue('G1','Departure Km.');       
+        $sheet->setCellValue('H1','Other Fee');       
+        $sheet->setCellValue('I1','Result');       
+        $sheet->setCellValue('J1','Batch No.');       
+        $sheet->setCellValue('K1','Added On');        
+        $rows = 2;
+        foreach ($travellinglist as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['inspection_area']);
+            $sheet->setCellValue('C' . $rows, $val['objective']);
+            $sheet->setCellValue('D' . $rows, $val['arrival_time']);
+	   		$sheet->setCellValue('E' . $rows, $val['arrival_km']);
+            $sheet->setCellValue('F' . $rows, $val['port_of_department']);
+            $sheet->setCellValue('G' . $rows, $val['departure_km']);
+            $sheet->setCellValue('H' . $rows, $val['other_fee2']);
+            $sheet->setCellValue('I' . $rows, $val['result']);
+            $sheet->setCellValue('J' . $rows, $val['batch_no']);
+            $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
             $rows++;
         } 
         $writer = new Xlsx($spreadsheet);
@@ -1459,6 +1631,7 @@ class Website extends CI_Controller {
 		$year = date('Y');
 		$d['revenue'] = $this->Website_model->myteam_revenuelistbyyearly($user_id,$year);
 		$d['security'] = $this->Website_model->myteam_securitylistbyyearly($user_id,$year);
+
 		$d['group'] = $this->Website_model->myteam_grouplistbyyearly($user_id,$year);
 		$d['club'] = $this->Website_model->myteam_clublistbyyearly($user_id,$year);
 		$d['travelling'] = $this->Website_model->myteam_travellinglistbyyearly($user_id,$year);

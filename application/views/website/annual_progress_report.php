@@ -140,6 +140,7 @@
                                             <th>TOTAL REVENUE</th>                                            
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_security'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($security)){
@@ -226,6 +227,7 @@
                                             <th>TOTAL REVENUE</th>                                       
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_group'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($group)){
@@ -302,18 +304,18 @@
                                             <th>S.NO.</th>
                                             <th>GROUP NO.</th>                
                                             <th>GROUP NAME</th>                
-                                            <th>CLUB ID NO.</th>                                            
-                                            <th>CLUB MEMBER NAME</th>                                         
+                                            <th>CLUB ID NO.</th>
+                                            <th>CLUB MEMBER NAME</th>
                                             <th>SPONSOR NO.</th>                             
                                             <th>SPONSOR LEVEL</th>                             
-                                            <th>JOINING FEE</th>                                            
-                                            <th>BANKING ID</th>                                         
-                                            <th>CREATED DATE</th>                                       
-                                            <th>TOTAL REVENUE</th>                                       
-                                            <th>GRAND TOTAL REVENUE</th>                                       
-                                                                                    
+                                            <th>JOINING FEE</th>
+                                            <th>BANKING ID</th>
+                                            <th>CREATED DATE</th>
+                                            <th>TOTAL REVENUE</th>
+                                            <th>GRAND TOTAL REVENUE</th>
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_club'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($club)){
@@ -398,6 +400,7 @@
                                             <th>CREATED DATE</th>                                       
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_travelling'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($travelling)){
