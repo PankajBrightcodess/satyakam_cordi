@@ -1259,7 +1259,6 @@ class Website extends CI_Controller {
 		$fileName = 'group.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
 		$year = date('Y');
-		
 		$grouplist = $this->Website_model->grouplistbyyear($user_id,$year);
 		// $clublist = $this->Website_model->clublistbyyear($user_id,$year);
 		// $travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
