@@ -419,6 +419,7 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 	public function revenuelistbyyear($user_id,$year){
+		
 		$user_id= $user_id['id'];
 		$query = $this->db->get_where('revenue_report',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
 		// $lastquery = $this->db->last_query();
