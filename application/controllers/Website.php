@@ -619,26 +619,22 @@ class Website extends CI_Controller {
 		$grouplist = $this->Website_model->grouplistbyyear($user_id,$year);
 		$clublist = $this->Website_model->clublistbyyear($user_id,$year);
 		$travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
-		// print_r($revenuelist);
-		// print_r($securitylist);
-		// print_r($grouplist);
-		// print_r($clublist);
-		// print_r($travellinglist);die;
 		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
                     $html.='<thead>';
                         $html.='<tr>';   
-                            $html.='<th>S.NO.</th>';
-                            $html.='<th>REGISTRATION No.</th>';                
-                            $html.='<th>APPLICANT Name</th>';                
-                            $html.='<th>FATHER/HUSBAND</th>';
-                            $html.='<th>DOB</th>';
-                            $html.='<th>POST NAME</th>';
-                            $html.='<th>FEE</th>';
-                            $html.='<th>PAYMENT DATE</th>';
-                            $html.='<th>BANKING ID</th>';
-                            $html.='<th>CREATED DATE</th>';
-                           $html.='</tr>';
+	                        $html.='<th>S.NO.</th>';
+	                        $html.='<th>REGISTRATION No.</th>';                
+	                        $html.='<th>APPLICANT Name</th>';                
+	                        $html.='<th>FATHER/HUSBAND</th>';
+	                        $html.='<th>DOB</th>';
+	                        $html.='<th>POST NAME</th>';
+	                        $html.='<th>FEE</th>';
+	                        $html.='<th>PAYMENT DATE</th>';
+	                        $html.='<th>BANKING ID</th>';
+	                        $html.='<th>CREATED DATE</th>';
+	                    $html.='</tr>';
                     $html.='</thead>';
+                    // $html.='<input type="text" name="year" placeholder="Years"  class="form-control years">';
                      $html.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createexcel').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
                     $html.='<tbody>';
                      $i=0;
@@ -840,24 +836,22 @@ class Website extends CI_Controller {
 	}
 	// ''''''''''''''''''''''''''''daily report''''''''''''''''''''''''''''''''''''''
 	public function open_annual_progress_report(){
-		    $id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			$user_id['id'] = $_SESSION['user_id'];
-			$year = date('Y');
-			$d['revenue'] = $this->Website_model->revenuelistbyyear($user_id,$year);
-			$d['security'] = $this->Website_model->securitylistbyyear($user_id,$year);
-			$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
-			$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
-			$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
-			$d['v'] = 'website/annual_progress_report';
-	        $this->load->view('website/template_1',$d);
+	    $id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$d['revenue'] = $this->Website_model->revenuelistbyyear($user_id,$year);
+		$d['security'] = $this->Website_model->securitylistbyyear($user_id,$year);
+		$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
+		$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
+		$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
+		$d['v'] = 'website/annual_progress_report';
+        $this->load->view('website/template_1',$d);
 	}
 
 	public function daily_report(){
-		// echo PRE;
-		// print_r($_SESSION);die;
 		$data = $this->input->post();
 		$revenue['registration_no']= $data['registration_no'];
 		$revenue['applicant_name']= $data['applicant_name'];
@@ -999,6 +993,7 @@ class Website extends CI_Controller {
 
 	}
 	public function createExcel() {
+
 		$fileName = 'revenue.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
 		$year = date('Y');

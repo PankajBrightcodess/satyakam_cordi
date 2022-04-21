@@ -57,6 +57,7 @@
                                             <th>CREATED DATE</th>                                            
                                         </tr>
                                     </thead>
+                                    <!--  <input type="text" name="year" placeholder="Years"  class="form-control years"> -->
                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createexcel'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
@@ -227,6 +228,7 @@
                                             <th>TOTAL REVENUE</th>                                       
                                         </tr>
                                     </thead>
+
                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_group'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;

@@ -360,6 +360,22 @@ for (i = 0; i < acc.length; i++) {
 
     });
    });
+
+     $('body').on('click','.revenue_master',function(){
+        debugger;
+            var year=$('.year').val();
+            
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url("website/createExcel"); ?>",
+                data:{year:year},
+                success: function(data){
+                  // alert(data);
+                  console.log(data);
+                  //  alert('Excel Generate');
+                }
+            });
+        });
 });
 
 
