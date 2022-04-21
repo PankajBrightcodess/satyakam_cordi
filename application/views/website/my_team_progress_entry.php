@@ -1,4 +1,3 @@
-<!-- <?php print_r($state_code);?> -->
 <section class="officialservices">
       <div class="container">
         <div class="row justify-content-center">

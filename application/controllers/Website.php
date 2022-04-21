@@ -1075,6 +1075,50 @@ class Website extends CI_Controller {
 		$writer->save("assets/excel/".$fileName);
 		header("Content-Type: application/vnd.ms-excel");
         redirect(base_url()."assets/excel/".$fileName); 
+    }
+
+    public function createExcel_revenue_month_team(){
+    	$fileName = 'team_revenue_month.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = date('m');
+
+		$month = date('m');
+		$employeeData= $this->Website_model->myteam_revenuelistbymonthly($user_id,$month);
+		
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Registration No');
+        $sheet->setCellValue('C1','Applicant Name');
+        $sheet->setCellValue('D1','Father/Husband ');
+		$sheet->setCellValue('E1','DOB');
+        $sheet->setCellValue('F1','Post Name');       
+        $sheet->setCellValue('G1','Fee');       
+        $sheet->setCellValue('H1','Payment Date');       
+        $sheet->setCellValue('I1','Banking ID');       
+        $sheet->setCellValue('J1','Total Revenue');       
+        $sheet->setCellValue('K1','Batch No.');       
+        $sheet->setCellValue('L1','Added On');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['registration_no']);
+            $sheet->setCellValue('C' . $rows, $val['applicant_name']);
+            $sheet->setCellValue('D' . $rows, $val['father_husband']);
+	        $sheet->setCellValue('E' . $rows, $val['dob']);
+            $sheet->setCellValue('F' . $rows, $val['post_name']);
+            $sheet->setCellValue('G' . $rows, $val['fee']);
+            $sheet->setCellValue('H' . $rows, $val['date_payment']);
+            $sheet->setCellValue('I' . $rows, $val['banking_id1']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue']);
+            $sheet->setCellValue('K' . $rows, $val['batch_no']);
+            $sheet->setCellValue('L' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
 
     }
     public function createExcel_security() {
@@ -1114,6 +1158,10 @@ class Website extends CI_Controller {
             $sheet->setCellValue('M' . $rows, date('d-m-Y',strtotime($val['added_on'])));
             $rows++;
         }
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
     }
 
     public function createexcel_security_month() {
@@ -1153,6 +1201,58 @@ class Website extends CI_Controller {
             $sheet->setCellValue('M' . $rows, date('d-m-Y',strtotime($val['added_on'])));
             $rows++;
         }
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
+
+     public function createexcel_security_month_team() {
+		$fileName = 'team_security_month.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = date('m');
+		$securitylist =$this->Website_model->myteam_securitylistbymonthly($user_id,$month);
+		// $d['group'] = $this->Website_model->myteam_grouplistbymonthly($user_id,$month);
+		// $d['club'] = $this->Website_model->myteam_clublistbymonthly($user_id,$month);
+		// $d['travelling'] = $this->Website_model->myteam_travellinglistbymonthly($user_id,$month);
+		// echo PRE;
+		// print_r($securitylist);die;
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Registration No');
+        $sheet->setCellValue('C1','Name');
+        $sheet->setCellValue('D1','Post Name ');
+		$sheet->setCellValue('E1','Security Fund');
+        $sheet->setCellValue('F1','Training Fee');       
+        $sheet->setCellValue('G1','Processing Fee');       
+        $sheet->setCellValue('H1','Other Fee');       
+        $sheet->setCellValue('I1','Total Banking');       
+        $sheet->setCellValue('J1','Banking Id');       
+        $sheet->setCellValue('K1','Total Revenue');       
+        $sheet->setCellValue('L1','Batch No');       
+        $sheet->setCellValue('M1','Added On');       
+        $rows = 2;
+        foreach ($securitylist as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['reg_no']);
+            $sheet->setCellValue('C' . $rows, $val['name']);
+            $sheet->setCellValue('D' . $rows, $val['name_of_post']);
+	   		$sheet->setCellValue('E' . $rows, $val['security_fund']);
+            $sheet->setCellValue('F' . $rows, $val['training_fee']);
+            $sheet->setCellValue('G' . $rows, $val['processing_fee']);
+            $sheet->setCellValue('H' . $rows, $val['other_fee1']);
+            $sheet->setCellValue('I' . $rows, $val['total_banking']);
+            $sheet->setCellValue('J' . $rows, $val['banking_id2']);
+            $sheet->setCellValue('K' . $rows, $val['total_revenue_1']);
+            $sheet->setCellValue('L' . $rows, $val['batch_no']);
+            $sheet->setCellValue('M' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+            $rows++;
+        }
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
     }
 
     public function createExcel_group() {

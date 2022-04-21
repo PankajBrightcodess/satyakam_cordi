@@ -62,6 +62,7 @@
                                             <th>CREATED DATE</th>                                            
                                         </tr>
                                     </thead>
+                                    <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createExcel_revenue_month_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($revenue)){
@@ -146,6 +147,7 @@
                                             <th>TOTAL REVENUE</th>                                            
                                         </tr>
                                     </thead>
+                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/createexcel_security_month_team'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($security)){
