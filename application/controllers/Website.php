@@ -1000,6 +1000,111 @@ class Website extends CI_Controller {
 		$this->load->view('website/template_1',$d);
 
 	}
+	public function office_resourse_requisition_form(){
+		$id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$d['state_code']= $this->Website_model->userdetails();
+		$d['v'] = 'website/requisition_form';
+		$this->load->view('website/template_1',$d);
+	}
+
+	public function requisition_insert(){
+		$data = $this->input->post();
+		// echo PRE;
+		// print_R($data);
+		$requisition['resources']=$data['resources'];
+		$requisition['modelno']=$data['modelno'];
+		$requisition['brandname']=$data['brandname'];
+		$requisition['quantity']=$data['quantity'];
+		$requisition['rate']=$data['rate'];
+		$requisition['amount']=$data['amount'];
+		$requisition['user_id']=$_SESSION['user_id'];
+		$requisition['total_revenue']=$data['total_revenue'];
+		$requisition['mandatory1']=$data['mandatory1'];
+		$requisition['mandatory2']=$data['mandatory2'];
+		$requisition['mandatory3']=$data['mandatory3'];
+		$requisition['mandatory4']=$data['mandatory4'];
+		$requisition['mandatory5']=$data['mandatory5'];
+		$requisition['mandatory6']=$data['mandatory6'];
+		$requisition['report_confirm']=$data['report_confirm'];
+		$requisition['added_on']=date('Y-m-d');
+		// print_r($requisition);die;
+		$count = count($requisition['resources']);
+		for ($i=0; $i < $count; $i++) { 
+			$arr =  array('resources'=>$requisition['resources'][$i],'modelno'=>$requisition['modelno'][$i],'brandname'=>$requisition['brandname'][$i],'quantity'=>$requisition['quantity'][$i],'rate'=>$requisition['rate'][$i],'amount'=>$requisition['amount'][$i],'user_id'=>$requisition['user_id'],'total_revenue'=>$requisition['total_revenue'],'mandatory1'=>$requisition['mandatory1'],'mandatory2'=>$requisition['mandatory2'],'mandatory3'=>$requisition['mandatory3'],'mandatory4'=>$requisition['mandatory4'],'mandatory5'=>$requisition['mandatory5'],'mandatory6'=>$requisition['mandatory6'],'report_confirm'=>$requisition['report_confirm'],'added_on'=>$requisition['added_on']);
+			$finalarray[] = $arr;
+		}
+
+		$form_data = json_encode($finalarray);
+		$result = $this->Website_model->insert_requisition($form_data);
+			// print_r($result);die;
+		if($result===true){
+			redirect('website/office_resourse_requisition_form/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/office_resourse_requisition_form/?status=0');
+		}
+		
+	}
+
+	public function group_resource_form(){
+		$id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$d['state_code']= $this->Website_model->userdetails();
+		$d['v'] = 'website/group_resourceform';
+		$this->load->view('website/template_1',$d);
+	}
+
+	public function group_resource_insert(){
+		$data = $this->input->post();
+		// echo PRE;
+		// print_r($data);die;
+		$group['resources'] = $data['resources'];
+		$group['modelno'] = $data['modelno'];
+		$group['brandname'] = $data['brandname'];
+		$group['quantity'] = $data['quantity'];
+		$group['rate'] = $data['rate'];
+		$group['amount'] = $data['amount'];
+		$group['total_amount'] = $data['total_amount'];
+		$count = count($group['resources']);
+		for ($i=0; $i < $count; $i++) { 
+			$arr = array('resources'=>$group['resources'][$i],'modelno'=>$group['modelno'][$i],'brandname'=>$group['brandname'][$i],'quantity'=>$group['quantity'][$i],'rate'=>$group['rate'][$i],'amount'=>$group['amount'][$i],'total_amount'=>$group['total_amount'][$i]);
+			$finalarray[]  = $arr;
+		}
+		$final['group_no']=$data['group_no'];
+		$final['group_name']=$data['group_name'];
+		$final['installation_date']=$data['installation_date'];
+		$final['total_revenue']=$data['total_revenue'];
+		$final['mandatory1']=$data['mandatory1'];
+		$final['mandatory2']=$data['mandatory2'];
+		$final['mandatory3']=$data['mandatory3'];
+		$final['mandatory4']=$data['mandatory4'];
+		$final['mandatory5']=$data['mandatory5'];
+		$final['mandatory6']=$data['mandatory6'];
+		$final['report_confirm']=$data['report_confirm'];
+		$final['added_on']=date('Y-m-d');
+		$final['user_id']=$_SESSION['user_id'];
+		$final['groupdetails'] = json_encode($finalarray);
+		$result = $this->Website_model->insert_group_resource($final);
+		if($result===true){
+			redirect('website/group_resource_form/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg');
+			redirect('website/group_resource_form/?status=0');
+		}
+
+
+	}
+
+
+
+
 	public function createExcel() {
 
 		$fileName = 'revenue.xlsx';

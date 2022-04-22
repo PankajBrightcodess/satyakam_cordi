@@ -269,6 +269,42 @@ class Website_model extends CI_Model{
     	}
     }
 
+    public function insert_requisition($form_data){
+    	$data = json_decode($form_data);
+    	$table = 'office_resource_requipment';
+    	if(!empty($data)){
+    		foreach ($data as $key => $value) {
+    			$status=$this->db->insert($table,$value);
+    		}
+			if($status){
+				return true;
+			}
+			else{
+				return false;
+			}  
+    	}
+    	else{
+    		return false;
+    	}
+    }
+    public function insert_group_resource($final){
+    	$table = 'group_resource';
+    	if(!empty($final)){
+    		$status=$this->db->insert($table,$final);
+			if($status){
+				return true;
+			}
+			else{
+				return false;
+			}  
+    	}
+    	else{
+    		return false;
+    	}
+    }
+
+
+
 	public function userdetails(){
 		$batch_no = $_SESSION['batch_no'];
 		$this->db->where('t1.batch_no',$batch_no);

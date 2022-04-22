@@ -78,7 +78,7 @@
                         <td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td>
                         <td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td>
                         <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs remove_equipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>

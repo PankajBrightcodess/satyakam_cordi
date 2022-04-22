@@ -229,17 +229,68 @@ $("#filePhoto").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="equipment[]" id="equipment" class="form-control"></td><td><input type="text" name="quantity[]" id="quantity" class="form-control"></td><td><input type="text" name="rate[]" id="rate" class="form-control"></td><td><input type="text" name="amount[]" id="amount" class="form-control"></td><td><input type="text" name="bill[]" id="bill" class="form-control"></td><td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td><td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td><td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td><td><button class="btn btn-info btn-xs " id="remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="equipment[]" id="equipment" class="form-control"></td><td><input type="text" name="quantity[]" id="quantity" class="form-control"></td><td><input type="text" name="rate[]" id="rate" class="form-control"></td><td><input type="text" name="amount[]" id="amount" class="form-control"></td><td><input type="text" name="bill[]" id="bill" class="form-control"></td><td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td><td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td><td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td><td><button class="btn btn-info btn-xs remove_equipment" id="remove_equipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  wrapper.on("click","#remove_field", function(e){ 
-  debugger;//user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); 
+  $('body').on('click','.remove_equipment', function(e){ 
+    debugger;
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
     x--;
   });
 });
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 500; //maximum input boxes allowed
+  var wrapper       = $(".requipment"); //Fields wrapper
+  var add_button      = $(".add_requipment"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append('<tr><td><input type="text" name="resources[]" id="resources" class="form-control"></td><td><input type="text" name="modelno[]" id="modelno" class="form-control"></td><td><input type="text" name="brandname[]" id="brandname" class="form-control"></td><td><input type="number" name="quantity[]" id="quantity" class="form-control"></td><td><input type="text" name="rate[]" id="rate" class="form-control"></td><td><input type="number" name="amount[]" id="amount" class="form-control"></td><td><button class="btn btn-info btn-xs remove_requipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+    }
+  });
+  
+  $('body').on('click','.remove_requipment', function(e){ 
+    debugger;
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 5; //maximum input boxes allowed
+  var wrapper       = $(".group_resource"); //Fields wrapper
+  var add_button      = $(".add_group_resource"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append('<tr><td><input type="text" name="resources[]" id="resources" class="form-control"></td><td><input type="text" name="modelno[]" id="modelno" class="form-control"></td><td><input type="text" name="brandname[]" id="brandname" class="form-control"></td><td><input type="number" name="quantity[]" id="quantity" class="form-control"></td><td><input type="number" name="rate[]" id="rate" class="form-control"></td> <td><input type="number" name="amount[]" id="amount" class="form-control"></td><td><input type="number" name="total_amount[]" id="amount" class="form-control"></td><td><button type="button" class="btn btn-info btn-xs remove_group_resource" ><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+    }
+  });
+  
+  $('body').on('click','.remove_group_resource', function(e){ 
+    debugger;
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+});
+</script>
+
+
+
 <script>
    $(document).ready(function() {
 var acc = document.getElementsByClassName("accordion");

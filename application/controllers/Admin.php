@@ -108,14 +108,12 @@ class Admin extends CI_Controller {
 	public function savemenu(){
 		$data = $this->input->post();
 		$result = $this->Website_model->add_menu($data);
-	
 		if($result){
 			$this->session->set_flashdata('msg','Menu Add Successfully');
 		}else{
 			$this->session->set_flashdata("err_msg","Something Error!");
 		}
-		redirect('admin/menu');
-		
+		redirect('admin/menu');	
 	} 
 	public function update_menu(){
 		  $data= $this->input->post();
