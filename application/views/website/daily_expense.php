@@ -96,9 +96,9 @@
                  
               </div>
               </div>
-              <div class="col-md-4"><a href="" class="btn btn-sm btn-success form-control">Progress</a></div>
+             <!--  <div class="col-md-4"><a href="" class="btn btn-sm btn-success form-control">Progress</a></div>
               <div class="col-md-4 mb-5"><a href="" class="btn btn-sm btn-warning form-control">Edit</a></div>
-              <div class="col-md-4 mb-5"><a href="" class="btn btn-sm btn-info form-control">Cancel</a></div>
+              <div class="col-md-4 mb-5"><a href="" class="btn btn-sm btn-info form-control">Cancel</a></div> -->
               <div class="col-md-6">Report Confirmation Number :</div>
               <div class="col-md-6 mb-5"><input type="text" name="report_confirm" placeholder="Please Provide Confirmation Number" class="form-control"></div>
               <div class="col-md-12 mb-5 text-center"><input type="submit"  class="btn btn-lg btn-secondary" value="SUBMIT"></div>
