@@ -21,13 +21,8 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>Daily Authorise Expense</td>
-                    <td><a href="<?= base_url('website/daily_expense');?>" class="btn btn-sm btn-success">Daily Expense</a></td>
+                    <td><a href="<?= base_url('website/myofficexpensedetails');?>" class="btn btn-sm btn-success">Click Here</a></td>
                   </tr>
-                <!--   <tr>
-                    <th scope="row">2</th>
-                    <td>Office Resource Requisition Letter</td>
-                    <td><a href="<?= base_url('website/daily_expense');?>" class="btn btn-sm btn-success">Daily Expense</a></td>
-                  </tr> -->
                 </tbody>
               </table>
             </div>

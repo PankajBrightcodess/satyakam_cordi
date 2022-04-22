@@ -112,6 +112,15 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/myofficeexpense';
 			$this->load->view('website/template_1',$d);
 		}
+
+		public function myofficexpensedetails(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['v'] = 'website/myofficeexpense_details';
+			$this->load->view('website/template_1',$d);
+		}
 		public function myofficemyteam(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
