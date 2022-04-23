@@ -141,6 +141,7 @@ class Website_model extends CI_Model{
 		// $lastquery = $this->db->last_query();
 		return  $query->result_array();
 	}
+
 	public function myteam_revenuelistbyyearly($user_id,$year){
 		$user_id= $user_id['id'];
 		$query = $this->db->get_where('revenue_report_team',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
@@ -268,6 +269,28 @@ class Website_model extends CI_Model{
 				}
     	}
     }
+
+    public function expensemonth($user_id,$month){
+		$user_id= $user_id['id'];
+		$year = date('Y');
+		$query = $this->db->get_where('expense',array('user_id'=>$user_id,'month(added_on)'=>$month,'year(added_on)'=>$year,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+
+	public function expenseyear($user_id,$year){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('expense',array('user_id'=>$user_id,'year(added_on)'=>$year,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
+
+	public function expensedaily($user_id,$date){
+		$user_id= $user_id['id'];
+		$query = $this->db->get_where('expense',array('user_id'=>$user_id,'added_on'=>$date,'status'=>1));
+		// $lastquery = $this->db->last_query();
+		return  $query->result_array();
+	}
 
     public function insert_requisition($form_data){
     	$data = json_decode($form_data);

@@ -412,6 +412,39 @@ for (i = 0; i < acc.length; i++) {
     });
    });
 
+     $('body').on('change','.expense_monthly', function(){
+    debugger;
+    var month = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/monthly_expense_list')?>',
+      data:{month:month},
+      dataType:'JSON',
+      success:function(result){
+        alert(result);
+        console.log(result);
+
+        $('.table1').html(result);
+      },
+
+    });
+   });
+       $('body').on('change','.yearexpense', function(){
+    debugger;
+    var year = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/annualy_expense_list')?>',
+      data:{year:year},
+      dataType:'JSON',
+      success:function(result){
+        $('.table1').html(result);
+      },
+
+    });
+   });
+
+
      $('body').on('click','.revenue_master',function(){
         debugger;
             var year=$('.year').val();

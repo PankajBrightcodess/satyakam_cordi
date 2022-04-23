@@ -379,8 +379,6 @@ class Website extends CI_Controller {
         $this->load->view('website/template_1',$d);
 	}
 
-	
-
 	public function open_monthly_progress_report(){
 		    $id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -397,6 +395,7 @@ class Website extends CI_Controller {
         $this->load->view('website/template_1',$d);
 		
 	}
+
 	public function get_monthly_progress_list(){
 		$user_id['id'] = $_SESSION['user_id'];
 		$month = $_POST['month'];
@@ -1009,6 +1008,258 @@ class Website extends CI_Controller {
 		$d['v'] = 'website/requisition_form';
 		$this->load->view('website/template_1',$d);
 	}
+
+	public function expense_monthly_report(){
+		    $id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = date('m');
+		$d['expense_month'] = $this->Website_model->expensemonth($user_id,$month);
+		$d['v'] = 'website/monthly_expense_report';
+        $this->load->view('website/template_1',$d);
+		
+	}
+
+	public function monthly_expense_list(){
+		$data = $this->input->post();
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = $data['month'];
+		$records = $this->Website_model->expensemonth($user_id,$month);
+		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
+            $html.='<thead>';
+                $html.='<tr>';    
+                    $html.='<th>S.NO.</th>';
+                    $html.='<th>EQUIPMENT</th>';                
+                    $html.='<th>QUANTITY</th>';                
+                    $html.='<th>RATE</th>';
+                    $html.='<th>AMOUNT</th>';
+                    $html.='<th>BILL</th>';
+                    $html.='<th>PAYMENT RECEIPT</th>';
+                    $html.='<th>PAYMENT METHOD</th>';
+                    $html.='<th>NEFT CHECK</th>';
+                    $html.='<th>TOTAL REVENUE</th>';
+                    $html.='<th>DATE</th>';
+                $html.='</tr>';
+            $html.='</thead>';
+            $html.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createexcel_monthly_expensedetails').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
+            $html.='<tbody>';
+                $i=0;
+                 if(!empty($records)){
+                    foreach($records as $val){$i++; $id=$val['id']; 
+                $html.='<tr>';
+                    $html.='<td >'.$i.'</td>';
+                    $html.='<td >'.$val['equipment'].'</td>';
+                    $html.='<td >'.$val['quantity'].'</td>';
+                    $html.='<td>'.$val['rate'].'</td>';
+                    $html.='<td >'.$val['amount'].'</td>';
+                    $html.='<td >'.$val['bill'].'</td>';
+                    $html.='<td>'.$val['payment_receipt'].'</td>';
+                    $html.='<td >'.$val['payment_method'].'</td>';
+                    $html.='<td >'.$val['neft_check'].'</td>';
+                    $html.='<td >'.$val['total_revenue'].'</td>';
+                    $html.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                $html.='</tr>';
+              
+                }
+            }
+        $html.='</tbody>';
+        $html.='</table>';
+        $results = json_encode($html);
+        echo $results;
+	}
+	 public function createexcel_monthly_expensedetails(){
+    	$fileName = 'monthly_expense.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$month = date('m');
+		
+		$employeeData = $this->Website_model->expensemonth($user_id,$month);
+		// echo PRE;
+		// print_r($employeeData);die;
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Equipment');
+        $sheet->setCellValue('C1','Quantity');
+        $sheet->setCellValue('D1','Rate');
+		$sheet->setCellValue('E1','Amount');
+        $sheet->setCellValue('F1','Bill');       
+        $sheet->setCellValue('G1','Payment Receipt');       
+        $sheet->setCellValue('H1','Payment Method');       
+        $sheet->setCellValue('I1','Neft Check');       
+        $sheet->setCellValue('J1','Total Revenue');        
+        $sheet->setCellValue('K1','Added On');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['equipment']);
+            $sheet->setCellValue('C' . $rows, $val['quantity']);
+            $sheet->setCellValue('D' . $rows, $val['rate']);
+	        $sheet->setCellValue('E' . $rows, $val['amount']);
+            $sheet->setCellValue('F' . $rows, $val['bill']);
+            $sheet->setCellValue('G' . $rows, $val['payment_receipt']);
+            $sheet->setCellValue('H' . $rows, $val['payment_method']);
+            $sheet->setCellValue('I' . $rows, $val['neft_check']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue']);
+            $sheet->setCellValue('K' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
+
+    public function expense_annual_report(){
+		    $id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$d['expense_year'] = $this->Website_model->expenseyear($user_id,$year);
+		$d['v'] = 'website/annual_expense_report';
+        $this->load->view('website/template_1',$d);
+	}
+
+	public function annualy_expense_list(){
+		$data = $this->input->post();
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = $data['year'];
+		$records = $this->Website_model->expenseyear($user_id,$year);
+		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
+            $html.='<thead>';
+                $html.='<tr>';    
+                    $html.='<th>S.NO.</th>';
+                    $html.='<th>EQUIPMENT</th>';                
+                    $html.='<th>QUANTITY</th>';                
+                    $html.='<th>RATE</th>';
+                    $html.='<th>AMOUNT</th>';
+                    $html.='<th>BILL</th>';
+                    $html.='<th>PAYMENT RECEIPT</th>';
+                    $html.='<th>PAYMENT METHOD</th>';
+                    $html.='<th>NEFT CHECK</th>';
+                    $html.='<th>TOTAL REVENUE</th>';
+                    $html.='<th>DATE</th>';
+                $html.='</tr>';
+            $html.='</thead>';
+            $html.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createexcel_annual_expensedetails').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
+            $html.='<tbody>';
+                $i=0;
+                 if(!empty($records)){
+                    foreach($records as $val){$i++; $id=$val['id']; 
+                $html.='<tr>';
+                    $html.='<td >'.$i.'</td>';
+                    $html.='<td >'.$val['equipment'].'</td>';
+                    $html.='<td >'.$val['quantity'].'</td>';
+                    $html.='<td>'.$val['rate'].'</td>';
+                    $html.='<td >'.$val['amount'].'</td>';
+                    $html.='<td >'.$val['bill'].'</td>';
+                    $html.='<td>'.$val['payment_receipt'].'</td>';
+                    $html.='<td >'.$val['payment_method'].'</td>';
+                    $html.='<td >'.$val['neft_check'].'</td>';
+                    $html.='<td >'.$val['total_revenue'].'</td>';
+                    $html.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
+                $html.='</tr>';
+              
+                }
+            }
+        $html.='</tbody>';
+        $html.='</table>';
+        $results = json_encode($html);
+        echo $results;
+	}
+
+	public function createexcel_annual_expensedetails(){
+    	$fileName = 'annualy_expense.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$year = date('Y');
+		$employeeData = $this->Website_model->expenseyear($user_id,$year);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Equipment');
+        $sheet->setCellValue('C1','Quantity');
+        $sheet->setCellValue('D1','Rate');
+		$sheet->setCellValue('E1','Amount');
+        $sheet->setCellValue('F1','Bill');       
+        $sheet->setCellValue('G1','Payment Receipt');       
+        $sheet->setCellValue('H1','Payment Method');       
+        $sheet->setCellValue('I1','Neft Check');       
+        $sheet->setCellValue('J1','Total Revenue');        
+        $sheet->setCellValue('K1','Added On');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['equipment']);
+            $sheet->setCellValue('C' . $rows, $val['quantity']);
+            $sheet->setCellValue('D' . $rows, $val['rate']);
+	        $sheet->setCellValue('E' . $rows, $val['amount']);
+            $sheet->setCellValue('F' . $rows, $val['bill']);
+            $sheet->setCellValue('G' . $rows, $val['payment_receipt']);
+            $sheet->setCellValue('H' . $rows, $val['payment_method']);
+            $sheet->setCellValue('I' . $rows, $val['neft_check']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue']);
+            $sheet->setCellValue('K' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
+
+    public function expense_daily_report(){
+		    $id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$date = date('Y-m-d');
+		$d['expense_daily'] = $this->Website_model->expensedaily($user_id,$date);
+		$d['v'] = 'website/daily_expense_report';
+        $this->load->view('website/template_1',$d);
+	}
+
+	public function createexcel_daily_expensedetails(){
+    	$fileName = 'daily_expense.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$date = date('Y-m-d');
+		$employeeData = $this->Website_model->expensedaily($user_id,$date);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Id');
+        $sheet->setCellValue('B1','Equipment');
+        $sheet->setCellValue('C1','Quantity');
+        $sheet->setCellValue('D1','Rate');
+		$sheet->setCellValue('E1','Amount');
+        $sheet->setCellValue('F1','Bill');       
+        $sheet->setCellValue('G1','Payment Receipt');       
+        $sheet->setCellValue('H1','Payment Method');       
+        $sheet->setCellValue('I1','Neft Check');       
+        $sheet->setCellValue('J1','Total Revenue');        
+        $sheet->setCellValue('K1','Added On');       
+        $rows = 2;
+        foreach ($employeeData as $val){
+            $sheet->setCellValue('A' . $rows, $val['id']);
+            $sheet->setCellValue('B' . $rows, $val['equipment']);
+            $sheet->setCellValue('C' . $rows, $val['quantity']);
+            $sheet->setCellValue('D' . $rows, $val['rate']);
+	        $sheet->setCellValue('E' . $rows, $val['amount']);
+            $sheet->setCellValue('F' . $rows, $val['bill']);
+            $sheet->setCellValue('G' . $rows, $val['payment_receipt']);
+            $sheet->setCellValue('H' . $rows, $val['payment_method']);
+            $sheet->setCellValue('I' . $rows, $val['neft_check']);
+            $sheet->setCellValue('J' . $rows, $val['total_revenue']);
+            $sheet->setCellValue('K' . $rows, $val['added_on']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
 
 	public function requisition_insert(){
 		$data = $this->input->post();
