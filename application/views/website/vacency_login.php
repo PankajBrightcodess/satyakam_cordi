@@ -21,7 +21,7 @@
               <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
             </div> -->
             <div class="loginbox">
-              <form method="POST" action="<?= base_url('website/logincheck')?>">  
+              <form method="POST" action="#">  
               <div class="row">
               <div class="col-md-12">
                 <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
