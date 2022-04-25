@@ -460,6 +460,26 @@ for (i = 0; i < acc.length; i++) {
                 }
             });
         });
+
+
+
+      $('body').on('change','.expense_monthly', function(){
+    debugger;
+    var month = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/monthly_expense_list')?>',
+      data:{month:month},
+      dataType:'JSON',
+      success:function(result){
+        alert(result);
+        console.log(result);
+
+        $('.table1').html(result);
+      },
+
+    });
+   });
 });
 
 

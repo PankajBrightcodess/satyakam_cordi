@@ -270,6 +270,20 @@ class Website_model extends CI_Model{
     	}
     }
 
+    public function savevacencysignup($data){
+    	$table = 'vacency_signup';
+    	$data['added_on']=date('Y-m-d');
+    	$status=$this->db->insert($table,$data);
+    	// $qry = $this->db->last_query();
+    	// print_r($qry);die;
+		if($status){
+		   return true;
+		}
+		else{
+			return false;
+		}
+    }
+
     public function expensemonth($user_id,$month){
 		$user_id= $user_id['id'];
 		$year = date('Y');

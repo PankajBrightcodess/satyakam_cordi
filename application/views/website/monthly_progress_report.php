@@ -515,11 +515,7 @@
 				"info": "_START_-_END_ of _TOTAL_ entries",
 				searchPlaceholder: "Search"
 			},
-		});		
-        
-		Daily Expense Report List
-Monthly Expense Report List
-Annual Expense Report List
+		});
 
 
 </script>

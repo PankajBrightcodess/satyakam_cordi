@@ -1,4 +1,4 @@
-    <section class="content">
+   <section class="content">
       <div class="container-fluid">
     	<div class="row">
             <div class="col-md-12 mb-3">
@@ -7,7 +7,7 @@
                        <div class="row">
                            <div class="col-md-6 col-6">
                                 <label><strong>Month</strong></label>
-                                <select class="form-control expense_monthly" name="month">
+                                <select class="form-control monthly_report" name="month">
                                     <option value="">---SELECT---</option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -25,7 +25,7 @@
                            </div>
                            <div class="col-md-6 col-6">
                                <label><strong>Year</strong></label>
-                                <select class="form-control yearexpense" name="year">
+                                <select class="form-control yearly_report" name="year">
                                     <option value="">---SELECT---</option>
                                     <?php 
                                         $year = date('Y');
@@ -51,6 +51,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                     <div class="row">
+                        <input type="hidden" name="id" id="id" class="form-control" value="<?php echo $user_id['id'];?>">
                             <div class="col-md-12 col-lg-12">
                                 <?php echo form_open_multipart('admin/add_my_report');?>
                                  <!-- <div class="form-group row">
@@ -69,7 +70,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <div class="col-md-12 col-lg-12 table-responsive table1">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -151,7 +152,7 @@
                                         </select> -->
                                     </div>                                    
                                 </div>
-                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <div class="col-md-12 col-lg-12 table-responsive table2">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -236,7 +237,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <div class="col-md-12 col-lg-12 table-responsive table3">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -324,7 +325,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <div class="col-md-12 col-lg-12 table-responsive table4">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                          <tr>    
@@ -365,8 +366,6 @@
                                         }
                                             }
                                             ?>
-                                       
-                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -411,7 +410,7 @@
                                         </select>
                                     </div>                                    
                                 </div> -->
-                                <div class="col-md-12 col-lg-12 table-responsive">
+                                <div class="col-md-12 col-lg-12 table-responsive table5">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                        <tr>    
@@ -578,24 +577,51 @@
 			},
 		});		
         
-		$('body').on('change','#depart_id',function(){
-            // debugger;
-			var parent_id=$(this).val();
+	$('body').on('change','.monthly_report',function(){
+            debugger;
+            var id=  $('#id').val();
+			var month=$(this).val();
 			$.ajax({
 				type:"POST",
-				url:"<?php echo base_url("admin/getpost"); ?>",
-				data:{depart_id:parent_id},
-				// dataType:"json",
+				url:"<?php echo base_url("admin/reportlist_mymonth"); ?>", 
+				dataType:"json",
+			    data:{id:id,month:month},
 				beforeSend: function(){
 					
 				},
 				success: function(data){
-                    console.log(data);
-                    $('#posts').html(data);
+                    $('.table1').html(data.first);
+                    $('.table2').html(data.second);
+                    $('.table3').html(data.third);
+                    $('.table4').html(data.forth);
+                    $('.table5').html(data.fifth);
 				}
 			});
 		});
         $('#posts').trigger('change');
+
+        $('body').on('change','.yearly_report',function(){
+            debugger;
+            var id=  $('#id').val();
+            var year=$(this).val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url("admin/reportlist_year"); ?>", 
+                dataType:"json",
+                data:{id:id,year:year},
+                beforeSend: function(){
+                    
+                },
+                success: function(data){
+                    console.log(data);
+                    $('.table1').html(data.first);
+                    $('.table2').html(data.second);
+                    $('.table3').html(data.third);
+                    $('.table4').html(data.forth);
+                    $('.table5').html(data.fifth);
+                }
+            });
+        });
     });
 
 

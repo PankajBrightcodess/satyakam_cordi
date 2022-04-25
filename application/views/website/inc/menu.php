@@ -21,8 +21,9 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li><a class="dropdown-item" href="<?= base_url('website/mainvacency');?>" style="color:white">Vacancy</a></li>
-          <li><a class="dropdown-item" href="#" style="color:white">Guideline</a></li>
-          <li><a class="dropdown-item" href="<?= base_url('website/apply_online');?>" style="color:white">Online Apply</a></li>
+          <li><a class="dropdown-item" target="_blank" href="<?= base_url('assets/website/legaldocpdf/sgdh.pdf')?>" style="color:white">Guideline</a></li>
+          <li><a class="dropdown-item" href="<?= base_url('website/vacency_login');?>" style="color:white">Online Apply</a></li>
+          <!-- apply_online -->
           <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter" style="color:white;">Download Admit Card</a></li>
           <li><a class="dropdown-item" href="#" style="color:white">Results</a></li>
           <li><a class="dropdown-item" href="<?= base_url('website/helpline');?>" style="color:white">Helpline</a></li>

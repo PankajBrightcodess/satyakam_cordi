@@ -27,6 +27,8 @@ class Website extends CI_Controller {
 
 		}
 
+
+
 		public function apply_online(){
 			$d['v'] = 'website/apply_online';
 			$this->load->view('website/template',$d);
@@ -192,6 +194,31 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
+		public function vacencysignup(){
+			$d['v'] = 'website/vacency_signup';
+			$d['depart'] = $this->Website_model->get_departlist();
+			// $d['state'] = $this->Website_model->get_statelist();
+			$this->load->view('website/template',$d);
+		}
+
+		public function vacencysignup_create(){
+			$data = $this->input->post();
+			if($data['password']==$data['conf_password']){
+			   unset($data['conf_password']);
+			   $savevacencysignup= $this->Website_model->savevacencysignup($data);
+			   if(!empty($savevacencysignup)){
+					$this->vacency_login();
+			    }else{
+			    	$this->vacencysignup();
+			    }
+			   
+
+			}
+			else{
+						$this->vacencysignup();
+			}
+		}
+
 		public function econtractform(){
 			$d['v'] = 'website/econtractform';
 			$signup_id =$_SESSION['signupid'];
@@ -224,6 +251,7 @@ class Website extends CI_Controller {
 		    	return false;
 		    }
 		}
+		
 
 		public function create_officer_details(){
 			$data = $this->input->post();
@@ -378,6 +406,8 @@ class Website extends CI_Controller {
 		$d['v'] = 'website/open_progress';
         $this->load->view('website/template_1',$d);
 	}
+
+
 
 	public function open_monthly_progress_report(){
 		    $id = $_SESSION['user_id'];
@@ -980,6 +1010,12 @@ class Website extends CI_Controller {
 		// echo PRE;
 		// print_r($_POST);
 		$d['v'] = 'website/admit_card';
+			$this->load->view('website/template',$d);
+	}
+
+
+	public function vacency_login(){
+			$d['v'] = 'website/vacency_login';
 			$this->load->view('website/template',$d);
 	}
 
