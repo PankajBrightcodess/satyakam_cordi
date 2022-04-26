@@ -209,15 +209,18 @@ class Website extends CI_Controller {
 			   if(!empty($savevacencysignup)){
 					$this->vacency_login();
 			    }else{
-			    	$this->vacencysignup();
+			    	$this->session->set_flashdata("msg","Create Successfully !!");
+				redirect('website/vacencysignup/');
 			    }
-			   
-
 			}
 			else{
-						$this->vacencysignup();
+				$this->session->set_flashdata("msg","Something Error !!");
+				redirect('website/vacencysignup/');
 			}
 		}
+
+
+
 
 		public function econtractform(){
 			$d['v'] = 'website/econtractform';
@@ -1018,6 +1021,47 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/vacency_login';
 			$this->load->view('website/template',$d);
 	}
+
+	public function vacency_logins(){
+			$data = $this->input->post();
+			// echo PRE;
+		$result= $this->Website_model->checkvacenylogin($data);
+		if($result['verify']===true){
+			$this->createvacencyession($result);
+			redirect('website/vacencyform',$result);
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/vacency_login');
+		}
+	}
+
+	public function createvacencyession($result){
+		// echo PRE;
+		// print_r($result);die;
+		$data['candidate_id']=$result['id'];
+		$data['email']=$result['email'];
+		$this->session->set_userdata($data);
+	}
+	public function logout_vacency(){
+		if($this->session->user!==NULL){
+			$this->session->unset_userdata('candidate_id');
+			$this->session->unset_userdata('email');
+		}		// redirect('website/office_login');
+	}
+
+	public function vacencyform(){
+		$id = $this->session->userdata('candidate_id');
+		if(!empty($id)){
+			$d['details']= $this->Website_model->getdetailsuser($id);
+			$d['v'] = 'website/vacency_form';
+		    $this->load->view('website/template',$d);
+		}else{
+			redirect('website/vacency_login');
+		}
+		
+	}
+
 
 	// ................................Admin Panel Area.............................
 

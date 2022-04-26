@@ -21,21 +21,21 @@
               <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
             </div> -->
             <div class="loginbox">
-              <form method="POST" action="#">  
+              <form method="POST" action="<?= base_url('website/vacency_logins');?>">  
               <div class="row">
               <div class="col-md-12">
                 <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
               </div>
               <div class="col-md-12">
                
-                  <label>USER ID</label>
-                  <input name="txtUserid" type="text" id="txtUserid" class="form-control" required placeholder="User Id">
+                  <label>EMAIL ID</label>
+                  <input name="emailid" type="text" id="emailid" class="form-control" required placeholder="Email Id">
                  
               </div>
               <div class="col-md-12 mb-5">
                
                   <label>PASSWORD</label>
-                  <input name="txtPassword" type="password" id="txtPassword" class="form-control" required placeholder="Password">
+                  <input name="password" type="password" id="txtPassword" class="form-control" required placeholder="Password">
                 
               </div>
              
@@ -43,7 +43,7 @@
                    <a href="<?= base_url('website/vacencysignup');?>"><input type="button"   name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
               </div>
               <div class="col-md-6 mb-3" >
-                <button type="submit" name="btnLogin" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
+                <button type="submit" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
                  <!--  <input type="button" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block     confrmidpass"> -->
               </div>
                <div class="col-md-12">

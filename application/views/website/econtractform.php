@@ -7,16 +7,15 @@
                     <form action="<?= base_url('website/create_officer_details');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
-                            <input type="text" name="batch_no" readonly value="<?php echo $signuplist[0]['batch_no'];?>" placeholder="Batch Number :" class="form-control mb-3" required>
-                            <input type="text" name="Join_in_branch" readonly value="<?php echo $signuplist[0]['Join_in_branch'];?>" placeholder="Joining In Branch :" class="form-control mb-3" required>
-                            <input type="text" name="branch_code" readonly value="<?php echo $signuplist[0]['branch_code'];?>" placeholder="Branch Code :" class="form-control mb-3" required>
-                            <input type="text" name="department" readonly value="<?php echo $signuplist[0]['department'];?>" placeholder="Department :" class="form-control mb-3" required>
-                            <input type="hidden" name="department_id" readonly value="<?php echo $signuplist[0]['depart_id'];?>">
-                             <input type="text" name="post" readonly value="<?php echo $signuplist[0]['post'];?>" placeholder="Post :" class="form-control mb-3" required>
-                             <input type="hidden" name="post_id" readonly value="<?php echo $signuplist[0]['post_id'];?>">
-                            <input type="text" name="mobile_no" readonly value="<?php echo $signuplist[0]['mobile_no'];?>" placeholder="Mobile Number :" class="form-control mb-3" required>
-                            <input type="text" name="email_id" readonly value="<?php echo $signuplist[0]['email_id'];?>" placeholder="Email Id :" class="form-control mb-3" required>
-                            <input type="text" name="service_did" placeholder="Service DID / Contract No :" class="form-control mb-3" required>
+                            <input type="text" name="app_date" readonly value="<?= date('Y-m-d');?>" placeholder="Batch Number :" class="form-control mb-3" required>
+                            <input type="text" name="app_no" placeholder="Joining In Branch :" class="form-control mb-3" required>
+                            <input type="text" name="state_unit_name" readonly value="<?php echo $details['state_unit_name'];?>" placeholder="State Unit Name :" class="form-control mb-3" required>
+                            <input type="text" name="division_unit_name" readonly value="<?php echo $details['division_unit_name'];?>" placeholder="Department :" class="form-control mb-3" required>
+                             <input type="text" name="applicant_name" readonly value="<?php echo $details['applicant_name'];?>" placeholder="Post :" class="form-control mb-3" required>
+                             <!-- <input type="hidden" name="post_id" readonly value="<?php echo $signuplist[0]['post_id'];?>"> -->
+                            <input type="date" name="dob" readonly value="<?php echo $details['dob'];?>" class="form-control mb-3" required>
+                            <input type="text" name="mobile_no" readonly value="<?php echo $details['mobile_no'];?>" placeholder="Mobile  No :" class="form-control mb-3" required>
+                            <input type="email" name="email" placeholder="Email Id :" class="form-control mb-3" value="<?php echo $details['email'];?>" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">

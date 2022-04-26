@@ -7,19 +7,18 @@
             <form action="<?= base_url('website/create_signup')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                  <div class="col-md-12 mb-2">
-                  <!-- <input type="text" name="department" placeholder="Department :" class="form-control" required> -->
-                  <select class="form-control" name="state"  id="state" required>
-                          <option value="">State :</option>
-                          <?php
-                              if(!empty($state)){
-                                  foreach ($state as $key => $value) {
-                                     ?>
-                                     <option value="<?= $value['id'];?>"><?= $value['state'];?></option>
-                                     <?php
-                                  }
-                              }
-                          ?> 
-                  </select> 
+                    <select class="form-control" name="state"  id="state" required>
+                            <option value="">State :</option>
+                            <?php
+                                if(!empty($state)){
+                                    foreach ($state as $key => $value) {
+                                       ?>
+                                       <option value="<?= $value['id'];?>"><?= $value['state'];?></option>
+                                       <?php
+                                    }
+                                }
+                            ?> 
+                    </select> 
                 </div>
                  <div class="col-md-6 mb-2">
                   <select class="form-control" name="depart_id" id="dpartment" required>

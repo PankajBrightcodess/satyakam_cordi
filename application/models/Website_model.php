@@ -228,6 +228,33 @@ class Website_model extends CI_Model{
 		return $result;
 	}
 
+
+	public function checkvacenylogin($data){
+		$emailid =  $data['emailid'];
+		$password =  $data['password'];
+		$query = $this->db->get_where('vacency_signup',array('email'=>$emailid,'password'=>$password));
+		$result =  $query->row_array();
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Wrong Credentials!");
+		}
+		return $result;
+
+	}
+	public function getdetailsuser($id){
+		$query = $this->db->get_where('vacency_signup',array('id'=>$id));
+		$result =  $query->row_array();
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Wrong Credentials!");
+		}
+		return $result;
+	}
+
 	public function add_depart($data){
 		$table="department";  
 		$data['added_on']=date('Y-m-d');
@@ -271,17 +298,30 @@ class Website_model extends CI_Model{
     }
 
     public function savevacencysignup($data){
-    	$table = 'vacency_signup';
-    	$data['added_on']=date('Y-m-d');
-    	$status=$this->db->insert($table,$data);
-    	// $qry = $this->db->last_query();
-    	// print_r($qry);die;
-		if($status){
-		   return true;
-		}
-		else{
-			return false;
-		}
+    	$email = $data['email'];
+    	
+    	if(!empty($email)){
+    	  $query = $this->db->get_where('vacency_signup',array('email'=>$email));
+		   $rows =  $query->num_rows();
+		   	// print_r($rows);die;
+		   if( $rows==0){
+		   	    $table = 'vacency_signup';
+			   	$data['added_on']=date('Y-m-d');
+		    	$status=$this->db->insert($table,$data);
+				if($status){
+				   return true;
+				}
+				else{
+					return false;
+				}
+
+		   }
+		   else{
+		   	 return false;
+		   }
+    	}
+    	
+    	
     }
 
     public function expensemonth($user_id,$month){
