@@ -264,6 +264,7 @@ class Website extends CI_Controller {
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
+		  	
 			  $image = upload_file("image", $upload_path, $allowed_types, time());
 			  if ($image !='') {
 				  $data['image'] = $image['path'];

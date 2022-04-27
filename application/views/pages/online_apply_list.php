@@ -31,15 +31,37 @@
                                     <thead>
                                         <tr>    
                                             <th>S.no</th>
-                                            <th>Name</th>                
-                                            <th>Father's Name</th>                                            
-                                            <th>Date Of Birth</th>                                            
-                                            <th>Last Qualification</th>                                            
-                                            <th>Parmanent Address</th>                                            
-                                            <th>Current Address</th>                                            
-                                            <th>Mobile Number</th>                                            
-                                            <th>Email Id</th>                                            
-                                            <th>Registration Date</th>                                            
+                                            <th>Application Date</th>                
+                                            <th>State Unit</th>
+                                            <th>Division Unit</th>
+                                            <th>Applicant Name</th>
+                                            <th>DOB</th>
+                                            <th>Mobile No.</th>
+                                            <th>Email</th>
+                                            <th>Designation</th>
+                                            <th>Department Id</th>
+                                            <th>Father's Name</th>
+                                            <th>Father's Occupation</th>
+                                            <th>Mother's Name</th>
+                                            <th>Mother's Occupation</th>
+                                            <th>Annual Income</th>
+                                            <th>Gender</th>
+                                            <th>Correspondent Address</th>
+                                            <th>Permanent Address</th>
+                                            <th>Place Area</th>
+                                            <th>Nationality</th>                                            
+                                            <th>Category</th>                                            
+                                            <th>Identification Marks</th>                                            
+                                            <th>Aadhar No.</th>                                            
+                                            <th>PAN No.</th>                                            
+                                            <th>Marital Status</th>                                            
+                                            <th>Exam Passed</th>                                            
+                                            <th>Board University</th>                                            
+                                            <th>Passing Year</th>                                            
+                                            <th>Total Marks</th>                                            
+                                            <th>Mark Obtained</th>                                            
+                                            <th>Division</th>                                            
+                                            <th>Persentage Marks</th>                                            
                                             <!-- <th>Action</th>                                             -->
                                         </tr>
                                     </thead>
@@ -49,15 +71,37 @@
                                             foreach($applylist as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td><?php echo $i ?></td>
-                                            <td><?php echo $val['name']; ?></td>
-                                            <td><?php echo $val['fname'] ;?></td>
-                                            <td><?php echo date('d-m-Y',strtotime($val['dob'])); ?></td>
-                                            <td><?php echo $val['last_qualification'] ;?></td>
-                                            <td><?php echo $val['paddress'] ;?></td>
-                                            <td><?php echo $val['caddress'] ;?></td>
-                                            <td ><?php echo $val['mobile_no']; ?></td>
-                                            <td ><?php echo $val['email_id'] ;?></td>
-                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on'])) ;?></td>
+                                            <td><?php echo $val['application_date']; ?></td>
+                                            <td><?php echo $val['state_unit_name'] ;?></td>
+                                            <td><?php echo $val['division_unit_name']; ?></td>
+                                            <td><?php echo $val['applicant_name'] ;?></td>
+                                            <td><?php echo $val['dob'] ;?></td>
+                                            <td><?php echo $val['mobile_no'] ;?></td>
+                                            <td ><?php echo $val['email']; ?></td>
+                                            <td ><?php echo $val['desicination'] ;?></td>
+                                            <td ><?php echo $val['depart_id'] ;?></td>
+                                            <td ><?php echo $val['father_name'] ;?></td>
+                                            <td ><?php echo $val['father_occupation'] ;?></td>
+                                            <td ><?php echo $val['mother_name'] ;?></td>
+                                            <td ><?php echo $val['mother_occupqation'] ;?></td>
+                                            <td ><?php echo $val['annual_encome'] ;?></td>
+                                            <td ><?php echo $val['gender'] ;?></td>
+                                            <td ><?php echo $val['correspondent_address'] ;?></td>
+                                            <td ><?php echo $val['permanent_address'] ;?></td>
+                                            <td ><?php echo $val['place'] ;?></td>
+                                            <td ><?php echo $val['nationality'] ;?></td>
+                                            <td ><?php echo $val['category'] ;?></td>
+                                            <td ><?php echo $val['identification_marks'] ;?></td>
+                                            <td ><?php echo $val['aadharno'] ;?></td>
+                                            <td ><?php echo $val['panno'] ;?></td>
+                                            <td ><?php echo $val['marital_status'] ;?></td>
+                                            <td ><?php echo $val['exam_passed'] ;?></td>
+                                            <td ><?php echo $val['board_university'] ;?></td>
+                                            <td ><?php echo $val['pasing_year'] ;?></td>
+                                            <td ><?php echo $val['total_marks'] ;?></td>
+                                            <td ><?php echo $val['mark_obtained'] ;?></td>
+                                            <td ><?php echo $val['division'] ;?></td>
+                                            <td ><?php echo $val['persentage_marks'] ;?></td>
                                             
                                             <!-- <td><span class="float-right">
                                             <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button><?php echo base_url("home/delete_sidebar/");?>
