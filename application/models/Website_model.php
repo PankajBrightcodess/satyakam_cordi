@@ -1073,8 +1073,9 @@ class Website_model extends CI_Model{
 		if($check==0){
 			$data['added_on']=date('Y-m-d');
 			$status=$this->db->insert($table,$data);
+
 			if($status){
-				return true;
+			    return true;
 			}
 			else{
 				return false;
@@ -1137,9 +1138,83 @@ class Website_model extends CI_Model{
 		}	
 	}
 
-	public function get_applylist($data){
-		$query = $this->db->get_where('vacency_apply',array('status'=>1));
-		return  $query->result_array();
+	public function get_applylist(){
+		$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
+		$this->db->from('vacency_signup t1');
+		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+		$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+		$qry = $this->db->get();
+		 // $query = $this->db->last_query();
+		 // print_R( $query);die;
+		if($qry->num_rows()>0)
+		{
+			return $result = $qry->result_array();
+
+		}else
+		{
+			return 0;
+		}
+	}   
+
+
+	public function vacencydetails_submit($data){
+		
+		$records['signup_id'] =  $data['signup_id'];
+		$records['father_name'] =  $data['father_name'];
+		$records['father_occupation'] =  $data['father_occupation'];
+		$records['mother_name'] =  $data['mother_name'];
+		$records['mother_occupqation'] =  $data['mother_occupqation'];
+		$records['annual_encome'] =  $data['annual_encome'];
+		$records['gender'] =  $data['gender'];
+		$records['correspondent_address'] =  $data['correspondent_address'];
+		$records['permanent_address'] =  $data['permanent_address'];
+		$records['place'] =  $data['place'];
+		$records['nationality'] =  $data['nationality'];
+		$records['category'] =  $data['category'];
+		$records['identification_marks'] =  $data['identification_marks'];
+		$records['aadharno'] =  $data['aadharno'];
+		$records['panno'] =  $data['panno'];
+		$records['marital_status'] =  $data['marital_status'];
+		$records['ins_details'] =  $data['ins_details'];
+		$records['exam_passed'] =  $data['exam_passed'];
+		$records['board_university'] =  $data['board_university'];
+		$records['pasing_year'] =  $data['pasing_year'];
+		$records['total_marks'] =  $data['total_marks'];
+		$records['mark_obtained'] =  $data['mark_obtained'];
+		$records['division'] =  $data['division'];
+		$records['persentage_marks'] =  $data['persentage_marks'];
+		$records['confirm_1'] =  $data['confirm_1'];
+		$records['added_on'] =  date('Y-m-d');
+		// ..............Records Value....................
+		$uploads['photo'] = $data['photo'];
+		$uploads['signature'] = $data['signature'];
+		$uploads['marksheet'] = $data['marksheet'];
+		$uploads['other_quali'] = $data['other_quali'];
+		$uploads['exprience'] = $data['exprience'];
+		$uploads['aadhar'] = $data['aadhar'];
+		$uploads['thumb'] = $data['thumb'];
+		$uploads['added_on'] =  date('Y-m-d');
+		// ''''''''''''''''''''Uploads File''''''''''''''''''
+		$status=$this->db->insert('vacency_candidate_details',$records);
+			if($status){
+				$uploads['details_id']=$this->db->insert_id();
+				return $this->uploads_vacency($uploads);
+			}
+			else{
+				return false;
+			}
+
+	}
+
+	public  function uploads_vacency($uploads){
+		$status=$this->db->insert('upload_candidate_vacency',$uploads);
+		if($status){
+				return true;
+			}
+			else{
+				return false;
+			}
+
 	}
 
 

@@ -1062,6 +1062,78 @@ class Website extends CI_Controller {
 		
 	}
 
+	public function vacencyform_submit(){
+		$data = $this->input->post();
+		// echo PRE;
+		//   print_r($_FILES);die;
+		  if($_FILES['photo']['name'] !=''){
+		  	$upload_path = './assets/vacency/photo/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("photo", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['photo'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['signature']['name'] !=''){
+		  	$upload_path = './assets/vacency/sign/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("signature", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['signature'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['marksheet']['name'] !=''){
+		  	$upload_path = './assets/vacency/documents/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("marksheet", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['marksheet'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['other_quali']['name'] !=''){
+		  	$upload_path = './assets/vacency/documents/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("other_quali", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['other_quali'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['exprience']['name'] !=''){
+		  	$upload_path = './assets/vacency/documents/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("exprience", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['exprience'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['aadhar']['name'] !=''){
+		  	$upload_path = './assets/vacency/documents/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("aadhar", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['aadhar'] = $image['path'];
+			  }
+		  }
+		  if($_FILES['thumb']['name'] !=''){
+		  	$upload_path = './assets/vacency/documents/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  $image = upload_file("thumb", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['thumb'] = $image['path'];
+			  }
+		  }
+		  $records= $this->Website_model->vacencydetails_submit($data);
+		  if($records===true){
+			redirect('website/vacencyform/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/vacencyform/?status=0');
+		}
+
+
+	}
+
 
 	// ................................Admin Panel Area.............................
 

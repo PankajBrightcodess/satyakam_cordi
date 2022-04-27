@@ -4,7 +4,7 @@
                 <div class="col-md-12">
                     <center><h1 class="tittle">APPLICATION</h1><h3 class="tittle">(<?php echo  date('Y').'-'.date('y',strtotime('+1 year'))?>)</h3></center>
                     <!-- <h4 class="text-success mb-3">Student's Details</h4> -->
-                    <form action="<?= base_url('website/create_officer_details');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
+                    <form action="<?= base_url('website/vacencyform_submit');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
                             <input type="date" name="app_date" readonly value="<?php echo $details['application_date'];?>" class="form-control mb-3" required>
@@ -15,6 +15,7 @@
                             <input type="text" name="mobile_no" readonly value="<?php echo $details['mobile_no'];?>" class="form-control mb-3" required>
                             <input type="email" name="email" readonly value="<?php echo $details['email'];?>" placeholder="Email Id :" class="form-control mb-3" required>
                            <input type="text" name="desicination" readonly value="<?php echo $details['desicination'];?>" placeholder="Desicination :" class="form-control mb-3" required>
+                           <input type="hidden" name="signup_id" readonly value="<?php echo $details['id'];?>" placeholder="Desicination :" class="form-control mb-3" required>
                            <input type="text" name="depart_id" readonly value="<?php echo $details['depart_id'];?>" placeholder="Department :" class="form-control mb-3" required>
                           </div>
                           <div class="col-md-4">
@@ -25,7 +26,7 @@
                                     <img src="#" alt="" id="previewHolder"  height="180" width="150" >
                                   </div>
                                   <label>Upload Picture</label>
-                                  <input type="file" name="image" id="filePhoto" value=""  onchange="readURL(this,'#blah');">
+                                  <input type="file" name="photo" id="filePhoto" value=""  onchange="readURL(this,'#blah');">
                                 </div>
                               </div>
                               <div class="col-md-12">
@@ -41,7 +42,7 @@
                           </div>
                           
                           <div class="col-md-6 mb-3">
-                            <input type="text" name="father_name" placeholder="Officer's Middle Name  :" class="form-control" required>
+                            <input type="text" name="father_name" placeholder="father's Name  :" class="form-control" required>
                           </div>
                           <div class="col-md-6 mb-3">
                             <input type="text" name="father_occupation" placeholder="Father's Occupation :" class="form-control" required>
@@ -70,13 +71,13 @@
                              </select>
                           </div>
                           <div class="col-md-6 mb-3">
-                             <textarea name="query" placeholder="Correspondent Address :" name="correspondent_address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
+                             <textarea  placeholder="Correspondent Address :" name="correspondent_address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
                           </div>
                           <div class="col-md-6 mb-3">
-                            <textarea name="query" placeholder="Permanent Address :" name="permanent_address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
+                            <textarea  placeholder="Permanent Address :" name="permanent_address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
                           </div>
                           <div class="col-md-12 mb-3">
-                             <select class="form-control" name="gender">
+                             <select class="form-control" name="place" required>
                                <option value="">Form :</option>
                                <option value="rural">Rural</option>
                                <option value="urban">Urban</option>
@@ -87,7 +88,15 @@
                             <input type="text" name="nationality" placeholder="Nationality" class="form-control" required>
                           </div>
                           <div class="col-md-6 mb-3">
-                            <input type="text" name="category" placeholder="Category" class="form-control" required>
+                            <select class="form-control" name="category">
+                              <option value="">Category :</option>
+                              <option value="gen">GEN </option>
+                              <option value="obc">OBC </option>
+                              <option value="sc">SC </option>
+                              <option value="st">ST </option>
+                              <option value="other">Other </option>
+                            </select>
+                           <!--  <input type="text" name="category" placeholder="Category" class="form-control" required> -->
                           </div>
                            <div class="col-md-6 mb-3">
                               <input type="text" name="identification_marks" placeholder="Identification Marks" class="form-control" required>
@@ -106,7 +115,7 @@
                             <h6 class="tittle">If You have served in any institution in the past, give details</h6>
                           </div>
                            <div class="col-md-12 mb-3">
-                            <select class="form-control" name="gender">
+                            <select class="form-control" id="ins_details" name="ins_details">
                                <option value="">Select :</option>
                                <option value="1">Yes</option>
                                <option value="0">No</option>
@@ -128,13 +137,13 @@
                                 <tbody>
                                   <tr>
                                    <th scope="row" rowspan="2"></th>
-                                  <td><input type="text" name="exam_passed" readonly placeholder="Exam Passed" class="form-control" required></td>
-                                   <td><input type="text" name="board_university" readonly placeholder="Name Of Board/University" class="form-control" readonly required></td>
-                                    <td><input type="date" name="pasing_year" readonly placeholder="Year Of Passing" class="form-control" required></td>
-                                     <td><input type="text" name="total_marks" readonly placeholder="Total Marks" class="form-control" required></td>
-                                    <td><input type="text" name="mark_obtained" readonly placeholder="Mark Obtained" class="form-control" required></td>
-                                     <td><input type="text" name="division" readonly placeholder="Division" class="form-control" required></td>
-                                      <td><input type="text" name="persentage_marks" readonly placeholder="% Of marks" class="form-control" required></td>
+                                  <td><input type="text" id="exam_passed" name="exam_passed" readonly placeholder="Exam Passed" class="form-control" required></td>
+                                   <td><input type="text" id="board_university" name="board_university" readonly placeholder="Name Of Board/University" class="form-control" readonly required></td>
+                                    <td><input type="date" id="pasing_year" name="pasing_year" readonly placeholder="Year Of Passing" class="form-control" required></td>
+                                     <td><input type="text" id="total_marks" name="total_marks" readonly placeholder="Total Marks" class="form-control" required></td>
+                                    <td><input type="text" id="mark_obtained" name="mark_obtained" readonly placeholder="Mark Obtained" class="form-control" required></td>
+                                     <td><input type="text" name="division" id="division" readonly placeholder="Division" class="form-control" required></td>
+                                      <td><input type="text" name="persentage_marks" id="persentage_marks" readonly placeholder="% Of marks" class="form-control" required></td>
                                   </tr>
                                  
 
@@ -166,7 +175,7 @@
                                   <td colspan="3">
                                     <label>Left Hend Thumb Impression</label>
                                   </td>
-                                     <td><input type="file" name="aadhar" placeholder="Total Marks" class="form-control" required></td>
+                                     <td><input type="file" name="thumb" placeholder="Total Marks" class="form-control" required></td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -177,17 +186,13 @@
                               <div class="col-md-11 mb-2">
                                    <div class="form-check">
                                       <input class="form-check-input mb-3" name="confirm_1" type="checkbox" value="1" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1" style="font-size: 15px;">
+                                      <label class="form-check-label" for="defaultCheck1" style="font-size: 15px;">
                                       I DECLARE THAT THE PARTICULARS ENTERED BY ME IN THE APPLICATION ARE TRUE AND CORRECT. IF ANY DEFICIENCY OR ERROR, MIS MATCH IS FOUND. THE APPLICATION IS REJECTED SHALL BE RESPONSIBLE FOR THE SAME.
-                                    </label>
+                                      </label>
                                   </div>
                               </div>
-                          
-                             
                             </div>
                           </div>
-                       
-                         
                           <div class="col-md-7">
                               <button type="submit" class="mt-4 btn btn-lg" style="background:#233799;color:white">Register</button>
                           </div>
@@ -197,3 +202,14 @@
             </div>
         </div>
 </section>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var c = url.searchParams.get("status");
+    if(c==1){
+       swal("Good job!", "You Report Submit successfully!", "success");
+     }else if(c==0){
+       swal("Opps!", "Something Error !", "error");
+     }
+</script>

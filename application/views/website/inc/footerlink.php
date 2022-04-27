@@ -358,7 +358,7 @@ for (i = 0; i < acc.length; i++) {
     });
    });
 
-       $('body').on('change','.year', function(){
+$('body').on('change','.year', function(){
     debugger;
     var year = $(this).val();
     $.ajax({
@@ -429,7 +429,7 @@ for (i = 0; i < acc.length; i++) {
 
     });
    });
-       $('body').on('change','.yearexpense', function(){
+  $('body').on('change','.yearexpense', function(){
     debugger;
     var year = $(this).val();
     $.ajax({
@@ -459,7 +459,7 @@ for (i = 0; i < acc.length; i++) {
                   //  alert('Excel Generate');
                 }
             });
-        });
+      });
 
 
 
@@ -479,6 +479,30 @@ for (i = 0; i < acc.length; i++) {
       },
 
     });
+   });
+
+
+  $('body').on('change','#ins_details', function(){
+  debugger;
+   var vals = $(this).val();
+   if(vals==1){
+     $("#exam_passed").prop("readonly", false); 
+     $("#board_university").prop("readonly", false); 
+     $("#pasing_year").prop("readonly", false); 
+     $("#total_marks").prop("readonly", false); 
+     $("#mark_obtained").prop("readonly", false); 
+     $("#division").prop("readonly", false); 
+     $("#persentage_marks").prop("readonly", false); 
+   }else{
+     $("#exam_passed").prop("readonly", true); 
+     $("#board_university").prop("readonly", true); 
+     $("#pasing_year").prop("readonly", true); 
+     $("#total_marks").prop("readonly", true); 
+     $("#mark_obtained").prop("readonly", true); 
+     $("#division").prop("readonly", true); 
+     $("#persentage_marks").prop("readonly", true); 
+   }
+  
    });
 });
 

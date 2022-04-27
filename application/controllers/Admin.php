@@ -1614,7 +1614,9 @@ public function update_submenu(){
 	public function online_applylist(){
 		$data['title']="Apply List";
 		$data['datatable'] = true;
-		$data['applylist'] = $this->Website_model->get_applylist($data);
+		$data['applylist'] = $this->Website_model->get_applylist();
+		echo PRE;
+		print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
 	}
 
