@@ -243,6 +243,115 @@ class Website_model extends CI_Model{
 		return $result;
 
 	}
+
+
+	public function get_vacencydetailsbyid($id){
+		$this->db->select('t1.*,t2.father_name,t2.gender,t2.category,t2.aadharno,t3.photo,t3.signature,t4.department');
+		$this->db->from('stk_vacency_signup t1');
+		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+		$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+		$this->db->join('department t4','t1.depart_id=t4.id','left');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function get_state(){
+		$this->db->select('id,name,state_code');
+		$this->db->from('all_state');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function insert_admitcard($data){
+		$table="admitcard";  
+		$data['added_on']=date('Y-m-d');	
+		$status=$this->db->insert($table,$data);
+		if($status){
+		     return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+
+	public function check_admitcard($applicant_no){
+		$this->db->select('id');
+		$this->db->from('admitcard');
+		$this->db->where('applicant_no',$applicant_no);
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Please Fillup The Form");
+		}
+		return $result;
+	}
+
+	public function get_admitcardlist(){
+		$this->db->select('*');
+		$this->db->from('admitcard');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		if(!empty($result)){
+			return $result;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function pdf_generate_admitcard($id){
+		$this->db->where('id',$id);
+		$this->db->select('*');
+		$this->db->from('admitcard');
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		if(!empty($result)){
+			return $result;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function admitcard_updated($data){
+		$id = $data['id']; 
+         $this->db->where("id",$id); 
+         $query= $this->db->update("admitcard", $data); 
+		 return $query;	
+
+	}
+
+
+
+	public function checkvacenydetails($id){
+		$this->db->select('id,signup_id');
+		$this->db->from('vacency_candidate_details');
+		$this->db->where('signup_id',$id);
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Please Fillup The Form");
+		}
+		return $result;
+
+	}
 	public function getdetailsuser($id){
 		$query = $this->db->get_where('vacency_signup',array('id'=>$id));
 		$result =  $query->row_array();

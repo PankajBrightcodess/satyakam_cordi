@@ -264,7 +264,7 @@ class Website extends CI_Controller {
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
-		  	
+		  			
 			  $image = upload_file("image", $upload_path, $allowed_types, time());
 			  if ($image !='') {
 				  $data['image'] = $image['path'];
@@ -1024,22 +1024,32 @@ class Website extends CI_Controller {
 	}
 
 	public function vacency_logins(){
-			$data = $this->input->post();
-			// echo PRE;
+		$data = $this->input->post();
 		$result= $this->Website_model->checkvacenylogin($data);
-		if($result['verify']===true){
-			$this->createvacencyession($result);
-			redirect('website/vacencyform',$result);
+		if(!empty($result['id'])){
+			$id = $result['id'];
+			$records = $this->vacency_check($id);
+			if($records['verify']===true){
+				// $this->session->set_flashdata('err_msg',$result['verify']);
+				redirect('website/vacency_login');  ///send payment page
+			}
+			else{ 
+				$this->createvacencyession($result);
+				redirect('website/vacencyform',$result);	
+			}
 		}
-		else{ 
-			$this->session->set_flashdata('err_msg',$result['verify']);
-			redirect('website/vacency_login');
-		}
+		else{
+			$this->session->set_flashdata('err_msg','Please Signup!');
+				redirect('website/vacency_login');
+		}	
+	}
+
+	public function vacency_check($id){
+		$results= $this->Website_model->checkvacenydetails($id);
+		return $results;
 	}
 
 	public function createvacencyession($result){
-		// echo PRE;
-		// print_r($result);die;
 		$data['candidate_id']=$result['id'];
 		$data['email']=$result['email'];
 		$this->session->set_userdata($data);

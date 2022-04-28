@@ -31,88 +31,44 @@
                                     <thead>
                                         <tr>    
                                             <th>S.no</th>
-                                            <th>Application Date</th>                
-                                            <th>State Unit</th>
-                                            <th>Division Unit</th>
+                                            <th>Registration No.</th> 
                                             <th>Applicant Name</th>
-                                            <th>DOB</th>
-                                            <th>Mobile No.</th>
-                                            <th>Email</th>
-                                            <th>Designation</th>
-                                            <th>Department Id</th>
-                                            <th>Father's Name</th>
-                                            <th>Father's Occupation</th>
-                                            <th>Mother's Name</th>
-                                            <th>Mother's Occupation</th>
-                                            <th>Annual Income</th>
-                                            <th>Gender</th>
-                                            <th>Correspondent Address</th>
-                                            <th>Permanent Address</th>
-                                            <th>Place Area</th>
-                                            <th>Nationality</th>                                            
-                                            <th>Category</th>                                            
-                                            <th>Identification Marks</th>                                            
-                                            <th>Aadhar No.</th>                                            
-                                            <th>PAN No.</th>                                            
-                                            <th>Marital Status</th>                                            
-                                            <th>Exam Passed</th>                                            
-                                            <th>Board University</th>                                            
-                                            <th>Passing Year</th>                                            
-                                            <th>Total Marks</th>                                            
-                                            <th>Mark Obtained</th>                                            
-                                            <th>Division</th>                                            
-                                            <th>Persentage Marks</th>                                            
-                                            <th>Action</th>                                            
+                                            <th>Batch No.</th>
+                                            <th>Center Unit Name</th>
+                                            <th>Unit Code No.</th>
+                                            <th>Interview Date</th>
+                                            <th>Reporting Time</th>
+                                            <th>Interview Time</th>
+                                            <th>Center Address</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=0;
-                                         if(!empty($applylist)){
+                                         if(!empty($admitcardlist)){
+                                            // print_r($admitcardlist);
 
-                                            foreach($applylist as $val){$i++; $id=$val['id']; ?>
+                                            foreach($admitcardlist as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td><?php echo $i ?></td>
-                                            <td><?php echo $val['application_date']; ?></td>
-                                            <td><?php echo $val['state_unit_name'] ;?></td>
-                                            <td><?php echo $val['division_unit_name']; ?></td>
-                                            <td><?php echo $val['applicant_name'] ;?></td>
-                                            <td><?php echo $val['dob'] ;?></td>
-                                            <td><?php echo $val['mobile_no'] ;?></td>
-                                            <td ><?php echo $val['email']; ?></td>
-                                            <td ><?php echo $val['desicination'] ;?></td>
-                                            <td ><?php echo $val['depart_id'] ;?></td>
-                                            <td ><?php echo $val['father_name'] ;?></td>
-                                            <td ><?php echo $val['father_occupation'] ;?></td>
-                                            <td ><?php echo $val['mother_name'] ;?></td>
-                                            <td ><?php echo $val['mother_occupqation'] ;?></td>
-                                            <td ><?php echo $val['annual_encome'] ;?></td>
-                                            <td ><?php echo $val['gender'] ;?></td>
-                                            <td ><?php echo $val['correspondent_address'] ;?></td>
-                                            <td ><?php echo $val['permanent_address'] ;?></td>
-                                            <td ><?php echo $val['place'] ;?></td>
-                                            <td ><?php echo $val['nationality'] ;?></td>
-                                            <td ><?php echo $val['category'] ;?></td>
-                                            <td ><?php echo $val['identification_marks'] ;?></td>
-                                            <td ><?php echo $val['aadharno'] ;?></td>
-                                            <td ><?php echo $val['panno'] ;?></td>
-                                            <td ><?php echo $val['marital_status'] ;?></td>
-                                            <td ><?php echo $val['exam_passed'] ;?></td>
-                                            <td ><?php echo $val['board_university'] ;?></td>
-                                            <td ><?php echo $val['pasing_year'] ;?></td>
-                                            <td ><?php echo $val['total_marks'] ;?></td>
-                                            <td ><?php echo $val['mark_obtained'] ;?></td>
-                                            <td ><?php echo $val['division'] ;?></td>
-                                            <td ><?php echo $val['persentage_marks'] ;?></td>
-                                            <td> <a href="<?= base_url('admin/admitcardpage?id='.$val['id']);?>" class="btn btn-success btn-sm">Make Admitcard</a></td>
-                                            
-                                            
+                                            <td><?php echo $val['registration_no']; ?></td>
+                                            <td><?php echo $val['candidate_name'] ;?></td>
+                                            <td><?php echo $val['batch_no']; ?></td>
+                                            <td><?php echo $val['center_name'] ;?></td>
+                                            <td><?php echo $val['unit_code'] ;?></td>
+                                            <td><?php echo $val['interviewdate'] ;?></td>
+                                            <td><?php echo $val['reporting_time'] ;?></td>
+                                            <td ><?php echo $val['interview_time']; ?></td>
+                                            <td ><?php echo $val['center_address'] ;?></td>
+                                            <td ><button class="btn btn-sm btn-success col-xs-2 updt"  data-registration_no="<?php echo $val['registration_no']; ?>" data-id="<?php echo $val['id']; ?>" data-candidate_name="<?php echo $val['candidate_name'] ;?>" data-batch_no="<?php echo $val['batch_no'] ;?>" data-center_name="<?php echo $val['center_name'] ;?>" data-unit_code="<?php echo $val['unit_code'] ;?>" data-interviewdate="<?php echo $val['interviewdate'] ;?>" data-reporting_time="<?php echo $val['reporting_time'] ;?>" data-interview_time="<?php echo $val['interview_time'] ;?>" data-center_address="<?php echo $val['center_address'] ;?>" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                                    <a href="<?= base_url('admin/pdf_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><button class="btn btn-sm btn-info col-xs-2 ml-2">Publish</button></td>
                                         </tr>
                                        
                                        
                                        <?php 
                                         }
-                                            }
-                                            ?>
+                                        }
+                                        ?>
                                        
                                         
                                     </tbody>
@@ -135,16 +91,49 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-           <?php echo form_open_multipart('admin/update_department');?>
+           <?php echo form_open_multipart('admin/update_admitcard');?>
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                    
                     <div class="form-group row">
-                        <div class="col-sm-12 col-md-12">
-                            <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'department','class'=>'form-control department','placeholder'=>'Enter Department','required'=>'true'));?>
+                        <div class="col-sm-6 col-md-6">
+                            <label>Registration No.</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'registration_no','id'=>'registration_no','class'=>'form-control registration_no','placeholder'=>'Registration No.','required'=>'true','readonly'=>'true'));?>
                             <input type="hidden" name="id" id="id">
+                        </div>  
+                        <div class="col-sm-6 col-md-6">
+                            <label>Applicant Name</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'candidate_name','id'=>'candidate_name','class'=>'form-control candidate_name','placeholder'=>'Applicant Name','required'=>'true','readonly'=>'true'));?>
+                        </div> 
+                         <div class="col-sm-6 col-md-6">
+                            <label>Batch No.</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'batch_no','id'=>'batch_no','class'=>'form-control batch_no','placeholder'=>'Batch No.','required'=>'true'));?>
                         </div>                                    
+                        <div class="col-sm-6 col-md-6">
+                            <label>Center Unit Name</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'center_name','id'=>'center_name','class'=>'form-control center_name','placeholder'=>'Batch No.','required'=>'true'));?>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <label>Unit Code No.</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'unit_code','id'=>'unit_code','class'=>'form-control unit_code','placeholder'=>'Unit Code No.','required'=>'true'));?>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <label>Interview Date</label>
+                            <?php echo form_input(array('type'=>'date','name'=>'interviewdate','id'=>'interviewdate','class'=>'form-control interviewdate','placeholder'=>'Interview Date','required'=>'true'));?>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <label>Reporting Time</label>
+                            <?php echo form_input(array('type'=>'time','name'=>'reporting_time','id'=>'reporting_time','class'=>'form-control reporting_time','placeholder'=>'Reporting Time','required'=>'true'));?>
+                        </div>
+                         <div class="col-sm-6 col-md-6">
+                            <label>Interview Time</label>
+                            <?php echo form_input(array('type'=>'time','name'=>'interview_time','id'=>'interview_time','class'=>'form-control interview_time','placeholder'=>'Interview Time','required'=>'true'));?>
+                        </div>
+                         <div class="col-sm-12 col-md-12">
+                            <label>Center Address</label>
+                            <?php echo form_input(array('type'=>'text','name'=>'center_address','id'=>'center_address','class'=>'form-control center_address','placeholder'=>'Center Address','required'=>'true'));?>
+                        </div>
                     </div>
                    
                     
@@ -161,13 +150,32 @@
     </div>
     <!-- '''''''''''''''''''''''''''''''''model end................................... -->  
     <script type="text/javascript">
-        $('.updt').click(function(e){
+        $(document).ready(function(e) {
+        $('body').on('click','.updt',function(){
+        // $('.updt').click(function(e){
         var id = $(this).data('id');
-        var department = $(this).data('department');
+        var registration_no = $(this).data('registration_no');
+        var candidate_name = $(this).data('candidate_name');
+        var batch_no = $(this).data('batch_no');
+        var center_name = $(this).data('center_name');
+        var unit_code = $(this).data('unit_code');
+        var interviewdate = $(this).data('interviewdate');
+        var reporting_time = $(this).data('reporting_time');
+        var interview_time = $(this).data('interview_time');
+        var center_address = $(this).data('center_address');
       
         $('#id').val(id);
-        $('#department').val(department);
+        $('#registration_no').val(registration_no);
+        $('#candidate_name').val(candidate_name);
+        $('#batch_no').val(batch_no);
+        $('#center_name').val(center_name);
+        $('#unit_code').val(unit_code);
+        $('#interviewdate').val(interviewdate);
+        $('#reporting_time').val(reporting_time);
+        $('#interview_time').val(interview_time);
+        $('#center_address').val(center_address);
        });
+     });
     </script>
 
 <script>

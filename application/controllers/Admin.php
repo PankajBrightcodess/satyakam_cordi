@@ -1620,6 +1620,98 @@ public function update_submenu(){
 		$this->template->load('pages','online_apply_list',$data);
 	}
 
+	public function admitcardpage(){
+		$id = $this->input->get('id');
+		$data['vacencydetails'] = $this->Website_model->get_vacencydetailsbyid($id);
+		$data['state'] = $this->Website_model->get_state();
+		$data['title']="Create Admit Card";
+		$data['datatable'] = true;
+		$this->template->load('pages','admitcardpage',$data);
+	}
+
+	public function saveadmitcard(){
+	  $data = $this->input->post();
+	  $applicant_no = $data['applicant_no'];
+	  $checked = $this->checkadmitcard($applicant_no);
+	  // print_r($checked);die;
+	  if($checked['verify']!=1){
+	  	  $result = $this->Website_model->insert_admitcard($data);
+			  if($result){
+					$this->session->set_flashdata('msg','Admit Card Generate Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/online_applylist');
+	  }
+	  else{
+	  	$this->session->set_flashdata('msg','Already Exist!');
+	  	redirect('admin/online_applylist');
+	  }
+	}
+
+	public function upload_admincard(){
+		$data['title']="Admit Card List";
+		$data['datatable'] = true;
+		$data['admitcardlist'] = $this->Website_model->get_admitcardlist();
+
+		
+		$this->template->load('pages','admit_cardlist',$data);
+	}
+
+	public function checkadmitcard($applicant_no){
+		$result = $this->Website_model->check_admitcard($applicant_no);
+			return $result;
+	}
+
+	public function update_admitcard(){
+	  $data = $this->input->post();
+	  $result = $this->Website_model->admitcard_updated($data);
+	   if($result){
+					$this->session->set_flashdata('msg','Admit Card Updated Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/upload_admincard');
+	}
+
+	public function pdf_admitcard(){
+		$id = $this->input->get('id');
+		$result = $this->Website_model->pdf_generate_admitcard($id);
+		$image1 = '../assets/images/logo1.png';
+		$pdf = $this->customfpdf->getInstance();
+                $pdf->AliasNbPages();
+                $pdf->AddPage();
+                $pdf->Image($image1, 5, $pdf->GetY(), 33.78);
+                $pdf->Header('Arial');
+                $pdf->SetFont('Times','',25);
+               $pdf->Cell(0,10,'satyakama.',0,0,'C');
+                $pdf->SetFont('Arial','B',8);
+                $pdf->Cell(0,0,'',0,1,'C');
+                $pdf->SetFont('Arial','B',15);
+                $pdf->Cell(0,30,'Admin Card',0,1,'C');
+                $pdf->Cell(0,0,'',1,1,'C');
+                $pdf->Cell(0,3,'',0,1,'C');
+                $pdf->SetFont('Arial','B',9);
+                // $pdf->Cell(20,5,'Sl. No.',0,0,'C');
+                $pdf->Cell(20,5,'Name :  ',0,0,'C');
+                $pdf->Cell(35,5,'',0,1,'C');
+                $pdf->Cell(30,5,' ',0,1,'C');
+                $pdf->Cell(25,5,'Exam Date:',0,0,'C');
+                $pdf->Cell(25,5,date('d-m-Y'),0,1,'C');
+                $pdf->Cell(30,5,' ',0,1,'C');
+                $pdf->Cell(30,5,'Exam Center :',0,0,'C');
+                $pdf->Cell(35,5,'Ranchi Collage ranchi',0,1,'C');
+                $pdf->Cell(30,5,' ',0,1,'C');
+                $pdf->Cell(30,5,'Exam Time :',0,0,'C');
+                $pdf->Cell(25,5,'09:11 AM',0,1,'C');
+                // $pdf->SetFont('Arial','',8);
+                
+    
+                
+                $file =  date('Ymdhis').'_details.pdf';
+                $pdf->Output($file,'I');
+	}
+
 
 
 
