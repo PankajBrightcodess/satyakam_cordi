@@ -1687,7 +1687,7 @@ public function update_submenu(){
                 $pdf->SetFont('Arial','B',8);
                 $pdf->Cell(0,0,'',0,1,'C');
                 $pdf->SetFont('Arial','B',15);
-                $pdf->Cell(0,30,'Admin Card',0,1,'C');
+                $pdf->Cell(0,30,'Work Under Construction',0,1,'C');
                 $pdf->Cell(0,0,'',1,1,'C');
                 $pdf->Cell(0,3,'',0,1,'C');
                 $pdf->SetFont('Arial','B',9);
