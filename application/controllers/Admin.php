@@ -1677,11 +1677,10 @@ public function update_submenu(){
 	public function pdf_admitcard(){
 		$id = $this->input->get('id');
 		$result = $this->Website_model->pdf_generate_admitcard($id);
-		$image1 = '../assets/images/logo1.png';
+		
 		$pdf = $this->customfpdf->getInstance();
                 $pdf->AliasNbPages();
                 $pdf->AddPage();
-                $pdf->Image($image1, 5, $pdf->GetY(), 33.78);
                 $pdf->Header('Arial');
                 $pdf->SetFont('Times','',25);
                $pdf->Cell(0,10,'satyakama.',0,0,'C');
