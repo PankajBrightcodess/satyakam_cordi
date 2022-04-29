@@ -1734,6 +1734,30 @@ class Website extends CI_Controller {
         redirect(base_url()."assets/excel/".$fileName); 
     }
 
+   
+    public function vacency_login_foradmitcard(){
+			$d['v'] = 'website/vacency_login_admitcard';
+			$this->load->view('website/template',$d);
+	}
+
+	 public function check_vacency_loginforadmitcard(){
+    	$data = $this->input->post();
+		$result = $this->Website_model->loginvacency_foradmitcard($data);
+		// echo PRE;
+		// print_R($result);die;
+		if($result['verify']=='true'){
+			$id = $result['id'];
+			$records = $this->Website_model->admitcard_download($id);
+
+			$d['datas'] = $records;
+			$d['v'] = 'website/admit_card';
+		    $this->load->view('website/template',$d);
+		}
+		else{
+			redirect('website/vacency_login_foradmitcard');
+		}
+    }
+
     public function createexcel_security_month() {
 		$fileName = 'security_month.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
@@ -2573,6 +2597,9 @@ class Website extends CI_Controller {
 		$d['v'] = 'website/monthly_team_progress_report';
         $this->load->view('website/template_1',$d);
 	}
+
+
+	
 
 	public function team_get_monthly_progress_list(){
 		$user_id['id'] = $_SESSION['user_id'];

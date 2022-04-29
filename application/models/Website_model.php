@@ -313,10 +313,39 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function admitcard_publish($id){
+		$id = $id['id'];
+		$publish['publish_admitcard'] =1; 
+        $this->db->where("id",$id); 
+        $query= $this->db->update("admitcard", $publish); 
+	    return $query;	
+	}
+
+	public function loginvacency_foradmitcard($data){
+		$emailid =  $data['emailid'];
+		$password =  $data['password'];
+		$query = $this->db->get_where('vacency_signup',array('email'=>$emailid,'password'=>$password));
+		$result =  $query->row_array();
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Wrong Credentials!");
+		}
+		return $result;	
+	}
+
+	public function admitcard_download($id){
+		$query = $this->db->get_where('admitcard',array('applicant_no'=>$id,'status'=>1));
+		return  $query->result_array();
+	}
+
 	public function pdf_generate_admitcard($id){
-		$this->db->where('id',$id);
-		$this->db->select('*');
-		$this->db->from('admitcard');
+		$this->db->where('t1.id',$id);
+		$this->db->select('t1.*,t2.aadharno,t3.name');
+		$this->db->from('admitcard t1');
+		$this->db->join('vacency_candidate_details t2','t1.applicant_no=t2.signup_id','left');
+		$this->db->join('all_state t3','t1.state_code=t3.state_code','left');
 		$query = $this->db->get();
 		$result =  $query->row_array();
 		if(!empty($result)){

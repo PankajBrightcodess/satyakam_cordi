@@ -82,7 +82,7 @@
                                     </div>   
                                     <div class="col-sm-4">
                                         <label>State</label>
-                                        <select class="form-control">
+                                        <select class="form-control" name="state_code">
                                             <option value="">---SELECT---</option>
                                             <?php
                                                 if(!empty($state)){

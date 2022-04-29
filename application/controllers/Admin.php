@@ -1653,9 +1653,14 @@ public function update_submenu(){
 		$data['title']="Admit Card List";
 		$data['datatable'] = true;
 		$data['admitcardlist'] = $this->Website_model->get_admitcardlist();
-
-		
 		$this->template->load('pages','admit_cardlist',$data);
+	}
+
+	public function publish_admitcard(){
+		$id = $this->input->post();
+		$result =  $this->Website_model->admitcard_publish($id);
+		echo $result;
+
 	}
 
 	public function checkadmitcard($applicant_no){
@@ -1677,38 +1682,96 @@ public function update_submenu(){
 	public function pdf_admitcard(){
 		$id = $this->input->get('id');
 		$result = $this->Website_model->pdf_generate_admitcard($id);
-		
+
 		$pdf = $this->customfpdf->getInstance();
-                $pdf->AliasNbPages();
-                $pdf->AddPage();
-                $pdf->Header('Arial');
-                $pdf->SetFont('Times','',25);
-               $pdf->Cell(0,10,'satyakama.',0,0,'C');
-                $pdf->SetFont('Arial','B',8);
-                $pdf->Cell(0,0,'',0,1,'C');
-                $pdf->SetFont('Arial','B',15);
-                $pdf->Cell(0,30,'Work Under Construction',0,1,'C');
-                $pdf->Cell(0,0,'',1,1,'C');
-                $pdf->Cell(0,3,'',0,1,'C');
-                $pdf->SetFont('Arial','B',9);
-                // $pdf->Cell(20,5,'Sl. No.',0,0,'C');
-                $pdf->Cell(20,5,'Name :  ',0,0,'C');
-                $pdf->Cell(35,5,'',0,1,'C');
-                $pdf->Cell(30,5,' ',0,1,'C');
-                $pdf->Cell(25,5,'Exam Date:',0,0,'C');
-                $pdf->Cell(25,5,date('d-m-Y'),0,1,'C');
-                $pdf->Cell(30,5,' ',0,1,'C');
-                $pdf->Cell(30,5,'Exam Center :',0,0,'C');
-                $pdf->Cell(35,5,'Ranchi Collage ranchi',0,1,'C');
-                $pdf->Cell(30,5,' ',0,1,'C');
-                $pdf->Cell(30,5,'Exam Time :',0,0,'C');
-                $pdf->Cell(25,5,'09:11 AM',0,1,'C');
-                // $pdf->SetFont('Arial','',8);
-                
+     $pdf->AliasNbPages();
+     $pdf->AddPage();
+     $pdf->Header('Arial');
+     $pdf->SetFont('Times','',25);
+   // $pdf->Cell(0,10,'satyakama.',0,0,'C');
+     $image="assets/images/logo1.jpg";
+     $pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     $image1="assets/images/logo4.jpg";
+     $pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+     $image2="assets/images/logo5.jpeg";
+     $pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+     $image1="assets/images/logo2.jpg";
+     $pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+     $image1="assets/images/logo3.jpg";
+     $pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+     $pdf->SetFont('Arial','B',15);
+     $pdf->Cell(0,30,'',0,1,'C');
+     $pdf->Cell(0,0,'',1,1,'C');
+     $pdf->SetFont('Arial','',9);
+     $pdf->Cell(63,5,'Application No  :'.$result['applicant_no'],1,0,'L');
+     $pdf->SetFont('Arial','B',10);
+     $pdf->Cell(63,5,'ADMIT CARD',0,0,'C');
+     $pdf->SetFont('Arial','',9);
+     $pdf->Cell(63,5,'Batch No.  :'.$result['batch_no'],1,1,'L');
+     $pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
+     $pdf->SetFont('Arial','B',10);
+     $pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
+     $pdf->SetFont('Arial','',9);
+     $pdf->Cell(63,5,'Issue Date  :'.$result['registration_no'],1,1,'L');
+     $pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
+     $pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     // $images = $result['photo'];
+     // $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
+     $pdf->Cell(63,5,'Date Of Birth  :'.date('d-m-Y',strtotime($result['dob'])),1,0,'L');
+     $pdf->Cell(63,5,'Mobile No.  :'.$result['mobile_no'],1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(63,5,'Aadhar No.  :'.$result['aadharno'],1,0,'L');
+     $pdf->Cell(63,5,'Gender  :'.$result['gender'],1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(63,5,'Category  :'.$result['category'],1,0,'L');
+     $pdf->SetFont('Arial','',8);
+     $pdf->Cell(63,5,$result['designation'],1,0,'L');
+     $pdf->SetFont('Arial','',9);
+     $pdf->Cell(63,5,'',0,1,'L');
+     $pdf->SetFont('Arial','B',9);
+     $pdf->Cell(126,5,'INTERVIEW INFOMATION',1,0,'C');
+     $pdf->SetFont('Arial','',9);
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(63,5,'State  :'.$result['name'],1,0,'L');
+     $pdf->Cell(63,5,'Center Unit Name  :',1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(63,5,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
+     $pdf->Cell(63,5,'Interview Date  :'.$result['interviewdate'],1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(63,5,'Reporting Time  :'.$result['reporting_time'],1,0,'L');
+     $pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
+     $pdf->Cell(63,5,'',0,1,'C');
+     $pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
+      $pdf->Cell(63,10,'',1,1,'C');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+     $pdf->SetFont('Arial','B',10);
+     $pdf->Cell(189,10,'INSTRUCTION',0,1,'C');
+      $pdf->SetFont('Arial','I',9);
+      $pdf->SetFont('Arial','B',8);
+      $pdf->Cell(189,5,'1.   IT WILL BE VERY IMPORTANT FOR ALL THE CANDIDATES APPEARING IN THE INTERVIEW TEST TO PAY ATTENTION TO THE',0,1,'L');
+      $pdf->Cell(189,5,'     FOLLOWING POINTS.',0,1,'L');
+      	$pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'2.   IT IS MANDATORY FOR ALL THE CANDIDATES APPEARING IN THE INTERVIEW TEST TO REGISTER THEIR ATTENDANCE',0,1,'L');
+      $pdf->Cell(189,5,'     TEST TO REGISTER THEIR ATTENDANCE ON THE DATE AND REPORTING TIME LIMIT PUBLISHED IN THE ADMIT CARD TIME LIMIT',0,1,'L');
+      $pdf->Cell(189,5,'     ATTENDANCE FAILURE TO DO SO WILL BE TREATED AS ABSENT.',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'3.   ALL THE CANDIDATES WILL HAVE TO GET THEIR INTERVIEW TEST VERIFIED WITH THE ADMIT CARD AND ALL OTHER ',0,1,'L');
+      $pdf->Cell(189,5,'     VALUE DOCUMENTS FROM THE DOCUMENT VARIFICATION OFFICER AND WAIT YOUR TURN.',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'4.   CONSUMPTION OF ALL TYPES OF DHPUV PAAN AND FOOD ITEMS IS PROHIBITED AT THE INTERVIEW VENUE.',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'5.   DURING THE INTERVIEW CANDIDATES WILL HAVE TO GIVE PREFERENCE TO FORMAL DRESS ONLY.',0,1,'L');
+     $pdf->Cell(189,5,'',0,1,'L'); 
+     $pdf->Cell(189,5,'',0,1,'L'); 
+     $pdf->Cell(189,5,'',0,1,'L');
+     $pdf->Cell(189,5,'',0,1,'L');
+     $pdf->Cell(189,5,'AUTHORISED SIGNATURE',0,1,'R');
     
-                
-                $file =  date('Ymdhis').'_details.pdf';
-                $pdf->Output($file,'I');
+    // $pdf->SetFont('Arial','',8);
+    $file =  date('Ymdhis').'_details.pdf';
+    $pdf->Output($file,'I');
 	}
 
 

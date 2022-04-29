@@ -61,7 +61,7 @@
                                             <td ><?php echo $val['interview_time']; ?></td>
                                             <td ><?php echo $val['center_address'] ;?></td>
                                             <td ><button class="btn btn-sm btn-success col-xs-2 updt"  data-registration_no="<?php echo $val['registration_no']; ?>" data-id="<?php echo $val['id']; ?>" data-candidate_name="<?php echo $val['candidate_name'] ;?>" data-batch_no="<?php echo $val['batch_no'] ;?>" data-center_name="<?php echo $val['center_name'] ;?>" data-unit_code="<?php echo $val['unit_code'] ;?>" data-interviewdate="<?php echo $val['interviewdate'] ;?>" data-reporting_time="<?php echo $val['reporting_time'] ;?>" data-interview_time="<?php echo $val['interview_time'] ;?>" data-center_address="<?php echo $val['center_address'] ;?>" data-toggle="modal" data-target="#exampleModal">Edit</button>
-                                                    <a href="<?= base_url('admin/pdf_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><button class="btn btn-sm btn-info col-xs-2 ml-2">Publish</button></td>
+                                                    <a href="<?= base_url('admin/pdf_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><button class="btn btn-sm btn-info col-xs-2 ml-2 publish" value="<?= $val['id'];?>">Publish</button></td>
                                         </tr>
                                        
                                        
@@ -195,6 +195,23 @@
                 },
                 success: function(data){
                     console.log(data);
+                }
+            });
+        });
+
+
+
+        $('body').on('click','.publish',function(){
+            debugger;
+            var id=$(this).val();
+            $.ajax({
+                type:"POST",
+                url:"<?php echo base_url("admin/publish_admitcard"); ?>",
+                data:{id:id},
+                // dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    location.reload();
                 }
             });
         });
