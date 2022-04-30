@@ -103,7 +103,7 @@
                                             <td ><?php echo $val['mark_obtained'] ;?></td>
                                             <td ><?php echo $val['division'] ;?></td>
                                             <td ><?php echo $val['persentage_marks'] ;?></td>
-                                            <td> <a href="<?= base_url('admin/admitcardpage?id='.$val['id']);?>" class="btn btn-success btn-sm">Make Admitcard</a></td>
+                                            <td> <a href="<?= base_url('admin/admitcardpage?id='.$val['id']);?>" class="btn btn-success btn-sm">Make Admitcard</a> <a href="<?= base_url('admin/resultpage?id='.$val['id']);?>" class="btn btn-info btn-sm ml-2">Make Result</a></td>
                                             
                                             
                                         </tr>

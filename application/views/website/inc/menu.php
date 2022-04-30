@@ -26,7 +26,7 @@
           <!-- apply_online -->
           <li><a class="dropdown-item" href="<?= base_url('website/vacency_login_foradmitcard');?>" style="color:white;">Download Admit Card</a></li>
           <!-- data-toggle="modal" data-target="#exampleModalCenter" -->
-          <li><a class="dropdown-item" href="#" style="color:white">Results</a></li>
+          <li><a class="dropdown-item" href="<?= base_url('website/vacency_login_forresult');?>" style="color:white">Results</a></li>
           <li><a class="dropdown-item" href="<?= base_url('website/helpline');?>" style="color:white">Helpline</a></li>
         </ul>
       </li>

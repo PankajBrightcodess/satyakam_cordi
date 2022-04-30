@@ -1740,6 +1740,11 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 	}
 
+	 public function vacency_login_forresult(){
+			$d['v'] = 'website/vacency_login_result';
+			$this->load->view('website/template',$d);
+	}
+
 	 public function check_vacency_loginforadmitcard(){
     	$data = $this->input->post();
 		$result = $this->Website_model->loginvacency_foradmitcard($data);
@@ -1756,6 +1761,27 @@ class Website extends CI_Controller {
 		else{
 			redirect('website/vacency_login_foradmitcard');
 		}
+    }
+
+    public function check_vacency_loginforresult(){
+    	$data = $this->input->post();
+    	echo PRE;
+    	print_r($data);die;
+		$result = $this->Website_model->loginvacency_foradmitcard($data);
+		// echo PRE;
+		// print_R($result);die;
+		if($result['verify']=='true'){
+			$id = $result['id'];
+			$records = $this->Website_model->admitcard_download($id);
+
+			$d['datas'] = $records;
+			$d['v'] = 'website/admit_card';
+		    $this->load->view('website/template',$d);
+		}
+		else{
+			redirect('website/vacency_login_foradmitcard');
+		}
+
     }
 
     public function createexcel_security_month() {

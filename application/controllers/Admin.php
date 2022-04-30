@@ -1629,6 +1629,27 @@ public function update_submenu(){
 		$this->template->load('pages','admitcardpage',$data);
 	}
 
+	public function resultpage(){
+		$id = $this->input->get('id');
+		$data['vacencydetails'] = $this->Website_model->get_vacencydetailsbyidsforresult($id);
+		$data['state'] = $this->Website_model->get_state();
+		$data['title']="Create Result";
+		$data['datatable'] = true;
+		$this->template->load('pages','resultpage',$data);
+	}
+
+	public function saveresult(){
+		$data = $this->input->post();
+		$records = $this->Website_model->save_result($data);
+		 if($records){
+					$this->session->set_flashdata('msg','Result Added Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/online_applylist');
+	}
+
+
 	public function saveadmitcard(){
 	  $data = $this->input->post();
 	  $applicant_no = $data['applicant_no'];
@@ -1658,7 +1679,7 @@ public function update_submenu(){
 
 	public function publish_admitcard(){
 		$id = $this->input->post();
-		$result =  $this->Website_model->admitcard_publish($id);
+		$result =  $this->Website_model->admitcard_publish();
 		echo $result;
 
 	}
@@ -1680,74 +1701,73 @@ public function update_submenu(){
 	}
 
 	public function pdf_admitcard(){
-		$id = $this->input->get('id');
-		$result = $this->Website_model->pdf_generate_admitcard($id);
-
-		$pdf = $this->customfpdf->getInstance();
-     $pdf->AliasNbPages();
-     $pdf->AddPage();
-     $pdf->Header('Arial');
-     $pdf->SetFont('Times','',25);
+			$id = $this->input->get('id');
+			$result = $this->Website_model->pdf_generate_admitcard($id);
+			$pdf = $this->customfpdf->getInstance();
+     	$pdf->AliasNbPages();
+     	$pdf->AddPage();
+      $pdf->Header('Arial');
+     	$pdf->SetFont('Times','',25);
    // $pdf->Cell(0,10,'satyakama.',0,0,'C');
-     $image="assets/images/logo1.jpg";
-     $pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
-     $image1="assets/images/logo4.jpg";
-     $pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
-     $image2="assets/images/logo5.jpeg";
-     $pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
-     $image1="assets/images/logo2.jpg";
-     $pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
-     $image1="assets/images/logo3.jpg";
-     $pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
-     $pdf->SetFont('Arial','B',15);
-     $pdf->Cell(0,30,'',0,1,'C');
-     $pdf->Cell(0,0,'',1,1,'C');
-     $pdf->SetFont('Arial','',9);
-     $pdf->Cell(63,5,'Application No  :'.$result['applicant_no'],1,0,'L');
-     $pdf->SetFont('Arial','B',10);
-     $pdf->Cell(63,5,'ADMIT CARD',0,0,'C');
-     $pdf->SetFont('Arial','',9);
-     $pdf->Cell(63,5,'Batch No.  :'.$result['batch_no'],1,1,'L');
-     $pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
-     $pdf->SetFont('Arial','B',10);
-     $pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
-     $pdf->SetFont('Arial','',9);
-     $pdf->Cell(63,5,'Issue Date  :'.$result['registration_no'],1,1,'L');
-     $pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
-     $pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     // $images = $result['photo'];
-     // $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
-     $pdf->Cell(63,5,'Date Of Birth  :'.date('d-m-Y',strtotime($result['dob'])),1,0,'L');
-     $pdf->Cell(63,5,'Mobile No.  :'.$result['mobile_no'],1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(63,5,'Aadhar No.  :'.$result['aadharno'],1,0,'L');
-     $pdf->Cell(63,5,'Gender  :'.$result['gender'],1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(63,5,'Category  :'.$result['category'],1,0,'L');
-     $pdf->SetFont('Arial','',8);
-     $pdf->Cell(63,5,$result['designation'],1,0,'L');
-     $pdf->SetFont('Arial','',9);
-     $pdf->Cell(63,5,'',0,1,'L');
-     $pdf->SetFont('Arial','B',9);
-     $pdf->Cell(126,5,'INTERVIEW INFOMATION',1,0,'C');
-     $pdf->SetFont('Arial','',9);
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(63,5,'State  :'.$result['name'],1,0,'L');
-     $pdf->Cell(63,5,'Center Unit Name  :',1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(63,5,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
-     $pdf->Cell(63,5,'Interview Date  :'.$result['interviewdate'],1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(63,5,'Reporting Time  :'.$result['reporting_time'],1,0,'L');
-     $pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
-     $pdf->Cell(63,5,'',0,1,'C');
-     $pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
+     	$image="assets/images/logo1.jpg";
+     	$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     	$image1="assets/images/logo4.jpg";
+     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+     	$image2="assets/images/logo5.jpeg";
+     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+     	$image1="assets/images/logo2.jpg";
+     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+    	$image1="assets/images/logo3.jpg";
+    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+     	$pdf->SetFont('Arial','B',15);
+     	$pdf->Cell(0,30,'',0,1,'C');
+     	$pdf->Cell(0,0,'',1,1,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Application No  :'.$result['applicant_no'],1,0,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(63,5,'ADMIT CARD',0,0,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Batch No.  :'.$result['batch_no'],1,1,'L');
+     	$pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Issue Date  :'.$result['registration_no'],1,1,'L');
+     	$pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
+     	$pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	// $images = $result['photo'];
+     	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
+     	$pdf->Cell(63,5,'Date Of Birth  :'.date('d-m-Y',strtotime($result['dob'])),1,0,'L');
+     	$pdf->Cell(63,5,'Mobile No.  :'.$result['mobile_no'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Aadhar No.  :'.$result['aadharno'],1,0,'L');
+     	$pdf->Cell(63,5,'Gender  :'.$result['gender'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Category  :'.$result['category'],1,0,'L');
+     	$pdf->SetFont('Arial','',8);
+     	$pdf->Cell(63,5,$result['designation'],1,0,'L');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->SetFont('Arial','B',9);
+     	$pdf->Cell(126,5,'INTERVIEW INFOMATION',1,0,'C');
+      $pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'State  :'.$result['name'],1,0,'L');
+     	$pdf->Cell(63,5,'Center Unit Name  :',1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
+     	$pdf->Cell(63,5,'Interview Date  :'.$result['interviewdate'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Reporting Time  :'.$result['reporting_time'],1,0,'L');
+     	$pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
       $pdf->Cell(63,10,'',1,1,'C');
       $pdf->Cell(189,5,'',0,1,'L');
       $pdf->Cell(189,5,'',0,1,'L');
-     $pdf->SetFont('Arial','B',10);
-     $pdf->Cell(189,10,'INSTRUCTION',0,1,'C');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(189,10,'INSTRUCTION',0,1,'C');
       $pdf->SetFont('Arial','I',9);
       $pdf->SetFont('Arial','B',8);
       $pdf->Cell(189,5,'1.   IT WILL BE VERY IMPORTANT FOR ALL THE CANDIDATES APPEARING IN THE INTERVIEW TEST TO PAY ATTENTION TO THE',0,1,'L');
@@ -1774,21 +1794,117 @@ public function update_submenu(){
     $pdf->Output($file,'I');
 	}
 
+	public function result_list(){
+		$data['title']="Result List";
+		$data['datatable'] = true;
+		$data['result_list'] = $this->Website_model->get_resultlist();
+		$this->template->load('pages','result_list_vecency',$data);
+	}
 
+	public function update_result(){
+		$data = $this->input->post();
+		$result = $this->Website_model->result_updated($data);
+	   if($result){
+					$this->session->set_flashdata('msg','Result Updated Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/result_list');
+	}
 
+	public function pdf_result(){
+		  $id = $this->input->get('id');
+			$result = $this->Website_model->pdf_generate_result($id);
+			// echo PRE;
+		 //  print_r($result);die;
+			$pdf = $this->customfpdf->getInstance();
+     	$pdf->AliasNbPages();
+     	$pdf->AddPage();
+      $pdf->Header('Arial');
+     	$pdf->SetFont('Times','',25);
+   // $pdf->Cell(0,10,'satyakama.',0,0,'C');
+     	$image="assets/images/logo1.jpg";
+     	$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     	$image1="assets/images/logo4.jpg";
+     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+     	$image2="assets/images/logo5.jpeg";
+     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+     	$image1="assets/images/logo2.jpg";
+     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+    	$image1="assets/images/logo3.jpg";
+    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+     	$pdf->SetFont('Arial','B',15);
+     	$pdf->Cell(0,30,'',0,1,'C');
+     	$pdf->Cell(0,0,'',1,1,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Application No  :'.$result['applicant_no'],1,0,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(63,5,'RESULT',0,0,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Batch No.  :'.$result['batch_no'],1,1,'L');
+     	$pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'Issue Date  :',1,1,'L');
+     	$pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
+     	$pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	// $images = $result['photo'];
+     	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
+     	$pdf->Cell(63,5,'Email  :'.$result['email'],1,0,'L');
+     	$pdf->Cell(63,5,'Mobile No.  :'.$result['mobile_no'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Aadhar No.  :',1,0,'L');
+     	$pdf->Cell(63,5,'Gender  :',1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Category  :',1,0,'L');
+     	$pdf->SetFont('Arial','',8);
+     	$pdf->Cell(63,5,$result['designation'],1,0,'L');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->SetFont('Arial','B',9);
+     	$pdf->Cell(126,5,'INTERVIEW INFOMATION',1,0,'C');
+      $pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'State  :',1,0,'L');
+     	$pdf->Cell(63,5,'Center Unit Name  :',1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
+     	$pdf->Cell(63,5,'Interview Date  :'.$result['interviewdate'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(63,5,'Reporting Time  :',1,0,'L');
+     	$pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(126,10,'Center Address  :',1,0,'L');
+      $pdf->Cell(63,10,'',1,1,'C');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(189,10,'INSTRUCTION',0,1,'C');
+      $pdf->SetFont('Arial','I',9);
+      $pdf->SetFont('Arial','B',8);
+      $pdf->Cell(189,5,'THR SUCCESSFULLY CATEGORY HAS COMPULSARY IMPLIMENTED THE CANDIDATES OF ALL THE POST INCLUDED IN THE',0,1,'L');
+      $pdf->Cell(189,5,'     SECTION 2022-23. IT HAS BEEN MADE MANDATORY TO DEPOSIT A NON JUDICIAL STAMP RS. 1000 ALLOWING ',0,1,'L');
+      	$pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'2.   WITH THE SECURITY FUND, PROCESSING AND TRAINING FEE UNDER THE APPOINTMENT RULES OF THE INSTITUTION.',0,1,'L');
+      $pdf->Cell(189,5,'1.     ALL FEES AND NON-JUDICIAL STAMPS WILL BE DEPOSITED BY THE STIPULATED DATE ONLY IN SPECIAL ',0,1,'L');
+      $pdf->Cell(189,5,'     PRESENTATION THE CANDIDATE CAN DEMAND AN ADDITIONAL TIME OF  7 DAYS FROM THE OFFICE.',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'2.   ALL DEMAND FEE WILL BE CHARGED IN LUMP SUM PAYMENT. ',0,1,'L');
+      $pdf->Cell(189,5,'3.   ALL THE DEMAND AMOUNT CANDIDATES WILL HAVE TO DEPOSIT THEM SELVES ON THE PERSONAL ACCOUNT OF THE',0,1,'L');
+      $pdf->Cell(189,5,'    INSTITUTE WITH THE HELP OF E-PAYMENT CASH DEPOSIT WILL NOT BE TAKEN.',0,1,'L');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,5,'4.   CANDIDATES MUST KEEP ALL THE FEE PAYMENT RECEIPTS SAFE WITH THEM.',0,1,'L');
+     $pdf->Cell(189,5,'',0,1,'L'); 
+     $pdf->Cell(189,5,'',0,1,'L'); 
+     $pdf->Cell(189,5,'',0,1,'L');
+     $pdf->Cell(189,5,'',0,1,'L');
+     $pdf->Cell(189,5,'AUTHORISED SIGNATURE',0,1,'R');
+    
+    // $pdf->SetFont('Arial','',8);
+    $file =  date('Ymdhis').'_details.pdf';
+    $pdf->Output($file,'I');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}
 }

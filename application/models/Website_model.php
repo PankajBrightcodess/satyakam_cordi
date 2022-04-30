@@ -260,6 +260,55 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function get_vacencydetailsbyidsforresult($id){
+		$this->db->where('t1.applicant_no',$id);
+		$this->db->select('t1.*,t2.email,t3.permanent_address');
+		$this->db->from('admitcard t1');
+		$this->db->join('vacency_signup t2','t1.applicant_no=t2.id','left');
+		$this->db->join('vacency_candidate_details t3','t2.id=t3.signup_id','left');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+
+	public function save_result($data){
+		$admitcard_id =$data['admitcard_id'];
+		// $admitcard_id =7;
+		$records  =$this->check_recult($admitcard_id);
+		if(empty($records)){
+			$table="result";  
+			$data['added_on']=date('Y-m-d');	
+			$status=$this->db->insert($table,$data);
+			if($status){
+			     return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
+		}	
+	}
+
+	public function check_recult($admitcard_id){
+		$query = $this->db->get_where('result',array('admitcard_id'=>$admitcard_id,'status'=>1));
+		return  $query->row_array();
+	}
+
+	public function get_resultlist(){
+		$query = $this->db->get_where('result',array('status'=>1));
+		return  $query->result_array();
+
+	}
+
+
+
 	public function get_state(){
 		$this->db->select('id,name,state_code');
 		$this->db->from('all_state');
@@ -356,12 +405,33 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function pdf_generate_result($id){
+		$this->db->where('id',$id);
+		$this->db->select('*');
+		$this->db->from('result');
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		if(!empty($result)){
+			return $result;
+		}
+		else{
+			return false;
+		}
+
+	}
+
 	public function admitcard_updated($data){
 		$id = $data['id']; 
-         $this->db->where("id",$id); 
-         $query= $this->db->update("admitcard", $data); 
-		 return $query;	
+        $this->db->where("id",$id); 
+        $query= $this->db->update("admitcard", $data); 
+		return $query;	
+	}
 
+	public function result_updated($data){
+		$id = $data['id']; 
+        $this->db->where("id",$id); 
+        $query= $this->db->update("result", $data); 
+		return $query;	
 	}
 
 
