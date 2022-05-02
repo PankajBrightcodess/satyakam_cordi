@@ -618,16 +618,18 @@ public function update_submenu(){
 	}
 
 	public function my_report(){
+		// echo PRE;
+		$depart_id = $this->input->post('depart_id');
+		// print_r($_POST);die;
 		$data['title']="Daily Activity Report(My Office)";
 		$data['datatable'] = true;	
-		$data['depart'] = $this->Website_model->get_departlist($data);	
-		$data['post'] = $this->Website_model->get_postlist($data);
-		$data['officer_list']= $this->Website_model->get_officer_list_for_myofficedetails();
+		// $data['depart'] = $this->Website_model->get_departlist($data);	
+		// $data['post'] = $this->Website_model->get_postlist($data);
+		$data['officer_list']= $this->Website_model->get_officer_list_for_myofficedetails($depart_id);
 
 		$this->template->load('pages','my_report',$data);
 	}
 	public function daily_report_list(){
-		$user_id = $this->input->get();
 		$user_id = $this->input->get();
 		$data['user_id'] = $user_id;
 		$data['revenue'] = $this->Website_model->revenuelist($user_id);
@@ -1152,8 +1154,9 @@ public function update_submenu(){
 
 	public function office_expense(){
 		$data['title']=" Office Expense(My Office)";
-		// $data['datatable'] = true;	
-		$data['expense_list'] = $this->Website_model->get_expenselist();
+		// $data['datatable'] = true;
+		$depart_id = $this->input->post();
+		$data['expense_list'] = $this->Website_model->get_expenselist($depart_id );
 		
 		$data['post'] = $this->Website_model->get_postlist($data);
 		$this->template->load('pages','office_expense',$data);
@@ -1612,9 +1615,11 @@ public function update_submenu(){
 
 
 	public function online_applylist(){
+		$depart_id = $this->input->post('depart_id');
+		// print_r($depart_id);die;
 		$data['title']="Apply List";
 		$data['datatable'] = true;
-		$data['applylist'] = $this->Website_model->get_applylist();
+		$data['applylist'] = $this->Website_model->get_applylist($depart_id);
 		// echo PRE;
 		// print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
@@ -1671,9 +1676,10 @@ public function update_submenu(){
 	}
 
 	public function upload_admincard(){
+		$depart_id = $this->input->post('depart_id');
 		$data['title']="Admit Card List";
 		$data['datatable'] = true;
-		$data['admitcardlist'] = $this->Website_model->get_admitcardlist();
+		$data['admitcardlist'] = $this->Website_model->get_admitcardlist($depart_id);
 		$this->template->load('pages','admit_cardlist',$data);
 	}
 
@@ -1800,6 +1806,8 @@ public function update_submenu(){
 		$data['result_list'] = $this->Website_model->get_resultlist();
 		$this->template->load('pages','result_list_vecency',$data);
 	}
+
+
 
 	public function update_result(){
 		$data = $this->input->post();
@@ -1934,5 +1942,34 @@ public function update_submenu(){
     $file =  date('Ymdhis').'_details.pdf';
     $pdf->Output($file,'I');
 
+	}
+
+
+
+	// '''''''''''''''''''controlling department wise''''''''''''''''''''''''''''''
+	public function departmentwisecontrol(){
+		$data['title']="Department Wise Control";
+		$data['datatable'] = true;
+		$data['depart'] = $this->Website_model->get_departlist($data);
+		$this->template->load('pages','depart_wise_control',$data);
+	}
+	public function departmentwiseexpense(){
+		$data['title']="Department Wise Control";
+		$data['datatable'] = true;
+		$data['depart'] = $this->Website_model->get_departlist($data);
+		$this->template->load('pages','department_wise_expense',$data);
+	}
+
+	public function departmentwise_vacency(){
+		$data['title']="Department Wise Control";
+		$data['datatable'] = true;
+		$data['depart'] = $this->Website_model->get_departlist($data);
+		$this->template->load('pages','department_wise_vecency',$data);
+	}
+	public function departmentwise_admitcard(){
+		$data['title']="Department Wise Control";
+		$data['datatable'] = true;
+		$data['depart'] = $this->Website_model->get_departlist($data);
+		$this->template->load('pages','department_wise_admitcard',$data);
 	}
 }

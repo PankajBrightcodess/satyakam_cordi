@@ -34,11 +34,11 @@
                     <td>Honorarium Slip</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <th scope="row">5</th>
                     <td>House Fund</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
-                  </tr>
+                  </tr> -->
                   <tr>
                     <th scope="row">6</th>
                     <td>Emergency Leave</td>

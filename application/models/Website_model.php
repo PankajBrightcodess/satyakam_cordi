@@ -349,9 +349,11 @@ class Website_model extends CI_Model{
 		return $result;
 	}
 
-	public function get_admitcardlist(){
-		$this->db->select('*');
-		$this->db->from('admitcard');
+	public function get_admitcardlist($depart_id){
+		$this->db->where('t2.id',$depart_id);
+		$this->db->select('t1.* ,t2.id as depart_id');
+		$this->db->from('admitcard t1');
+		$this->db->join('department t2','t1.designation=t2.department');
 		$query = $this->db->get();
 		$result =  $query->result_array();
 		if(!empty($result)){
@@ -479,7 +481,9 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('department',array('status'=>1));
 		return  $query->result_array();
 	}
-	public function get_expenselist(){
+	public function get_expenselist($depart_id){
+		// print_r($depart_id);die;
+		$this->db->where('t2.department_id',$depart_id['depart_id']);
 		$this->db->select('t1.*,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name');
 		$this->db->from('expense t1');
 		$this->db->join('officer_details t2','t1.user_id=t2.id','left');
@@ -688,8 +692,8 @@ class Website_model extends CI_Model{
 		return $records;
 	}
 
-	public function get_officer_list_for_myofficedetails(){
-		$this->db->where('t1.verify_status',1);
+	public function get_officer_list_for_myofficedetails($depart_id){
+		$this->db->where(['t1.verify_status'=>1,'t1.department_id'=>$depart_id]);
 		$this->db->select('t1.batch_no,t1.Join_in_branch,t1.id,t1.mobile_no,t1.email_id,t1.officer_first_name,t1.officer_middle_name,t1.officer_last_name,t3.code,t4.department,t5.post,t6.state');
 		$this->db->from('officer_details t1');
 		$this->db->join('signup t2','t1.batch_no=t2.batch_no','left');
@@ -1346,7 +1350,8 @@ class Website_model extends CI_Model{
 		}	
 	}
 
-	public function get_applylist(){
+	public function get_applylist($depart_id){
+		$this->db->where('t1.depart_id',$depart_id);
 		$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
 		$this->db->from('vacency_signup t1');
 		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');

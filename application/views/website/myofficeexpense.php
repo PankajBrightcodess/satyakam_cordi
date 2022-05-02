@@ -13,11 +13,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <!-- <tr>
                     <th scope="row">1</th>
                     <td>Office Rent</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
-                  </tr>
+                  </tr> -->
                   <tr>
                     <th scope="row">2</th>
                     <td>Daily Authorise Expense</td>
