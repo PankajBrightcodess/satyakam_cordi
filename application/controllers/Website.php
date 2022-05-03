@@ -197,7 +197,7 @@ class Website extends CI_Controller {
 		public function vacencysignup(){
 			$d['v'] = 'website/vacency_signup';
 			$d['depart'] = $this->Website_model->get_departlist();
-			// $d['state'] = $this->Website_model->get_statelist();
+			$d['state'] = $this->Website_model->get_statelist();
 			$this->load->view('website/template',$d);
 		}
 
@@ -219,9 +219,18 @@ class Website extends CI_Controller {
 			}
 		}
 
+		public function get_division(){
+			$state_id = $this->input->post();
+			$divisiondata = $this->Website_model->get_divisionlist($state_id);
 
-
-
+			if(!empty($divisiondata)){
+				$html = '<option value="">---SELECT---</option>';
+				foreach ($divisiondata as $key => $value) {
+					$html.= '<option value="'.$value['id'].'">'.$value['division'].'</option>';
+				}
+			}
+			echo $html;
+		}
 		public function econtractform(){
 			$d['v'] = 'website/econtractform';
 			$signup_id =$_SESSION['signupid'];
@@ -1025,6 +1034,7 @@ class Website extends CI_Controller {
 
 	public function vacency_logins(){
 		$data = $this->input->post();
+		
 		$result= $this->Website_model->checkvacenylogin($data);
 		if(!empty($result['id'])){
 			$id = $result['id'];
@@ -1752,7 +1762,7 @@ class Website extends CI_Controller {
 		// print_R($result);die;
 		if($result['verify']=='true'){
 			$id = $result['id'];
-			$records = $this->Website_model->admitcard_download($id);
+			$records = $this->Website_model->result_download($id);
 
 			$d['datas'] = $records;
 			$d['v'] = 'website/admit_card';
@@ -1765,21 +1775,16 @@ class Website extends CI_Controller {
 
     public function check_vacency_loginforresult(){
     	$data = $this->input->post();
-    	echo PRE;
-    	print_r($data);die;
 		$result = $this->Website_model->loginvacency_foradmitcard($data);
-		// echo PRE;
-		// print_R($result);die;
 		if($result['verify']=='true'){
 			$id = $result['id'];
-			$records = $this->Website_model->admitcard_download($id);
-
+			$records = $this->Website_model->result_download($id);
 			$d['datas'] = $records;
-			$d['v'] = 'website/admit_card';
+			$d['v'] = 'website/result';
 		    $this->load->view('website/template',$d);
 		}
 		else{
-			redirect('website/vacency_login_foradmitcard');
+			redirect('website/vacency_login_forresult');
 		}
 
     }
@@ -3101,5 +3106,11 @@ class Website extends CI_Controller {
 	public function updatedata(){
 		$this->load->library('alldata');
 		$this->alldata->updatedata();
+	}
+
+	public function adddivision(){
+		$d['depart'] = $this->Website_model->get_departlist();
+			$d['v'] = 'website/division';
+			$this->load->view('website/template_1',$d);
 	}
 }

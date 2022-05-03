@@ -1,10 +1,10 @@
 <section class="content">
       <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+    	<div class="row">
+        	<div class="col-md-12">
                 <div class="card">
                    <div class="card-header">
-                        <h3 class="card-title"><?php echo $title; ?></h3>
+                    	<h3 class="card-title"><?php echo $title; ?></h3>
                     </div> 
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -14,8 +14,7 @@
                                 foreach ($depart as $key => $value) {
                                     ?>
                                     <div class="col-md-2 col-lg-2 mb-5 text-center">
-                                         <?php echo form_open_multipart('admin/online_applylist');?>
-                                         <input type="hidden" value="<?= $payment_status?>" name="payment_status">
+                                         <?php echo form_open_multipart('admin/result_list');?>
                                          <input type="hidden" value="<?= $value['id']?>" name="depart_id">
                                          <input type="submit" class="btn btn-sm btn-success" value="<?= $value['department']?>">
                                          <?php echo form_close();?>
@@ -78,8 +77,8 @@
 
 <script>
 
-    
-    $(document).ready(function(e) {
+	
+	$(document).ready(function(e) {
         $('.hoverable').mouseenter(function(){
             //$('[data-toggle="popover"]').popover();
             $(this).popover('show');                    
@@ -114,44 +113,44 @@
             });
         });
         
-        var table=$('.data-table').DataTable({
-            scrollCollapse: true,
-            autoWidth: false,
-            responsive: true,
-            columnDefs: [{
-                targets: "no-sort",
-                orderable: false,
-            }],
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            "language": {
-                "info": "_START_-_END_ of _TOTAL_ entries",
-                searchPlaceholder: "Search"
-            },
-        });     
+		var table=$('.data-table').DataTable({
+			scrollCollapse: true,
+			autoWidth: false,
+			responsive: true,
+			columnDefs: [{
+				targets: "no-sort",
+				orderable: false,
+			}],
+			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+			"language": {
+				"info": "_START_-_END_ of _TOTAL_ entries",
+				searchPlaceholder: "Search"
+			},
+		});		
         
-        $('body').on('change','#parent_id',function(){
-            var parent_id=$(this).val();
-            var option="<select name='position' id='position' class='form-control' required>";
-            option+="<option value=''>Select </option>";
-            option+="<option value='0'>Top</option>";
-            $.ajax({
-                type:"POST",
-                url:"<?php echo base_url("home/getOrderList"); ?>",
-                data:{parent_id:parent_id},
-                dataType:"json",
-                beforeSend: function(){
-                    //$(".box-overlay").show();
-                },
-                success: function(data){
-                    $(data).each(function(i, val) {
-                        option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
-                    });
-                    option+='</select>';
-                    $('#position').replaceWith(option);
-                    $('.box-overlay').hide();
-                }
-            });
-        });
+		$('body').on('change','#parent_id',function(){
+			var parent_id=$(this).val();
+			var option="<select name='position' id='position' class='form-control' required>";
+			option+="<option value=''>Select </option>";
+			option+="<option value='0'>Top</option>";
+			$.ajax({
+				type:"POST",
+				url:"<?php echo base_url("home/getOrderList"); ?>",
+				data:{parent_id:parent_id},
+				dataType:"json",
+				beforeSend: function(){
+					//$(".box-overlay").show();
+				},
+				success: function(data){
+					$(data).each(function(i, val) {
+						option+="<option value='"+val['position']+"'>After "+val['name']+"</option>";
+					});
+					option+='</select>';
+					$('#position').replaceWith(option);
+					$('.box-overlay').hide();
+				}
+			});
+		});
         $('#parent_id').trigger('change');
     });
 

@@ -5,6 +5,26 @@ class Admin extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 	}
+
+		public function adddivision(){
+		checklogin();
+		$data['title']="Division";
+		$data['datatable'] = true;	
+			$data['state'] = $this->Website_model->get_statelist($data);	
+		$this->template->load('pages','addivision',$data);
+	}
+
+	public function savedivision(){
+		$data = $this->input->post();
+		$result = $this->Website_model->insert_division($data);	
+		if($result){
+			redirect('admin/adddivision');
+			$this->session->set_flashdata("msg","Division Add!!");
+		}else{
+			$this->session->set_flashdata("err_msg","Something Error!!");
+			redirect('admin/adddivision');
+		}
+	}
 	
 	public function officer_details(){
 		checklogin();
@@ -1615,11 +1635,13 @@ public function update_submenu(){
 
 
 	public function online_applylist(){
+
 		$depart_id = $this->input->post('depart_id');
+		$payment_status = $this->input->post('payment_status');
 		// print_r($depart_id);die;
 		$data['title']="Apply List";
 		$data['datatable'] = true;
-		$data['applylist'] = $this->Website_model->get_applylist($depart_id);
+		$data['applylist'] = $this->Website_model->get_applylist($depart_id,$payment_status);
 		// echo PRE;
 		// print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
@@ -1659,7 +1681,6 @@ public function update_submenu(){
 	  $data = $this->input->post();
 	  $applicant_no = $data['applicant_no'];
 	  $checked = $this->checkadmitcard($applicant_no);
-	  // print_r($checked);die;
 	  if($checked['verify']!=1){
 	  	  $result = $this->Website_model->insert_admitcard($data);
 			  if($result){
@@ -1684,10 +1705,25 @@ public function update_submenu(){
 	}
 
 	public function publish_admitcard(){
-		$id = $this->input->post();
-		$result =  $this->Website_model->admitcard_publish();
-		echo $result;
+		$id = $this->input->get('id');
+		$result =  $this->Website_model->admitcard_publish($id);
+		if($result){
+					$this->session->set_flashdata('msg','Published Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/departmentwise_admitcard');
+	}
 
+	public function publish_result(){
+		$id = $this->input->get('id');
+		$result =  $this->Website_model->result_publish($id);
+		if($result){
+					$this->session->set_flashdata('msg','Published Successfully');
+				}else{
+					$this->session->set_flashdata("err_msg","Something Error!");
+				}
+				redirect('admin/departmentwise_resultlist');
 	}
 
 	public function checkadmitcard($applicant_no){
@@ -1794,16 +1830,15 @@ public function update_submenu(){
      $pdf->Cell(189,5,'',0,1,'L');
      $pdf->Cell(189,5,'',0,1,'L');
      $pdf->Cell(189,5,'AUTHORISED SIGNATURE',0,1,'R');
-    
-    // $pdf->SetFont('Arial','',8);
     $file =  date('Ymdhis').'_details.pdf';
     $pdf->Output($file,'I');
 	}
 
 	public function result_list(){
+		$depart_id = $this->input->post('depart_id');
 		$data['title']="Result List";
 		$data['datatable'] = true;
-		$data['result_list'] = $this->Website_model->get_resultlist();
+		$data['result_list'] = $this->Website_model->get_resultlist($depart_id);
 		$this->template->load('pages','result_list_vecency',$data);
 	}
 
@@ -1947,29 +1982,41 @@ public function update_submenu(){
 
 
 	// '''''''''''''''''''controlling department wise''''''''''''''''''''''''''''''
-	public function departmentwisecontrol(){
-		$data['title']="Department Wise Control";
-		$data['datatable'] = true;
-		$data['depart'] = $this->Website_model->get_departlist($data);
-		$this->template->load('pages','depart_wise_control',$data);
-	}
-	public function departmentwiseexpense(){
-		$data['title']="Department Wise Control";
-		$data['datatable'] = true;
-		$data['depart'] = $this->Website_model->get_departlist($data);
-		$this->template->load('pages','department_wise_expense',$data);
-	}
+		public function departmentwisecontrol(){
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','depart_wise_control',$data);
+		}
+		public function completed_noncompleted(){
+			$data['title']="Check List";
+			$data['datatable'] = true;
+			$this->template->load('pages','check_completed_or_not',$data);
+		}
+		public function departmentwiseexpense(){
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','department_wise_expense',$data);
+		}
 
-	public function departmentwise_vacency(){
-		$data['title']="Department Wise Control";
-		$data['datatable'] = true;
-		$data['depart'] = $this->Website_model->get_departlist($data);
-		$this->template->load('pages','department_wise_vecency',$data);
-	}
-	public function departmentwise_admitcard(){
-		$data['title']="Department Wise Control";
-		$data['datatable'] = true;
-		$data['depart'] = $this->Website_model->get_departlist($data);
-		$this->template->load('pages','department_wise_admitcard',$data);
-	}
+		public function departmentwise_vacency(){
+			$data['payment_status'] = $this->input->post('payment_status');
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','department_wise_vecency',$data);
+		}
+		public function departmentwise_admitcard(){
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','department_wise_admitcard',$data);
+		}
+		public function departmentwise_resultlist(){
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','department_wise_result',$data);
+		}
 }

@@ -13,11 +13,28 @@
                 </div>
                  <div class="col-md-6 mb-2">
                   <label for="state_unit_name">State Unit Name :</label>
-                    <input type="text" name="state_unit_name" placeholder="State Unit Name :" class="form-control" required>
+                  <select class="form-control states" id="states" name="state_unit_name">
+                    <option>State :</option>
+                    <?php
+                      if(!empty($state)){
+                        foreach ($state as $key => $value) {
+                          ?><option value="<?= $value['id'];?>"><?= $value['state'];?></option><?php
+                        }
+                      }
+
+
+                    ?>
+
+                  </select>
+                    <!-- <input type="text" name="state_unit_name" placeholder="State Unit Name :" class="form-control" required> -->
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="division_unit_name">Division Unit Name :</label>
-                  <input type="text" name="division_unit_name" placeholder="Division Unit Name :" class="form-control" required>
+                  <select class="form-control division" id="division" name="division_unit_name">
+                    <option>Division :</option>
+                   
+                  </select>
+                 <!--  <input type="text" name="" placeholder="Division Unit Name :" class="form-control" required> -->
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="applicant_name">Applicant Name :</label>
@@ -36,10 +53,6 @@
                   <input type="email" name="email" placeholder="Email Id"  class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
-                  <label for="desicination">Desicination :</label>
-                  <input type="text" name="desicination" placeholder="Desicination"  class="form-control" required>
-                </div>
-                <div class="col-md-6 mb-2"> 
                   <label for="depart_id">Department/Service Area :</label>
                    <select class="form-control" name="depart_id" id="dpartment" required>
                           <option value="">Department :</option>
@@ -54,6 +67,14 @@
                           ?> 
                   </select> 
                 </div>
+                <div class="col-md-6 mb-2"> 
+                  <label for="desicination">Designation :</label>
+                  <select class="form-control" id="post" name="post">
+                    <option>Post :</option>
+                  </select>
+                  
+                </div>
+                
                  <div class="col-md-12 mb-2"> 
                   <label for="user_name">User Name :</label>
                    <input type="text" name="user_name" placeholder="User Name :" class="form-control" required>

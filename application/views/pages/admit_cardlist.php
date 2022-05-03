@@ -40,6 +40,7 @@
                                             <th>Reporting Time</th>
                                             <th>Interview Time</th>
                                             <th>Center Address</th>
+                                            <th>Publish Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -60,8 +61,16 @@
                                             <td><?php echo $val['reporting_time'] ;?></td>
                                             <td ><?php echo $val['interview_time']; ?></td>
                                             <td ><?php echo $val['center_address'] ;?></td>
+                                            <td ><?php if($val['publish_admitcard']==1)
+                                                 {
+                                                    ?><label style="background: green; border-radius: 10px; padding: 10px; color: white; opacity: 0.5;">Published</label><?php
+                                                 }
+                                                 else{
+                                                     ?><label style="background: red; border-radius: 10px; padding: 10px; color: white; opacity: 0.5;">Panding</label>
+                                                     <?php
+                                                 } ?></td>
                                             <td ><button class="btn btn-sm btn-success col-xs-2 updt"  data-registration_no="<?php echo $val['registration_no']; ?>" data-id="<?php echo $val['id']; ?>" data-candidate_name="<?php echo $val['candidate_name'] ;?>" data-batch_no="<?php echo $val['batch_no'] ;?>" data-center_name="<?php echo $val['center_name'] ;?>" data-unit_code="<?php echo $val['unit_code'] ;?>" data-interviewdate="<?php echo $val['interviewdate'] ;?>" data-reporting_time="<?php echo $val['reporting_time'] ;?>" data-interview_time="<?php echo $val['interview_time'] ;?>" data-center_address="<?php echo $val['center_address'] ;?>" data-toggle="modal" data-target="#exampleModal">Edit</button>
-                                                    <a href="<?= base_url('admin/pdf_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><button class="btn btn-sm btn-info col-xs-2 ml-2 publish" value="<?= $val['id'];?>">Publish</button></td>
+                                                    <a href="<?= base_url('admin/pdf_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><a href="<?= base_url('admin/publish_admitcard/?id='.$val['id']);?>" class="btn btn-sm btn-info col-xs-2 ml-2">Publish</a></td>
                                         </tr>
                                        
                                        

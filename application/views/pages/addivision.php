@@ -9,102 +9,69 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                     <div class="row">
-                        	<!-- <div class="col-md-5 col-lg-4">
-                                <?php echo form_open_multipart('admin/savedepart');?>
-                                <div class="form-group row">
+                        	<div class="col-md-5 col-lg-4">
+                                <?php echo form_open_multipart('admin/savedivision');?>
+                                 <div class="form-group row">
+                                    
                                     <div class="col-sm-12">
-                                        <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Department','required'=>'true'));?>
+                                       <select class="form-control" name="state_id">
+                                        <option value="">---SELECT---</option>
+                                           <?php
+                                            if(!empty($state)){
+                                                foreach ($state as $key => $value) {
+                                                   ?>
+                                                   <option value="<?php echo $value['id'];?>"><?php echo $value['state'];?></option>
+
+
+                                                   <?php
+                                                }
+                                            }
+
+
+                                           ?>
+                                       </select>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <?php echo form_input(array('type'=>'text','name'=>'division','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Division','required'=>'true'));?>
                                     </div>                                    
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                        <?php echo form_submit(array('name'=>'save_dep','id'=>'save_dep','value'=>'Save Menu','class'=>'form-control btn btn-success'));?>
+                                        <?php echo form_submit(array('id'=>'save_dep','value'=>'Save Menu','class'=>'form-control btn btn-success'));?>
                                     </div>
                                     <div class="col-md-4"></div>                                    
                                 </div>
                                 <?php echo form_close();?>
-                            </div> -->
-                            <!-- <div class="col-md-2 col-lg-2"></div> -->
-                        	<div class="col-md-12 col-lg-12 table-responsive">
+                            </div>
+                            <div class="col-md-2 col-lg-2"></div>
+                        	<div class="col-md-5 col-lg-6 table-responsive">
                             	<table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
                                             <th>S.no</th>
-                                            <th>Application Date</th>                
-                                            <th>State Unit</th>
-                                            <th>Division Unit</th>
-                                            <th>Applicant Name</th>
-                                            <th>DOB</th>
-                                            <th>Mobile No.</th>
-                                            <th>Email</th>
-                                            <th>Designation</th>
-                                            <th>Department Id</th>
-                                            <th>Father's Name</th>
-                                            <th>Father's Occupation</th>
-                                            <th>Mother's Name</th>
-                                            <th>Mother's Occupation</th>
-                                            <th>Annual Income</th>
-                                            <th>Gender</th>
-                                            <th>Correspondent Address</th>
-                                            <th>Permanent Address</th>
-                                            <th>Place Area</th>
-                                            <th>Nationality</th>                                            
-                                            <th>Category</th>                                            
-                                            <th>Identification Marks</th>                                            
-                                            <th>Aadhar No.</th>                                            
-                                            <th>PAN No.</th>                                            
-                                            <th>Marital Status</th>                                            
-                                            <th>Exam Passed</th>                                            
-                                            <th>Board University</th>                                            
-                                            <th>Passing Year</th>                                            
-                                            <th>Total Marks</th>                                            
-                                            <th>Mark Obtained</th>                                            
-                                            <th>Division</th>                                            
-                                            <th>Persentage Marks</th>                                            
+                                            <th>Department Name</th>                
                                             <th>Action</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=0;
-                                         if(!empty($applylist)){
-
-                                            foreach($applylist as $val){$i++; $id=$val['id']; ?>
+                                         if(!empty($depart)){
+                                            foreach($depart as $val){$i++; $id=$val['id']; ?>
                                         <tr>
-                                            <td><?php echo $i ?></td>
-                                            <td><?php echo $val['application_date']; ?></td>
-                                            <td><?php echo $val['state_unit_name'] ;?></td>
-                                            <td><?php echo $val['division_unit_name']; ?></td>
-                                            <td><?php echo $val['applicant_name'] ;?></td>
-                                            <td><?php echo $val['dob'] ;?></td>
-                                            <td><?php echo $val['mobile_no'] ;?></td>
-                                            <td ><?php echo $val['email']; ?></td>
-                                            <td ><?php echo $val['desicination'] ;?></td>
-                                            <td ><?php echo $val['depart_id'] ;?></td>
-                                            <td ><?php echo $val['father_name'] ;?></td>
-                                            <td ><?php echo $val['father_occupation'] ;?></td>
-                                            <td ><?php echo $val['mother_name'] ;?></td>
-                                            <td ><?php echo $val['mother_occupqation'] ;?></td>
-                                            <td ><?php echo $val['annual_encome'] ;?></td>
-                                            <td ><?php echo $val['gender'] ;?></td>
-                                            <td ><?php echo $val['correspondent_address'] ;?></td>
-                                            <td ><?php echo $val['permanent_address'] ;?></td>
-                                            <td ><?php echo $val['place'] ;?></td>
-                                            <td ><?php echo $val['nationality'] ;?></td>
-                                            <td ><?php echo $val['category'] ;?></td>
-                                            <td ><?php echo $val['identification_marks'] ;?></td>
-                                            <td ><?php echo $val['aadharno'] ;?></td>
-                                            <td ><?php echo $val['panno'] ;?></td>
-                                            <td ><?php echo $val['marital_status'] ;?></td>
-                                            <td ><?php echo $val['exam_passed'] ;?></td>
-                                            <td ><?php echo $val['board_university'] ;?></td>
-                                            <td ><?php echo $val['pasing_year'] ;?></td>
-                                            <td ><?php echo $val['total_marks'] ;?></td>
-                                            <td ><?php echo $val['mark_obtained'] ;?></td>
-                                            <td ><?php echo $val['division'] ;?></td>
-                                            <td ><?php echo $val['persentage_marks'] ;?></td>
-                                            <td> <a href="<?= base_url('admin/admitcardpage?id='.$val['id']);?>" class="btn btn-success btn-sm">Make Admitcard</a> <a href="<?= base_url('admin/resultpage?id='.$val['id']);?>" class="btn btn-info btn-sm ml-2">Make Result</a></td>
+                                            <td ><?php echo $i ?></td>
+                                            <td ><?php echo $val['department'] ?></td>
+                                            
+                                            <td><span class="float-right">
+                                            <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   <!-- <?php echo base_url("home/delete_sidebar/");?> -->
+                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-department="<?php echo $val['department'];?>"><i class="fa fa-edit"></i></button>
+                                           </td>
                                         </tr>
+                                       
+                                       
                                        <?php 
                                         }
                                             }
@@ -170,28 +137,6 @@
 
 	
 	$(document).ready(function(e) {
-        $('body').on('click','.admitcard',function(){
-            debugger;
-            var id=$(this).data('id');
-            $.ajax({
-                type:"POST",
-                // url:"<?php echo base_url("home/getOrderList"); ?>",
-                data:{id:id},
-                dataType:"json",
-                beforeSend: function(){
-                    //$(".box-overlay").show();
-                },
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-
-
-
-
-
-
         $('.hoverable').mouseenter(function(){
             //$('[data-toggle="popover"]').popover();
             $(this).popover('show');                    

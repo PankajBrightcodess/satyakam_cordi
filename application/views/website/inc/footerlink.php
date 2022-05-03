@@ -463,7 +463,7 @@ $('body').on('change','.year', function(){
 
 
 
-      $('body').on('change','.expense_monthly', function(){
+  $('body').on('change','.expense_monthly', function(){
     debugger;
     var month = $(this).val();
     $.ajax({
@@ -483,7 +483,6 @@ $('body').on('change','.year', function(){
 
 
   $('body').on('change','#ins_details', function(){
-  debugger;
    var vals = $(this).val();
    if(vals==1){
      $("#exam_passed").prop("readonly", false); 
@@ -504,6 +503,34 @@ $('body').on('change','.year', function(){
    }
   
    });
+
+
+   $('body').on('change','.states', function(){
+    debugger;
+    var id = $(this).val();
+    $.ajax({
+      type:'POST',
+      url: '<?php echo base_url('website/get_division')?>',
+      data:{id:id},
+      success:function(result){
+        $('.division').html(result);
+      },
+
+    });
+   });
+
+    $('body').on('change','#dpartment',function(){
+      var depart_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/getpost"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console.log(data);
+          $('#post').html(data);
+        }
+      });
+    });
 });
 
 

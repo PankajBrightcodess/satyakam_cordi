@@ -246,6 +246,7 @@ class Website_model extends CI_Model{
 
 
 	public function get_vacencydetailsbyid($id){
+		$this->db->where('t1.id',$id);
 		$this->db->select('t1.*,t2.father_name,t2.gender,t2.category,t2.aadharno,t3.photo,t3.signature,t4.department');
 		$this->db->from('stk_vacency_signup t1');
 		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
@@ -301,8 +302,14 @@ class Website_model extends CI_Model{
 		return  $query->row_array();
 	}
 
-	public function get_resultlist(){
-		$query = $this->db->get_where('result',array('status'=>1));
+	public function get_resultlist($depart_id){
+		$this->db->where('t2.depart_id',$depart_id);
+		$this->db->select('t1.*');
+		$this->db->from('result t1');
+		$this->db->join('vacency_signup t2','t1.applicant_no=t2.id');
+		$query=$this->db->get();
+
+		// $query = $this->db->get_where('result',array('status'=>1));
 		return  $query->result_array();
 
 	}
@@ -372,6 +379,14 @@ class Website_model extends CI_Model{
 	    return $query;	
 	}
 
+	public function result_publish($id){
+		$id = $id['id'];
+		$publish['result_publish'] =1; 
+        $this->db->where("id",$id); 
+        $query= $this->db->update("result", $publish); 
+	    return $query;
+	}
+
 	public function loginvacency_foradmitcard($data){
 		$emailid =  $data['emailid'];
 		$password =  $data['password'];
@@ -386,8 +401,25 @@ class Website_model extends CI_Model{
 		return $result;	
 	}
 
+	public function insert_division($data){
+		$table="division`";  	
+		$status=$this->db->insert($table,$data);
+		if($status){
+		     return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+
 	public function admitcard_download($id){
 		$query = $this->db->get_where('admitcard',array('applicant_no'=>$id,'status'=>1));
+		return  $query->result_array();
+	}
+
+	public function result_download($id){
+		$query = $this->db->get_where('result',array('applicant_no'=>$id,'status'=>1));
 		return  $query->result_array();
 	}
 
@@ -935,6 +967,11 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 
+	public function get_divisionlist($state_id){
+		$query = $this->db->get_where('division',array('status'=>1,'state_id'=>$state_id['id']));
+		return  $query->result_array();
+	}
+
 	public function addteam_model($data){
 		$batch_no =$data['batch_no'];
 		$user_id =$data['user_id'];
@@ -1350,23 +1387,42 @@ class Website_model extends CI_Model{
 		}	
 	}
 
-	public function get_applylist($depart_id){
-		$this->db->where('t1.depart_id',$depart_id);
-		$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
-		$this->db->from('vacency_signup t1');
-		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
-		$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
-		$qry = $this->db->get();
-		 // $query = $this->db->last_query();
-		 // print_R( $query);die;
-		if($qry->num_rows()>0)
-		{
-			return $result = $qry->result_array();
+	public function get_applylist($depart_id,$payment_status){
+		if($payment_status==1){
+			    $this->db->where(['t1.depart_id'=>$depart_id,'t2.payment_status'=>1]);
+				$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
+				$this->db->from('vacency_signup t1');
+				$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+				$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+				$qry = $this->db->get();
+				if($qry->num_rows()>0)
+				{
+					return $result = $qry->result_array();
 
-		}else
-		{
-			return 0;
+				}else
+				{
+					return 0;
+				}
+
 		}
+		else{
+			$this->db->where(['t1.depart_id'=>$depart_id,'t2.payment_status'=>0]);
+			$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
+			$this->db->from('vacency_signup t1');
+			$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+			$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+			$qry = $this->db->get();
+			 
+			if($qry->num_rows()>0)
+			{
+				return $result = $qry->result_array();
+
+			}else
+			{
+				return 0;
+			}
+		}
+		
 	}   
 
 

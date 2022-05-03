@@ -49,6 +49,7 @@
                                             <th>Others</th>
                                             <th>Total Amount</th>
                                             <th>Total Amount(In Word)</th>
+                                            <th>Publish Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -78,8 +79,16 @@
                                             <td ><?php echo $val['others'] ;?></td>
                                             <td ><?php echo $val['total_amount'] ;?></td>
                                             <td ><?php echo $val['total_amount_in_word'] ;?></td>
+                                            <td ><?php if($val['result_publish']==1)
+                                                 {
+                                                    ?><label style="background: green; border-radius: 10px; padding: 10px; color: white; opacity: 0.5;">Published</label><?php
+                                                 }
+                                                 else{
+                                                     ?><label style="background: red; border-radius: 10px; padding: 10px; color: white; opacity: 0.5;">Panding</label>
+                                                     <?php
+                                                 } ?></td>
                                             <td ><button class="btn btn-sm btn-success col-xs-2 updt"  data-registration_no="<?php echo $val['registration_no']; ?>" data-id="<?php echo $val['id']; ?>" data-candidate_name="<?php echo $val['candidate_name'] ;?>" data-father_name="<?php echo $val['father_name'] ;?>" data-designation="<?php echo $val['designation'] ;?>" data-personality="<?php echo $val['personality'] ;?>" data-leadership_quality="<?php echo $val['leadership_quality'] ;?>" data-thinking="<?php echo $val['thinking'] ;?>" data-qualification="<?php echo $val['qualification'] ;?>" data-extra_qualification="<?php echo $val['extra_qualification'] ;?>" data-experience="<?php echo $val['experience'] ;?>" data-iq_test="<?php echo $val['iq_test'] ;?>" data-mind_set="<?php echo $val['mind_set'] ;?>" data-security_deposit="<?php echo $val['security_deposit'] ;?>" data-procesing_fee_="<?php echo $val['procesing_fee_'] ;?>" data-training_fee="<?php echo $val['training_fee'] ;?>" data-others="<?php echo $val['others'] ;?>" data-total_amount="<?php echo $val['total_amount'] ;?>" data-total_amount_in_word="<?php echo $val['total_amount_in_word'] ;?>" data-result_decelear="<?php echo $val['result_decelear'] ;?>" data-toggle="modal" data-target="#exampleModal">Edit</button>
-                                                    <a href="<?= base_url('admin/pdf_result/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a><button class="btn btn-sm btn-info col-xs-2 ml-2 publish" value="<?= $val['id'];?>">Publish</button></td>
+                                                    <a href="<?= base_url('admin/pdf_result/?id='.$val['id']);?>" class="btn btn-sm btn-warning col-xs-2 ml-2">View</a> <a href="<?= base_url('admin/publish_result/?id='.$val['id']);?>" class="btn btn-sm btn-info col-xs-2 ml-2">Publish</a></td>
                                         </tr>
                                        
                                        

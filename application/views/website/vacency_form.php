@@ -108,17 +108,21 @@
                               <input type="text" name="panno" placeholder="PAN Number" class="form-control" required>
                           </div>
                           <div class="col-md-6 mb-3">
-                              <input type="text" name="marital_status" placeholder="Marital Status" class="form-control" required>
+                            <select class="form-control" name="marital_status" required> 
+                                <option value="" >Marital Status :</option>
+                                <option value="Married" >Married</option>
+                                <option value="Unmarried" >Unmarried</option>
+                            </select>
                           </div>
                          
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">If You have served in any institution in the past, give details</h6>
                           </div>
                            <div class="col-md-12 mb-3">
-                            <select class="form-control" id="ins_details" name="ins_details">
-                               <option value="">Select :</option>
-                               <option value="1">Yes</option>
-                               <option value="0">No</option>
+                             <select class="form-control" id="ins_details" name="ins_details">
+                                 <option value="">Select :</option>
+                                 <option value="1">Yes</option>
+                                 <option value="0">No</option>
                              </select>
                           </div>
                           <div class="col-md-12 mb-3">
