@@ -37,8 +37,8 @@
                     <th scope="row">Admit Card :</th>
                     <td>
                       <?php
-                      if(!empty($datas[0]['interviewdate'])){
-                          if($datas[0]['result_publish']==1){
+                      if(!empty($datas[0]['publish_admitcard'])){
+                          if($datas[0]['publish_admitcard']==1){
                           ?><a href="<?= base_url('admin/pdf_admitcard/?id='.$datas[0]['id']);?>" class="btn btn-sm btn-success">Download Admit Card</a><?php
                           }
                           else{

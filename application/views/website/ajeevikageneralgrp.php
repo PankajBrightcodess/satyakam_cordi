@@ -2,51 +2,46 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h1 class="tittle">Ajeevika ( Group Status )</h1>
+            <h1 class="tittle">General Group</h1>
             <div class="table-responsive">
               <table class="table table-hover" style="text-align: center;">
                 <thead>
                   <tr>
-                    <th scope="col">Sl No.</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Documents</th>
+                    <th scope="col">Sl. No.</th>
+                    <th scope="col">Feature's</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>List of Registered Group</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>NEW MEMBER</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >LOGIN</a> <a href="<?= base_url('website/membersignup_form');?>" class="btn btn-sm btn-success ml-2">SIGN UP</a></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>New Group Creative</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>New Group Create</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >LOGIN</a> <a href="#" class="btn btn-sm btn-success ml-2">SIGN UP</a></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td>Group Saving Status</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>Registered Group Status</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
-                    <td>Banking</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>Registered New Member Status</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
-                    <td>E-Received</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>My Report</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">6</th>
-                    <td>Group Loan Status</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>EMI Banking</td>
-                    <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
+                    <td>My Event</td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                 </tbody>
               </table>

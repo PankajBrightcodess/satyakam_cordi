@@ -112,7 +112,7 @@ class Website_model extends CI_Model{
 // ,t2.e_contract,t2.my_office,t2.my_project,t2.vecency,t2.events,t2.gallery
 	public function getuser($id){
 		$this->db->where('t1.id',$id);
-		$this->db->select('t1.post_id,t3.state');
+		$this->db->select('t1.post_id,t3.state,t1.officer_first_name,t1.officer_middle_name,t1.officer_last_name');
 		$this->db->from('officer_details t1');
 		$this->db->join('signup t3','t1.signup_id=t3.id','left');
 		$query = $this->db->get();
@@ -1479,10 +1479,24 @@ class Website_model extends CI_Model{
 		$status=$this->db->insert('upload_candidate_vacency',$uploads);
 		if($status){
 				return true;
-			}
-			else{
-				return false;
-			}
+		}
+		else{
+			return false;
+		}
+	}
+
+	// '''''''''''''''''''''''''PROJECT''''''''''''''''''''''''''''''''
+	public function insert_membership($data){
+		unset($data['captcha']);
+		unset($data['captcha_confirm']);
+		$data['added_on']= date('Y-m-d');
+		$status=$this->db->insert('project_member',$data);
+		if($status){
+				return true;
+		}
+		else{
+			return false;
+		}
 
 	}
 

@@ -27,8 +27,6 @@ class Website extends CI_Controller {
 
 		}
 
-
-
 		public function apply_online(){
 			$d['v'] = 'website/apply_online';
 			$this->load->view('website/template',$d);
@@ -132,15 +130,7 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
-		public function ajeevikageneralgrp(){
-			$id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			$d['v'] = 'website/ajeevikageneralgrp';
-			$this->load->view('website/template_1',$d);
-		}
-
+		
 		public function ajeevikamyclubgrp(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -1758,12 +1748,10 @@ class Website extends CI_Controller {
 	 public function check_vacency_loginforadmitcard(){
     	$data = $this->input->post();
 		$result = $this->Website_model->loginvacency_foradmitcard($data);
-		// echo PRE;
-		// print_R($result);die;
 		if($result['verify']=='true'){
 			$id = $result['id'];
-			$records = $this->Website_model->result_download($id);
-
+			$records = $this->Website_model->admitcard_download($id);
+		// print_r($records);die;
 			$d['datas'] = $records;
 			$d['v'] = 'website/admit_card';
 		    $this->load->view('website/template',$d);
@@ -3087,6 +3075,74 @@ class Website extends CI_Controller {
 
                 // <!-- ''''''''''''''''''''''travelling'''''''''''''''''''''''''''' -->
 	}
+
+	// ........................PROJECT................................
+
+	    public function ajeevikageneralgrp(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['v'] = 'website/ajeevikageneralgrp';
+			$this->load->view('website/template_1',$d);
+		}
+
+		public function membersignup_form(){
+			$id = $_SESSION['user_id'];
+			$length = 5;
+			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+			$d['captcha'] =$captcha;
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['officer_name'] = $finalrecord;
+			$d['v'] = 'website/new_membersignup';
+			$this->load->view('website/template_1',$d);
+		}
+
+		public function create_membership(){
+			$id = $_SESSION['user_id'];
+
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/create_membership_form';
+			$this->load->view('website/template_1',$d);
+		}
+
+		public function membership_otp(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/membership_otp_confirm';
+			$this->load->view('website/template_1',$d);
+		}
+		public function membership_signup(){
+
+			$data = $this->input->post();
+			if($data['captcha']==$data['captcha_confirm']){
+				$record= $this->Website_model->insert_membership($data);
+				if($record==true){
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/membership_otp');
+				}
+				else{ 
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/membersignup_form');
+	   		    }
+				
+			
+			}
+			else{ 
+				$this->session->set_flashdata('err_msg','Captch not match!');
+				redirect('website/membersignup_form');
+	   		}
+			
+		}
 
 
 

@@ -503,6 +503,15 @@ $('body').on('change','.year', function(){
    }
   
    });
+   $('body').on('click','#othercheck', function(){
+     var vals = $(this).val();
+     if(vals==1){
+       $(".other_details").prop("readonly", false);  
+     }else{
+       $(".other_details").prop("readonly", true);
+     }
+  
+   });
 
 
    $('body').on('change','.states', function(){
