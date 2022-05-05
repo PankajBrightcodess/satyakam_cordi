@@ -3102,8 +3102,10 @@ class Website extends CI_Controller {
 		}
 
 		public function create_membership(){
-			$id = $_SESSION['user_id'];
+			$last_id = $this->input->get();
+			$d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
 
+			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
@@ -3112,30 +3114,124 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
+		public function addrecord_membership(){
+			// $allFiles = $_FILES;
+
+			
+			$data =  $this->input->post();
+			$sponser = explode('-',$data['sponsor']);
+			$sponser_id =$sponser[1];
+			unset($data['sponsor']);
+			$data['sponser_id'] =$sponser_id;
+			$result = $this->upload_allmember_records($_FILES);
+			$result['sponser_id'] = $sponser_id;
+
+			$record= $this->Website_model->insert_member_all_records($data,$result);
+			if($record['varify']==true){
+				// ......create otp area.......
+				$this->session->set_flashdata('err_msg','Submit Successfully');
+				redirect('website/loginmember'.$records);
+			}
+			else{ 
+				$this->session->set_flashdata('err_msg',$result['verify']);
+				redirect('website/create_membership_form');
+   		    }
+			
+		}
+		public function upload_allmember_records($files){
+			echo PRE;
+			// print_r($files);die;
+			$upload_path = './assets/uploads/member/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			if(!empty($_FILES['image']['name'])){
+			  $image = upload_file("image", $upload_path, $allowed_types, time());
+			  if ($image !='') {
+				  $data['image'] = $image['path'];
+			  }
+			}
+			if(!empty($_FILES['member_sign']['name'])){
+				$image = upload_file("member_sign", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['member_sign'] = $image['path'];
+				  }
+
+			}
+			if(!empty($_FILES['member_right_hand_thumb']['name'])){
+				$image = upload_file("member_right_hand_thumb", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['member_right_hand_thumb'] = $image['path'];
+				  }
+			}
+			if(!empty($_FILES['aadhar_front']['name'])){
+				$image = upload_file("aadhar_front", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['aadhar_front'] = $image['path'];
+				  }
+
+			}
+			if(!empty($_FILES['aadhar_back']['name'])){
+				$image = upload_file("aadhar_back", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['aadhar_back'] = $image['path'];
+				  }
+
+			}
+			if(!empty($_FILES['election_id_card']['name'])){
+				$image = upload_file("election_id_card", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['election_id_card'] = $image['path'];
+				  }
+			}
+			if(!empty($_FILES['pan_card']['name'])){
+				$image = upload_file("pan_card", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+
+					  $data['pan_card'] = $image['path'];
+				  }
+
+			}
+			if(!empty($_FILES['passbook_bank']['name'])){
+				$image = upload_file("passbook_bank", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['passbook_bank'] = $image['path'];
+				  }
+
+			}
+			if(!empty($_FILES['qualification_certificate']['name'])){
+				$image = upload_file("qualification_certificate", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['qualification_certificate'] = $image['path'];
+				  }
+			}
+			return $data;
+
+			
+		}
+
 		public function membership_otp(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
+			$d['last_id'] = $this->input->get('eumndf');
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['state'] = $this->Website_model->get_statelist();
 			$d['v'] = 'website/membership_otp_confirm';
 			$this->load->view('website/template_1',$d);
 		}
 		public function membership_signup(){
-
 			$data = $this->input->post();
 			if($data['captcha']==$data['captcha_confirm']){
 				$record= $this->Website_model->insert_membership($data);
-				if($record==true){
+				if($record['varify']==true){
+					// ......create otp area.......
+					$records = md5($record['last_id']);
 					$this->session->set_flashdata('err_msg',$result['verify']);
-					redirect('website/membership_otp');
+					redirect('website/membership_otp/?eumndf='.$records);
 				}
 				else{ 
 					$this->session->set_flashdata('err_msg',$result['verify']);
 					redirect('website/membersignup_form');
 	   		    }
-				
-			
 			}
 			else{ 
 				$this->session->set_flashdata('err_msg','Captch not match!');
@@ -3143,6 +3239,74 @@ class Website extends CI_Controller {
 	   		}
 			
 		}
+
+		public function member_login(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['v'] = 'website/membership_login';
+			$this->load->view('website/template_1',$d);
+		}
+
+
+		public function check_memberlogin(){
+		    $data = $this->input->post();
+		    $record= $this->Website_model->membership_login($data);
+
+		    if($record['verify']==true){
+			$this->createsession_member($record);
+			if(!empty($_SESSION['member_id'])){
+				redirect('website/memberdashboard',$final);
+			}
+			else{
+				redirect('website/member_login');
+			}
+		}
+		else{ 
+			die;
+			$this->session->set_flashdata('err_msg',$record['verify']);
+			redirect('website/member_login');
+		}
+	}
+
+	public function createsession_member($result){
+		$data['member_id']=$result['id'];
+		$data['member_name']=$result['applicant_name'];
+		$this->session->set_userdata($data);
+		$this->update_cookie_member();
+	}
+
+	public function update_cookie_member(){
+		 $this->load->helper('cookie');
+		 $member_id = $this->session->userdata('user_id');
+         $member_name = $this->session->userdata('member_name');
+         $cookiearray = array('member_id'=>$member_id,'member_name'=>$member_name);
+        $json = base64_encode(json_encode($cookiearray));
+        $cookie = array(
+        'name'   => 'member_cookie',
+        'value'  => $json,
+        'expire' => '2592000'        
+         ); 
+		$this->load->helper('cookie');
+        $this->input->set_cookie($cookie);
+	}
+
+
+	public function memberdashboard(){
+	   if(!empty($_SESSION['member_id'])){
+	   	$id = $_SESSION['member_id'];
+	   	$d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+	   	// echo PRE;
+	   	// print_r($d['uploadfiles']);die;
+			$d['v'] = 'website/member_dashboard';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}		
+	}
+
 
 
 

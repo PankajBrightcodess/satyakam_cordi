@@ -1,18 +1,18 @@
-    <section class="officialservices">
+  <section class="officialservices">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <center><h1 class="tittle">Membership Form</h1></center>
-                    <form action="<?= base_url('#');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
+                    <form action="<?= base_url('website/addrecord_membership');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
                             <label>Application No.</label>
                             <input type="text" name="app_no" placeholder="Application No :" class="form-control mb-3" required>
+                            <input type="hidden" name="sponsor" readonly  value="<?= $allsignuprecords['sponsor'];?>" placeholder="Application Date :" class="form-control mb-3" required>
                             <label>Application Date</label>
-                            <input type="date" name="app_date"  value="" placeholder="Application Date :" class="form-control mb-3" required>
+                            <input type="date" name="app_date" readonly  value="<?= $allsignuprecords['application_date'];?>" placeholder="Application Date :" class="form-control mb-3" required>
                             <label>State Unit Name</label>
-                            <input type="text" name="state_unit_name"  value="" placeholder="State Unit Name :" class="form-control mb-3" required>
-                            
+                            <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">
@@ -25,25 +25,19 @@
                                   <input type="file" name="image" id="filePhoto" value=""  onchange="readURL(this,'#blah');">
                                 </div>
                               </div>
-                             <!--  <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Upload Signature</label>
-                                    <input class="form-control" name="signature" type="file" id="formFile">
-                                </div>
-                              </div> -->
                             </div>
                           </div>
                           <div class="col-md-12">
                             <label>Division Unit Name</label>
-                            <input type="text" name="division_unit_name"  value="" placeholder="Department :" class="form-control mb-3" required>
+                            <input type="text" name="division_unit_name" readonly  value="<?= $allsignuprecords['division'];?>" placeholder="Division Unit Name :" class="form-control mb-3" required>
                             <label>Member Name</label>
-                            <input type="text" name="applicant_name"  value="" placeholder="Post :" class="form-control mb-3" required>
+                            <input type="text" name="applicant_name" readonly value="<?= $allsignuprecords['applicant_name'];?>" placeholder="Member Name :" class="form-control mb-3" required>
                             <label>Date Of Birth</label>
-                            <input type="date" name="dob"  value="" class="form-control mb-3" required>
+                            <input type="date" name="dob" readonly  value="<?= $allsignuprecords['dob'];?>" class="form-control mb-3" required>
                             <label>Mobile No.</label>
-                            <input type="text" name="mobile_no"  value="" placeholder="Mobile No :" class="form-control mb-3" required>
+                            <input type="text" name="mobile_no" readonly  value="<?= $allsignuprecords['mobile_no'];?>" placeholder="Mobile No :" class="form-control mb-3" required>
                             <label>Email Id.</label>
-                            <input type="email" name="email" placeholder="Email Id :" class="form-control mb-3" value="" required>
+                            <input type="email" name="email" readonly placeholder="Email Id :" class="form-control mb-3" value="<?= $allsignuprecords['email'];?>" required>
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Provisional Address (As Per Aadhar Card)</h6>
@@ -57,7 +51,7 @@
                             <input type="text" name="panchayat" placeholder="Panchayat  :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                              <label>Panchayat</label>
+                              <label>Ward No.</label>
                             <input type="text" name="ward_no" placeholder="Ward No.  :" class="form-control" required>
                           </div>
 
@@ -91,8 +85,8 @@
                             <input type="text" name="election_card_no" placeholder="Election card No. :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <label>Form</label>
-                            <select class="form-control" name="form">
+                            <label>From</label>
+                            <select class="form-control" name="from">
                               <option value="">---SELECT---</option>
                               <option value="rural">Rural</option>
                               <option value="urban">Urban</option>
@@ -112,7 +106,14 @@
                           </div>
                            <div class="col-md-3 mb-3">
                             <label>Category</label>
-                            <input type="text" name="category" placeholder="Category :" class="form-control" required>
+                            <select class="form-control" name="category">
+                              <option value="">---SELECT---</option>
+                              <option value="gen">GEN</option>
+                              <option value="obc">OBC</option>
+                              <option value="sc">SC</option>
+                              <option value="st">ST</option>
+                            </select>
+                           <!--  <input type="text" name="category" placeholder="Category :" class="form-control" required> -->
                           </div>
                            <div class="col-md-3 mb-3">
                             <label>Identification Marks</label>
@@ -141,78 +142,78 @@
                         </div>
                            <div class="col-md-4 mb-3  border-right border-success">
                            <label>Super(A) Benefit Rs. 15 Per Week</label>
-                           <input type="checkbox" class="ml-5" name="super_a">
+                           <input type="radio" class="ml-5" value="super_a" name="super">
                           </div>
                            <div class="col-md-4 mb-3 border-right border-success">
                            <label >Super(B) Benefit Rs. 25 Per Week</label>
-                           <input type="checkbox" class="ml-5" name="super_a">
+                           <input type="radio" class="ml-5" value="super_b" name="super">
                           </div>
                           <div class="col-md-4 mb-3  border-success">
                             <label>Super(C) Benefit Rs. 35 Per Week</label>
-                            <input type="checkbox" class="ml-5" name="super_a">
+                            <input type="radio" class="ml-5" value="super_c" name="super">
                           </div>
                           <div class="col-md-4 mb-3 border-right border-success">
                             <label>Super(D) Benefit Rs. 50 Per Week</label>
-                            <input type="checkbox" class="ml-5" name="super_a">
+                            <input type="radio" class="ml-5" value="super_d" name="super">
                           </div>
                           <div class="col-md-4 mb-3 border-right border-success">
                             <label>Super(E) Benefit Rs. 100 Per Week</label>
-                            <input type="checkbox" class="ml-5" name="super_a">
+                            <input type="radio" class="ml-5" value="super_e" name="super">
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Team Year</h6>
                           </div>
                            <div class="col-md-2 mb-3  border-right border-success">
                            <label>1 Year</label>
-                           <input type="checkbox" class="ml-5" name="1_year">
+                           <input type="radio" class="ml-5" name="year">
                           </div>
                            <div class="col-md-2 mb-3 border-right border-success">
                            <label >3 Years</label>
-                           <input type="checkbox" class="ml-5" name="3_year">
+                           <input type="radio" class="ml-5" name="year">
                           </div>
                           <div class="col-md-2 mb-3 border-right  border-success">
                             <label>5 Years</label>
-                            <input type="checkbox" class="ml-5" name="5_year">
+                            <input type="radio" class="ml-5" value="5 years" name="year">
                           </div>
                           <div class="col-md-2 mb-3 border-right border-success">
                             <label>8 Years</label>
-                            <input type="checkbox" class="ml-5" name="8_year">
+                            <input type="radio" class="ml-5" value="8 years" name="year">
                           </div>
                           <div class="col-md-2 mb-3 border-right border-success">
                             <label>11 Years</label>
-                            <input type="checkbox" class="ml-5" name="11_year">
+                            <input type="radio" class="ml-5" value="11 years" name="year">
                           </div>
                           <div class="col-md-2 mb-3  border-success">
                             <label>Other</label>
-                            <input type="checkbox" class="ml-5" name="other">
+                            <input type="radio" class="ml-5" value="Other"  name="year">
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Education Qualification</h6>
                           </div>
                            <div class="col-md-3 mb-3  border-right border-success">
                            <label>Illiterate</label>
-                           <input type="checkbox" class="ml-5" name="illiterate">
+                           <input type="radio" class="ml-5" value="Illiterate" name="education">
                           </div>
                            <div class="col-md-3 mb-3 border-right border-success">
                            <label >Literate</label>
-                           <input type="checkbox" class="ml-5" name="literate">
+                           <input type="radio" class="ml-5" value="Literate" name="education">
                           </div>
                           <div class="col-md-3 mb-3 border-right  border-success">
                             <label>Eighth Pass</label>
-                            <input type="checkbox" class="ml-5" name="eighth_pass">
+                            <input type="radio" class="ml-5" value="Eighth Pass" name="education">
                           </div>
                           <div class="col-md-3 mb-3 border-right border-success">
                             <label>Matriculation Pass</label>
-                            <input type="checkbox" class="ml-5" name="matriculation_pass">
+                            <input type="radio" class="ml-5" value="Matriculation Pass" name="education">
                           </div>
 
                           <div class="col-md-3 mb-3 border-right border-success">
                             <label>Inter Pass</label>
-                            <input type="checkbox" class="ml-5" name="inter_pass">
+                            <input type="radio" class="ml-5" value="Inter Pass" name="education">
                           </div>
                           <div class="col-md-3 mb-3  border-success">
                             <label>Other</label>
-                            <input type="checkbox" id="othercheck"  value="1" class="ml-5" name="other">
+                            <input type="radio" id="othercheck" value="Other" class="ml-5" name="education">
                             <input type="text" class="form-control other_details" id="other_details" readonly name="other_details" >
                           </div>
                           <div class="col-md-12 mb-3 ">
@@ -307,7 +308,7 @@
                                   </tr>
                                  <tr>
                                      <td> <label>Batch No.</label><input class="form-control" type="text" name="batch_no"></td>
-                                    <td><label>Mobile No.</label><input class="form-control" type="text" name="mobile_no"></td>
+                                    <td><label>Mobile No.</label><input class="form-control" type="number" name="officer_mobile_no"></td>
                                   </tr>
                                 </tbody>
                               </table>

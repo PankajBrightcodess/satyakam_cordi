@@ -123,8 +123,48 @@ class Website_model extends CI_Model{
 		$state = $finalrecord['state'];
 		$query=$this->db->get_where('menu_control',array('post_id' => $post_id,'state'=>$state));
     	return $query->row_array();
+	}
+
+	public function insert_member_all_records($data,$result){
+		// $uplaod = $this->uploads_membersrecords($result);
+		// die;
+		$data['added_on']=date('Y-m-d');
+		$status=$this->db->insert('member_details',$data);
+		$result['member_details_id'] = $this->db->insert_id();
+		if($status){
+			$records = $this->uploads_membersrecords($result);
+			if($records){
+				return true;
+			}	
+		}
+		else{
+			return false;
+		}	
+	}
+
+	public function uploads_membersrecords($result){
+		// echo PRE;
+		// print_r($result);die;
+		$status=$this->db->insert('upload_member_docs',$result);
+		$str = $this->db->last_query();
+		if($status){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 
+	public function get_signupdetails($last_id){
+		// print_r($last_id);die;
+		$this->db->where('md5(t1.id)',$last_id['is']);
+		$this->db->select('t1.*,t2.state,t3.division');
+		$this->db->from('project_member t1');
+		$this->db->join('state t2','t1.state_unit_name=t2.id','left');
+		$this->db->join('division t3','t1.division_unit_name=t3.id','left');
+		$query = $this->db->get();
+		return $query->row_array();
 	}
 
 	public function myteam_revenuelistbydaily($user_id,$date){
@@ -1490,14 +1530,44 @@ class Website_model extends CI_Model{
 		unset($data['captcha']);
 		unset($data['captcha_confirm']);
 		$data['added_on']= date('Y-m-d');
-		$status=$this->db->insert('project_member',$data);
+		$status['varify']=$this->db->insert('project_member',$data);
+		$status['last_id']=$this->db->insert_id();
 		if($status){
-				return true;
+				return $status;
 		}
 		else{
 			return false;
 		}
 
+	}
+
+	public function membership_login($data){
+		$emailid =  $data['emailid'];
+		$password =  $data['password'];
+		$where = "email='$emailid'  OR username='$emailid'";
+		$query = $this->db->get_where('project_member',$where);
+		// echo $this->db->last_query();die;
+		$result =  $query->row_array();
+		
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Wrong Credentials!");
+		}
+		return $result;
+	}
+
+	public function membership_uploadlist($id){
+		$result = $this->db->get_where('upload_member_docs',array('member_details_id'=>$id));
+		$final =  $result->row_array();
+		if($final){
+		    return $final;
+		}
+		else{
+			return false;
+		}
+		
 	}
 
 
