@@ -3265,8 +3265,6 @@ class Website extends CI_Controller {
 		public function check_memberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-		    echo PRE;
-		    print_r($record);die;
 		    if($record['verify']==true){
 			$this->createsession_member($record);
 			if(!empty($_SESSION['member_id'])){
