@@ -24,8 +24,10 @@
                     <td ><label class="ml-5">PASSBOOK</label> <a href="<?= base_url($uploadfiles['passbook_bank']);?>" class="btn btn-sm btn-success ml-2" >DOWNLOAD</a></td>
                     <td>CERTIFICATE <a href="<?= base_url($uploadfiles['qualification_certificate']);?>" class="btn btn-sm btn-success ml-2" >DOWNLOAD</a></td>
                   </tr>
-                  
-                  
+                  <tr>
+                    <td ><img src="<?= base_url($uploadfiles['member_sign']);?>" class="img-fluid" height="200" width="300" ></td>
+                    <td><img src="<?= base_url($uploadfiles['member_right_hand_thumb']);?>"class="img-fluid" height="200" width="300"></td>
+                  </tr>
                 </tbody>
               </table>
             </div>

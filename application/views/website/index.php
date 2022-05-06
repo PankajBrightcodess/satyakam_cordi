@@ -3,8 +3,8 @@
         <div class="carousel-inner">
           <div class="carousel-item active"><img src="<?= base_url('assets/website/images/ban3.jpeg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
           
-          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban1.jpeg')?>" class="d-block w-100" alt="satyakam banner 1"></div>
-          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban2.jpeg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
+          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban1.jpg')?>" class="d-block w-100" alt="satyakam banner 1"></div>
+          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban2.jpg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
           <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban4.jpeg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
         </div>
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">

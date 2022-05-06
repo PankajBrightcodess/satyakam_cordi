@@ -4,7 +4,7 @@
               <div class="col-md-3 mb-3"></div>
           <div class="col-md-6 mb-3 text-center">
             <center class="tittle"><h2></h2><h4>OTP confirmation</h4></center>
-            <form action="<?= base_url('website/create_membership?is='.$last_id)?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
+            <form action="<?= base_url('website/create_membership')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                  <div class="col-md-12 mb-2">
                   <!-- <label for="application_date">OTP :</label> -->

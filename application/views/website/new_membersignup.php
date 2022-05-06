@@ -1,10 +1,11 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
+           <form action="<?= base_url('website/membership_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
             <center class="tittle"><h2>NEW MEMBERSHIP REGISTER</h2><h4>SIGN UP(FORM)</h4></center>
-            <form action="<?= base_url('website/membership_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           
               <div class="row">
                  <div class="col-md-6 mb-2">
                   <label for="application_date">Application Date :</label>

@@ -162,6 +162,11 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
+		public function vacancy(){
+			$d['v'] = 'website/vacancy';
+			$this->load->view('website/template',$d);
+		}
+
 		public function privacypolicy(){
 			$d['v'] = 'website/privacypolicy';
 			$this->load->view('website/template',$d);
@@ -193,9 +198,15 @@ class Website extends CI_Controller {
 
 		public function vacencysignup_create(){
 			$data = $this->input->post();
+			// echo PRE;
+			// print_r($data);die;
 			if($data['password']==$data['conf_password']){
 			   unset($data['conf_password']);
+			// 	echo PRE;
+			// print_r($data);die;
 			   $savevacencysignup= $this->Website_model->savevacencysignup($data);
+			   // print($savevacencysignup);
+			   // die;
 			   if(!empty($savevacencysignup)){
 					$this->vacency_login();
 			    }else{
@@ -386,6 +397,7 @@ class Website extends CI_Controller {
       	delete_cookie('login_cookie');
 		redirect('website/office_login');
 	}
+	
 
 	public function getpost(){
 		$depart_id = $this->input->post();
@@ -1024,7 +1036,6 @@ class Website extends CI_Controller {
 
 	public function vacency_logins(){
 		$data = $this->input->post();
-		
 		$result= $this->Website_model->checkvacenylogin($data);
 		if(!empty($result['id'])){
 			$id = $result['id'];
@@ -3088,6 +3099,7 @@ class Website extends CI_Controller {
 		}
 
 		public function membersignup_form(){
+
 			$id = $_SESSION['user_id'];
 			$length = 5;
 			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
@@ -3102,9 +3114,8 @@ class Website extends CI_Controller {
 		}
 
 		public function create_membership(){
-			$last_id = $this->input->get();
+			$last_id=$_SESSION['last_id'];
 			$d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
-
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
@@ -3115,10 +3126,8 @@ class Website extends CI_Controller {
 		}
 
 		public function addrecord_membership(){
-			// $allFiles = $_FILES;
-
-			
 			$data =  $this->input->post();
+
 			$sponser = explode('-',$data['sponsor']);
 			$sponser_id =$sponser[1];
 			unset($data['sponsor']);
@@ -3126,20 +3135,20 @@ class Website extends CI_Controller {
 			$result = $this->upload_allmember_records($_FILES);
 			$result['sponser_id'] = $sponser_id;
 
-			$record= $this->Website_model->insert_member_all_records($data,$result);
+			$record['varify']= $this->Website_model->insert_member_all_records($data,$result);
 			if($record['varify']==true){
+				
 				// ......create otp area.......
 				$this->session->set_flashdata('err_msg','Submit Successfully');
-				redirect('website/loginmember'.$records);
+				redirect('website/member_login'.$records);
 			}
 			else{ 
 				$this->session->set_flashdata('err_msg',$result['verify']);
-				redirect('website/create_membership_form');
+				redirect('website/create_membership');
    		    }
 			
 		}
 		public function upload_allmember_records($files){
-			echo PRE;
 			// print_r($files);die;
 			$upload_path = './assets/uploads/member/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
@@ -3209,6 +3218,7 @@ class Website extends CI_Controller {
 		}
 
 		public function membership_otp(){
+			
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
@@ -3224,9 +3234,11 @@ class Website extends CI_Controller {
 				$record= $this->Website_model->insert_membership($data);
 				if($record['varify']==true){
 					// ......create otp area.......
-					$records = md5($record['last_id']);
+					$last_id = md5($record['last_id']);
+					$last_ids['last_id'] = $last_id;
+			        $this->session->set_userdata($last_ids);
 					$this->session->set_flashdata('err_msg',$result['verify']);
-					redirect('website/membership_otp/?eumndf='.$records);
+					redirect('website/membership_otp');
 				}
 				else{ 
 					$this->session->set_flashdata('err_msg',$result['verify']);
@@ -3249,11 +3261,12 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
-
+// '''''''''''''''''''''''''''''''''''' SUB Member'''''''''''''''''''''''''''''''''
 		public function check_memberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-
+		    echo PRE;
+		    print_r($record);die;
 		    if($record['verify']==true){
 			$this->createsession_member($record);
 			if(!empty($_SESSION['member_id'])){
@@ -3297,14 +3310,67 @@ class Website extends CI_Controller {
 	   if(!empty($_SESSION['member_id'])){
 	   	$id = $_SESSION['member_id'];
 	   	$d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
-	   	// echo PRE;
-	   	// print_r($d['uploadfiles']);die;
 			$d['v'] = 'website/member_dashboard';
 		    $this->load->view('website/template_2',$d);
 		}
 		else{
 			redirect('website/member_login');
 		}		
+	}
+
+
+
+	public function member_general_group(){
+		if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/member_generalgroup';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+
+	public function submember_signup(){
+			if(!empty($_SESSION['member_id'])){
+				$data = $this->input->post();
+			if($data['captcha']==$data['captcha_confirm']){
+				$record= $this->Website_model->insert_membership($data);
+				if($record['varify']==true){
+					// ......create otp area.......
+					$last_id = md5($record['last_id']);
+					$last_ids['last_id'] = $last_id;
+			        $this->session->set_userdata($last_ids);
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/membership_otp');
+				}
+				else{ 
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/membersignup_form');
+	   		    }
+			}
+			else{ 
+				$this->session->set_flashdata('err_msg','Captch not match!');
+				redirect('website/membersignup_form');
+	   		}
+			}
+			else{
+				redirect('website/member_login');
+			}	
+	}
+
+	public function member_logout(){
+		if(!empty($_SESSION['member_id'])){
+			$data=array("member_id");
+			$this->session->unset_userdata($data);
+		}
+		$this->load->helper('cookie');
+      	delete_cookie('member_cookie');
+      	if($this->session->user!==NULL){
+      	  redirect('website/econtractdocx');
+      	}
+      	else{
+      		redirect('/');
+      	}
 	}
 
 

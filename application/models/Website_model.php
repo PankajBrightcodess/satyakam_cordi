@@ -109,7 +109,6 @@ class Website_model extends CI_Model{
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();
 	}
-// ,t2.e_contract,t2.my_office,t2.my_project,t2.vecency,t2.events,t2.gallery
 	public function getuser($id){
 		$this->db->where('t1.id',$id);
 		$this->db->select('t1.post_id,t3.state,t1.officer_first_name,t1.officer_middle_name,t1.officer_last_name');
@@ -126,10 +125,12 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_member_all_records($data,$result){
+
 		// $uplaod = $this->uploads_membersrecords($result);
 		// die;
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert('member_details',$data);
+
 		$result['member_details_id'] = $this->db->insert_id();
 		if($status){
 			$records = $this->uploads_membersrecords($result);
@@ -143,7 +144,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function uploads_membersrecords($result){
-		// echo PRE;
 		// print_r($result);die;
 		$status=$this->db->insert('upload_member_docs',$result);
 		$str = $this->db->last_query();
@@ -158,7 +158,7 @@ class Website_model extends CI_Model{
 
 	public function get_signupdetails($last_id){
 		// print_r($last_id);die;
-		$this->db->where('md5(t1.id)',$last_id['is']);
+		$this->db->where('md5(t1.id)',$last_id);
 		$this->db->select('t1.*,t2.state,t3.division');
 		$this->db->from('project_member t1');
 		$this->db->join('state t2','t1.state_unit_name=t2.id','left');
@@ -271,8 +271,10 @@ class Website_model extends CI_Model{
 
 	public function checkvacenylogin($data){
 		$emailid =  $data['emailid'];
-		$password =  $data['password'];
-		$query = $this->db->get_where('vacency_signup',array('email'=>$emailid,'password'=>$password));
+		$password = $data['password'];
+		$where = "email='$emailid'  OR user_name='$emailid' AND password='$password'";
+		$query = $this->db->get_where('vacency_signup',$where);
+		$qry = $this->db->last_query();
 		$result =  $query->row_array();
 		if(!empty($result)){
 			$result['verify']=true;
@@ -430,7 +432,8 @@ class Website_model extends CI_Model{
 	public function loginvacency_foradmitcard($data){
 		$emailid =  $data['emailid'];
 		$password =  $data['password'];
-		$query = $this->db->get_where('vacency_signup',array('email'=>$emailid,'password'=>$password));
+		$where = "email='$emailid'  OR user_name='$emailid' AND password='$password'";
+		$query = $this->db->get_where('vacency_signup',$where);
 		$result =  $query->row_array();
 		if(!empty($result)){
 			$result['verify']=true;
@@ -582,16 +585,18 @@ class Website_model extends CI_Model{
     }
 
     public function savevacencysignup($data){
+    	// echo PRE;
+    	// print_r($data['email']);die;
     	$email = $data['email'];
-    	
     	if(!empty($email)){
     	  $query = $this->db->get_where('vacency_signup',array('email'=>$email));
 		   $rows =  $query->num_rows();
-		   	// print_r($rows);die;
-		   if( $rows==0){
+		   if($rows==0){
 		   	    $table = 'vacency_signup';
 			   	$data['added_on']=date('Y-m-d');
 		    	$status=$this->db->insert($table,$data);
+		    	$last_query = $this->db->last_query();
+		    	// print_r($last_query);die;
 				if($status){
 				   return true;
 				}
@@ -1544,7 +1549,7 @@ class Website_model extends CI_Model{
 	public function membership_login($data){
 		$emailid =  $data['emailid'];
 		$password =  $data['password'];
-		$where = "email='$emailid'  OR username='$emailid'";
+		$where = "email='$emailid'  OR username='$emailid' AND password='$password'";
 		$query = $this->db->get_where('project_member',$where);
 		// echo $this->db->last_query();die;
 		$result =  $query->row_array();

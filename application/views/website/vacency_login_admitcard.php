@@ -24,12 +24,12 @@
               <form method="POST" action="<?= base_url('website/check_vacency_loginforadmitcard');?>">  
               <div class="row">
               <div class="col-md-12">
-                <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
+                <h3 class="text-center" style="color: white">LOGIN FOR ADMITCARD</h3>
               </div>
               <div class="col-md-12">
                
-                  <label>EMAIL ID</label>
-                  <input name="emailid" type="text" id="emailid" class="form-control" required placeholder="Email Id">
+                  <label>USER ID</label>
+                  <input name="emailid" type="text" id="emailid" class="form-control" required placeholder="User Id">
                  
               </div>
               <div class="col-md-12 mb-5">

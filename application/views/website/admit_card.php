@@ -15,7 +15,10 @@
             </div>
           </div>
           <div class="col-md-9">
-            <div class="table-responsive">
+            <?php
+              if(!empty($datas[0]['candidate_name'])){
+                ?>
+                <div class="table-responsive">
               <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
                 <thead>
                   <tr>
@@ -49,19 +52,34 @@
                       else{
                         echo 'Coming Soon...';
                       }
-                      
-
-
-
                       ?>
-
-
-                     
                   </tr>
-                   
                 </tbody>
               </table>
             </div>
+                <?php
+              }else{?>
+                <div class="table-responsive">
+              <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
+                <thead>
+                  <tr>
+                   
+                    <td scope="col" colspan="2" class="text-center"><h4>Comming Soon...</h4></td>
+                  </tr>
+                </thead>
+                
+              </table>
+            </div>
+
+
+
+                <?php
+
+              }
+
+
+            ?>
+            
           </div>
         </div>
       </div>
