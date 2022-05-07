@@ -125,14 +125,20 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_member_all_records($data,$result){
-
+		// echo PRE;
+		// print_r($data);
+		// print_r($result);
 		// $uplaod = $this->uploads_membersrecords($result);
 		// die;
+		$data['signup_id'] = $_SESSION['last_id'];
+		// echo PRE;
+		// print_r($data);die;
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert('member_details',$data);
 
 		$result['member_details_id'] = $this->db->insert_id();
 		if($status){
+			// unset($_SESSION['last_id']);
 			$records = $this->uploads_membersrecords($result);
 			if($records){
 				return true;
@@ -144,7 +150,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function uploads_membersrecords($result){
-		// print_r($result);die;
 		$status=$this->db->insert('upload_member_docs',$result);
 		$str = $this->db->last_query();
 		if($status){
@@ -158,7 +163,7 @@ class Website_model extends CI_Model{
 
 	public function get_signupdetails($last_id){
 		// print_r($last_id);die;
-		$this->db->where('md5(t1.id)',$last_id);
+		$this->db->where('t1.id',$last_id);
 		$this->db->select('t1.*,t2.state,t3.division');
 		$this->db->from('project_member t1');
 		$this->db->join('state t2','t1.state_unit_name=t2.id','left');
@@ -1564,7 +1569,12 @@ class Website_model extends CI_Model{
 	}
 
 	public function membership_uploadlist($id){
-		$result = $this->db->get_where('upload_member_docs',array('member_details_id'=>$id));
+		$this->db->where('t1.id',$id);
+		$this->db->select('t3.*');
+		$this->db->from('project_member t1');
+		$this->db->join('member_details t2','t1.id=t2.signup_id','left');
+		$this->db->join('upload_member_docs t3','t2.id=t3.member_details_id','left');
+		$result = $this->db->get();
 		$final =  $result->row_array();
 		if($final){
 		    return $final;

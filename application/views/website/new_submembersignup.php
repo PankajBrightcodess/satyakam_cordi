@@ -1,17 +1,18 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
+           <form action="<?= base_url('website/submembership_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
-          <div class="col-md-12 mb-3">
+          <div class="col-md-12 mb-5">
             <center class="tittle"><h2>NEW SUB MEMBERSHIP REGISTER</h2><h4>SIGN UP(FORM)</h4></center>
-            <form action="<?= base_url('website/submember_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           
               <div class="row">
-                 <div class="col-md-6 mb-2">
+                 <div class="col-md-6 mt-4">
                   <label for="application_date">Application Date :</label>
                   <input type="date" name="application_date" placeholder="Application Date :" class="form-control" required>
                  
                 </div>
-                 <div class="col-md-6 mb-2">
+                 <div class="col-md-6 mt-4">
                   <label for="state_unit_name">State Unit Name :</label>
                   <select class="form-control states" id="states" name="state_unit_name">
                     <option>State :</option>
@@ -34,9 +35,11 @@
                   <label for="dist_unit_name">Dist Unit Name :</label>
                   <input type="text" name="dist" placeholder="Dist Name :" class="form-control" required>
                 </div>
-                 <div class="col-md-12 mb-2">
-                     <label for="dist_unit_name">Sponsor Id No. :</label>
-                     <input type="text" name="sponsor" value="<?= $officer_name['officer_first_name'].' '.$officer_name['officer_middle_name'].' '.$officer_name['officer_last_name'].'-'.$_SESSION['user_id'];?>" placeholder="Sponsor Id No. :" readonly class="form-control" required>
+                <div class="col-md-6 mb-2">
+                        <input type="hidden" name="sponsor_id" value="<?= $_SESSION['member_id'];?>" placeholder="Sponsor Id No. :" readonly class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                        <input type="hidden" name="created_by" value="<?php echo $_SESSION['user_id'];?>"  placeholder="Sponsor Id No. :" readonly class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="applicant_name">Applicant Name :</label>
@@ -60,7 +63,7 @@
                 </div>
                 <div class="col-md-6 mb-2">
 
-                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white; width: 100px; margin: 20px; padding:20px"><?php echo $captcha;?></label>
+                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white; width: 100px; margin: 20px; padding:10px"><?php echo $captcha;?></label>
                   <input type="hidden" name="captcha_confirm" value="<?php echo $captcha;?>">
                   
                 </div>

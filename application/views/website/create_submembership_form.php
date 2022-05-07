@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <center><h1 class="tittle">Membership Form</h1></center>
-                    <form action="<?= base_url('website/addrecord_membership');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
+                    <form action="<?= base_url('website/addrecord_submembership');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
                             <label>Application No.</label>
