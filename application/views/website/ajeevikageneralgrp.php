@@ -21,7 +21,7 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>New Group Create</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >LOGIN</a> <a href="#" class="btn btn-sm btn-success ml-2">SIGN UP</a></td>
+                    <td><a href="#" class="btn btn-sm btn-success ml-2" >LOGIN</a> <a href="<?= base_url('website/groupsignup_form');?>" class="btn btn-sm btn-success ml-2">SIGN UP</a></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>

@@ -3462,6 +3462,22 @@ class Website extends CI_Controller {
       	}
 	}
 
+	// ---------------------member group create--------------------------
+	public function groupsignup_form(){
+
+			$id = $_SESSION['user_id'];
+			$length = 5;
+			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+			$d['captcha'] =$captcha;
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['officer_name'] = $finalrecord;
+			$d['v'] = 'website/member_groupsignup';
+			$this->load->view('website/template_1',$d);
+		}
+
 
 
 
