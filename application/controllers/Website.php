@@ -3290,6 +3290,37 @@ class Website extends CI_Controller {
 		}
 	}
 
+	public function check_submemberlogin(){
+		    $data = $this->input->post();
+		    $record= $this->Website_model->membership_login($data);
+		    if($record['verify']==true){
+		    	unset($_SESSION['member_id']);
+				unset($_SESSION['last_id']);
+				unset($_SESSION['member_name']);
+				$this->load->helper('cookie');
+      	    	delete_cookie('member_cookie');
+		    	if(empty($_SESSION['member_id'])){
+		    		$this->createsession_member($record);
+					if(!empty($_SESSION['member_id'])){
+						redirect('website/memberdashboard');
+					}
+					else{
+						redirect('website/submember_login');
+					}
+
+		    	}
+		    	// else{
+		    	// 	redirect('website/memberdashboard');
+		    	// }
+			
+		}
+		else{ 
+			die;
+			$this->session->set_flashdata('err_msg',$record['verify']);
+			redirect('website/submember_login');
+		}
+	}
+
 	public function createsession_member($result){
 		$data['member_id']=$result['id'];
 		$data['member_name']=$result['applicant_name'];
@@ -3408,6 +3439,11 @@ class Website extends CI_Controller {
 		public function submember_login(){
 			$d['v'] = 'website/submember_login';
 			$this->load->view('website/template_2',$d);
+		}
+
+		public function submember_login_home(){
+			$d['v'] = 'website/login_submember';
+			$this->load->view('website/template',$d);
 		}
 
 	public function member_logout(){

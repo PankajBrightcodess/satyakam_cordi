@@ -14,7 +14,7 @@
         </div>
       </li>
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/office_login');?>">Official Services</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="#">Projects</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/submember_login_home');?>">Projects</a></li>
        <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/vacancy');?>">Vacancy</a></li>
      <!--  <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
