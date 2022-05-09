@@ -3516,6 +3516,8 @@ class Website extends CI_Controller {
 
 		public function group_reg_form(){
 			$last_group_id = $_SESSION['last_group_id'];
+			// echo '<pre>';
+			// print_r($_SESSION );die;
 			$d['group_records']= $this->Website_model->group_details($last_group_id);
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -3528,9 +3530,32 @@ class Website extends CI_Controller {
 
 		public function groupdetails_insert(){
 			$data = $this->input->post();
+			$records['member_id'] = $data['member_id'];
+			$records['member_name'] = $data['member_name'];
+			$records['dob'] = $data['dob'];
+			$records['father_name'] = $data['father_name'];
+			$records['mobile'] = $data['mobile'];
+			$records['aadhar_no'] = $data['aadhar_no'];
+			$records['designation'] = $data['designation'];
+			// ''''''json conversion total member''''''''
+			$total_member['total_members_in_word']=$data['total_members_in_word'];
+			$total_member['total_members_in_number']=$data['total_members_in_number'];
+			$records['total_members'] = json_encode($total_member);
+			// ''''''json conversion mendetory''''''''
+			$mendetory['mendetory1'] = $data['mandatory1'];
+			$mendetory['mendetory2'] = $data['mandatory2'];
+			$mendetory['mandatory3'] = $data['mandatory3'];
+			$mendetory['mandatory4'] = $data['mandatory4'];
+			$mendetory['mandatory5'] = $data['mandatory5'];
+			$records['mandatory'] = json_encode($mendetory);
+			$count = count($records['member_id']);
+			for ($i=0; $i < $count; $i++) { 
+				$arr = array('member_id'=>$records['member_id'][$i],'member_name'=>$records['member_name'][$i],'dob'=>$records['dob'][$i],'father_name'=>$records['father_name'][$i],'mobile'=>$records['mobile'][$i],'aadhar_no'=>$records['aadhar_no'][$i],'designation'=>$records['designation'][$i],'total_members'=>$records['total_members'],'mandatory'=>$records['mandatory']);
+				$final_array[]=$arr;
+			}
 			echo PRE;
-			print_r($_FILES);
-			print_r($data);die;
+			print_r($final_array);die;
+
 		}
 
 

@@ -10,7 +10,6 @@
                     <thead>
                       <tr>
                         <th scope="col">Incaption Date : &nbsp;&nbsp;<?= date('d-m-Y', strtotime($group_records['inception_date']));?></th>
-                        <!-- <th scope="col" rowspan="2">Reporting Time : 10:00 A.M.</th> -->
                         <th scope="col" rowspan="2"><h5 class="tittle">GROUP REGISTRATION FORM</h5><h6><?= date('Y').'-'.date('y', strtotime('+1 year'));?></h6></th>
                         <th scope="col">State  :&nbsp;&nbsp;<?php echo $group_records['state'];?></th>
                       </tr> 
@@ -51,11 +50,9 @@
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
                       <tr>
-                        <th ><p>ALL THE DETAILS ENTERED PRE CORRECT UNDER WHICH ALL THE MEMBERS ARE ASPIRANTS TO REGISTER THE GROUP ALL THE MEMBERS INCLUDED IN THE GROUP ARE PERMANENT RESIDENTS OF THE SAME LOCALITY AND WARD AND ALL OF US MEMBERS KNOW EACH OTHER KNOW AND RECOGBIZE.</p></th>
-                       
+                        <th ><p>ALL THE DETAILS ENTERED PRE CORRECT UNDER WHICH ALL THE MEMBERS ARE ASPIRANTS TO REGISTER THE GROUP ALL THE MEMBERS INCLUDED IN THE GROUP ARE PERMANENT RESIDENTS OF THE SAME LOCALITY AND WARD AND ALL OF US MEMBERS KNOW EACH OTHER KNOW AND RECOGBIZE.</p>
+                        </th>
                       </tr> 
-                     
-                     
                     </thead>
                   </table> 
                 </div>
@@ -91,7 +88,7 @@
                         <td><input type="text" name="mobile[]" id="mobile" class="form-control"></td>
                         <td><input type="text" name="aadhar_no[]" id="aadhar_no" class="form-control"></td>
                         <td><input type="text" name="designation[]" id="designation" class="form-control"></td>
-                        <td><input type="file" name="photo[]" id="photo" class="form-control"></td>
+                        <td><input type="file" multiple  name="photo[]" id="photo" class="form-control"></td>
                         <td><button class="btn btn-info btn-xs remove_group" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
@@ -123,12 +120,11 @@
                                   <div style="width:300; height:70; float: right;"  id='imgInp'>
                                     <img src="#" alt="" id="previewHolder"  height="70" width="300" >
                                   </div>
-                                  
                                 </div>
                               </div>
                 <div class="col-md-12 col-lg-12 col-12 text-right">
                   <label>Upload Picture</label>
-                  <input type="file" name="proposer_sign" id="filePhoto" value=""  onchange="readURL(this,'#blah');">
+                  <input type="file" name="professor_sign" id="professor_sign" value=""  onchange="readURL(this,'#blah');">
                 </div>
               </div>
               </div>
@@ -146,13 +142,13 @@
               <div class="col-md-12 mb-2 text-center text-info"><h5>MENDATORY INSTRUCTIONS</h5></div>
                 <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
                 <div class="col-md-11 col-11 col-lg-11 mb-2"><label>THE FORMATION OF A LOCAL BODY GROUP CAN BE ESTABLISHED IN THE FORM OF TWO GROUPS IN EACH OF THE VILLAGE PANCHAYATS OF RURAL INDIA. BUT FOR THE FORMATION OF MORE THAN THIS GROUP. PERMISSION WILL HAVE TO BE TAKEN FROM THRE DISTRICT PROJECT MANAGER'S OFFICE.</label></div>
-                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
+                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory2" name="mandatory2" value="1"></div>
                 <div class="col-md-11 col-11 col-lg-11 mb-2"><label>A TOTAL OF 36 WOMEN MEMBERS CAN BE INCLUDED IN THE LOCAL BODY.</label></div>
-                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
+                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory3" name="mandatory3" value="1"></div>
                 <div class="col-md-11 col-11 col-lg-11 mb-2"><label>IT IS MANDATORY FOR ALL THE MEMBERS OF THE GROUP TO BE AT 18 YEARS OLD AND THE MAXIMUM AGE IS 55 YEARS.</label></div>
-                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
+                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory4" name="mandatory4" value="1"></div>
                 <div class="col-md-11 col-11 col-lg-11 mb-2"><label>IT IS MANDATORY FOR ALL THE MEMBERS TO HAVE THEIR NAMES IS THE VOTER LIST.</label></div>
-                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
+                <div class="col-md-1 col-1 col-lg-1 mb-2"><input type="checkbox" id="mandatory5" name="mandatory5" value="1"></div>
                 <div class="col-md-11 col-11 col-lg-11 mb-2"><label>IT IS MANDATORY FOR ALL THE THREE ADJUDICATING OFFICERS OF THE LOCAL BODY TO HAVE AT LEAST VIII PASS EDUCATIONAL QUALIFICATION.</label></div>
               <div class="col-md-12 mb-5 text-center"><input type="submit"  class="btn btn-lg btn-secondary" value="PROCESS"></div>
             </div>
