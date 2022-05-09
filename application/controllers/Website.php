@@ -3493,14 +3493,12 @@ class Website extends CI_Controller {
 
 		public function groupsingup_create(){
 			$data = $this->input->post();
-		
 			if($data['captcha']==$data['captcha_confirm']){
 				$record= $this->Website_model->insert_group_head($data);
-
 				if($record['varify']==true){
 					// .....create otp area......
 					$last_id = $record['last_id'];
-					$last_ids['last_id'] = $last_id;
+					$last_ids['last_group'] = $last_id;
 			        $this->session->set_userdata($last_ids);
 					$this->session->set_flashdata('err_msg',$result['verify']);
 					redirect('website/groupmembership_otp');
@@ -3517,6 +3515,8 @@ class Website extends CI_Controller {
 		}
 
 		public function group_reg_form(){
+			$last_group_id = $_SESSION['last_group_id'];
+			$d['group_records']= $this->Website_model->group_details($last_group_id);
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
@@ -3524,6 +3524,13 @@ class Website extends CI_Controller {
 			$d['state_code']= $this->Website_model->userdetails();
 			$d['v'] = 'website/group_registration_form';
 			$this->load->view('website/template_1',$d);
+		}
+
+		public function groupdetails_insert(){
+			$data = $this->input->post();
+			echo PRE;
+			print_r($_FILES);
+			print_r($data);die;
 		}
 
 

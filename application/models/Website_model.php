@@ -1596,8 +1596,20 @@ class Website_model extends CI_Model{
 		}
 		else{
 			return false;
-		}
-		
+		}	
+	}
+
+	public function group_details($last_group_id){
+		$where = "t1.id='$last_group_id'";
+		$this->db->where($where);
+		$this->db->Select('t1.*,t2.state,t3.division,t4.mobile_no as cell_no,t4.officer_first_name,t4.officer_middle_name,t4.officer_last_name');
+		$this->db->from('group_signup t1');
+		$this->db->join('stk_state t2','t1.state_unit_name=t2.id','left');
+		$this->db->join('stk_division t3','t1.division_unit_name=t3.id','left');
+		$this->db->join('officer_details t4','t1.created_by=t4.id','left');
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		return $result;
 	}
 
 
