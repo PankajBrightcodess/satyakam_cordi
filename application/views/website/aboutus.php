@@ -19,9 +19,118 @@
               <li>Our main objective will be to conduct other welfare schemes for Swachh and Nirmal Bharat Mission.</li>
             </ul>
           </div>
+          <div class="col-md-12">
+            <ul>
+              <li><strong>Institution Type :</strong> &nbsp;&nbsp;Voluntyary and Private Organization </li>
+              <li><strong>Establishment :</strong> &nbsp;&nbsp;04 October 2019-20</li>
+              <li><strong>Active :</strong> &nbsp;&nbsp;15 January 2020-21</li>
+            </ul>
+          </div>
           <div class="col-md-9">
             <div class="table-responsive">
-              <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
+               <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
+                <thead>
+                  <tr>
+                    <th scope="col" rowspan="6">FOUNDER/DIRECTOR</th>
+                    <td scope="col">1) Mr. B. KUMAR(TRUSTEES/ FOUNDER CHAIRMAN/ CHIEF MANAGING DIRECTOR)</td>
+                    
+                  </tr>
+                  <tr>
+                     <td scope="col">2) Mr. PN. SAH(TREASURER/ CHIEF PROJECT DIRECTOR)</td>
+                  </tr>
+                   <tr>
+                     <td scope="col">3) Mr. RS. PASWAN(NATIONAL SPOKE PERSON/ CHIEF FINANCE DIRECTOR)</td>
+                  </tr>
+                   <tr>
+                     <td scope="col">4) Mr. MUKARRAM RAZA(JOINT FINANCE DIRECTOR)</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">5) Mr. RAZA HAIDER KHAN(MANAGING DIRECTOR)</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">6) Mr. B.K. SINGH(NATIONAL PUBLISHING EXECUTIVE)</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">CONTROL OFFICE</th>
+                    <td>SAGER COMPLEX 4RD FLOOR, NEAR RAILWAY STATION, MALGODAM ROAD, SURAT GANJ WARD NO 18, MADHUBANI(BIHAR)-847211</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">HELPLINE NO.</th>
+                    <td>LANDLINE NO. :06276222044, MOB. NO. :9470879074, 8986400989</td>
+                  </tr>
+                 <tr>
+                    <th scope="row">E-MAIL</th>
+                    <td>INFO@SATYAKAMNMC.COM, INDIASNSOUNDATION468@GMAIL.COM</td>
+                  </tr>
+                   <tr>
+                    <th scope="row">WEBSITE</th>
+                    <td>WWW.INDIASATYAKAM.COM</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" rowspan="7">RECONIZED</th>
+                    <td>UNDER THE GOVERNMENT OF INDIA TRUST ACT 1882</td>
+                  </tr>
+                   <tr>
+                     <td scope="col">UNDER THE NATIONAL TRUST ACT 1999</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">NATIONAL HUMAN RIGHT COMMISSION OF INDIA</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">MINISTRY OF HEALTH AND FAMILY WELFARE GOV. OF INDIA</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">CENTRAL VIGIALANCE COMMISSION GOV. OF INDIA</td>
+                  </tr>
+                   <tr>
+                     <td scope="col">MINISTRY OF MICRO SMALL AND MEDIUM ENTERPRISES GOV. OF INDIA</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">INCOME TAX DEPARTMENT GOV. OF INDIA</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">PAN NO.</th>
+                    <td>AATYS808SM</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">REG. NO.</th>
+                    <td>7779-2019-20</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">A/C NO.</th>
+                    <td>10200005003630,  IFSC NO.: BDBL0001857</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">TYPE OF WORK</th>
+                    <td>SOCIAL DEVELOPMENT PROGRAM</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" rowspan="4">OPERATED PROJECT/COMMING SOON</th>
+                    <td>AAJEEVIKA CREDIT CO. OPERATIVE SOCIETY MISSION</td>
+                  </tr>
+                    <tr>
+                     <td scope="col">I.CON INDIA SMART COACHING CLASSES</td>
+                  </tr>
+                   <tr>
+                     <td scope="col">VILLAGE MART ONLINE SHOPPING BAJAAR</td>
+                  </tr>
+                  <tr>
+                     <td scope="col">ANAAJ SAFETY BANK</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">ADVERTISEMENT</th>
+                    <td>BANNER, POSTER, REFERRAL MARKITING, SOCIAL MEDIA, ELECTRONIC MEDIA, PRINT MEDIA</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">LANGUAGES</th>
+                    <td>HINDI AND ENGLISH</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+             <!--  <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
                 <thead>
                   <tr>
                     <th scope="col">Institution Type</th>
@@ -89,7 +198,7 @@
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
         </div>

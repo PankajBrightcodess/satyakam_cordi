@@ -3478,6 +3478,54 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
+		public function groupmembership_otp(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['last_id'] = $this->input->get('eumndf');
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/groupmembership_otp';
+			$this->load->view('website/template_1',$d);
+		}
+
+
+
+		public function groupsingup_create(){
+			$data = $this->input->post();
+		
+			if($data['captcha']==$data['captcha_confirm']){
+				$record= $this->Website_model->insert_group_head($data);
+
+				if($record['varify']==true){
+					// .....create otp area......
+					$last_id = $record['last_id'];
+					$last_ids['last_id'] = $last_id;
+			        $this->session->set_userdata($last_ids);
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/groupmembership_otp');
+				}
+				else{ 
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/groupsignup_form');
+	   		    }
+			}
+			else{ 
+				$this->session->set_flashdata('err_msg','Captch not match!');
+				redirect('website/groupsignup_form');
+	   		}
+		}
+
+		public function group_reg_form(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['state_code']= $this->Website_model->userdetails();
+			$d['v'] = 'website/group_registration_form';
+			$this->load->view('website/template_1',$d);
+		}
+
 
 
 

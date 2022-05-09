@@ -1,7 +1,7 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/submembership_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           <form action="<?= base_url('website/groupsingup_create')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
             <center class="tittle"><h2>NEW GROUP CREATE</h2><h4>SIGN UP(FORM)</h4></center>
@@ -13,7 +13,7 @@
                  
                 </div>
                  <div class="col-md-6 mt-4">
-                  <label for="state_unit_name">State Unit Name :</label>
+                  <label for="state_unit_name">State :</label>
                   <select class="form-control states" id="states" name="state_unit_name">
                     <option>State :</option>
                     <?php
@@ -26,36 +26,47 @@
                   </select>
                 </div>
                 <div class="col-md-6 mb-2"> 
-                  <label for="division_unit_name">Division Unit Name :</label>
+                  <label for="division_unit_name">Division :</label>
                   <select class="form-control division" id="division" name="division_unit_name">
                     <option>Division :</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="dist_unit_name">Dist Unit Name :</label>
+                  <label for="dist_unit_name">District :</label>
                   <input type="text" name="dist" placeholder="Dist Name :" class="form-control" required>
+                  <input type="hidden" name="sponsor_id" value="0" placeholder="Sponsor Id No. :" readonly class="form-control" required>
                 </div>
-                <!-- <div class="col-md-6 mb-2">
-                        <input type="hidden" name="sponsor_id" value="<?= $_SESSION['member_id'];?>" placeholder="Sponsor Id No. :" readonly class="form-control" required>
-                </div> -->
-                <div class="col-md-6 mb-2">
-                        <input type="hidden" name="created_by" value="<?php echo $_SESSION['user_id'];?>"  placeholder="Sponsor Id No. :" readonly class="form-control" required>
+              <div class="col-md-6 mb-2">
+                  <label for="applicant_name">Block :</label>
+                  <input type="text" name="block" placeholder="Block Name :" class="form-control" required>  
+                </div>
+               
+                <div class="col-md-6 mb-2"> 
+                  <label for="dob">Gram Panchayat :</label>
+                  <input type="text" name="gram_panchayat" placeholder="Gram Panchayat"  class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
-                  <label for="applicant_name">Applicant Name :</label>
-                  <input type="text" name="applicant_name" placeholder="Applicant Name :" class="form-control" required>
-                </div>
-                <div class="col-md-6 mb-2"> 
-                  <label for="dob">DOB :</label>
-                  <input type="date" name="dob"  class="form-control" required>
+                   <label for="mobile_no">Ward No. :</label>
+                   <input type="text" name="ward_no" maxlength="10" minlength="10" placeholder="Ward No :" class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
-                  <label for="mobile_no">Mobile No. :</label>
-                  <input type="number" name="mobile_no" maxlength="10" minlength="10" placeholder="Mobile Number :" class="form-control" required>
+                    <label for="mobile_no">Sponsor Id No. :</label>
+                   <input type="text" name="created_by" value="<?php echo $_SESSION['user_id'];?>"  placeholder="Sponsor Id No. :" readonly class="form-control" required>
+                </div>
+                 <div class="col-md-6 mb-2">
+                        
+                </div>
+                <div class="col-md-12 mb-2"> 
+                  <label for="email">Group Name :</label>
+                  <input type="text" name="group_name" placeholder="Enter Group Name"  class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label for="email">Mobile No :</label>
+                        <input type="text" name="mobile_no" value=""  placeholder="Mobile No. :"  class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="email">Email :</label>
-                  <input type="email" name="email" placeholder="Email Id"  class="form-control" required>
+                  <input type="email" name="email" placeholder="Enter Email"  class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
                   <label for="email">Captcha :</label>

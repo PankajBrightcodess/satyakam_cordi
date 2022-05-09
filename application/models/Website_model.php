@@ -1585,6 +1585,21 @@ class Website_model extends CI_Model{
 		
 	}
 
+	public function insert_group_head($data){
+		unset($data['captcha']);
+		unset($data['captcha_confirm']);
+		$data['added_on']=date('Y-m-d');
+		$status['varify']=$this->db->insert('group_signup',$data);
+		$status['last_id']=$this->db->insert_id();
+		if($status){
+				return $status;
+		}
+		else{
+			return false;
+		}
+		
+	}
+
 
 
 

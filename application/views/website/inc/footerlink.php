@@ -221,6 +221,29 @@ $("#filePhoto").change(function() {
 <script type="text/javascript">
     $(document).ready(function() {
   var max_fields      = 500; //maximum input boxes allowed
+  var wrapper       = $(".group_add"); //Fields wrapper
+  var add_button      = $(".add_expense"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append('<tr><td><input type="text" name="equipment[]" id="equipment" class="form-control"></td><td><input type="text" name="quantity[]" id="quantity" class="form-control"></td><td><input type="text" name="rate[]" id="rate" class="form-control"></td><td><input type="text" name="amount[]" id="amount" class="form-control"></td><td><input type="text" name="bill[]" id="bill" class="form-control"></td><td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td><td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td><td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td><td><button class="btn btn-info btn-xs remove_equipment" id="remove_equipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+    }
+  });
+  
+  $('body').on('click','.remove_equipment', function(e){ 
+    debugger;
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 500; //maximum input boxes allowed
   var wrapper       = $(".expenses"); //Fields wrapper
   var add_button      = $(".add_expense"); //Add button ID
   
@@ -234,6 +257,29 @@ $("#filePhoto").change(function() {
   });
   
   $('body').on('click','.remove_equipment', function(e){ 
+    debugger;
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 36; //maximum input boxes allowed
+  var wrapper       = $(".group"); //Fields wrapper
+  var add_button      = $(".add_group"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append(' <tr><td><input type="text" name="member_id[]" id="member_id" class="form-control"></td><td><input type="text" name="member_name[]" id="member_name" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="father_name[]" id="father_name" class="form-control"></td><td><input type="text" name="mobile[]" id="mobile" class="form-control"></td><td><input type="text" name="aadhar_no[]" id="aadhar_no" class="form-control"></td><td><input type="text" name="designation[]" id="designation" class="form-control"></td><td><input type="file" name="photo[]" id="photo" class="form-control"></td><td><button class="btn btn-info btn-xs remove_group" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+    }
+  });
+  
+  $('body').on('click','.remove_group', function(e){ 
     debugger;
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
@@ -279,6 +325,8 @@ $("#filePhoto").change(function() {
       $(wrapper).append('<tr><td><input type="text" name="resources[]" id="resources" class="form-control"></td><td><input type="text" name="modelno[]" id="modelno" class="form-control"></td><td><input type="text" name="brandname[]" id="brandname" class="form-control"></td><td><input type="number" name="quantity[]" id="quantity" class="form-control"></td><td><input type="number" name="rate[]" id="rate" class="form-control"></td> <td><input type="number" name="amount[]" id="amount" class="form-control"></td><td><input type="number" name="total_amount[]" id="amount" class="form-control"></td><td><button type="button" class="btn btn-info btn-xs remove_group_resource" ><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
+
+
   
   $('body').on('click','.remove_group_resource', function(e){ 
     debugger;
