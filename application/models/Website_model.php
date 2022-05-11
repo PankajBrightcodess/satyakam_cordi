@@ -1588,6 +1588,8 @@ class Website_model extends CI_Model{
 	public function insert_group_head($data){
 		unset($data['captcha']);
 		unset($data['captcha_confirm']);
+		// echo PRE;
+		// print_r($data);die;
 		$data['added_on']=date('Y-m-d');
 		$status['varify']=$this->db->insert('group_signup',$data);
 		$status['last_id']=$this->db->insert_id();
@@ -1610,6 +1612,31 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		$result =  $query->row_array();
 		return $result;
+	}
+
+	public function insert_groupdetails($final_array){
+		foreach ($final_array as $key => $value) {
+			$status[]=$this->db->insert('group_details',$value);
+		}
+		return json_encode($status);
+	}
+
+	public function get_grouplist($id){
+		$where = "t1.created_by='$id'";
+		$this->db->where($where);
+		$this->db->Select('t1.*,t2.state,t3.division,t4.mobile_no as cell_no,t4.officer_first_name,t4.officer_middle_name,t4.officer_last_name');
+		$this->db->from('group_signup t1');
+		$this->db->join('stk_state t2','t1.state_unit_name=t2.id','left');
+		$this->db->join('stk_division t3','t1.division_unit_name=t3.id','left');
+		$this->db->join('officer_details t4','t1.created_by=t4.id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
+	}
+
+	public function getgroup_memberlist($ids){
+		$query = $this->db->get_where('group_details',array('status'=>1,'sign_up_id'=>$ids));
+		return  $query->result_array();
 	}
 
 

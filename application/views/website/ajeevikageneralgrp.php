@@ -26,7 +26,7 @@
                   <tr>
                     <th scope="row">3</th>
                     <td>Registered Group Status</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/group_status')?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>

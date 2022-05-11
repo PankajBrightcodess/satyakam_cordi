@@ -372,7 +372,12 @@ class CI_Upload {
 	 * @return	bool
 	 */
 	public function do_upload($field = 'userfile')
-	{
+	{  	
+		// print_r(count($_FILES));die;
+		 // $count = count($_FILES);
+		 // for ($i=0; $i <  $count ; $i++) { 
+		 	// code...
+		 
 		// Is $_FILES[$field] set? If not, no reason to continue.
 		if (isset($_FILES[$field]))
 		{
@@ -581,7 +586,8 @@ class CI_Upload {
 		$this->set_image_properties($this->upload_path.$this->file_name);
 
 		return TRUE;
-	}
+  
+}
 
 	// --------------------------------------------------------------------
 
