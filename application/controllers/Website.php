@@ -3295,7 +3295,6 @@ class Website extends CI_Controller {
 	public function check_submemberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-		   
 		    if($record['verify']==true){
 		    	unset($_SESSION['member_id']);
 				unset($_SESSION['last_id']);
@@ -3308,7 +3307,7 @@ class Website extends CI_Controller {
 						redirect('website/memberdashboard');
 					}
 					else{
-						redirect('website/submember_login');
+						redirect('website/submember_login_home');
 					}
 
 		    	}
@@ -3320,7 +3319,7 @@ class Website extends CI_Controller {
 		else{ 
 			die;
 			$this->session->set_flashdata('err_msg',$record['verify']);
-			redirect('website/submember_login');
+			redirect('website/submember_login_home');
 		}
 	}
 
@@ -3455,12 +3454,8 @@ class Website extends CI_Controller {
 			
 		}
 		public function submember_login(){
-			$id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/submember_login';
-			$this->load->view('website/template_1',$d);
+			$this->load->view('website/template_2',$d);
 		}
 		public function group_creator_login(){
 			$d['v'] = 'website/submember_grouplogin';
