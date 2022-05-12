@@ -3265,6 +3265,11 @@ class Website extends CI_Controller {
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
 		    if($record['verify']==true){
+		    	unset($_SESSION['member_id']);
+				unset($_SESSION['last_id']);
+				unset($_SESSION['member_name']);
+				$this->load->helper('cookie');
+      	    	delete_cookie('member_cookie');
 		    	if(empty($_SESSION['member_id'])){
 		    		$this->createsession_member($record);
 					if(!empty($_SESSION['member_id'])){
@@ -3365,6 +3370,21 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
+	public function member_group_status(){
+			$id = $_SESSION['member_id'];
+			$d['list']=$this->Website_model->get_grouplist($id);
+			// echo PRE;
+			// print_r($d['list']);die;
+			$d['v'] = 'website/member_group_status';
+			$this->load->view('website/template_2',$d);
+		}
+		public function member_group_member_list(){
+    	   $ids = $this->input->get('id');
+			$d['ides']=$ids;
+    	    $d['member_list']= $this->Website_model->getgroup_memberlist($ids);
+			$d['v'] = 'website/member_group_list';
+			$this->load->view('website/template_2',$d);
+		}
 
 	public function submember_signup(){
 
@@ -3437,6 +3457,10 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/submember_login';
 			$this->load->view('website/template_2',$d);
 		}
+		public function group_creator_login(){
+			$d['v'] = 'website/submember_grouplogin';
+			$this->load->view('website/template_2',$d);
+		}
 
 		public function submember_login_home(){
 			$d['v'] = 'website/login_submember';
@@ -3460,6 +3484,7 @@ class Website extends CI_Controller {
 	}
 
 	// ---------------------member group create--------------------------
+	//officer group signup form
 	public function groupsignup_form(){
 
 			$id = $_SESSION['user_id'];
@@ -3631,6 +3656,112 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
+		public function check_grouplogin(){
+		$data = $this->input->post();
+
+		    $record= $this->Website_model->group_login($data);
+
+		    if($record['verify']==true){
+		    	unset($_SESSION['member_id']);
+				unset($_SESSION['last_id']);
+				unset($_SESSION['member_name']);
+				unset($_SESSION['group_id']);
+				unset($_SESSION['group_name']);
+				$this->load->helper('cookie');
+      	    	delete_cookie('member_cookie');
+      	    	delete_cookie('group_cookie');
+		    	if(empty($_SESSION['group_id'])){
+		    		$this->createsession_group($record);
+					if(!empty($_SESSION['group_id'])){
+						redirect('website/groupdashboard');
+					}
+					else{
+						redirect('website/login_group');
+					}
+
+		    	}
+		    	// else{
+		    	// 	redirect('website/memberdashboard');
+		    	// }
+			
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$record['verify']);
+			redirect('website/login_group');
+		}
+	}
+
+	public function groupdashboard(){
+		if(!empty($_SESSION['group_id'])){
+	   	$id = $_SESSION['group_id'];
+	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+			$d['v'] = 'website/groupdashboard';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}	
+	}
+
+	
+
+	public function createsession_group($result){
+		$data['group_id']=$result['id'];
+		$data['group_name']=$result['group_name'];
+		$this->session->set_userdata($data);
+		$this->create_cookie_group();
+	}
+
+
+	public function create_cookie_group(){
+		 $this->load->helper('cookie');
+		 $group_id = $this->session->userdata('group_id');
+         $group_name = $this->session->userdata('group_name');
+         $cookiearray = array('group_id'=>$group_id,'group_name'=>$group_name);
+        $json = base64_encode(json_encode($cookiearray));
+        $cookie = array(
+        'name'   => 'group_cookie',
+        'value'  => $json,
+        'expire' => '2592000'        
+         ); 
+		$this->load->helper('cookie');
+        $this->input->set_cookie($cookie);
+	}
+	public function memberslink(){
+		if(!empty($_SESSION['group_id'])){
+	   	$id = $_SESSION['group_id'];
+	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+			$d['v'] = 'website/group_member_link';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}	
+	}
+	public function collective_saving(){
+		if(!empty($_SESSION['group_id'])){
+	   	$id = $_SESSION['group_id'];
+	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+			$d['v'] = 'website/group_collective_saving';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}	
+	}
+
+	public function enterprises_feature(){
+		if(!empty($_SESSION['group_id'])){
+	   	$id = $_SESSION['group_id'];
+	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+			$d['v'] = 'website/group_enterprises';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}	
+	}
+
 
 		public function group_status(){
 			$id = $_SESSION['user_id'];
@@ -3729,6 +3860,105 @@ class Website extends CI_Controller {
         redirect(base_url()."assets/excel/".$fileName); 
     }
 
+
+    public function member_status(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['list']=$this->Website_model->get_memberlist($id);
+			// echo PRE;
+			// print_r($d['list']);die;
+			$d['v'] = 'website/member_list';
+			$this->load->view('website/template_1',$d);
+		}
+	public function excel_memberlist(){
+		$id = $_SESSION['user_id'];
+		$d['list']=$this->Website_model->get_memberlist($id);
+    	$fileName = 'member_list.xlsx';
+		$id = $_SESSION['user_id'];
+		$memberList =$this->Website_model->get_memberlist($id);
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','MEMBERSHIP NO');
+        $sheet->setCellValue('B1','APPLICATION DATE');
+        $sheet->setCellValue('C1','APPLICATION NO');
+        $sheet->setCellValue('D1','APPLICANT NAME');
+		$sheet->setCellValue('E1','ADDRESS');
+        $sheet->setCellValue('F1','CONTACT NO');       
+        $sheet->setCellValue('G1','AADHAR');       
+        $sheet->setCellValue('H1','SUPER');       
+        $sheet->setCellValue('I1','YEAR');      
+        $rows = 2;
+        foreach ($memberList as $val){
+            $sheet->setCellValue('A' . $rows, $val['membership_no']);
+            $sheet->setCellValue('B' . $rows, $val['app_date']);
+            $sheet->setCellValue('C' . $rows, $val['app_no']);
+            $sheet->setCellValue('D' . $rows, $val['applicant_name']);
+	        $sheet->setCellValue('E' . $rows, 'VILL-'.$val['village'].', POST-'.$val['panchayat'].', WARD-'.$val['ward_no'].', POLICE STATION-'.$val['police_station'].', BLOCK-'.$val['block'].', DIST-'.$val['dist'].', STATE-'.$val['state'].', PIN-'.$val['pin_code']);
+            $sheet->setCellValue('F' . $rows, $val['mobile_no']);
+            $sheet->setCellValue('G' . $rows, $val['aadhar']);
+            $sheet->setCellValue('H' . $rows, $val['super']);
+            $sheet->setCellValue('I' . $rows, $val['year']);
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
+	public function sub_memberlist(){
+		$get_id = $this->input->get('id');
+		$d['get_id'] = $get_id;
+		$id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$d['list']=$this->Website_model->get_submemberlist($get_id);
+		$d['v'] = 'website/submember_list';
+		$this->load->view('website/template_1',$d);
+	}
+
+	public function excel_submemberlist(){
+		$get_id = $this->input->get('id');
+		$id = $_SESSION['user_id'];
+    	$fileName = 'submember_list.xlsx';
+		$id = $_SESSION['user_id'];
+		$submemberList =$this->Website_model->get_submemberlist($get_id);
+		// echo PRE;
+		// print_r($submemberList);die;
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','MEMBERSHIP NO');
+        $sheet->setCellValue('B1','APPLICATION DATE');
+        $sheet->setCellValue('C1','APPLICATION NO');
+        $sheet->setCellValue('D1','APPLICANT NAME');
+		$sheet->setCellValue('E1','ADDRESS');
+        $sheet->setCellValue('F1','CONTACT NO');       
+        $sheet->setCellValue('G1','AADHAR');       
+        $sheet->setCellValue('H1','SUPER');       
+        $sheet->setCellValue('I1','YEAR');      
+        $rows = 2;
+        foreach ($submemberList as $val){
+        	 if(!empty($val['membership_no'])){
+            $sheet->setCellValue('A' . $rows, $val['membership_no']);
+            $sheet->setCellValue('B' . $rows, $val['app_date']);
+            $sheet->setCellValue('C' . $rows, $val['app_no']);
+            $sheet->setCellValue('D' . $rows, $val['applicant_name']);
+	        $sheet->setCellValue('E' . $rows, 'VILL-'.$val['village'].', POST-'.$val['panchayat'].', WARD-'.$val['ward_no'].', POLICE STATION-'.$val['police_station'].', BLOCK-'.$val['block'].', DIST-'.$val['dist'].', STATE-'.$val['state'].', PIN-'.$val['pin_code']);
+            $sheet->setCellValue('F' . $rows, $val['mobile_no']);
+            $sheet->setCellValue('G' . $rows, $val['aadhar']);
+            $sheet->setCellValue('H' . $rows, $val['super']);
+            $sheet->setCellValue('I' . $rows, $val['year']);
+            $rows++;
+         }
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+    }
+
     public function my_club_group_features(){
 		if(!empty($_SESSION['member_id'])){
 			$d['v'] = 'website/member_clubgroup';
@@ -3738,9 +3968,218 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
+	public function my_saving_account_features(){
+		if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/member_saving_account';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+	public function my_loan_account_features(){
+		if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/loan_account';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
 
+	public function group_logout(){
+		if(!empty($_SESSION['member_id'])){
+			unset($_SESSION['member_id']);
+			unset($_SESSION['last_id']);
+			unset($_SESSION['member_name']);
+			unset($_SESSION['group_id']);
+			unset($_SESSION['group_name']);
+			$this->load->helper('cookie');
+  	    	delete_cookie('member_cookie');
+  	    	delete_cookie('group_cookie');
+	}
+		if($this->session->user!==NULL){
+      	  redirect('website/econtractdocx');
+      	}
+      	else{
+      		redirect('/');
+      	}
+	}
 
+	public function groupsignup_form_member(){
+			$length = 5;
+			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+			$d['captcha'] =$captcha;
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/member_group_signup';
+			$this->load->view('website/template_2',$d);
+		}
+		public function member_group_otp(){
+			$d['v'] = 'website/member_groupmembership_otp';
+			$this->load->view('website/template_2',$d);
+		}
+		public function member_groupsingup_create(){
+			$data = $this->input->post();
+			if($data['captcha']==$data['captcha_confirm']){
+				// echo PRE;
+				// print_r($data);die;
+				$record= $this->Website_model->insert_group_head($data);
+				if($record['varify']==true){
+					// .....create otp area......
+					$last_id = $record['last_id'];
+					$last_ids['last_group'] = $last_id;
+			        $this->session->set_userdata($last_ids);
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/member_group_otp');
+				}
+				else{ 
+					$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/groupsignup_form');
+	   		    }
+			}
+			else{ 
+				$this->session->set_flashdata('err_msg','Captch not match!');
+				redirect('website/groupsignup_form');
+	   		}
+		}
 
+		public function member_group_reg_form(){
+			$last_group_id = $_SESSION['last_group'];
+			$d['group_records']= $this->Website_model->group_details($last_group_id);
+			
+			$d['v'] = 'website/member_group_registration_form';
+			$this->load->view('website/template_2',$d);
+		}
+
+		public function member_groupdetails_insert(){
+			// echo PRE;
+			// print_r($_FILES);die;
+			if(!empty($_FILES['photo']['name'][0])){
+				$files['name']=$_FILES['photo']['name'];
+				$files['type']=$_FILES['photo']['type'];
+				$files['tmp_name']=$_FILES['photo']['tmp_name'];
+				$files['error']=$_FILES['photo']['error'];
+				$files['size']=$_FILES['photo']['size'];
+				$file_count = count($files['name']);
+				for ($j=0; $j < $file_count; $j++) { 
+					$file = array('name'=>$files['name'][$j],'type'=>$files['type'][$j],'tmp_name'=>$files['tmp_name'][$j],'error'=>$files['error'][$j],'size'=>$files['size'][$j]);
+					$final_files[]['photo']=$file;
+				}
+				foreach ($final_files as $key => $value) { 
+					$photo1 = $value['photo']['name'];
+					$photo1 = explode('.',$photo1);
+					$image1= time().$photo1[0];
+					$extension1 = $photo1[1];
+					$imagename1 = $value['photo']['tmp_name'];
+					$upload_path = './assets/uploads/groups/';	
+					$allext=array("gif","jpg","jpeg","png","pdf","GIF","JPG","JPEG","PNG","PDF");
+					if(!empty($value['photo']['name'])){
+						$check1[] = upload_files($upload_path,'photo',$allext,"1800000","1800000",'100000000',$image1,$extension1);
+						$images[]['image'] = $image1.".jpg";
+					}
+				}
+			}
+			$upload_path = './assets/uploads/groups/details/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  if($_FILES['professor_sign']['name'] !=''){
+			  	$image = upload_file("professor_sign", $upload_path, $allowed_types, time());
+
+				  if ($image !='') {
+					  $img['professor_sign'] = $image['path'];
+				  }
+			  }
+			  if($_FILES['p_sign']['name'] !=''){
+			  	$image = upload_file("p_sign", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $img['p_sign'] = $image['path'];
+				  }
+			  }
+			  if($_FILES['s_sign']['name'] !=''){
+			  	$image = upload_file("s_sign", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $img['s_sign'] = $image['path'];
+				  }
+			  }
+			  if($_FILES['t_sign']['name'] !=''){
+			  	$image = upload_file("t_sign", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $img['t_sign'] = $image['path'];
+				  }
+			  }
+			  $extraimagepath = json_encode($img);
+			$data = $this->input->post();
+			// echo PRE;
+			// print_r($data);die;
+			$group_signup_id = $data['group_signup_id'];
+			$records['member_id'] = $data['member_id'];
+			$records['member_name'] = $data['member_name'];
+			$records['dob'] = $data['dob'];
+			$records['father_name'] = $data['father_name'];
+			$records['mobile'] = $data['mobile'];
+			$records['aadhar_no'] = $data['aadhar_no'];
+			$records['designation'] = $data['designation'];
+			// ''''''json conversion total member''''''''
+			$total_member['total_members_in_word']=$data['total_members_in_word'];
+			$total_member['total_members_in_number']=$data['total_members_in_number'];
+			$records['total_members'] = json_encode($total_member);
+			// ''''''json conversion mendetory''''''''
+			$mendetory['mendetory1'] = $data['mandatory1'];
+			$mendetory['mendetory2'] = $data['mandatory2'];
+			$mendetory['mandatory3'] = $data['mandatory3'];
+			$mendetory['mandatory4'] = $data['mandatory4'];
+			$mendetory['mandatory5'] = $data['mandatory5'];
+			$records['mandatory'] = json_encode($mendetory);
+			$count = count($records['member_id']);
+			for ($i=0; $i < $count; $i++) { 
+				$arr = array('member_id'=>$records['member_id'][$i],'member_name'=>$records['member_name'][$i],'dob'=>$records['dob'][$i],'father_name'=>$records['father_name'][$i],'mobile'=>$records['mobile'][$i],'aadhar_no'=>$records['aadhar_no'][$i],'designation'=>$records['designation'][$i],'total_members'=>$records['total_members'],'mandatory'=>$records['mandatory'],'images'=>$images[$i]['image'],'extra_img'=> $extraimagepath,'sign_up_id'=>$group_signup_id,'added_on'=>date('Y-m-d'));
+				$final_array[]=$arr;
+			}
+			$result = $this->Website_model->insert_groupdetails($final_array);
+			$rslt = json_decode($result,true);
+			$submit_count = count($rslt);
+			if($count==$submit_count){
+				$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/member_login_group');
+			}
+			else{
+				redirect('website/member_group_reg_form');
+			}
+		}
+		public function member_login_group(){
+			
+			$d['v'] = 'website/member_login_group';
+			$this->load->view('website/template_2',$d);
+		}
+
+		public function member_check_grouplogin(){
+		    $data = $this->input->post();
+		    $record= $this->Website_model->group_login($data);
+		    if($record['verify']==true){
+		    	unset($_SESSION['member_id']);
+				unset($_SESSION['last_id']);
+				unset($_SESSION['member_name']);
+				unset($_SESSION['group_id']);
+				unset($_SESSION['group_name']);
+				$this->load->helper('cookie');
+      	    	delete_cookie('member_cookie');
+      	    	delete_cookie('group_cookie');
+		    	if(empty($_SESSION['group_id'])){
+		    		$this->createsession_group($record);
+					if(!empty($_SESSION['group_id'])){
+						redirect('website/groupdashboard');
+					}
+					else{
+						redirect('website/member_login_group');
+					}
+
+		    	}
+			
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$record['verify']);
+			redirect('website/member_login_group');
+		}
+	}
 
 
 // ...................team close......................................
@@ -3759,6 +4198,8 @@ class Website extends CI_Controller {
 		$this->load->library('alldata');
 		$this->alldata->updatedata();
 	}
+
+
 
 	public function adddivision(){
 		$d['depart'] = $this->Website_model->get_departlist();

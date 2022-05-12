@@ -1634,9 +1634,55 @@ class Website_model extends CI_Model{
 		return $result;
 	}
 
+	public function get_memberlist($id){
+		$where = "t1.created_by='$id' AND t1.sponsor_id='0'";
+		$this->db->where($where);
+		$this->db->Select('t1.created_by,t3.*,t2.mobile_no as cell_no,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name');
+		$this->db->from('project_member t1');
+		// $this->db->join('stk_state t2','t1.state_unit_name=t2.id','left');
+		// $this->db->join('stk_division t3','t1.division_unit_name=t3.id','left');
+		$this->db->join('officer_details t2','t1.created_by=t2.id','left');
+		$this->db->join('member_details t3','t1.id=t3.signup_id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
+
+	}
+
+	public function get_submemberlist($get_id){
+		$where = "t1.sponsor_id='$get_id'";
+		$this->db->where($where);
+		$this->db->Select('t1.created_by,t3.*,t2.mobile_no as cell_no,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name');
+		$this->db->from('project_member t1');
+		// $this->db->join('stk_state t2','t1.state_unit_name=t2.id','left');
+		// $this->db->join('stk_division t3','t1.division_unit_name=t3.id','left');
+		$this->db->join('officer_details t2','t1.created_by=t2.id','left');
+		$this->db->join('member_details t3','t1.id=t3.signup_id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
+	}
+
 	public function getgroup_memberlist($ids){
 		$query = $this->db->get_where('group_details',array('status'=>1,'sign_up_id'=>$ids));
 		return  $query->result_array();
+	}
+
+	public function group_login($data){
+		$emailid =  $data['emailid'];
+		$password =  $data['password'];
+		$where = "email='$emailid'  OR username='$emailid' AND password='$password'";
+		$query = $this->db->get_where('group_signup',$where);
+		// echo $this->db->last_query();die;
+		$result =  $query->row_array();
+		
+		if(!empty($result)){
+			$result['verify']=true;
+		}
+		else{
+			$result=array('verify'=>"Wrong Credentials!");
+		}
+		return $result;
 	}
 
 
