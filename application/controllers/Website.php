@@ -3455,6 +3455,10 @@ class Website extends CI_Controller {
 			
 		}
 		public function submember_login(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/submember_login';
 			$this->load->view('website/template_1',$d);
 		}
