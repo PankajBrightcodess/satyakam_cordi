@@ -3456,7 +3456,7 @@ class Website extends CI_Controller {
 		}
 		public function submember_login(){
 			$d['v'] = 'website/submember_login';
-			$this->load->view('website/template_2',$d);
+			$this->load->view('website/template_1',$d);
 		}
 		public function group_creator_login(){
 			$d['v'] = 'website/submember_grouplogin';
