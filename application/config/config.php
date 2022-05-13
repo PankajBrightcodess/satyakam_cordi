@@ -26,10 +26,13 @@ date_default_timezone_set('Asia/Kolkata');
 */
 if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 	$config['base_url'] = "http://$_SERVER[HTTP_HOST]/satyakam_cordi/";
+}else{
+	$config['base_url'] = "http://indiasatyakam.com/";
+	
 }
-else{
-	$config['base_url'] = "https://demo.softwarebss.com/satyakama/";
-}
+// else{
+// 	$config['base_url'] = "https://demo.softwarebss.com/satyakama/";
+// }
 
 /*
 |--------------------------------------------------------------------------
