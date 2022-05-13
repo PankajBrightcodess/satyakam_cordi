@@ -1156,9 +1156,11 @@ class Website extends CI_Controller {
 		  // print_r($records);die;
 		  if($records['verify']===true){
 		  	$lastids['lastids'] = $records['details_id'];
-		  	// print_r($lastids);die;
-		  	$this->session->set_userdata($lastids);
-			redirect('website/payment_start/?status=1');
+		 //  	$this->session->set_userdata($lastids);
+			// redirect('website/payment_start/?status=1');
+			$payment_session = array('lastids'=>$lastids['lastids']);
+					$this->session->set_userdata($payment_session);
+					redirect('website/makepayment');
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$result['verify']);
@@ -1167,6 +1169,42 @@ class Website extends CI_Controller {
 
 
 	}
+	    public function makepayment(){
+        $data['title'] = "Make Payment";            
+        $id = $this->session->userdata('lastids');
+        //$order_id_array = json_decode($order_value,true);        
+        $showdata = array();$total_amount = 0;$orderno = array();$show_id=0;
+        if(!empty($id)){
+        	$records=$this->Website_model->fatch_vacency($id);
+	         $ids= $records['signup_id'];
+	        $data['row']=$records;
+	        $data['rows']=$this->Website_model->fatch_vacency_signup($ids);
+          $data['v'] = 'website/makepayment';
+          	$this->load->view('website/template',$data);
+        }else{
+          redirect('/');
+        }     
+         
+
+    }
+        public function success(){
+      $postdata = $this->input->post();
+      $payment_id = $postdata ['razorpay_payment_id'];
+      $paymentdetail = json_encode($postdata);
+      $lastids = $this->session->userdata('lastids');
+      //$order_array = json_decode($order_id,true);
+      if(!empty($lastids)){
+            $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
+            $this->session->unset_userdata('lastids');
+            if($updatestatus){
+                $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
+            }else{
+            	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            }
+                 
+      }      
+      redirect('/');
+    }
 	public function payment_start(){
         $length = 20;
         $id=$_SESSION['lastids'];
@@ -1211,6 +1249,8 @@ class Website extends CI_Controller {
         // print_r($result);die;
     }
      public function payment_success(){
+     	echo PRE;
+     	print_r($_POST);die;
          if(isset($_POST['razorpay_payment_id'])){
           $payment_details=json_encode($_POST);
           $razorpay_payment_id = $_POST['razorpay_payment_id'];

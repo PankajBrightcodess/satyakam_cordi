@@ -1713,6 +1713,25 @@ class Website_model extends CI_Model{
 		return $result;
 	}
 
+	public function update_form($id,$payment_status,$payment_details,$razorpay_payment_id){
+		$table='vacency_candidate_details';
+		$payment_details = json_encode($payment_details);
+		$final['payment_status'] = $payment_status;
+		$final['payment_id'] = $razorpay_payment_id;
+		$final['payment_details'] = $payment_details;
+		// echo PRE;
+		// print_r($id);
+		// print_r($final);die;
+		$this->db->where('id',$id);
+		$sql = $this->db->update($table,$final);
+		if($sql==true){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
+
 
 
 

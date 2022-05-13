@@ -1,3 +1,4 @@
+<?= PRE; print_r($allrecord);?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,8 +51,6 @@
                                         <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $allrecord['merchant_order_id']; ?>"/>
                                         <input type="hidden" name="merchant_trans_id" id="merchant_trans_id" value="<?php echo $allrecord['merchant_trans_id']; ?>"/>
                                         <input type="hidden" name="merchant_product_info_id" id="merchant_product_info_id" value="<?php echo  $allrecord['productinfo']; ?>"/>
-                                        <!-- <input type="hidden" name="merchant_surl_id" id="merchant_surl_id" value="<?php echo $surl; ?>"/> -->
-                                       <!--  <input type="hidden" name="merchant_furl_id" id="merchant_furl_id" value="<?php echo $furl; ?>"/> -->
                                         <input type="hidden" name="card_holder_name_id" id="card_holder_name_id" value="<?php echo $allrecord['card_holder_name'];?>"/>
                                         <input type="hidden" name="merchant_total" id="merchant_total" value="<?php echo $allrecord['total']; ?>"/>
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo   $allrecord['amount']; ?>"/>
@@ -124,6 +123,7 @@ function random_number($l){
                 location.reload()
             }
         }
+        // callback_url: <?= base_url('website/payment_success');?>,
     };
     var razorpay_submit_btn, razorpay_instance;
 
