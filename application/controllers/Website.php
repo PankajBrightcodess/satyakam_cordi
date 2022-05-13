@@ -355,8 +355,7 @@ class Website extends CI_Controller {
 		// print_r($result);die;
 		if($result['verify']===true){
 			$this->createsession($result);
-			
-			redirect('website/econtractdocx',$final);
+			redirect('website/econtractdocx');
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$result['verify']);
