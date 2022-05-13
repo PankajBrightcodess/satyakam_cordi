@@ -1264,10 +1264,10 @@ class Website_model extends CI_Model{
 		$status3 =$this->group($form_3);
 		$status4 =$this->club($form_4);
 		$status5 =$this->travelling($form_5);
-		print_r($status1);
-		print_r($status2);
-		print_r($status3);
-		print_r($status4);
+		// print_r($status1);
+		// print_r($status2);
+		// print_r($status3);
+		// print_r($status4);
 		if($status1 && $status2 && $status3 && $status4 && $status5){
 			return true;
 		}
@@ -1515,6 +1515,9 @@ class Website_model extends CI_Model{
 		$records['confirm_1'] =  $data['confirm_1'];
 		$records['amount'] =  $data['amount'];
 		$records['candidate_name'] =  $data['candidate_name'];
+		$length = 15;
+		 $request_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+		$records['request_no']=$request_no;
 		$records['added_on'] =  date('Y-m-d');
 		// ..............Records Value....................
 		$uploads['photo'] = $data['photo'];

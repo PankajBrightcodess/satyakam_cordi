@@ -1172,13 +1172,8 @@ class Website extends CI_Controller {
         $length = 20;
         $id=$_SESSION['lastids'];
         $row=$this->Website_model->fatch_vacency($id);
-
         $ids= $row['signup_id'];
         $rows=$this->Website_model->fatch_vacency_signup($ids);
-        // echo PRE;
-        // print_r($row);
-
-        // print_r($rows);die;
          $content =define("API_KEY","rzp_test_6haZPFpJeK6UrP");
         $someprice = $row['amount'];
         $paisaprice = $someprice*100;
