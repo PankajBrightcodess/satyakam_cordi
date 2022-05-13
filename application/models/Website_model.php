@@ -534,7 +534,15 @@ class Website_model extends CI_Model{
 
 	}
 	public function getdetailsuser($id){
-		$query = $this->db->get_where('vacency_signup',array('id'=>$id));
+		$this->db->where('t1.id',$id);
+		$this->db->select('t1.*,t2.department,t3.post as post_name,t4.state,t5.division');
+		$this->db->from('vacency_signup t1');
+		$this->db->join('department t2','t1.depart_id=t2.id','left');
+		$this->db->join('post t3','t1.post=t3.id','left');
+		$this->db->join('state t4','t1.state_unit_name=t4.id','left');
+		$this->db->join('division t5','t1.division_unit_name=t5.id','left');
+		$query = $this->db->get();
+		// $query = $this->db->get_where('vacency_signup',array('id'=>$id));
 		$result =  $query->row_array();
 		if(!empty($result)){
 			$result['verify']=true;
@@ -897,6 +905,8 @@ class Website_model extends CI_Model{
 		$id = $data['id'];
 		$post['depart_id'] =$data['depart_id'];
 		$post['post'] =$data['post'];
+		$post['apply_fee'] =$data['apply_fee'];
+		$post['security_fund'] =$data['security_fund'];
 		$this->db->set($post);
 		$this->db->where("id",$id);
 		$query = $this->db->update("post",$post);
@@ -1503,6 +1513,8 @@ class Website_model extends CI_Model{
 		$records['division'] =  $data['division'];
 		$records['persentage_marks'] =  $data['persentage_marks'];
 		$records['confirm_1'] =  $data['confirm_1'];
+		$records['amount'] =  $data['amount'];
+		$records['candidate_name'] =  $data['candidate_name'];
 		$records['added_on'] =  date('Y-m-d');
 		// ..............Records Value....................
 		$uploads['photo'] = $data['photo'];
@@ -1528,11 +1540,24 @@ class Website_model extends CI_Model{
 	public  function uploads_vacency($uploads){
 		$status=$this->db->insert('upload_candidate_vacency',$uploads);
 		if($status){
-				return true;
+			$final['verify']=true;
+			$final['details_id']=$uploads['details_id'];
+				return $final;
 		}
 		else{
 			return false;
 		}
+	}
+
+	public function fatch_vacency($id){
+		$table="vacency_candidate_details";
+		$query = $this->db->get_where($table,array('status'=>1,'id'=>$id));
+		return  $query->row_array();
+	}
+	public function fatch_vacency_signup($ids){
+		$table="vacency_signup";
+		$query = $this->db->get_where($table,array('status'=>1,'id'=>$ids));
+		return  $query->row_array();
 	}
 
 	// '''''''''''''''''''''''''PROJECT''''''''''''''''''''''''''''''''

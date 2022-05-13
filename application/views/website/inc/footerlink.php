@@ -576,11 +576,24 @@ $('body').on('change','.year', function(){
     });
    });
 
-    $('body').on('change','#dpartment',function(){
+    $('body').on('change','#dpartment_id',function(){
       var depart_id=$(this).val();
       $.ajax({
         type:"POST",
         url:"<?php echo base_url("website/getpost"); ?>",
+        data:{depart_id:depart_id},
+        success: function(data){
+          console.log(data);
+          $('#post').html(data);
+        }
+      });
+    });
+     $('body').on('change','#dpartment_id',function(){
+      debugger;
+      var depart_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/getpost_details"); ?>",
         data:{depart_id:depart_id},
         success: function(data){
           console.log(data);

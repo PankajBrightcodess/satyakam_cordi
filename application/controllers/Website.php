@@ -199,14 +199,13 @@ class Website extends CI_Controller {
 		public function vacencysignup_create(){
 			$data = $this->input->post();
 			// echo PRE;
-			// print_r($data);die;
+			// print_r($data);die;                                                                                                                                       
 			if($data['password']==$data['conf_password']){
 			   unset($data['conf_password']);
-			// 	echo PRE;
-			// print_r($data);die;
+			   $post = explode("-",$data['post']);
+			   $data['post']=$post[0];
+			   $data['amount']=$post[1];
 			   $savevacencysignup= $this->Website_model->savevacencysignup($data);
-			   // print($savevacencysignup);
-			   // die;
 			   if(!empty($savevacencysignup)){
 					$this->vacency_login();
 			    }else{
@@ -406,6 +405,18 @@ class Website extends CI_Controller {
 			$html = '<option value=" ">Post :</option>';
 			foreach ($postdata as $key => $value) {
 				$html.= '<option value="'.$value['id'].'">'.$value['post'].'</option>';
+			}
+			echo $html;
+		}
+	}
+
+	public function getpost_details(){
+		$depart_id = $this->input->post();
+		$postdata = $this->Website_model->get_postlistbyid($depart_id);
+		if(!empty($postdata)){
+			$html = '<option value=" ">Post :</option>';
+			foreach ($postdata as $key => $value) {
+				$html.= '<option value="'.$value['id'].'-'.$value['apply_fee'].'">'.$value['post'].'</option>';
 			}
 			echo $html;
 		}
@@ -1086,8 +1097,6 @@ class Website extends CI_Controller {
 
 	public function vacencyform_submit(){
 		$data = $this->input->post();
-		// echo PRE;
-		//   print_r($_FILES);die;
 		  if($_FILES['photo']['name'] !=''){
 		  	$upload_path = './assets/vacency/photo/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
@@ -1145,8 +1154,12 @@ class Website extends CI_Controller {
 			  }
 		  }
 		  $records= $this->Website_model->vacencydetails_submit($data);
-		  if($records===true){
-			redirect('website/vacencyform/?status=1');
+		  // print_r($records);die;
+		  if($records['verify']===true){
+		  	$lastids['lastids'] = $records['details_id'];
+		  	// print_r($lastids);die;
+		  	$this->session->set_userdata($lastids);
+			redirect('website/payment_start/?status=1');
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$result['verify']);
@@ -1155,6 +1168,54 @@ class Website extends CI_Controller {
 
 
 	}
+	public function payment_start(){
+        $length = 20;
+        $id=$_SESSION['lastids'];
+        $row=$this->Website_model->fatch_vacency($id);
+
+        $ids= $row['signup_id'];
+        $rows=$this->Website_model->fatch_vacency_signup($ids);
+        // echo PRE;
+        // print_r($row);
+
+        // print_r($rows);die;
+         $content =define("API_KEY","rzp_test_6haZPFpJeK6UrP");
+        $someprice = $row['amount'];
+        $paisaprice = $someprice*100;
+        $orderno = $row['request_no'];
+        $custname = $row['candidate_name'];
+        $productinfo = 'Payment for Admission';
+        $txnid = time();
+        $contect = $rows['mobile_no'];
+        // $surl = "payment-success.php";
+        // $furl ="payment-success.php" ;
+        $key_id = API_KEY;
+        $currency_code = 'INR';
+        $total = $paisaprice; 
+        $amount = $someprice;
+        $length = 18;
+        $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+        $card_holder_name = $custname;
+        $name = "Customer of $custname - $orderno";
+        $payrecord = array();
+        $payrecord['orderno'] = $orderno;
+        $payrecord['name'] = $custname;
+        $payrecord['productinfo'] = $productinfo;
+        $payrecord['currency_code'] = $currency_code;
+        $payrecord['total'] = $total;
+        $payrecord['amount'] = $amount;
+        $payrecord['key_id'] = $key_id;
+        $payrecord['card_holder_name'] = $card_holder_name;
+        $payrecord['merchant_order_id'] = $merchant_order_id;
+        $payrecord['merchant_trans_id'] = $txnid;
+        $payrecord['phone'] = $contect;
+        $data['allrecord'] =$payrecord;
+        // echo PRE;
+        // print_r($payrecord);die;
+         $this->load->view('website/payment',$data);
+        // echo PRE;
+        // print_r($result);die;
+    }
 
 
 	// ................................Admin Panel Area.............................
@@ -3291,7 +3352,6 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
-
 	public function check_submemberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
@@ -3311,10 +3371,6 @@ class Website extends CI_Controller {
 					}
 
 		    	}
-		    	// else{
-		    	// 	redirect('website/memberdashboard');
-		    	// }
-			
 		}
 		else{ 
 			die;

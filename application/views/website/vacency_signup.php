@@ -21,12 +21,8 @@
                           ?><option value="<?= $value['id'];?>"><?= $value['state'];?></option><?php
                         }
                       }
-
-
                     ?>
-
                   </select>
-                    <!-- <input type="text" name="state_unit_name" placeholder="State Unit Name :" class="form-control" required> -->
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="division_unit_name">Division Unit Name :</label>
@@ -34,7 +30,6 @@
                     <option>Division :</option>
                    
                   </select>
-                 <!--  <input type="text" name="" placeholder="Division Unit Name :" class="form-control" required> -->
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="applicant_name">Applicant Name :</label>
@@ -54,7 +49,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="depart_id">Department/Service Area :</label>
-                   <select class="form-control" name="depart_id" id="dpartment" required>
+                   <select class="form-control" name="depart_id" id="dpartment_id" required>
                           <option value="">Department :</option>
                           <?php
                               if(!empty($depart)){

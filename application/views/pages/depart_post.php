@@ -33,6 +33,16 @@
                                     </div>                                    
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <?php echo form_input(array('type'=>'text','name'=>'apply_fee','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Apply Fee','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <?php echo form_input(array('type'=>'text','name'=>'security_fund','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Security Fund','required'=>'true'));?>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
                                         <?php echo form_submit(array('name'=>'save_post','id'=>'save_post','value'=>'Save Menu','class'=>'form-control btn btn-success'));?>
@@ -49,6 +59,8 @@
                                             <th>S.NO.</th>
                                             <th>DEPARTMENT</th>                
                                             <th>POST</th>                
+                                            <th>APPLY FEE</th>                
+                                            <th>SECURITY FUND</th>                
                                             <th>ACTION</th>                                            
                                         </tr>
                                     </thead>
@@ -60,9 +72,11 @@
                                             <td ><?php echo $i ?></td>
                                             <td ><?php echo $val['department'] ?></td>
                                             <td ><?php echo $val['post'] ?></td>
+                                            <td ><?php echo $val['apply_fee'] ?></td>
+                                            <td ><?php echo $val['security_fund'] ?></td>
                                             <td><span class="float-right">
                                             <button class="btn btn-danger btn-xs delete" value="<?php echo $val['id'];?>"><i class="fa fa-trash"></i></button>   
-                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-depart_id="<?php echo $val['depart_id'];?>" data-post="<?php echo $val['post'];?>"><i class="fa fa-edit"></i></button>
+                                             <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $val['id'];?>" data-depart_id="<?php echo $val['depart_id'];?>" data-post="<?php echo $val['post'];?>" data-apply_fee="<?php echo $val['apply_fee'];?>" data-security_fund="<?php echo $val['security_fund'];?>"><i class="fa fa-edit"></i></button>
                                            </td>
                                         </tr>
                                        <?php 
@@ -114,7 +128,13 @@
                         <div class="col-sm-12 col-md-12 mb-3">
                             <?php echo form_input(array('type'=>'text','name'=>'post','id'=>'post','class'=>'form-control','placeholder'=>'Enter Post','required'=>'true'));?>
                             <input type="hidden" name="id" id="id">
-                        </div>                                    
+                        </div> 
+                        <div class="col-sm-12 col-md-12 mb-3">
+                            <?php echo form_input(array('type'=>'text','name'=>'apply_fee','id'=>'apply_fee','class'=>'form-control','placeholder'=>'Enter Apply Fee','required'=>'true'));?>
+                        </div>      
+                        <div class="col-sm-12 col-md-12 mb-3">
+                            <?php echo form_input(array('type'=>'text','name'=>'security_fund','id'=>'security_fund','class'=>'form-control','placeholder'=>'Enter Security Fund','required'=>'true'));?>
+                        </div>                                   
                     </div>
                    
                     
@@ -131,15 +151,7 @@
     </div>
     <!-- '''''''''''''''''''''''''''''''''model end................................... -->  
     <script type="text/javascript">
-        $('.updt').click(function(e){
-        var id = $(this).data('id');
-        var depart_id = $(this).data('depart_id');
-        var post = $(this).data('post');
-      
-        $('#id').val(id);
-        $('#depart_id').val(depart_id);
-        $('#post').val(post);
-       });
+        
     </script>
 
 <script>
@@ -219,6 +231,22 @@
 			});
 		});
         $('#parent_id').trigger('change');
+
+$('body').on('click','.updt',function(e){
+        // $('').click(function(e){
+            // debugger;
+        var id = $(this).data('id');
+        var depart_id = $(this).data('depart_id');
+        var post = $(this).data('post');
+        var apply_fee = $(this).data('apply_fee');
+        var security_fund = $(this).data('security_fund');
+      
+        $('#id').val(id);
+        $('#depart_id').val(depart_id);
+        $('#post').val(post);
+        $('#apply_fee').val(apply_fee);
+        $('#security_fund').val(security_fund);
+       });
     });
 
 

@@ -8,15 +8,16 @@
                         <div class="row">
                           <div class="col-md-8">
                             <input type="date" name="app_date" readonly value="<?php echo $details['application_date'];?>" class="form-control mb-3" required>
-                            <input type="text" name="state_unit_name" readonly value="<?php echo $details['state_unit_name'];?>" placeholder="Joining In Branch :" class="form-control mb-3" required>
-                            <input type="text" name="division_unit_name" readonly value="<?php echo $details['division_unit_name'];?>" class="form-control mb-3" required>
-                            <input type="text" name="applicant_name" readonly value="<?php echo $details['applicant_name'];?>" placeholder="Department :" class="form-control mb-3" required>
+                            <input type="text" name="state_unit_name" readonly value="<?php echo $details['state'];?>" placeholder="Joining In Branch :" class="form-control mb-3" required>
+                            <input type="text" name="division_unit_name" readonly value="<?php echo $details['division'];?>" class="form-control mb-3" required>
+                            <input type="text" name="candidate_name" readonly value="<?php echo $details['applicant_name'];?>" placeholder="Candidate Name :" class="form-control mb-3" required>
                              <input type="text" name="dob" readonly value="<?php echo $details['dob'];?>" class="form-control mb-3" required>
                             <input type="text" name="mobile_no" readonly value="<?php echo $details['mobile_no'];?>" class="form-control mb-3" required>
                             <input type="email" name="email" readonly value="<?php echo $details['email'];?>" placeholder="Email Id :" class="form-control mb-3" required>
-                           <input type="text" name="desicination" readonly value="<?php echo $details['desicination'];?>" placeholder="Desicination :" class="form-control mb-3" required>
+                           <input type="text" name="depart_id" readonly value="<?php echo $details['department'];?>" placeholder="Department :" class="form-control mb-3" required>
+                           <input type="text" name="desicination" readonly value="<?php echo $details['post_name'];?>" placeholder="Desicination :" class="form-control mb-3" required>
                            <input type="hidden" name="signup_id" readonly value="<?php echo $details['id'];?>" placeholder="Desicination :" class="form-control mb-3" required>
-                           <input type="text" name="depart_id" readonly value="<?php echo $details['depart_id'];?>" placeholder="Department :" class="form-control mb-3" required>
+                           <input type="hidden" name="amount" readonly value="<?php echo $details['amount'];?>" placeholder="Desicination :" class="form-control mb-3" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">
