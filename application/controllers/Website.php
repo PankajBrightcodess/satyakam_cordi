@@ -1210,6 +1210,21 @@ class Website extends CI_Controller {
         // echo PRE;
         // print_r($result);die;
     }
+     public function payment_success(){
+         if(isset($_POST['razorpay_payment_id'])){
+          $payment_details=json_encode($_POST);
+          $razorpay_payment_id = $_POST['razorpay_payment_id'];
+          // $payment_date = date('Y/m/d');
+          $payment_status = 1;
+          $id = $_SESSION['lastids'];
+          unset($_SESSION['lastids']);
+          $result = $this->Website_model->update_form($id,$payment_status,$payment_details,$razorpay_payment_id);
+          if($result==true){
+            $this->session->set_flashdata("msg","You have registered !!");
+            $this->load->view('website/payment_success');
+          } 
+       }
+    }
 
 
 	// ................................Admin Panel Area.............................
