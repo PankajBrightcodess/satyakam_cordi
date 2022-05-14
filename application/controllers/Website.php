@@ -3375,6 +3375,7 @@ class Website extends CI_Controller {
 	}
 
 	public function createsession_member($result){
+		print_r($result);die;
 		$data['member_id']=$result['id'];
 		$data['member_name']=$result['applicant_name'];
 		$this->session->set_userdata($data);
