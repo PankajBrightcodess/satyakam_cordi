@@ -3351,7 +3351,7 @@ class Website extends CI_Controller {
 	public function check_submemberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-		    if($record['verify']==true){
+		    if($record['verify']=='true'){
 		    	print_r($record['verify']);die;
 		    	unset($_SESSION['member_id']);
 				unset($_SESSION['last_id']);
