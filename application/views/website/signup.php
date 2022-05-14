@@ -3,7 +3,7 @@
         <div class="row">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
-            <center class="tittle"><h3>Sign Up Form</h3></center>
+            <center class="tittle"><h3>Officer Sign Up Form</h3></center>
             <form action="<?= base_url('website/create_signup')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                  <div class="col-md-12 mb-2">
@@ -60,7 +60,7 @@
                     <input type="email" name="email_id" id="email_id" placeholder="Email Id :" class="form-control" required>
                 </div>
                  <div class="col-md-12 mb-2">
-                  <input type="button" class="mt-4 btn btn-sm  signup" id="signup" name="" value="Sign Up" style="background:#233799;color:white">
+                  <input type="submit" class="mt-4 btn btn-sm "  name="" value="Sign Up" style="background:#233799;color:white">
                 </div>
               </div>
             </form>

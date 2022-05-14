@@ -8,6 +8,17 @@
     <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
     <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <?php if(isset($this->session->web_msg)){ ?>
+<script type="text/javascript">
+   swal('Good job!','<?php echo $this->session->web_msg;?>','success');
+</script>
+   <?php }else if(isset($this->session->web_err_msg)){ ?>
+<script type="text/javascript">
+   swal('Opps!','<?php echo $this->session->web_err_msg;?>','error');
+</script>
+
+      <?php }
+      ?>
 <script type="text/javascript">
 
 	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
@@ -102,14 +113,14 @@ $("#filePhoto").change(function() {
           url:"<?php echo base_url("website/create_signup"); ?>",
           data:{state:state,dpartment:dpartment,post:post,batch_no:batch_no,branch_code:branch_code,officer_name:officer_name,mobile_no:mobile_no,email_id:email_id,join_in_branch:join_in_branch},
           success: function(data){
-            if(data){
-                swal("Good job!", "You are registered successfully!", "success");
-                window.location.href = "<?php echo base_url('website/econtractform');?>";
-            }
-            else{ 
-               swal("Opps!", "Something error!", "error");
-                window.location.href = "<?php echo base_url('website/signup');?>";
-            }
+            // if(data){
+            //     swal("Good job!", "You are registered successfully!", "success");
+            //     window.location.href = "<?php echo base_url('website/econtractform');?>";
+            // }
+            // else{ 
+            //    swal("Opps!", "Something error!", "error");
+            //     window.location.href = "<?php echo base_url('website/signup');?>";
+            // }
             
           }
         });
@@ -469,9 +480,7 @@ $('body').on('change','.year', function(){
       data:{month:month},
       dataType:'JSON',
       success:function(result){
-        alert(result);
         console.log(result);
-
         $('.table1').html(result);
       },
 
@@ -570,6 +579,7 @@ $('body').on('change','.year', function(){
       url: '<?php echo base_url('website/get_division')?>',
       data:{id:id},
       success:function(result){
+        console.log(result);
         $('.division').html(result);
       },
 
@@ -588,7 +598,7 @@ $('body').on('change','.year', function(){
         }
       });
     });
-     $('body').on('change','#dpartment_id',function(){
+     $('body').on('change','#dpartment_ids',function(){
       debugger;
       var depart_id=$(this).val();
       $.ajax({
@@ -606,6 +616,9 @@ $('body').on('change','.year', function(){
 
 
 </script>
+</body>
+</html>
+
 
 
 

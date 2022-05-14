@@ -7,15 +7,35 @@
                     <form action="<?= base_url('website/create_officer_details');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">
                           <div class="col-md-8">
-                            <input type="text" name="app_date" readonly value="<?= date('Y-m-d');?>" placeholder="Batch Number :" class="form-control mb-3" required>
-                            <input type="text" name="app_no" placeholder="Joining In Branch :" class="form-control mb-3" required>
-                            <input type="text" name="state_unit_name" readonly value="<?php echo $details['state_unit_name'];?>" placeholder="State Unit Name :" class="form-control mb-3" required>
-                            <input type="text" name="division_unit_name" readonly value="<?php echo $details['division_unit_name'];?>" placeholder="Department :" class="form-control mb-3" required>
-                             <input type="text" name="applicant_name" readonly value="<?php echo $details['applicant_name'];?>" placeholder="Post :" class="form-control mb-3" required>
-                             <!-- <input type="hidden" name="post_id" readonly value="<?php echo $signuplist[0]['post_id'];?>"> -->
-                            <input type="date" name="dob" readonly value="<?php echo $details['dob'];?>" class="form-control mb-3" required>
-                            <input type="text" name="mobile_no" readonly value="<?php echo $details['mobile_no'];?>" placeholder="Mobile  No :" class="form-control mb-3" required>
-                            <input type="email" name="email" placeholder="Email Id :" class="form-control mb-3" value="<?php echo $details['email'];?>" required>
+                            <label>Application Date</label>
+                            <input type="text" name="app_date" readonly value="<?= date('Y-m-d');?>" placeholder="Application Date :" class="form-control" required>
+                            <label>Application No.</label>
+                            <input type="text" name="app_no" placeholder="Application No. :" class="form-control" required>
+                            <label>State Unit Name</label>
+                            <input type="hidden" name="state_id"  value="<?= $details['state'];?>"  readonly value="" placeholder="State Unit Name :"  class="form-control" required>
+                             <input type="text" name="state" readonly  value="<?= $details['state_name'];?>" placeholder="State Unit Name :"  class="form-control" required>
+
+                             <label>Department</label>
+                            <input type="hidden" name="department_id"  readonly value="<?= $details['depart_id'];?>" placeholder="Mobile  No :" class="form-control" required>
+                            <input type="text" name="department" readonly value="<?= $details['department'];?>" placeholder="Department :" class="form-control" required>
+
+                             <label>Post</label>
+                            <input type="hidden" name="post_id" value="<?= $details['post_id'];?>" readonly value="" placeholder="Post :" class="form-control" required>
+                            <input type="text" name="post" readonly value="<?= $details['post'];?>" placeholder="Post :" class="form-control" required>
+                             <input type="hidden" name="signup_id" readonly value="<?= $details['id'];?>" placeholder="Post :" class="form-control" required>
+
+                             <label>Batch No</label>
+                             <input type="text" name="batch_no" readonly value="<?= $details['batch_no'];?>" placeholder="Batch :" class="form-control" required>
+                             <label>Join In Branch</label>
+                            <input type="text" name="Join_in_branch" readonly value="<?= $details['Join_in_branch'];?>" class="form-control" required>
+
+                            <label>Branch Code</label>
+                            <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control" value="<?= $details['branch_code'];?>" readonly required>
+                          
+                            <label>Mobile No</label>
+                            <input type="phone" name="mobile_no" placeholder="Mobile No :" class="form-control" value="<?= $details['mobile_no'];?>" readonly required>
+                            <label>Email Id</label>
+                            <input type="email" name="email_id" placeholder="Email Id :" class="form-control mb-3" readonly value="<?= $details['email_id'];?>" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">

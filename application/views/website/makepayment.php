@@ -3,9 +3,6 @@ $someprice = $row['amount'];
 $paisaprice = $someprice*100;
 $orderno = $row['request_no'];
 $custname = $row['candidate_name'];
-// $itemInfo['price']=$paisaprice;
-// $itemInfo['name']=$member['name'];
-// $itemInfo['image']='';
 $productinfo = 'Order From Customer';
 $txnid = time();
 $surl = base_url("website/success/");
@@ -26,9 +23,7 @@ $return_url = site_url().'razorpay/callback';
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-10 p-3">
-            
-            <!---------------------------------- End Response Msg ------------------------------------------->    
+        <div class="col-md-10 p-3">   
             <h3>Make Payment</h3><hr/>   
             <div class="row">
                 <div class="col-md-12 card p-3">
@@ -38,20 +33,17 @@ $return_url = site_url().'razorpay/callback';
                             <p class='mb-0' style='font-size:14px'><?php echo $email;?></p>
                             <p class='mb-0' style='font-size:14px'>+91 <?php echo $phone;?></p>
                         </div>
-                        <!-- <div class="col-6 col-md-6">
-                            Payment Window Open For:<br/><span style='font-size:30px;color:brown' id='timeremain'><?php echo $orderdetails['time_duration'];?> Minutes</span>
-                        </div> -->
                     </div><hr/>
                     <div class="row">
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <u><h5>Order Details</h5></u>
+                            <u><h4>Payment Details</h4></u>
                                 <div class="form-row">
-                                    <label for="" class="col-6 col-md-6">Order No :</label>
+                                    <label for="" class="col-6 col-md-6">Payment Request No :</label>
                                     <p class='col-6 col-md-6'><?php echo $orderno;?></p>
                                 </div>
                                 <div class="form-row">
-                                    <label for="" class="col-6 col-md-6">Order Total Amount:</label>
+                                    <label for="" class="col-6 col-md-6">Request Total Amount:</label>
                                     <p class='col-6 col-md-6 text-danger' style='font-size:20px;font-weight:600'>Rs. <?php echo $this->amount->toDecimal($someprice);?></p>
                                 </div>
                                 <div class="form-row p-2">
@@ -87,16 +79,11 @@ $return_url = site_url().'razorpay/callback';
     
     </div>
 </section>
-
-    
-    
-
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>   
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>   
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
     var razorpay_options = {
         key: "<?php echo $key_id; ?>",
         amount: "<?php echo $total; ?>",
@@ -143,9 +130,8 @@ $return_url = site_url().'razorpay/callback';
         razorpay_instance.open();
         }
     }  
-    </script>
-
-    <script>
+</script>
+<script>
         $('document').ready(function(){
             setTimeout(function() {
                 $('#msgpopup').click();
@@ -204,7 +190,6 @@ $return_url = site_url().'razorpay/callback';
                 }
             });
         }  
-    </script>
-
-  </body>
+ </script>
+</body>
 </html>

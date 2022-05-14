@@ -7,16 +7,14 @@ class Website_model extends CI_Model{
 	}
 
 	public function savesignup($data){
-		// echo PRE;
-		// print_r($data);die;
 		$batchno = $data['batch_no'];
 		$query=$this->db->get_where('signup',array('batch_no' => $batchno));
     	$rows= $query->num_rows();
     	if($rows==0){
     		$table=TP."signup";
     		$final['state']=$data['state'];
-    		$final['depart_id']=$data['dpartment'];
-    		$final['post_id']=$data['post'];
+    		$final['depart_id']=$data['depart_id'];
+    		$final['post_id']=$data['post_id'];
     		$final['batch_no']=$data['batch_no'];
     		$final['branch_code']=$data['branch_code'];
     		$final['officer_name']=$data['officer_name'];
@@ -24,6 +22,8 @@ class Website_model extends CI_Model{
     		$final['email_id']=$data['email_id'];
     		$final['join_in_branch']=$data['join_in_branch'];
 			$final['added_on']=date('Y-m-d');
+			// echo PRE;
+			// print_r($final);die;
 			if($this->db->insert($table,$final)){
 				return $this->db->insert_id();
 			}
@@ -42,9 +42,13 @@ class Website_model extends CI_Model{
 		$data['added_on']=date('Y-m-d');
 		unset($data['department']);
 		unset($data['post']);
+		unset($data['state']);
+		unset($data['app_date']);
+		unset($data['app_no']);
+		unset($data['state_id']);
 		$status=$this->db->insert($table,$data);
-		$str = $this->db->last_query();
-		// print_r($str);die;
+		// echo $str = $this->db->last_query();
+		// die;
 		if($status){
 			return true;
 		}
@@ -55,13 +59,14 @@ class Website_model extends CI_Model{
 
 	public function signup_list($signup_id){
 		$this->db->where('t1.id',$signup_id);
-		$this->db->select('t1.*,t2.department,t3.post');
+		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name');
 		$this->db->from('signup t1');
 		$this->db->join('department t2','t1.depart_id=t2.id','left');
 		$this->db->join('post t3','t1.post_id=t3.id','left');
+		$this->db->join('state t4','t1.state=t4.id','left');
 		// $this->db->order_by('t1.depart_id','desc');
 		$query = $this->db->get();
-		return  $query->result_array();
+		return  $query->row_array();
 		
 		// $query=$this->db->get_where('signup',array('id' => $signup_id));
 		// return $query->result_array();

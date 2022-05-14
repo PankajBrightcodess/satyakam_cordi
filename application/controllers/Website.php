@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+header('Access-Control-Allow-Origin: *');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class Website extends CI_Controller {
@@ -197,9 +198,7 @@ class Website extends CI_Controller {
 		}
 
 		public function vacencysignup_create(){
-			$data = $this->input->post();
-			// echo PRE;
-			// print_r($data);die;                                                                                                                                       
+			$data = $this->input->post();                                                  
 			if($data['password']==$data['conf_password']){
 			   unset($data['conf_password']);
 			   $post = explode("-",$data['post']);
@@ -222,7 +221,6 @@ class Website extends CI_Controller {
 		public function get_division(){
 			$state_id = $this->input->post();
 			$divisiondata = $this->Website_model->get_divisionlist($state_id);
-
 			if(!empty($divisiondata)){
 				$html = '<option value="">---SELECT---</option>';
 				foreach ($divisiondata as $key => $value) {
@@ -234,9 +232,7 @@ class Website extends CI_Controller {
 		public function econtractform(){
 			$d['v'] = 'website/econtractform';
 			$signup_id =$_SESSION['signupid'];
-			$d['signuplist']= $this->Website_model->signup_list($signup_id);
-			// echo PRE;
-			// print_r($d['signuplist']);die;
+			$d['details']= $this->Website_model->signup_list($signup_id);
 			$d['department'] = $this->Website_model->get_departlist();
 			$this->load->view('website/template',$d);
 		}
@@ -257,11 +253,14 @@ class Website extends CI_Controller {
 			$data = $this->input->post();
 			$status['signupid'] = $this->Website_model->savesignup($data);
 			$signupid = $this->session->set_userdata($status);
-			if(!empty($signupid)){
-				return true;
-		    }else{
-		    	return false;
-		    }
+			if(!empty($_SESSION['signupid'])){
+				redirect('website/econtractform');
+			$this->session->set_flashdata("web_msg","Added Successfully!!");
+            }
+            else{ 
+				redirect('website/signup');
+				$this->session->set_flashdata("web_err_msg","Something Error !!");
+            }
 		}
 		
 
@@ -335,14 +334,13 @@ class Website extends CI_Controller {
 			  }
 		  }
 		  $data['signup_id'] = $_SESSION['signupid'];
-		  
 		$run=$this->Website_model->officer_details_model($data);
 		if($run){
 			unset($_SESSION['signupid']);
+			$this->session->set_flashdata("web_msg","News Added Successfully!!");
 			redirect('website/office_login');
-			$this->session->set_flashdata("msg","News Added Successfully!!");
 		}else{
-			$this->session->set_flashdata("err_msg",$run);
+			$this->session->set_flashdata("web_err_msg",$run);
 			redirect('website/econtractform');
 		}
 		
@@ -356,9 +354,11 @@ class Website extends CI_Controller {
 		if($result['verify']===true){
 			$this->createsession($result);
 			redirect('website/econtractdocx');
+			$this->session->set_flashdata('web_msg','Login Successfully');
+
 		}
 		else{ 
-			$this->session->set_flashdata('err_msg',$result['verify']);
+			$this->session->set_flashdata('web_err_msg','Something Error');
 			redirect('website/office_login');
 		}
 	}
@@ -387,10 +387,8 @@ class Website extends CI_Controller {
 	}
 
 	public function logout(){
-		if($this->session->user!==NULL){
-			$data=array("user_id","branch_no");
-			$this->session->unset_userdata($data);
-		}	
+		$data=array("user_id","branch_no");
+		unset($data);	
 		$this->load->helper('cookie');
       	delete_cookie('login_cookie');
 		redirect('website/office_login');
@@ -1196,7 +1194,8 @@ class Website extends CI_Controller {
       if(!empty($lastids)){
             $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
             $this->session->unset_userdata('lastids');
-            if($updatestatus){
+            if($updatestatus==true){
+            		redirect('website/payment_success');
                 $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
             }else{
             	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
@@ -1205,65 +1204,10 @@ class Website extends CI_Controller {
       }      
       redirect('/');
     }
-	public function payment_start(){
-        $length = 20;
-        $id=$_SESSION['lastids'];
-        $row=$this->Website_model->fatch_vacency($id);
-        $ids= $row['signup_id'];
-        $rows=$this->Website_model->fatch_vacency_signup($ids);
-         $content =define("API_KEY","rzp_test_6haZPFpJeK6UrP");
-        $someprice = $row['amount'];
-        $paisaprice = $someprice*100;
-        $orderno = $row['request_no'];
-        $custname = $row['candidate_name'];
-        $productinfo = 'Payment for Admission';
-        $txnid = time();
-        $contect = $rows['mobile_no'];
-        // $surl = "payment-success.php";
-        // $furl ="payment-success.php" ;
-        $key_id = API_KEY;
-        $currency_code = 'INR';
-        $total = $paisaprice; 
-        $amount = $someprice;
-        $length = 18;
-        $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
-        $card_holder_name = $custname;
-        $name = "Customer of $custname - $orderno";
-        $payrecord = array();
-        $payrecord['orderno'] = $orderno;
-        $payrecord['name'] = $custname;
-        $payrecord['productinfo'] = $productinfo;
-        $payrecord['currency_code'] = $currency_code;
-        $payrecord['total'] = $total;
-        $payrecord['amount'] = $amount;
-        $payrecord['key_id'] = $key_id;
-        $payrecord['card_holder_name'] = $card_holder_name;
-        $payrecord['merchant_order_id'] = $merchant_order_id;
-        $payrecord['merchant_trans_id'] = $txnid;
-        $payrecord['phone'] = $contect;
-        $data['allrecord'] =$payrecord;
-        // echo PRE;
-        // print_r($payrecord);die;
-         $this->load->view('website/payment',$data);
-        // echo PRE;
-        // print_r($result);die;
-    }
+	
      public function payment_success(){
-     	echo PRE;
-     	print_r($_POST);die;
-         if(isset($_POST['razorpay_payment_id'])){
-          $payment_details=json_encode($_POST);
-          $razorpay_payment_id = $_POST['razorpay_payment_id'];
-          // $payment_date = date('Y/m/d');
-          $payment_status = 1;
-          $id = $_SESSION['lastids'];
-          unset($_SESSION['lastids']);
-          $result = $this->Website_model->update_form($id,$payment_status,$payment_details,$razorpay_payment_id);
-          if($result==true){
-            $this->session->set_flashdata("msg","You have registered !!");
-            $this->load->view('website/payment_success');
-          } 
-       }
+     	$d['v'] = 'website/payment_success';
+			$this->load->view('website/template',$d);
     }
 
 
@@ -3346,11 +3290,11 @@ class Website extends CI_Controller {
 					$last_id = $record['last_id'];
 					$last_ids['last_id'] = $last_id;
 			        $this->session->set_userdata($last_ids);
-					$this->session->set_flashdata('err_msg',$result['verify']);
+					$this->session->set_flashdata('web_err_msg',$result['verify']);
 					redirect('website/membership_otp');
 				}
 				else{ 
-					$this->session->set_flashdata('err_msg',$result['verify']);
+					$this->session->set_flashdata('web_err_msg',$result['verify']);
 					redirect('website/membersignup_form');
 	   		    }
 			}
@@ -3383,21 +3327,24 @@ class Website extends CI_Controller {
 		    	if(empty($_SESSION['member_id'])){
 		    		$this->createsession_member($record);
 					if(!empty($_SESSION['member_id'])){
+						$this->session->set_flashdata('web_msg',$result['verify']);
 						redirect('website/memberdashboard');
 					}
 					else{
+						$this->session->set_flashdata('web_err_msg',$result['verify']);
 						redirect('website/member_login');
 					}
 
 		    	}
 		    	else{
+		    		$this->session->set_flashdata('web_msg',$result['verify']);
 		    		redirect('website/memberdashboard');
 		    	}
 			
 		}
 		else{ 
 			die;
-			$this->session->set_flashdata('err_msg',$record['verify']);
+			$this->session->set_flashdata('web_err_msg',$record['verify']);
 			redirect('website/member_login');
 		}
 	}
@@ -3492,15 +3439,14 @@ class Website extends CI_Controller {
 		}
 
 	public function submember_signup(){
-
-			$id = $_SESSION['user_id'];
+			$id = $_SESSION['member_id'];
 			$length = 5;
 			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 			$d['captcha'] =$captcha;
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
+			// $record= $this->Website_model->getuser($id);
+			// $finalrecord = $record[0];
 			$d['state'] = $this->Website_model->get_statelist();
-			$d['officer_name'] = $finalrecord;
+			// $d['officer_name'] = $finalrecord;
 			$d['v'] = 'website/new_submembersignup';
 			$this->load->view('website/template_2',$d);
 	}

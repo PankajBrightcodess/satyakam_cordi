@@ -5,7 +5,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContentt">
     <ul class="navbar-nav mx-auto">
-      <!-- <?php 
+  <!-- <?php 
       print_r($records);?>  -->
       <?php
           if($records['e_contract']=='true'){

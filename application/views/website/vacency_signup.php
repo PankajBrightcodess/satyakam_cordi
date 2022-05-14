@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="depart_id">Department/Service Area :</label>
-                   <select class="form-control" name="depart_id" id="dpartment_id" required>
+                   <select class="form-control" name="depart_id" id="dpartment_ids" required>
                           <option value="">Department :</option>
                           <?php
                               if(!empty($depart)){
@@ -84,7 +84,7 @@
                 </div>
                
                  <div class="col-md-12 mb-2">
-                  <input type="submit" class="mt-4 btn btn-sm "   style="background:#233799;color:white">
+                  <input type="submit" class="mt-4 btn btn-sm " style="background:#233799;color:white">
                 </div>
               </div>
             </form>
