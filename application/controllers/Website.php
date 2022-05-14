@@ -3352,6 +3352,7 @@ class Website extends CI_Controller {
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
 		    if($record['verify']==true){
+		    	print_r($record['verify']);die;
 		    	unset($_SESSION['member_id']);
 				unset($_SESSION['last_id']);
 				unset($_SESSION['member_name']);
@@ -3375,7 +3376,6 @@ class Website extends CI_Controller {
 	}
 
 	public function createsession_member($result){
-		print_r($result);die;
 		$data['member_id']=$result['id'];
 		$data['member_name']=$result['applicant_name'];
 		$this->session->set_userdata($data);
