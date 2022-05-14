@@ -3368,8 +3368,7 @@ class Website extends CI_Controller {
 
 		    	}
 		}
-		else{ 
-			die;
+		else{
 			$this->session->set_flashdata('err_msg',$record['verify']);
 			redirect('website/submember_login_home');
 		}
