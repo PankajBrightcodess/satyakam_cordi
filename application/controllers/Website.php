@@ -3351,7 +3351,6 @@ class Website extends CI_Controller {
 	public function check_submemberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-		    print_r($record);die;
 		    if($record['verify']==true){
 		    	unset($_SESSION['member_id']);
 				unset($_SESSION['last_id']);
@@ -3370,7 +3369,7 @@ class Website extends CI_Controller {
 		    	}
 		}
 		else{
-			$this->session->set_flashdata('err_msg',$record['verify']);
+			$this->session->set_flashdata('web_err_msg',$record['verify']);
 			redirect('website/submember_login_home');
 		}
 	}
