@@ -71,13 +71,13 @@
                                             <td ><?php echo $val['equipment'];?></td>
                                             <td ><?php echo $val['quantity'];?></td>
                                             <td ><?php echo $val['rate'];?></td>
-                                            <td ><?php echo $val['amount']; ?></td>
-                                            <td ><?php echo $val['bill']; ?></td>
-                                            <td ><?php echo $val['payment_receipt']; ?></td>
+                                            <td ><?php echo $val['amount'];?></td>
+                                            <td ><?php echo $val['bill'];?></td>
+                                            <td ><?php echo $val['payment_receipt'];?></td>
                                             <td ><?php echo $val['payment_method'];?></td>
                                             <td ><?php echo $val['neft_check'];?></td>
-                                            <td ><?php echo $val['total_revenue']; ?></td>
-                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on'])); ?></td>
+                                            <td ><?php echo $val['total_revenue'];?></td>
+                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on']));?></td>
                                         </tr>
                                        <?php 
                                         }
@@ -86,8 +86,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                        <?php echo form_close();?>
-                            </div>
+                           <?php echo form_close();?>
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -112,15 +112,12 @@
           <div class="modal-body">
             <div class="row">
                 <div class="col-md-12 col-lg-12">
-                   
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-12">
                             <?php echo form_input(array('type'=>'text','name'=>'department','id'=>'department','class'=>'form-control department','placeholder'=>'Enter Department','required'=>'true'));?>
                             <input type="hidden" name="id" id="id">
                         </div>                                    
                     </div>
-                   
-                    
                  </div>
             </div>
           </div>
@@ -137,18 +134,14 @@
   
 
 <script>
-
-	
-	$(document).ready(function(e) {
+    $(document).ready(function(e) {
         $('.hoverable').mouseenter(function(){
             //$('[data-toggle="popover"]').popover();
             $(this).popover('show');                    
         }); 
-
         $('.hoverable').mouseleave(function(){
             $(this).popover('hide');
         });
-
 		var table=$('.data-table').DataTable({
 			scrollCollapse: true,
 			autoWidth: false,
@@ -162,9 +155,5 @@
 				"info": "_START_-_END_ of _TOTAL_ entries",
 				searchPlaceholder: "Search"
 			},
-		});		
-        
-		
-
-
+		});	
 </script>

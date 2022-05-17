@@ -18,7 +18,7 @@
             <?php
               if(!empty($datas[0]['candidate_name'])){
                 ?>
-                <div class="table-responsive">
+          <div class="table-responsive">
               <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
                 <thead>
                   <tr>
@@ -31,7 +31,6 @@
                     <th scope="row">Father Name :</th>
                     <td><?php if(!empty($datas[0]['father_name'])){ echo $datas[0]['father_name'];}else{echo 'No Record Found';}?></td>
                   </tr>
-                 
                   <tr>
                     <th scope="row">Exam Date :</th>
                     <td><?php if(!empty($datas[0]['interviewdate'])){ echo date('d-m-Y',strtotime($datas[0]['interviewdate']));} else{echo 'No record Found';}?></td>
@@ -47,7 +46,6 @@
                           else{
                             echo 'Coming Soon...';
                           }
-
                       }
                       else{
                         echo 'Coming Soon...';
@@ -59,28 +57,19 @@
             </div>
                 <?php
               }else{?>
-                <div class="table-responsive">
+             <div class="table-responsive">
               <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
                 <thead>
                   <tr>
-                   
                     <td scope="col" colspan="2" class="text-center"><h4>Comming Soon...</h4></td>
                   </tr>
                 </thead>
-                
               </table>
             </div>
-
-
-
                 <?php
-
               }
-
-
             ?>
-            
-          </div>
+       </div>
         </div>
       </div>
     </section>

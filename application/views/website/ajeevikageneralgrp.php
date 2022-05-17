@@ -20,34 +20,33 @@
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>New Group Create</td>
+                    <td>NEW GROUP CREATE</td>
                     <td><a href="<?= base_url('website/login_group');?>" class="btn btn-sm btn-success ml-2" >LOGIN</a> <a href="<?= base_url('website/groupsignup_form');?>" class="btn btn-sm btn-success ml-2">SIGN UP</a></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td>Registered Group Status</td>
+                    <td>REGISTERED GROUP STATUS</td>
                     <td><a href="<?= base_url('website/group_status')?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
-                    <td>Registered New Member Status</td>
+                    <td>REGISTERED NEW MEMBER STATUS</td>
                     <td><a href="<?= base_url('website/member_status');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
-                    <td>My Report</td>
+                    <td>MY z</td>
                     <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">6</th>
-                    <td>My Event</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    <td>MY EVENT</td>
+                <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-           
         </div>
       </div>
-    </section>
+    </div>
+  </section>

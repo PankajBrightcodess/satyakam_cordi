@@ -1194,7 +1194,7 @@ class Website extends CI_Controller {
 	
      public function payment_success(){
      	$d['v'] = 'website/payment_success';
-			$this->load->view('website/template',$d);
+		$this->load->view('website/template',$d);
     }
 
 
@@ -1225,16 +1225,15 @@ class Website extends CI_Controller {
 	}
 
 	public function expense_monthly_report(){
-		    $id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+	    $id = $_SESSION['user_id'];
+		$record= $this->Website_model->getuser($id);
+		$finalrecord = $record[0];
+		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
 		$month = date('m');
 		$d['expense_month'] = $this->Website_model->expensemonth($user_id,$month);
 		$d['v'] = 'website/monthly_expense_report';
         $this->load->view('website/template_1',$d);
-		
 	}
 
 	public function monthly_expense_list(){
@@ -1245,17 +1244,17 @@ class Website extends CI_Controller {
 		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
             $html.='<thead>';
                 $html.='<tr>';    
-                    $html.='<th>S.NO.</th>';
-                    $html.='<th>EQUIPMENT</th>';                
-                    $html.='<th>QUANTITY</th>';                
-                    $html.='<th>RATE</th>';
-                    $html.='<th>AMOUNT</th>';
-                    $html.='<th>BILL</th>';
-                    $html.='<th>PAYMENT RECEIPT</th>';
-                    $html.='<th>PAYMENT METHOD</th>';
-                    $html.='<th>NEFT CHECK</th>';
-                    $html.='<th>TOTAL REVENUE</th>';
-                    $html.='<th>DATE</th>';
+                $html.='<th>S.NO.</th>';
+                $html.='<th>EQUIPMENT</th>';                
+                $html.='<th>QUANTITY</th>';                
+                $html.='<th>RATE</th>';
+                $html.='<th>AMOUNT</th>';
+                $html.='<th>BILL</th>';
+                $html.='<th>PAYMENT RECEIPT</th>';
+                $html.='<th>PAYMENT METHOD</th>';
+                $html.='<th>NEFT CHECK</th>';
+                $html.='<th>TOTAL REVENUE</th>';
+                $html.='<th>DATE</th>';
                 $html.='</tr>';
             $html.='</thead>';
             $html.='<a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="'.base_url('website/createexcel_monthly_expensedetails').'"><i class="fa fa-file-excel-o"></i> Export to Excel</a>';
@@ -1964,8 +1963,6 @@ class Website extends CI_Controller {
 		$user_id['id'] = $_SESSION['user_id'];
 		$year = date('Y');
 		$grouplist = $this->Website_model->grouplistbyyear($user_id,$year);
-		// $clublist = $this->Website_model->clublistbyyear($user_id,$year);
-		// $travellinglist = $this->Website_model->travellinglistbyyear($user_id,$year);
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
        	$sheet->setCellValue('A1','Id');
@@ -2056,9 +2053,7 @@ class Website extends CI_Controller {
 		$fileName = 'group_month_team.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
 		$month = date('m');
-		
 		$grouplist = $this->Website_model->myteam_grouplistbymonthly($user_id,$month);
-	
 		// print_r($securitylist);die;
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
@@ -2516,6 +2511,7 @@ class Website extends CI_Controller {
 		$d['v'] = 'website/my_team_progress_entry';
         $this->load->view('website/template_1',$d);
 	}
+
 	public function myteam_daily_report()
 	{
 		$data = $this->input->post();
@@ -2804,7 +2800,7 @@ class Website extends CI_Controller {
                                 $html3 ='<table class="table data-table stripe hover nowrap table-bordered">';
                                     $html3.='<thead>';
 
-                                         $html3.='<tr>';    
+                                            $html3.='<tr>';    
                                             $html3.='<th>S.NO.</th>';
                                             $html3.='<th>GROUP NO.</th>';                
                                             $html3.='<th>GROUP NAME</th>';                
@@ -2817,13 +2813,13 @@ class Website extends CI_Controller {
                                             $html3.='<th>CREATED DATE</th>';
                                             $html3.='<th>TOTAL REVENUE</th>';
                                             $html3.='<th>GRAND TOTAL REVENUE</th>';
-                                         $html3.='</tr>';
-                                          $html3.='</thead>';
-                                           $html3.='<tbody>';
+                                         	$html3.='</tr>';
+                                          	$html3.='</thead>';
+                                           	$html3.='<tbody>';
                                     $i=0;
                                          if(!empty($clublist)){
                                             foreach($clublist as $val){$i++; $id=$val['id'];
-                                         $html3.='<tr>';
+                                         	$html3.='<tr>';
                                             $html3.='<td >'.$i.'</td>';
                                             $html3.='<td >'.$val['group_no_b'].'</td>';
                                             $html3.='<td >'.$val['group_name_b'].'</td>';
@@ -2836,7 +2832,7 @@ class Website extends CI_Controller {
                                             $html3.='<td >'.date('d-m-Y',strtotime($val['added_on'])).'</td>';
                                             $html3.='<td >'.$val['total_revenue_3'].'</td>';
                                             $html3.='<td >'.$val['grand_total_revamue'].'</td>';
-                                        $html3.='</tr>';
+                                        	$html3.='</tr>';
                                         }
                                     }   
                                     $html3.='</tbody>';

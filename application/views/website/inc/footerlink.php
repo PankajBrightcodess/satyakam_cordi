@@ -2,12 +2,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-   <script src="<?php echo file_url("includes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+<script src="<?php echo file_url("includes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
   <!-- <script src="<?= base_url('includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js');?>"></script> -->
-    <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
-    <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
+<script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <?php if(isset($this->session->web_msg)){ ?>
 <script type="text/javascript">
    swal('Good job!','<?php echo $this->session->web_msg;?>','success');
@@ -59,7 +59,7 @@ $("#filePhoto").change(function() {
 
         $('body').on('click','#confrmidpass',function(){
           // alert('jhdfs');
-      debugger;
+    
         var userid = $('#txtUserid').val();
         var password = $('#txtPassword').val();
        
@@ -94,7 +94,7 @@ $("#filePhoto").change(function() {
     });
 
    $('body').on('click','#signup',function(){
-    debugger;
+  
       var state=$('#state').val();
       var dpartment=$('#dpartment').val();
       var post=$('.post').val();
@@ -245,7 +245,7 @@ $("#filePhoto").change(function() {
   });
   
   $('body').on('click','.remove_equipment', function(e){ 
-    debugger;
+  
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
     x--;
@@ -268,7 +268,7 @@ $("#filePhoto").change(function() {
   });
   
   $('body').on('click','.remove_equipment', function(e){ 
-    debugger;
+  
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
     x--;
@@ -291,7 +291,6 @@ $("#filePhoto").change(function() {
   });
   
   $('body').on('click','.remove_group', function(e){ 
-    debugger;
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
     x--;
@@ -314,7 +313,7 @@ $("#filePhoto").change(function() {
   });
   
   $('body').on('click','.remove_requipment', function(e){ 
-    debugger;
+  
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
     x--;
@@ -340,7 +339,6 @@ $("#filePhoto").change(function() {
 
   
   $('body').on('click','.remove_group_resource', function(e){ 
-    debugger;
     e.preventDefault(); 
     $(this).closest('tr').remove(); 
     x--;
@@ -367,7 +365,6 @@ for (i = 0; i < acc.length; i++) {
 }
 
    $('body').on('change','#month', function(){
-    debugger;
     var month = $(this).val();
     $.ajax({
       type:'POST',
@@ -375,11 +372,6 @@ for (i = 0; i < acc.length; i++) {
       data:{month:month},
       dataType:'JSON',
       success:function(results){
-        console.log(results.first);
-        console.log(results.second);
-        console.log(results.third);
-        console.log(results.forth);
-        console.log(results.fifth);
         $('#table1').html(results.first);
         $('#table2').html(results.second);
         $('#table3').html(results.third);
@@ -392,7 +384,6 @@ for (i = 0; i < acc.length; i++) {
    });
 
     $('body').on('change','#year', function(){
-    debugger;
     var year = $(this).val();
     $.ajax({
       type:'POST',
@@ -400,12 +391,6 @@ for (i = 0; i < acc.length; i++) {
       data:{year:year},
       dataType:'JSON',
       success:function(results){
-        console.log(results);
-        console.log(results.first);
-        console.log(results.second);
-        console.log(results.third);
-        console.log(results.forth);
-        console.log(results.fifth);
         $('#tables1').html(results.first);
         $('#tables2').html(results.second);
         $('#tables3').html(results.third);
@@ -418,7 +403,6 @@ for (i = 0; i < acc.length; i++) {
    });
 
 $('body').on('change','.year', function(){
-    debugger;
     var year = $(this).val();
     $.ajax({
       type:'POST',
@@ -426,13 +410,6 @@ $('body').on('change','.year', function(){
       data:{year:year},
       dataType:'JSON',
       success:function(results){
-        // alert(results);
-        console.log(results);
-        console.log(results.first);
-        console.log(results.second);
-        console.log(results.third);
-        console.log(results.forth);
-        console.log(results.fifth);
         $('.tables1').html(results.first);
         $('.tables2').html(results.second);
         $('.tables3').html(results.third);
@@ -454,12 +431,6 @@ $('body').on('change','.year', function(){
       data:{month:month},
       dataType:'JSON',
       success:function(results){
-        // alert(results);
-        console.log(results.first);
-        console.log(results.second);
-        console.log(results.third);
-        console.log(results.forth);
-        console.log(results.fifth);
         $('.table1').html(results.first);
         $('.table2').html(results.second);
         $('.table3').html(results.third);
@@ -471,8 +442,7 @@ $('body').on('change','.year', function(){
     });
    });
 
-     $('body').on('change','.expense_monthly', function(){
-    debugger;
+  $('body').on('change','.expense_monthly', function(){
     var month = $(this).val();
     $.ajax({
       type:'POST',
@@ -483,11 +453,9 @@ $('body').on('change','.year', function(){
         console.log(result);
         $('.table1').html(result);
       },
-
     });
    });
   $('body').on('change','.yearexpense', function(){
-    debugger;
     var year = $(this).val();
     $.ajax({
       type:'POST',
@@ -501,27 +469,20 @@ $('body').on('change','.year', function(){
     });
    });
 
+  $('body').on('click','.revenue_master',function(){
 
-     $('body').on('click','.revenue_master',function(){
-        debugger;
-            var year=$('.year').val();
-            
-            $.ajax({
-                type:"POST",
-                url:"<?php echo base_url("website/createExcel"); ?>",
-                data:{year:year},
-                success: function(data){
-                  // alert(data);
-                  console.log(data);
-                  //  alert('Excel Generate');
-                }
-            });
+      var year=$('.year').val();
+      $.ajax({
+          type:"POST",
+          url:"<?php echo base_url("website/createExcel"); ?>",
+          data:{year:year},
+          success: function(data){
+            console.log(data);
+          }
       });
-
-
+  });
 
   $('body').on('change','.expense_monthly', function(){
-    debugger;
     var month = $(this).val();
     $.ajax({
       type:'POST',
@@ -529,7 +490,7 @@ $('body').on('change','.year', function(){
       data:{month:month},
       dataType:'JSON',
       success:function(result){
-        alert(result);
+        // alert(result);
         console.log(result);
 
         $('.table1').html(result);
@@ -538,27 +499,26 @@ $('body').on('change','.year', function(){
     });
    });
 
-
   $('body').on('change','#ins_details', function(){
    var vals = $(this).val();
-   if(vals==1){
-     $("#exam_passed").prop("readonly", false); 
-     $("#board_university").prop("readonly", false); 
-     $("#pasing_year").prop("readonly", false); 
-     $("#total_marks").prop("readonly", false); 
-     $("#mark_obtained").prop("readonly", false); 
-     $("#division").prop("readonly", false); 
-     $("#persentage_marks").prop("readonly", false); 
-   }else{
-     $("#exam_passed").prop("readonly", true); 
-     $("#board_university").prop("readonly", true); 
-     $("#pasing_year").prop("readonly", true); 
-     $("#total_marks").prop("readonly", true); 
-     $("#mark_obtained").prop("readonly", true); 
-     $("#division").prop("readonly", true); 
-     $("#persentage_marks").prop("readonly", true); 
-   }
-  
+     if(vals==1){
+       $("#exam_passed").prop("readonly", false); 
+       $("#board_university").prop("readonly", false); 
+       $("#pasing_year").prop("readonly", false); 
+       $("#total_marks").prop("readonly", false); 
+       $("#mark_obtained").prop("readonly", false); 
+       $("#division").prop("readonly", false); 
+       $("#persentage_marks").prop("readonly", false); 
+     }
+     else{
+       $("#exam_passed").prop("readonly", true); 
+       $("#board_university").prop("readonly", true); 
+       $("#pasing_year").prop("readonly", true); 
+       $("#total_marks").prop("readonly", true); 
+       $("#mark_obtained").prop("readonly", true); 
+       $("#division").prop("readonly", true); 
+       $("#persentage_marks").prop("readonly", true); 
+     }
    });
    $('body').on('change','#othercheck', function(){
      var vals = $(this).val();
@@ -567,19 +527,15 @@ $('body').on('change','.year', function(){
      }else{
        $(".other_details").prop("readonly", true);
      }
-  
    });
-
-
    $('body').on('change','.states', function(){
-    debugger;
     var id = $(this).val();
     $.ajax({
       type:'POST',
       url: '<?php echo base_url('website/get_division')?>',
       data:{id:id},
       success:function(result){
-        console.log(result);
+        // console.log(result);
         $('.division').html(result);
       },
 
@@ -593,13 +549,13 @@ $('body').on('change','.year', function(){
         url:"<?php echo base_url("website/getpost"); ?>",
         data:{depart_id:depart_id},
         success: function(data){
-          console.log(data);
+          // console.log(data);
           $('#post').html(data);
         }
       });
     });
      $('body').on('change','#dpartment_ids',function(){
-      debugger;
+    
       var depart_id=$(this).val();
       $.ajax({
         type:"POST",
@@ -612,9 +568,6 @@ $('body').on('change','.year', function(){
       });
     });
 });
-
-
-
 </script>
 </body>
 </html>

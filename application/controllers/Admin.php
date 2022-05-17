@@ -1745,6 +1745,8 @@ public function update_submenu(){
 	public function pdf_admitcard(){
 			$id = $this->input->get('id');
 			$result = $this->Website_model->pdf_generate_admitcard($id);
+			$photo = $result['photo'];
+			$signature = $result['signature'];
 			$pdf = $this->customfpdf->getInstance();
      	$pdf->AliasNbPages();
      	$pdf->AddPage();
@@ -1772,11 +1774,13 @@ public function update_submenu(){
      	$pdf->Cell(63,5,'Batch No.  :'.$result['batch_no'],1,1,'L');
      	$pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
      	$pdf->SetFont('Arial','B',10);
+
      	$pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
      	$pdf->SetFont('Arial','',9);
      	$pdf->Cell(63,5,'Issue Date  :'.$result['registration_no'],1,1,'L');
      	$pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
      	$pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
+     	$pdf->Image(base_url($photo), 150, $pdf->GetY(), 36.70);
      	$pdf->Cell(63,5,'',0,1,'C');
      	// $images = $result['photo'];
      	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
@@ -1803,9 +1807,10 @@ public function update_submenu(){
      	$pdf->Cell(63,5,'',0,1,'C');
      	$pdf->Cell(63,5,'Reporting Time  :'.$result['reporting_time'],1,0,'L');
      	$pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
+    		$pdf->Image(base_url($signature), 145, $pdf->GetY(), 45.70);
      	$pdf->Cell(63,5,'',0,1,'C');
      	$pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
-      $pdf->Cell(63,10,'',1,1,'C');
+      $pdf->Cell(63,10,'',0,1,'C');
       $pdf->Cell(189,5,'',0,1,'L');
       $pdf->Cell(189,5,'',0,1,'L');
      	$pdf->SetFont('Arial','B',10);
