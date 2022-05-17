@@ -109,7 +109,7 @@ class Website_model extends CI_Model{
 
 	}
 
-	public function kyc_details(){
+	public function kyc_details($id){
 		$id =$_SESSION['user_id'];
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();

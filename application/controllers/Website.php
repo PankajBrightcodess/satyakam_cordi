@@ -58,7 +58,7 @@ class Website extends CI_Controller {
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['v'] = 'website/econtractkyc';
-			$d['kyc']= $this->Website_model->kyc_details();
+			$d['kyc']= $this->Website_model->kyc_details($id);
 			// echo PRE;
 			// print_r($d['kyc']);die;
 			$this->load->view('website/template_1',$d);
@@ -266,9 +266,7 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-			// echo PRE;
-			// print_r($_FILES);
-			// print_r($data);die;
+			
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
@@ -303,18 +301,7 @@ class Website extends CI_Controller {
 				  $data['bank_account'] = $image['path'];
 			  }
 		  }
-		   if($_FILES['signature_upload']['name'] !=''){
-			  $image = upload_file("signature_upload", $upload_path, $allowed_types, time());
-			  if ($image !='') {
-				  $data['signature_upload'] = $image['path'];
-			  }
-		  }
-		   if($_FILES['photo_upload']['name'] !=''){
-			  $image = upload_file("photo_upload", $upload_path, $allowed_types, time());
-			  if ($image !='') {
-				  $data['photo_upload'] = $image['path'];
-			  }
-		  }
+		  
 		   if($_FILES['security_e_receipt']['name'] !=''){
 			  $image = upload_file("security_e_receipt", $upload_path, $allowed_types, time());
 			  if ($image !='') {
@@ -3351,8 +3338,7 @@ class Website extends CI_Controller {
 	public function check_submemberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
-		    if($record['verify']=='true'){
-		    	print_r($record['verify']);die;
+		    if($record['verify']==true){
 		    	unset($_SESSION['member_id']);
 				unset($_SESSION['last_id']);
 				unset($_SESSION['member_name']);

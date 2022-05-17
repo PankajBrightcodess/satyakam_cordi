@@ -48,7 +48,6 @@
                                             <th>Aadhar</th> 
                                             <th>PAN</th> 
                                             <th>Bank Account</th> 
-                                            <th>Photo Upload</th> 
                                             <th>Security In Receipt</th> 
                                             <th>Processing Receipt</th>
                                             <th>Training Receipt</th> 
@@ -97,7 +96,7 @@
                                             <td ><a href="<?php echo base_url($val['aadhar'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['pan'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['bank_account'])?>">View</a></td>
-                                            <td ><a href="<?php echo base_url($val['photo_upload'])?>">View</a></td>
+                                           
                                             <td ><a href="<?php echo base_url($val['security_e_receipt'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['processing_receipt'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['training_receipt'])?>">View</a></td>

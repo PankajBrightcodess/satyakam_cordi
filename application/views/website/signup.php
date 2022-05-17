@@ -59,6 +59,7 @@
                 <div class="col-md-12 mb-2">
                     <input type="email" name="email_id" id="email_id" placeholder="Email Id :" class="form-control" required>
                 </div>
+                
                  <div class="col-md-12 mb-2">
                   <input type="submit" class="mt-4 btn btn-sm "  name="" value="Sign Up" style="background:#233799;color:white">
                 </div>

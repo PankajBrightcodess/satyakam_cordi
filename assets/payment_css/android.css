@@ -86,6 +86,7 @@ body{
     padding: 15px;
     background: none;
     border-radius: 5px;
+
     border: 1px solid rgba(0, 0, 0, .1);
 }
 
@@ -275,14 +276,15 @@ body{
     border-bottom: 2px solid;
 }
 .form-control{
-    font-size: 10px;
-    border: 1px solid #e10a0a;
+    font-size: 11px;
+    border: 1px solid #AEDB44;
     border-radius: 0.25rem;
 }
 .input-group-text{
     border: 1px solid #ff5821;
     border-radius: 0.25rem;
     background-color: #ff5821;
+    required : false;
 }
 .dropdown-submenu {
     position: relative;

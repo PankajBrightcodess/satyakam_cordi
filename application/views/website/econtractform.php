@@ -36,6 +36,8 @@
                             <input type="phone" name="mobile_no" placeholder="Mobile No :" class="form-control" value="<?= $details['mobile_no'];?>" readonly required>
                             <label>Email Id</label>
                             <input type="email" name="email_id" placeholder="Email Id :" class="form-control mb-3" readonly value="<?= $details['email_id'];?>" required>
+                            <label>Service DID</label>
+                            <input type="text" name="service_did" placeholder="Service Did :" class="form-control mb-3"  value="" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">
@@ -66,7 +68,7 @@
                             <input type="text" name="officer_middle_name" placeholder="Officer's Middle Name  :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="officer_last_name" placeholder="Officer's Last Name  :" class="form-control" required>
+                            <input type="text" name="officer_last_name" placeholder="Officer's Last Name  :" class="form-control">
                           </div>
 
                           <div class="col-md-4 mb-3">
@@ -76,7 +78,7 @@
                             <input type="text" name="father_middle" placeholder="S/O / D/O Middle Name :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="father_last" placeholder="S/O / D/O Last Name :" class="form-control" required>
+                            <input type="text" name="father_last"  placeholder="S/O / D/O Last Name :" class="form-control">
                           </div>
                           <div class="col-md-12 mb-3">
                             <textarea name="query" placeholder="Address :" name="address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
@@ -235,16 +237,16 @@
                                     <th scope="row">Bank Account Upload</th>
                                     <td><input class="form-control" name="bank_account" type="file" id="formFile"></td>
                                   </tr>
-                                  <tr>
+                                  <!-- <tr>
                                     <th scope="row">Signature Upload</th>
                                     <td colspan="3"><input class="form-control" name="signature_upload" type="file" id="formFile"></td>
-                                  </tr>
-                                  <tr>
+                                  </tr> -->
+                                  <!-- <tr>
                                     <th scope="row">Photo Upload</th>
                                     <td colspan="3">
                                       <input class="form-control" name="photo_upload" type="file" id="formFile">
                                     </td>
-                                  </tr>
+                                  </tr> -->
 
 
                                   <tr>

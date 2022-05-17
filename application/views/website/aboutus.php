@@ -36,7 +36,7 @@
                     
                   </tr>
                   <tr>
-                     <td scope="col">2) Mr. PN. SAH(TREASURER/ CHIEF PROJECT DIRECTOR)</td>
+                     <td scope="col">2) Mr. PK. SAH(TREASURER/ CHIEF PROJECT DIRECTOR)</td>
                   </tr>
                    <tr>
                      <td scope="col">3) Mr. RS. PASWAN(NATIONAL SPOKE PERSON/ CHIEF FINANCE DIRECTOR)</td>
