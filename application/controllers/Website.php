@@ -894,6 +894,8 @@ class Website extends CI_Controller {
 		$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
 		$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
 		$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
+		echo PRE;
+		print_r($d['travelling']);die;
 		$d['v'] = 'website/annual_progress_report';
         $this->load->view('website/template_1',$d);
 	}
@@ -1436,6 +1438,19 @@ class Website extends CI_Controller {
         $this->load->view('website/template_1',$d);
 	}
 
+	public function vacency_report(){
+		    $id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+		$user_id['id'] = $_SESSION['user_id'];
+		$d['vacency_details'] = $this->Website_model->vacencylist();
+		// echo PRE;
+		// print_r($d['vacency_details']);die;
+		$d['v'] = 'website/vacency_list';
+        $this->load->view('website/template_1',$d);
+	}
+
 	public function createexcel_daily_expensedetails(){
     	$fileName = 'daily_expense.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
@@ -1473,6 +1488,47 @@ class Website extends CI_Controller {
 		$writer->save("assets/excel/".$fileName);
 		header("Content-Type: application/vnd.ms-excel");
         redirect(base_url()."assets/excel/".$fileName); 
+    }
+
+    public function vacencylist_excel(){
+    	$fileName = 'vacency.xlsx';
+		$user_id['id'] = $_SESSION['user_id'];
+		$vacencylist = $this->Website_model->vacencylist();
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+       	$sheet->setCellValue('A1','Sl.No.');
+        $sheet->setCellValue('B1','APPLICANT NAME');
+        $sheet->setCellValue('C1','DATE OF BIRTH');
+        $sheet->setCellValue('D1','FATHER NAME');
+		$sheet->setCellValue('E1','DEPARTMENT');
+        $sheet->setCellValue('F1','POST');       
+        $sheet->setCellValue('G1','MOBILE NO.');       
+        $sheet->setCellValue('H1','EMAIL');       
+        $sheet->setCellValue('I1','CATEGORY');       
+        $sheet->setCellValue('J1','GENDER');        
+        $sheet->setCellValue('K1','CREATE-DATE');       
+        $rows = 2;
+        $i=1;
+        foreach ($vacencylist as $val){
+        	$i++;
+            $sheet->setCellValue('A' . $rows, $i);
+            $sheet->setCellValue('B' . $rows, $val['applicant_name']);
+            $sheet->setCellValue('C' . $rows, date('d-m-Y',strtotime($val['dob'])));
+            $sheet->setCellValue('D' . $rows, $val['father_name']);
+	        $sheet->setCellValue('E' . $rows, $val['department']);
+            $sheet->setCellValue('F' . $rows, $val['Profile']);
+            $sheet->setCellValue('G' . $rows, $val['mobile_no']);
+            $sheet->setCellValue('H' . $rows, $val['email']);
+            $sheet->setCellValue('I' . $rows, $val['category']);
+            $sheet->setCellValue('J' . $rows, $val['gender']);
+            $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+            $rows++;
+        } 
+        $writer = new Xlsx($spreadsheet);
+		$writer->save("assets/excel/".$fileName);
+		header("Content-Type: application/vnd.ms-excel");
+        redirect(base_url()."assets/excel/".$fileName); 
+
     }
 
 	public function requisition_insert(){
@@ -3183,67 +3239,70 @@ class Website extends CI_Controller {
 			
 		}
 		public function upload_allmember_records($files){
-			// print_r($files);die;
+			
 			$upload_path = './assets/uploads/member/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
-			if(!empty($_FILES['image']['name'])){
+		    if(!empty($_FILES['image']['name'])){
 			  $image = upload_file("image", $upload_path, $allowed_types, time());
+			  	
 			  if ($image !='') {
 				  $data['image'] = $image['path'];
 			  }
+
+			}
+			if(!empty($_FILES['member_right_hand_thumb']['name'])){
+				$image1 = upload_file("member_right_hand_thumb", $upload_path, $allowed_types, time());
+			
+				  if ($image1 !='') {
+					  $data['member_right_hand_thumb'] = $image1['path'];
+				  }
 			}
 			if(!empty($_FILES['member_sign']['name'])){
 				$image = upload_file("member_sign", $upload_path, $allowed_types, time());
 				  if ($image !='') {
 					  $data['member_sign'] = $image['path'];
 				  }
-
 			}
-			if(!empty($_FILES['member_right_hand_thumb']['name'])){
-				$image = upload_file("member_right_hand_thumb", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['member_right_hand_thumb'] = $image['path'];
-				  }
-			}
+			
 			if(!empty($_FILES['aadhar_front']['name'])){
-				$image = upload_file("aadhar_front", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['aadhar_front'] = $image['path'];
+				$image2 = upload_file("aadhar_front", $upload_path, $allowed_types, time());
+				  if ($image2 !='') {
+					  $data['aadhar_front'] = $image2['path'];
 				  }
 
 			}
 			if(!empty($_FILES['aadhar_back']['name'])){
-				$image = upload_file("aadhar_back", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['aadhar_back'] = $image['path'];
+				$image3 = upload_file("aadhar_back", $upload_path, $allowed_types, time());
+				  if ($image3 !='') {
+					  $data['aadhar_back'] = $image3['path'];
 				  }
 
 			}
 			if(!empty($_FILES['election_id_card']['name'])){
-				$image = upload_file("election_id_card", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['election_id_card'] = $image['path'];
+				$image4 = upload_file("election_id_card", $upload_path, $allowed_types, time());
+				  if ($image4 !='') {
+					  $data['election_id_card'] = $image4['path'];
 				  }
 			}
 			if(!empty($_FILES['pan_card']['name'])){
-				$image = upload_file("pan_card", $upload_path, $allowed_types, time());
-				  if ($image !='') {
+				$image5 = upload_file("pan_card", $upload_path, $allowed_types, time());
+				  if ($image5 !='') {
 
-					  $data['pan_card'] = $image['path'];
+					  $data['pan_card'] = $image5['path'];
 				  }
 
 			}
 			if(!empty($_FILES['passbook_bank']['name'])){
-				$image = upload_file("passbook_bank", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['passbook_bank'] = $image['path'];
+				$image6 = upload_file("passbook_bank", $upload_path, $allowed_types, time());
+				  if ($image6 !='') {
+					  $data['passbook_bank'] = $image6['path'];
 				  }
 
 			}
 			if(!empty($_FILES['qualification_certificate']['name'])){
-				$image = upload_file("qualification_certificate", $upload_path, $allowed_types, time());
-				  if ($image !='') {
-					  $data['qualification_certificate'] = $image['path'];
+				$image7 = upload_file("qualification_certificate", $upload_path, $allowed_types, time());
+				  if ($image7 !='') {
+					  $data['qualification_certificate'] = $image7['path'];
 				  }
 			}
 			return $data;
@@ -3385,6 +3444,8 @@ class Website extends CI_Controller {
 	   if(!empty($_SESSION['member_id'])){
 	   	$id = $_SESSION['member_id'];
 	   	$d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+	   	// echo PRE;
+	   	// print_r($d['uploadfiles']);die;
 			$d['v'] = 'website/member_dashboard';
 		    $this->load->view('website/template_2',$d);
 		}
@@ -3462,29 +3523,22 @@ class Website extends CI_Controller {
 		public function create_submembership(){
 			$last_id=$_SESSION['last_id'];
 			$d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
-			// $id = $_SESSION['user_id'];
-			// $record= $this->Website_model->getuser($id);
-			// $finalrecord = $record[0];
-			// $d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 			$d['state'] = $this->Website_model->get_statelist();
 			$d['v'] = 'website/create_submembership_form';
 			$this->load->view('website/template_2',$d);
 		}
 		public function addrecord_submembership(){
-			$data =  $this->input->post();
-			$result = $this->upload_allmember_records($_FILES);
-
-			$record['varify']= $this->Website_model->insert_member_all_records($data,$result);
-			if($record['varify']==true){
-				// ......create otp area.......
+			 $data=  $this->input->post();
+			 $result = $this->upload_allmember_records($_FILES);
+			 $record['varify']= $this->Website_model->insert_member_all_records($data,$result);
+			 if($record['varify']==true){
 				$this->session->set_flashdata('err_msg','Submit Successfully');
 				redirect('website/submember_login'.$records);
 			}
 			else{ 
 				$this->session->set_flashdata('err_msg',$result['verify']);
 				redirect('website/create_submembership');
-   		    }
-			
+	   		}	
 		}
 		public function submember_login(){
 			$d['v'] = 'website/submember_login';

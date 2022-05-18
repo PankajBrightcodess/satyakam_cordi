@@ -91,7 +91,7 @@
         ?><li class="nav-item  active"><a class="nav-link" href="#">Gallery</a></li><?php
       }?>
       <?php if($records['vecency']=='true'){
-        ?><li class="nav-item  active"><a class="nav-link" href="officialservicevacency.php">Vacancy</a></li><?php
+        ?><li class="nav-item  active"><a class="nav-link" href="<?php echo base_url('website/vacency_report')?>">Vacancy</a></li><?php
       }?>
       
       

@@ -674,7 +674,7 @@ public function update_submenu(){
 			$data = $this->input->post();
 			$user_id['id'] = $data['id'];
 			$month = $data['month'];
-		$revenuelist = $this->Website_model->revenuelistbymonth($user_id,$month);
+		  $revenuelist = $this->Website_model->revenuelistbymonth($user_id,$month);
 		$securitylist = $this->Website_model->securitylistbymonth($user_id,$month);
 		$grouplist = $this->Website_model->grouplistbymonth($user_id,$month);
 		$clublist = $this->Website_model->clublistbymonth($user_id,$month);
@@ -682,17 +682,17 @@ public function update_submenu(){
 		$html = '<table class="table data-table stripe hover nowrap table-bordered">';
                     $html.='<thead>';
                         $html.='<tr>';   
-                            $html.='<th>S.NO.</th>';
-                            $html.='<th>REGISTRATION No.</th>';                
-                            $html.='<th>APPLICANT Name</th>';                
-                            $html.='<th>FATHER/HUSBAND</th>';
-                            $html.='<th>DOB</th>';
-                            $html.='<th>POST NAME</th>';
-                            $html.='<th>FEE</th>';
-                            $html.='<th>PAYMENT DATE</th>';
-                            $html.='<th>BANKING ID</th>';
-                            $html.='<th>CREATED DATE</th>';
-                           $html.='</tr>';
+                        $html.='<th>S.NO.</th>';
+                        $html.='<th>REGISTRATION No.</th>';                
+                        $html.='<th>APPLICANT Name</th>';                
+                        $html.='<th>FATHER/HUSBAND</th>';
+                        $html.='<th>DOB</th>';
+                        $html.='<th>POST NAME</th>';
+                        $html.='<th>FEE</th>';
+                        $html.='<th>PAYMENT DATE</th>';
+                        $html.='<th>BANKING ID</th>';
+                        $html.='<th>CREATED DATE</th>';
+                        $html.='</tr>';
                     $html.='</thead>';
                     $html.='<tbody>';
                      $i=0;
@@ -1971,8 +1971,8 @@ public function update_submenu(){
        $pdf->SetFont('Arial','B',10);
       $pdf->Cell(9,5,'NOTE : ',0,0,'L');
        $pdf->SetFont('Arial','',9);
-      $pdf->Cell(180,5,'        AFTER THE FEE IS DEPOSITED IN THE INSTITUTE THE INSTITUTE OR ITS OFFICIALS WE NEVER ACCEPT ',0,1,'L');
-       $pdf->Cell(189,5,'                 THE REQUEST TO PAY BACK THE AMOUNT BEFORE THE DEADLINE.',0,0,'L'); 
+      $pdf->Cell(180,5,'AFTER THE FEE IS DEPOSITED IN THE INSTITUTE THE INSTITUTE OR ITS OFFICIALS WE NEVER ACCEPT ',0,1,'L');
+       $pdf->Cell(189,5,'THE REQUEST TO PAY BACK THE AMOUNT BEFORE THE DEADLINE.',0,0,'L'); 
     $pdf->SetFont('Arial','B',9);
      $pdf->Cell(189,30,'',0,1,'L');
      $pdf->Cell(94,5,'CANDIDATE SIGNATURE',0,0,'L');
@@ -1982,6 +1982,11 @@ public function update_submenu(){
     $file =  date('Ymdhis').'_details.pdf';
     $pdf->Output($file,'I');
 
+	}
+
+	public function my_team(){
+		echo PRE;
+		print_r($_POST);die;
 	}
 
 
@@ -2003,6 +2008,13 @@ public function update_submenu(){
 			$data['datatable'] = true;
 			$data['depart'] = $this->Website_model->get_departlist($data);
 			$this->template->load('pages','department_wise_expense',$data);
+		}
+
+		public function departmentwise_team(){
+			$data['title']="Department Wise Control";
+			$data['datatable'] = true;
+			$data['depart'] = $this->Website_model->get_departlist($data);
+			$this->template->load('pages','depart_wise_grouplist',$data);
 		}
 
 		public function departmentwise_vacency(){

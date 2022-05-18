@@ -177,6 +177,23 @@ class Website_model extends CI_Model{
 		return $query->row_array();
 	}
 
+	public function vacencylist(){
+		$this->db->where('t2.payment_status',1);
+		$this->db->select('t1.*,t2.father_name,t2.gender,t2.category,t2.aadharno,t3.photo,t3.signature,t4.department,t5.post as Profile');
+		$this->db->from('stk_vacency_signup t1');
+		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+		$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+		$this->db->join('department t4','t1.depart_id=t4.id','left');
+		$this->db->join('stk_post t5','t1.post=t5.id','left');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
 	public function myteam_revenuelistbydaily($user_id,$date){
 		$user_id= $user_id['id'];
 		

@@ -373,15 +373,14 @@ class CI_Upload {
 	 */
 	public function do_upload($field = 'userfile')
 	{  	
-		// print_r(count($_FILES));die;
-		 // $count = count($_FILES);
-		 // for ($i=0; $i <  $count ; $i++) { 
-		 	// code...
+		
 		 
 		// Is $_FILES[$field] set? If not, no reason to continue.
+
 		if (isset($_FILES[$field]))
 		{
 			$_file = $_FILES[$field];
+
 		}
 		// Does the field name contain array notation?
 		elseif (($c = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $field, $matches)) > 1)
@@ -414,6 +413,7 @@ class CI_Upload {
 		}
 
 		// Was the file able to be uploaded? If not, determine the reason why.
+
 		if ( ! is_uploaded_file($_file['tmp_name']))
 		{
 			$error = isset($_file['error']) ? $_file['error'] : 4;
@@ -452,11 +452,14 @@ class CI_Upload {
 		// Set the uploaded data as class variables
 		$this->file_temp = $_file['tmp_name'];
 		$this->file_size = $_file['size'];
+		
 
 		// Skip MIME type detection?
 		if ($this->detect_mime !== FALSE)
 		{
 			$this->_file_mime_type($_file);
+		
+			
 		}
 
 		$this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
@@ -602,6 +605,8 @@ class CI_Upload {
 	 */
 	public function data($index = NULL)
 	{
+	
+
 		$data = array(
 				'file_name'		=> $this->file_name,
 				'file_type'		=> $this->file_type,
@@ -609,17 +614,16 @@ class CI_Upload {
 				'full_path'		=> $this->upload_path.$this->file_name,
 				'raw_name'		=> substr($this->file_name, 0, -strlen($this->file_ext)),
 				'orig_name'		=> $this->orig_name,
-				'client_name'		=> $this->client_name,
+				'client_name'	=> $this->client_name,
 				'file_ext'		=> $this->file_ext,
-				'file_size'		=> $this->file_size,
-				'is_image'		=> $this->is_image(),
+				'file_size'		    => $this->file_size,
+				'is_image'		    => $this->is_image(),
 				'image_width'		=> $this->image_width,
 				'image_height'		=> $this->image_height,
 				'image_type'		=> $this->image_type,
 				'image_size_str'	=> $this->image_size_str,
 			);
-
-		if ( ! empty($index))
+		if (!empty($index))
 		{
 			return isset($data[$index]) ? $data[$index] : NULL;
 		}
@@ -1230,9 +1234,11 @@ class CI_Upload {
 		 * ext/fileinfo, which is otherwise enabled by default
 		 * since PHP 5.3 ...
 		 */
+
 		if (function_exists('finfo_file'))
 		{
 			$finfo = @finfo_open(FILEINFO_MIME);
+		    
 			if (is_resource($finfo)) // It is possible that a FALSE value is returned, if there is no magic MIME database file found on the system
 			{
 				$mime = @finfo_file($finfo, $file['tmp_name']);
@@ -1244,6 +1250,7 @@ class CI_Upload {
 				 */
 				if (is_string($mime) && preg_match($regexp, $mime, $matches))
 				{
+					
 					$this->file_type = $matches[1];
 					return;
 				}

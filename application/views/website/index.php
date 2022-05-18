@@ -86,7 +86,7 @@
           <div class="col-md-2">
             <div class="team-item">
               <div class="team-img">
-                <img src="<?= base_url('assets/website/images/profilepic.jpg')?>" alt="Image">
+                <img src="<?= base_url('assets/website/images/d5.jpg')?>" alt="Image">
                 <div class="team-social">
                   <a href=""><i class="fab fa-twitter"></i></a>
                   <a href=""><i class="fab fa-facebook-f"></i></a>
