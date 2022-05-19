@@ -35,12 +35,12 @@
                         <th scope="col">Unit Incharge : &nbsp;&nbsp;</th>
                         <th scope="col">Mobile No : <?php echo $state_code['mobile_no'];?></th>
                       </tr> 
-                      <tr>
-                        <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
-                      </tr> 
+                  <!--<tr>
+                         <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
+                      </tr>-->
                       <tr>
                         <th scope="col">Email : <?php echo $state_code['email_id'];?>&nbsp;&nbsp;</th>
-                        <th scope="col">HelpLine No. : </th>
+                        <th scope="col">HelpLine No. :  <?php echo $state_code['mobile_no'];?></th>
                       </tr> 
                        <tr>
                         <th scope="col" colspan="2"><select name="type_of_revenue" class="form-control">

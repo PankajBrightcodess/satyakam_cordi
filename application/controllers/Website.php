@@ -233,6 +233,8 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/econtractform';
 			$signup_id =$_SESSION['signupid'];
 			$d['details']= $this->Website_model->signup_list($signup_id);
+			// echo PRE;
+			// print_r($d['details']);die;
 			$d['department'] = $this->Website_model->get_departlist();
 			$this->load->view('website/template',$d);
 		}
@@ -251,6 +253,7 @@ class Website extends CI_Controller {
 
 		public function create_signup(){
 			$data = $this->input->post();
+
 			$status['signupid'] = $this->Website_model->savesignup($data);
 			$signupid = $this->session->set_userdata($status);
 			if(!empty($_SESSION['signupid'])){
@@ -266,7 +269,7 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-			
+				
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
@@ -322,6 +325,7 @@ class Website extends CI_Controller {
 		  }
 		  $data['signup_id'] = $_SESSION['signupid'];
 		$run=$this->Website_model->officer_details_model($data);
+		
 		if($run){
 			unset($_SESSION['signupid']);
 			$this->session->set_flashdata("web_msg","News Added Successfully!!");
@@ -3426,10 +3430,10 @@ class Website extends CI_Controller {
 	public function update_cookie_member(){
 		 $this->load->helper('cookie');
 		 $member_id = $this->session->userdata('user_id');
-         $member_name = $this->session->userdata('member_name');
-         $cookiearray = array('member_id'=>$member_id,'member_name'=>$member_name);
-        $json = base64_encode(json_encode($cookiearray));
-        $cookie = array(
+	     $member_name = $this->session->userdata('member_name');
+	     $cookiearray = array('member_id'=>$member_id,'member_name'=>$member_name);
+       	 $json = base64_encode(json_encode($cookiearray));
+         $cookie = array(
         'name'   => 'member_cookie',
         'value'  => $json,
         'expire' => '2592000'        

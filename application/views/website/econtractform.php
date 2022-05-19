@@ -10,7 +10,7 @@
                             <label>Application Date</label>
                             <input type="text" name="app_date" readonly value="<?= date('Y-m-d');?>" placeholder="Application Date :" class="form-control" required>
                             <label>Application No.</label>
-                            <input type="text" name="app_no" placeholder="Application No. :" class="form-control" required>
+                            <input type="text" name="reg_no" placeholder="Registration No. :" readonly value="STKMRGE-<?php echo $details['id'];?>" class="form-control" required>
                             <label>State Unit Name</label>
                             <input type="hidden" name="state_id"  value="<?= $details['state'];?>"  readonly value="" placeholder="State Unit Name :"  class="form-control" required>
                              <input type="text" name="state" readonly  value="<?= $details['state_name'];?>" placeholder="State Unit Name :"  class="form-control" required>

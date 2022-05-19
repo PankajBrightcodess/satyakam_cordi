@@ -16,15 +16,15 @@
                                         <!-- <label>Department</label> -->
                                         <select class="form-control" name="depart_id" required id="depart_id">
                                             <option value="">DEPARTMENT :</option>
-                                            <?php
-                                                if(!empty($depart)){
-                                                    foreach ($depart as $key => $value) {
-                                                       ?>
-                                                       <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
-                                                       <?php
+                                                <?php
+                                                    if(!empty($depart)){
+                                                        foreach ($depart as $key => $value) {
+                                                           ?>
+                                                           <option value="<?= $value['id'];?>"><?= $value['department'];?></option>
+                                                           <?php
+                                                        }
                                                     }
-                                                }
-                                            ?> 
+                                                ?> 
                                         </select>
                                     </div>                                    
                                 </div>

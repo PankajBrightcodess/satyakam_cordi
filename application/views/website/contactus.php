@@ -12,10 +12,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
-                        <h2 class="tittle">Head Office:</h2>
+                       <!--  <h2 class="tittle">Head Office:</h2>
                         <p>Khurana Complex, 3rd Floor, Opposite Judges Court, Nainital Road,Haldwani-263139(Uttarakhand)</p>
                         <p><strong>Mobile :</strong> 9939852737</p>
-                        <p><strong>Email : </strong>indiaskfoundation468@gmail.com</p>
+                        <p><strong>Email : </strong>indiaskfoundation468@gmail.com</p> -->
                         <h2 class="tittle">Commanding Office:</h2>
                         <p>Maal Godown Road,Near Railway Station,Ward No.-18, Madhubani(Bihar)-847211</p>
                         <p><strong>Mobile :</strong> 9470879074, 06276-222044</p>

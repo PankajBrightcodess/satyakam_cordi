@@ -7,11 +7,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function savesignup($data){
-		$batchno = $data['batch_no'];
-		$query=$this->db->get_where('signup',array('batch_no' => $batchno));
-    	$rows= $query->num_rows();
-    	if($rows==0){
-    		$table=TP."signup";
+		    $table=TP."signup";
     		$final['state']=$data['state'];
     		$final['depart_id']=$data['depart_id'];
     		$final['post_id']=$data['post_id'];
@@ -30,21 +26,28 @@ class Website_model extends CI_Model{
 			else{
 				return false;
 			}
-    	}
-    	else{
-    		   return false;
-    	}
+		// $batchno = $data['batch_no'];
+		// $query=$this->db->get_where('signup',array('batch_no' => $batchno));
+  //   	$rows= $query->num_rows();
+  //   	if($rows==0){
+    		
+  //   	}
+  //   	else{
+  //   		   return false;
+  //   	}
 		
 	}
 
 	public function officer_details_model($data){
+		// echo PRE;
+		// print_r($data);die;
 		$table="officer_details";  
 		$data['added_on']=date('Y-m-d');
 		unset($data['department']);
 		unset($data['post']);
 		unset($data['state']);
 		unset($data['app_date']);
-		unset($data['app_no']);
+		// unset($data['reg_no']);
 		unset($data['state_id']);
 		$status=$this->db->insert($table,$data);
 		// echo $str = $this->db->last_query();
@@ -175,6 +178,19 @@ class Website_model extends CI_Model{
 		$this->db->join('division t3','t1.division_unit_name=t3.id','left');
 		$query = $this->db->get();
 		return $query->row_array();
+	}
+
+	public function get_teamlist($depart_id){
+		$id = $depart_id['depart_id'];
+		print_r($id);die;
+		$this->db->where('id',$last_id);
+		$this->db->select('t1.*,t2.state,t3.division');
+		$this->db->from('project_member t1');
+		$this->db->join('state t2','t1.state_unit_name=t2.id','left');
+		$this->db->join('division t3','t1.division_unit_name=t3.id','left');
+		$query = $this->db->get();
+		return $query->row_array();
+
 	}
 
 	public function vacencylist(){
@@ -1078,7 +1094,7 @@ class Website_model extends CI_Model{
 
 
 	public function my_team_insert_reports($form_1,$form_2,$form_3,$form_4,$form_5){
-		$status1 = $this->revenue_team($form_1);
+		$status1 =$this->revenue_team($form_1);
 		$status2 =$this->security_team($form_2);
 		$status3 =$this->group_team($form_3);
 		$status4 =$this->club_team($form_4);
