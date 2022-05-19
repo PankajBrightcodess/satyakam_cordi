@@ -39,8 +39,8 @@ class Website_model extends CI_Model{
 	}
 
 	public function officer_details_model($data){
-		echo PRE;
-		print_r($data);die;
+		// echo PRE;
+		// print_r($data);die;
 		$table="officer_details";  
 		$data['added_on']=date('Y-m-d');
 		unset($data['department']);

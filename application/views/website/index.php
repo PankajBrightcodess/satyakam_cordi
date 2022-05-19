@@ -96,7 +96,7 @@
               </div>
               <div class="team-text">
                 <h2>Mr. R S Paswan</h2>
-                <p>Founder</p>
+                <p>Chief Finance Director</p>
               </div>
             </div>
           </div>
@@ -130,15 +130,11 @@
               </div>
               <div class="team-text">
                 <h2>Raza Haider Khan</h2>
-                <p> Managing Director (Aajeevika)</p>
+                <p> Managing Director</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-
-
-
     <i class="nav-icon fa fa-leaf" aria-hidden="true"></i>
