@@ -487,6 +487,56 @@ class Website_model extends CI_Model{
 		return $result;	
 	}
 
+	public function account_creates_model($data){
+		 $membership_on = $data['member_id'];
+		 $where = "membership_no='$membership_on'";
+		 $query = $this->db->get_where('member_details',$where);
+		 $result =  $query->num_rows();
+		 if($result==true){
+		 	$ac_no = $this->account_no_create();
+		 	$final['account_no'] = $ac_no;
+		 	$final['member_id'] = $data['member_id'];
+		 	$final['name'] = $data['name'];
+		 	$final['group_name'] = $data['group_name'];
+		 	$final['group_no'] = $data['group_no'];
+		 	$final['mobile_no'] = $data['mobile_no'];
+		 	$final['email'] = $data['email'];
+		 	$final['email'] = $data['email'];
+		 	$final['sponser_id'] = $_SESSION['member_id'];
+		 	$final['sponser_name'] = $_SESSION['member_name'];
+		 	$final['added_on'] = date('Y-m-d');
+		 	$table = 'account_details';
+		 	$status=$this->db->insert($table,$final);
+		 	$this->db->last_query();die;
+			if($status){
+			     return true;
+			}
+			else{
+				return false;
+			}
+		 }
+		 else{
+		 	$record['verify']="Member Id does not Exist!";
+		 }
+	}
+
+	public function account_no_create(){
+		$this->db->select('*');
+		$this->db->from('account_details');
+		$this->db->order_by('account_no','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get();
+		$result = $query->num_rows();
+		if($result==null){
+			$account_no = 'SATYA1000001';
+			return $account_no;
+
+		}
+		else{
+			1;
+		}
+	}
+
 	public function insert_division($data){
 		$table="division`";  	
 		$status=$this->db->insert($table,$data);

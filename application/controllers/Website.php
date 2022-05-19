@@ -4133,12 +4133,30 @@ class Website extends CI_Controller {
 	   		}
 		}
 
-		public function member_group_reg_form(){
-			$last_group_id = $_SESSION['last_group'];
-			$d['group_records']= $this->Website_model->group_details($last_group_id);
-			
-			$d['v'] = 'website/member_group_registration_form';
+		public function create_account_page(){
+			$length = 5;
+			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+			$d['captcha'] =$captcha;
+			$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/account_form';
 			$this->load->view('website/template_2',$d);
+		}
+
+		public  function create_account(){
+			$data = $this->input->post();
+			
+			$result = $this->Website_model->account_creates_model($data);
+			echo PRE; 
+			print_r($result);die;
+			$rslt = json_decode($result,true);
+			$submit_count = count($rslt);
+			if($count==$submit_count){
+				$this->session->set_flashdata('err_msg',$result['verify']);
+					redirect('website/member_login_group');
+			}
+			else{
+				redirect('website/member_group_reg_form');
+			}
 		}
 
 		public function member_groupdetails_insert(){
@@ -4273,6 +4291,9 @@ class Website extends CI_Controller {
 
 
 // ...................team close......................................
+
+	// '''''''''''''''''''''''''''''''''''account start'''''''''''''''''''''''''''''''''
+
 		
     public function alldata($token=''){
 		$this->load->library('alldata');
