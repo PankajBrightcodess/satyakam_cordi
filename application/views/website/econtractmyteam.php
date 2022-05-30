@@ -15,68 +15,68 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
+                    <td scope="row">1</td>
                     <td>E-Contract Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                    <td scope="row">2</td>
                     <td>Service Did Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
+                    <td scope="row">3</td>
                     <td>Service Book Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">4</th>
+                    <td scope="row">4</td>
                     <td>Training Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   
                   <tr>
-                    <th scope="row">5</th>
+                    <td scope="row">5</td>
                     <td>Appointment Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">6</th>
+                    <td scope="row">6</td>
                     <td>Order Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">7</th>
+                    <td scope="row">7</td>
                     <td>Ultimatum Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">8</th>
+                    <td scope="row">8</td>
                     <td>Transfer Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">9</th>
+                    <td scope="row">9</td>
                     <td>Promotion Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">10</th>
+                    <td scope="row">10</td>
                     <td>Security Fund Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">11</th>
+                    <td scope="row">11</td>
                     <td>P/F Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                   </tr>

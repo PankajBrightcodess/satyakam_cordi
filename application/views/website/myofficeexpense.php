@@ -19,7 +19,7 @@
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                   </tr> -->
                   <tr>
-                    <th scope="row">2</th>
+                    <td scope="row">1</td>
                     <td>Daily Authorise Expense</td>
                     <td><a href="<?= base_url('website/myofficexpensedetails');?>" class="btn btn-sm btn-success">Click Here</a></td>
                   </tr>

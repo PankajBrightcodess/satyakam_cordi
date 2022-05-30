@@ -5,8 +5,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
-      <!-- <li class="nav-item active"><a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a></li> -->
-       <li class="nav-item active"><a class="nav-link" href="<?= base_url('website/memberdashboard');?>">My Profile <span class="sr-only"></span></a></li>
+     <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/memberdashboard')?>">Dashboard</a></li>
+       <li class="nav-item active"><a class="nav-link" href="<?= base_url('website/my_group');?>">My Profile <span class="sr-only"></span></a></li>
        <li class="nav-item active"><a class="nav-link" href="<?= base_url('website/member_general_group')?>">My General Group<span class="sr-only"></span></a></li>
        <li class="nav-item active"><a class="nav-link" href="<?= base_url('website/my_club_group_features')?>">My Club group Features <span class="sr-only"></span></a></li>
        <!--  <li class="nav-item active"><a class="nav-link" href="#">Join The Club <span class="sr-only"></span></a></li> -->

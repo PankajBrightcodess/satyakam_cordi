@@ -15,56 +15,56 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
+                    <td scope="row">1</td>
                     <td>Create Team</td>
                     <td><a href="<?= base_url('website/create_team');?>" class="form-control btn btn-sm btn-success">Create Team</a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">2</th>
+                    <td scope="row">2</td>
                     <td>Daily Progress Entry</td>
                     <td><a href="<?= base_url('website/myteam_progress_report');?>" class="form-control btn btn-sm btn-success">Open</a></td>
                     
                   </tr>
                    <tr>
-                    <th scope="row">3</th>
+                    <td scope="row">3</td>
                     <td>Daily Progress Status</td>
                     <td><a href="<?= base_url('website/myteam_daily_progress_report')?>" class="form-control btn btn-sm btn-success">Daily Progress Report</a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">3</th>
+                    <td scope="row">3</td>
                     <td>Monthly Progress Status</td>
                     <td><a href="<?= base_url('website/myteam_monthly_progress_report');?>" class="form-control btn btn-sm btn-success">Monthly Progress Report</a></td>
                    
                   </tr>
                   <tr>
-                    <th scope="row">4</th>
+                    <td scope="row">4</td>
                     <td>Annual Progress Status</td>
                     <td><a href="<?= base_url('website/myteam_annualy_progress_report');?>" class="form-control btn btn-sm btn-success">Annual Progress Report</a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">5</th>
+                    <td scope="row">5</td>
                     <td>House Fund Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   
                   <tr>
-                    <th scope="row">6</th>
+                    <td scope="row">6</td>
                     <td>Leave Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">7</th>
+                    <td scope="row">7</td>
                     <td>Office Rent Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     
                   </tr>
                   <tr>
-                    <th scope="row">8</th>
+                    <td scope="row">8</td>
                     <td>Daily Expense Status</td>
                     <td><a target="_blank" href="<?= base_url('assets/website/images/sample.pdf')?>"><img src="<?= base_url('assets/website/images/pdf.png')?>"></a></td>
                     

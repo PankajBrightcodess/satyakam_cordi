@@ -163,6 +163,7 @@
 }
 nav.navbar{
 	background-color:#2e3192;
+    padding: 1px;
 }
 nav .navbar-nav .nav-item .nav-link {
     padding: 5px;
@@ -177,6 +178,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     background-color: #ff020200;
     border: 1px solid white;
     color: white!important;
+    padding:15px;
 }
 .dropdown-menu {
     position: absolute;

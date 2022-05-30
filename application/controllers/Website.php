@@ -3371,6 +3371,17 @@ class Website extends CI_Controller {
 		}
 
 // '''''''''''''''''''''''''''''''''''' SUB Member'''''''''''''''''''''''''''''''''
+		public function memberdashboard(){
+			if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/memberdashboard';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+		}
+
+
 		public function check_memberlogin(){
 		    $data = $this->input->post();
 		    $record= $this->Website_model->membership_login($data);
@@ -3453,7 +3464,8 @@ class Website extends CI_Controller {
 	}
 
 
-	public function memberdashboard(){
+
+	public function my_group(){
 
 	   if(!empty($_SESSION['member_id'])){
 	   	$id = $_SESSION['member_id'];

@@ -2,13 +2,24 @@
     <link rel="shortcut icon" href="<?= base_url('assets/website/images/logo3.png');?>">
   <style type="text/css">
       .login{
-             background-image:url(<?= base_url('assets/website/images/backgroundimage.jpg');?>); background-size:cover; width:100%; height:100vh;
+             background-image:url(<?= base_url('assets/website/images/491677.jpg');?>); background-size:cover; width:100%; height:100vh;
       }
       .loginbox {
-          background-color: #0c0a7899;
-          color: #f2f2f2;
+           background-color: white;
+          opacity: 77%;
+          color: black;
           padding: 9px;
           margin-top: 27px;
+          padding: 20px;
+      }
+      label{
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .logo{
+        margin-top: 100px;
+        height: 140px;
+        width: 140px;
       }
   </style>
 <section class="login">
