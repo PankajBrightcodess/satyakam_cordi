@@ -3440,11 +3440,18 @@ class Website extends CI_Controller {
 	}
 
 	public function createsession_member($result){
-		print_r($result);die;
-		$data['member_id']=$result['id'];
-		$data['member_name']=$result['applicant_name'];
-		$this->session->set_userdata($data);
-		$this->update_cookie_member();
+		if($result['verify']==1)
+		{
+		   $data['member_id']=$result['id'];
+		   $data['member_name']=$result['applicant_name'];
+		   $this->session->set_userdata($data);
+		   $this->update_cookie_member();
+		}
+		else{
+			$this->session->set_flashdata('web_err_msg',$record['verify']);
+			redirect('website/submember_login_home');
+		}
+		
 	}
 
 	public function update_cookie_member(){
