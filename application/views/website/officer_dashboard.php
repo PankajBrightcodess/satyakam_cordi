@@ -7,17 +7,17 @@
           </div>
           <div class="col-md-12 text-center">
             <div class="row">
-              <div class="col-md-3"><button class="buttondesign">e-Contract<br>(My Document)  </button></div>
-              <div class="col-md-3"><button class="buttondesign">My Office<br>(My Report)  </button></div>
-              <div class="col-md-3"><button class="buttondesign">e-Contract<br>(KYC)  </button></div>
-              <div class="col-md-3 mb-5"><button class="buttondesign">My Office<br>(Office Expense)  </button></div>
-              <div class="col-md-3"><button class="buttondesign">My Office<br>(My Team Office)  </button></div>
-              <div class="col-md-3"><button class="buttondesign">General<br>Group</button></div>
-              <div class="col-md-3"><button class="buttondesign">Vacancy <br>List </button></div>
-              <div class="col-md-3 mb-5"><button class="buttondesign">Events<br> List </button></div>
+              <div class="col-md-3"><a href="<?php echo base_url('website/econtractdocx');?>" class=" btn buttondesign">e-Contract<br>(My Document)  </a></div>
+              <div class="col-md-3"><a href="<?php echo base_url('website/myofficereport');?>" class="buttondesign btn">My Office<br>(My Report)  </a></div>
+              <div class="col-md-3"><a href="<?php echo base_url('website/econtractkyc');?>" class="buttondesign btn">e-Contract<br>(KYC)  </a></div>
+              <div class="col-md-3 mb-5"><a href="<?php echo base_url('website/myofficeexpense');?>" class="buttondesign btn">My Office<br>(Office Expense)  </a></div>
+              <div class="col-md-3"><a href="<?php echo base_url('website/econtractmyteam');?>" class="buttondesign btn">My Office<br>(My Team Office)  </a></div>
+              <div class="col-md-3"><a href="<?php echo base_url('website/ajeevikageneralgrp');?>" class="buttondesign btn">General<br>Group</a></div>
+              <div class="col-md-3"> <a href="<?php echo base_url('website/vacency_report')?>" class="buttondesign btn">Vacancy <br>List </a></div>
+              <div class="col-md-3 mb-5"><a href="#" class="buttondesign btn">Events<br> List </a></div>
               <div class="col-md-3"></div>
-              <div class="col-md-3"><button class="buttondesign">Gallery<br> List </button></div>
-              <div class="col-md-3"><button class="buttondesign">Vacancy  </button></div>
+              <div class="col-md-3"><a href="#" class="buttondesign btn">Gallery<br> List </a></div>
+              <div class="col-md-3"><a href="#" class="buttondesign btn">Vacancy  </a></div>
               
               <div class="col-md-3"></div>
              
