@@ -3448,7 +3448,7 @@ class Website extends CI_Controller {
 		   $this->update_cookie_member();
 		}
 		else{
-			$this->session->set_flashdata('web_err_msg',$record['verify']);
+			$this->session->set_flashdata('web_err_msg','Please Try Again !');
 			redirect('website/submember_login_home');
 		}
 		
