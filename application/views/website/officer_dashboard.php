@@ -17,7 +17,7 @@
               <div class="col-md-3 mb-5"><a href="#" class="buttondesign btn">Events<br> List </a></div>
               <div class="col-md-3"></div>
               <div class="col-md-3"><a href="#" class="buttondesign btn">Gallery<br> List </a></div>
-              <div class="col-md-3"><a href="#" class="buttondesign btn">Vacancy  </a></div>
+              <div class="col-md-3"><a href="#" class="buttondesign btn">I-CON India   </a></div>
               
               <div class="col-md-3"></div>
              
