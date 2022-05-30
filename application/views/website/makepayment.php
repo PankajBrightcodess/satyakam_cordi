@@ -17,7 +17,6 @@ $email =  'abc@gmail.com';
 $phone = $rows['mobile_no'];
 $name = "Customer of $custname - $orderno";
 $return_url = site_url().'razorpay/callback';
-
 ?>
 <section class="">  
     <div class="container-fluid">

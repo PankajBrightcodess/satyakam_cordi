@@ -19,7 +19,7 @@
    <?php }else if(isset($this->session->web_err_msg)){ ?>
 <script type="text/javascript">
    swal("Good job!", "You clicked the button!", "success");
-   // swal('Opps!','<?php echo $this->session->web_err_msg;?>','error');
+   swal('Opps!','<?php echo $this->session->web_err_msg;?>','error');
 </script>
 
       <?php }

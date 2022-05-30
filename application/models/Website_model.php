@@ -488,26 +488,33 @@ class Website_model extends CI_Model{
 	}
 
 	public function account_creates_model($data){
+		// echo PRE;
+		// print_r($data);die;
 		 $membership_on = $data['member_id'];
 		 $where = "membership_no='$membership_on'";
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
-		 if($result==true){
-		 	$ac_no = $this->account_no_create();
+		 $ac_no = $this->account_no_create();
+		 	
+		 if($result==true && !empty($ac_no)){
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
 		 	$final['name'] = $data['name'];
 		 	$final['group_name'] = $data['group_name'];
+		 	$final['father_husband'] = $data['father_husband'];
+		 	$final['dob'] = $data['dob'];
+		 	$final['c_address'] = $data['c_address'];
+		 	$final['p_address'] = $data['p_address'];
 		 	$final['group_no'] = $data['group_no'];
 		 	$final['mobile_no'] = $data['mobile_no'];
+		 	$final['aadhar'] = $data['aadhar'];
 		 	$final['email'] = $data['email'];
-		 	$final['email'] = $data['email'];
+		 	$final['state_unit_name'] = $data['state_unit_name'];
 		 	$final['sponser_id'] = $_SESSION['member_id'];
 		 	$final['sponser_name'] = $_SESSION['member_name'];
 		 	$final['added_on'] = date('Y-m-d');
 		 	$table = 'account_details';
 		 	$status=$this->db->insert($table,$final);
-		 	$this->db->last_query();die;
 			if($status){
 			     return true;
 			}
@@ -533,7 +540,12 @@ class Website_model extends CI_Model{
 
 		}
 		else{
-			1;
+			$result = $query->row_array();
+			echo PRE;
+			$ac_no = trim($result['account_no'],"SATYA");
+			$ac_no = $ac_no+1;
+			$final_acno = 'SATYA'.$ac_no;
+			return $final_acno;
 		}
 	}
 

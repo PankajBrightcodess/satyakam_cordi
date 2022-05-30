@@ -5,6 +5,8 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContentt">
     <ul class="navbar-nav mx-auto">
+       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/officer_dashboard')?>">Dashboard</a></li>
+
   <!-- <?php 
       print_r($records);?>  -->
       <?php
@@ -93,10 +95,6 @@
       <?php if($records['vecency']=='true'){
         ?><li class="nav-item  active"><a class="nav-link" href="<?php echo base_url('website/vacency_report')?>">Vacancy</a></li><?php
       }?>
-      
-      
-      
-      
       <li class="nav-item dropdown  active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Setting</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

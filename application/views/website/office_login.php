@@ -5,25 +5,37 @@
              background-image:url(<?= base_url('assets/website/images/491677.jpg');?>); background-size:cover; width:100%; height:100vh;
       }
       .loginbox {
-          background-color: rgba(0,0,0,0.6);
-          color: #f2f2f2;
+        /*rgba(0,0,0,0.6)*/
+          background-color: white;
+          opacity: 77%;
+          color: black;
           padding: 9px;
           margin-top: 27px;
+          padding: 20px;
+      }
+      label{
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .logo{
+        margin-top: 100px;
+        height: 140px;
+        width: 140px;
       }
   </style>
 <section class="login">
       <div class="container">
         <div class="row">
-          
-          <div class="col-md-12">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
             <div class="text-center">
-              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
+              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"> </a>
             </div>
             <div class="loginbox">
               <form method="POST" action="<?= base_url('website/logincheck')?>">  
               <div class="row">
               <div class="col-md-12">
-                <h3 class="text-center" style="color: white">LOGIN YOUR ID</h3>
+                <h5 class="text-center" style="color: black; font-weight: 700;">LOGIN YOUR ID</h5>
               </div>
               <div class="col-md-12">
                
@@ -45,15 +57,19 @@
                 <button type="submit" name="btnLogin" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
                  <!--  <input type="button" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block     confrmidpass"> -->
               </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
                <div class="col-md-12">
-                <div class="form-group text-right">
-                  <a href="#" style="color:#fff;">FORGOT PASSWORD?</a>
+                <div class="form-group text-center">
+                  <a href="#" style="color: black;">Forget Password?</a>
                 </div>
               </div>
             </div>
             </form>
             </div>
           </div>
+          <div class="col-md-3"></div>
          
         </div>
       </div>

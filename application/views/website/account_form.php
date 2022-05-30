@@ -15,6 +15,23 @@
                   <label for="application_date">Member Name :</label>
                   <input type="text" name="name" placeholder="Member Name :" class="form-control" required>
                 </div>
+
+                <div class="col-md-6 mt-2">
+                  <label for="application_date">Father/Husband Name :</label>
+                  <input type="text" name="father_husband" placeholder="Father/Husband Name :" class="form-control" required>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <label for="application_date">Date Of Birth. :</label>
+                  <input type="date" name="dob" placeholder="Date Of Birth. :" class="form-control" required>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <label for="application_date">Correspondence Address :</label>
+                  <textarea class="form-group form-control" name="c_address" rows="5"></textarea>
+                </div>
+                 <div class="col-md-6 mt-2">
+                  <label for="application_date">Permanent Address :</label>
+                  <textarea class="form-group form-control" name="p_address" rows="5"></textarea>
+                </div>
                 
                  <div class="col-md-6 mt-2">
                   <label for="application_date">Join Group :</label>
@@ -43,16 +60,23 @@
                         <input type="text" name="mobile_no" value=""  placeholder="Mobile No. :"  class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
+                  <label for="aadhar">Aadhar :</label>
+                  <input type="text" name="aadhar" placeholder="Enter Aadhar"  class="form-control" required>
+                </div>
+                 <div class="col-md-6 mb-2"> 
                   <label for="email">Email :</label>
                   <input type="email" name="email" placeholder="Enter Email"  class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
+                  <label for="email">Photo :</label>
+                  <input type="file" name="Photo" placeholder="Enter Captcha"  class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-2"> 
                   <label for="email">Captcha :</label>
                   <input type="text" name="captcha" placeholder="Enter Captcha"  class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
-                  <label for="email">Photo :</label>
-                  <input type="file" name="Photo" placeholder="Enter Captcha"  class="form-control" required>
+                 
                 </div>
                 <div class="col-md-6 mb-2">
 

@@ -44,6 +44,15 @@ class Website extends CI_Controller {
 		    }
 			
 		}
+		public function officer_dashboard(){
+			$id = $_SESSION['user_id'];
+			$record= $this->Website_model->getuser($id);
+			$finalrecord = $record[0];
+			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['v'] = 'website/officer_dashboard';
+			$this->load->view('website/template_1',$d);
+		}
+
 		public function econtractdocx(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -285,7 +294,7 @@ class Website extends CI_Controller {
 				  $data['signature'] = $image['path'];
 			  }
 		  }
-		   if($_FILES['aadhar']['name'] !=''){
+		  if($_FILES['aadhar']['name'] !=''){
 			  $image = upload_file("aadhar", $upload_path, $allowed_types, time());
 			  if ($image !='') {
 				  $data['aadhar'] = $image['path'];
@@ -343,7 +352,7 @@ class Website extends CI_Controller {
 		// print_r($result);die;
 		if($result['verify']===true){
 			$this->createsession($result);
-			redirect('website/econtractdocx');
+			redirect('website/officer_dashboard');
 			$this->session->set_flashdata('web_msg','Login Successfully');
 
 		}
@@ -379,9 +388,13 @@ class Website extends CI_Controller {
 	public function logout(){
 		$data=array("user_id","branch_no");
 		unset($data);	
+		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('batch_no');
+		echo '<pre>';
+		print_r($_SESSION);
 		$this->load->helper('cookie');
       	delete_cookie('login_cookie');
-		redirect('website/office_login');
+		redirect('/');
 	}
 	
 
@@ -1159,27 +1172,25 @@ class Website extends CI_Controller {
 
 
 	}
-	    public function makepayment(){
+	public function makepayment(){
         $data['title'] = "Make Payment";            
         $id = $this->session->userdata('lastids');
         //$order_id_array = json_decode($order_value,true);        
         $showdata = array();$total_amount = 0;$orderno = array();$show_id=0;
         if(!empty($id)){
-        	$records=$this->Website_model->fatch_vacency($id);
-	         $ids= $records['signup_id'];
+	    	$records=$this->Website_model->fatch_vacency($id);
+	        $ids= $records['signup_id'];
 	        $data['row']=$records;
 	        $data['rows']=$this->Website_model->fatch_vacency_signup($ids);
-          $data['v'] = 'website/makepayment';
-          	$this->load->view('website/template',$data);
+	        $data['v'] = 'website/makepayment';
+	      	$this->load->view('website/template',$data);
         }else{
           redirect('/');
-        }     
-         
-
+        }  
     }
         public function success(){
       $postdata = $this->input->post();
-      $payment_id = $postdata ['razorpay_payment_id'];
+      $payment_id = $postdata['razorpay_payment_id'];
       $paymentdetail = json_encode($postdata);
       $lastids = $this->session->userdata('lastids');
       //$order_array = json_decode($order_id,true);
@@ -4146,22 +4157,20 @@ class Website extends CI_Controller {
 			$data = $this->input->post();
 			
 			$result = $this->Website_model->account_creates_model($data);
-			echo PRE; 
-			print_r($result);die;
+			// print_r($result);die;
 			$rslt = json_decode($result,true);
 			$submit_count = count($rslt);
 			if($count==$submit_count){
 				$this->session->set_flashdata('err_msg',$result['verify']);
-					redirect('website/member_login_group');
+					redirect('website/create_account_page');
 			}
 			else{
-				redirect('website/member_group_reg_form');
+				redirect('website/my_saving_account_features');
+				
 			}
 		}
 
 		public function member_groupdetails_insert(){
-			// echo PRE;
-			// print_r($_FILES);die;
 			if(!empty($_FILES['photo']['name'][0])){
 				$files['name']=$_FILES['photo']['name'];
 				$files['type']=$_FILES['photo']['type'];

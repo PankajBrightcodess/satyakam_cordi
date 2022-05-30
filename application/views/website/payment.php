@@ -1,4 +1,3 @@
-<?= PRE; print_r($allrecord);?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,7 +45,7 @@
                                 <div class="form-row p-2">
                                     <div class="col-1 col-md-2"></div>
                                     <div class="col-10 col-md-8 text-center">
-                                        <form action='<?php echo base_url('website/payment_success')?>' id="razorpay-form" method="post">
+                                     <form action='<?php echo base_url('website/payment_success')?>' id="razorpay-form" method="post">
                                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
                                         <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $allrecord['merchant_order_id']; ?>"/>
                                         <input type="hidden" name="merchant_trans_id" id="merchant_trans_id" value="<?php echo $allrecord['merchant_trans_id']; ?>"/>
@@ -56,7 +55,7 @@
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo   $allrecord['amount']; ?>"/>
                                        <!--  <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>"> -->
                                         <input  id="submit-pay" type="button" onclick="razorpaySubmit(this);" value="PAY NOW" class="btn btn-sm btn-success" />
-                                        </form>
+                                     </form>
                                     </div>
                                     <div class="col-1 col-md-2"></div>
                                 </div>                            
