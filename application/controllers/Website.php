@@ -390,8 +390,6 @@ class Website extends CI_Controller {
 		unset($data);	
 		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('batch_no');
-		echo '<pre>';
-		print_r($_SESSION);
 		$this->load->helper('cookie');
       	delete_cookie('login_cookie');
 		redirect('/');
