@@ -213,11 +213,30 @@ nav .navbar-nav .nav-item .nav-link:hover {
      background-image:url('../images/491677.jpg'); background-size:cover; width:100%; height:100vh;
      padding-top: 40px;padding-bottom: 40px;
 }
+.officer_dashboard{
+    background-image:url('../images/1234.jpg'); background-size:cover; width:100%; height:100vh;
+    /* padding-top: 40px;padding-bottom: 40px;*/
+}
+.officer_dashboard  .buttondesign{
+    background: #366AD1;
+    border-radius: 15px;
+    border-spacing: 5px;
+    border-width: 5px;
+    border-color: white;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+   /* padding-top: 10px;
+    padding-bottom: 10px;*/
+    height: 150px;
+    width: 150px;
+}
 .misvis table tr th {
     background: #ff0000;
     border: 1px solid #2e3192;
     color: #ffffff;
 }
+
 .misvis table tr td {
     background: #2e319200;
     border: 1px solid #2e3192;
