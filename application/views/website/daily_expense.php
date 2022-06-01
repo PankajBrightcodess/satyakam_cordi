@@ -40,7 +40,7 @@
                       </tr> 
                       <tr>
                         <th scope="col">Email : &nbsp;&nbsp;<?php  echo $state_code['email_id'];?></th>
-                        <th scope="col">HelpLine No. : </th>
+                        <th scope="col">HelpLine No. : &nbsp;&nbsp;<?php  echo $state_code['mobile_no'];?></th>
                       </tr> 
                        <!-- <tr>
                         <th scope="col" colspan="2"></th>

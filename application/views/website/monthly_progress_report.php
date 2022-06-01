@@ -32,9 +32,10 @@
                     </div>
                 </div>
             </div>
-            <?php 
+           <!--  <?php 
                 if(!empty($revenue)){
-                    ?>
+
+                    ?> -->
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
@@ -91,14 +92,14 @@
                         </div>
                     </div>
                 </div>
-            </div><?php
+            </div>
+            <!-- <?php
                 }
             ?>
-            <!-- ''''''''''''''''''''''$revenue area''''''''''''''''''''''''' -->
+            ''''''''''''''''''''''$revenue area'''''''''''''''''''''''''
              <?php 
                 if(!empty($security)){
-                    // echo PRE; print_r($security);
-                    ?>
+                    ?> -->
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
@@ -179,13 +180,14 @@
                         </div>
                     </div>
                 </div>
-            </div><?php
+            </div>
+            <!-- <?php
                 }
             ?>
-            <!-- ''''''''''''''''''''''''''''security area'''''''''''''''''''''''''' -->
+            ''''''''''''''''''''''''''''security area''''''''''''''''''''''''''
             <?php 
                 if(!empty($group)){
-                    ?>
+                    ?> -->
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
@@ -267,14 +269,14 @@
                         </div>
                     </div>
                 </div>
-            </div><?php
+            </div>
+            <!-- <?php
                 }
             ?>
-            <!-- '''''''''''''''''''''''''''''''''''group list'''''''''''''''''''''''''''''''' -->
+            '''''''''''''''''''''''''''''''''''group list''''''''''''''''''''''''''''''''
             <?php 
                 if(!empty($club)){
-                    // echo PRE; print_r($club);
-                    ?>
+                    ?> -->
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
@@ -353,16 +355,15 @@
                         </div>
                     </div>
                 </div>
-            </div><?php
+            </div>
+            <!-- <?php
                 }
             ?>
 
-            <!-- '''''''''''''''''''''''''''''''''''''''''Club List'''''''''''''''''''''''''''''''''' -->
+            '''''''''''''''''''''''''''''''''''''''''Club List''''''''''''''''''''''''''''''''''
             <?php 
                 if(!empty($travelling)){
-                    // echo PRE;
-                    // print_r($travelling);
-                    ?>
+                    ?> -->
             <div class="col-md-12 mb-3">
                 <div class="card">
                    <div class="card-header">
@@ -436,14 +437,11 @@
                         </div>
                     </div>
                 </div>
-            </div><?php
+            </div>
+            <!-- <?php
                 }
             ?>
-            <!-- '''''''''''''''''''''''''''''''''''Travelling List'''''''''''''''''''''''''''''''''' -->
-
-
-           
-        	
+            '''''''''''''''''''''''''''''''''''Travelling List'''''''''''''''''''''''''''''''''' -->
         </div>
         </div>
     </section>  
@@ -468,8 +466,6 @@
                             <input type="hidden" name="id" id="id">
                         </div>                                    
                     </div>
-                   
-                    
                  </div>
             </div>
           </div>

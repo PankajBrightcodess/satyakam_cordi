@@ -365,6 +365,7 @@ for (i = 0; i < acc.length; i++) {
 }
 
    $('body').on('change','#month', function(){
+    debugger;
     var month = $(this).val();
     $.ajax({
       type:'POST',

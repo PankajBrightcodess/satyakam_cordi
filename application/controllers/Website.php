@@ -10,6 +10,9 @@ class Website extends CI_Controller {
 	}
 	
 		public function index(){
+			if ($_SERVER['REQUEST_SCHEME'] != 'https' && $_SERVER['HTTP_HOST'] != 'localhost') {
+      			redirect('/');
+   			}
 			$d['v'] = 'website/index';
 			$this->load->view('website/template',$d);
 		}
@@ -908,8 +911,8 @@ class Website extends CI_Controller {
 		$d['group'] = $this->Website_model->grouplistbyyear($user_id,$year);
 		$d['club'] = $this->Website_model->clublistbyyear($user_id,$year);
 		$d['travelling'] = $this->Website_model->travellinglistbyyear($user_id,$year);
-		echo PRE;
-		print_r($d['travelling']);die;
+		// echo PRE;
+		// print_r($d['travelling']);die;
 		$d['v'] = 'website/annual_progress_report';
         $this->load->view('website/template_1',$d);
 	}
