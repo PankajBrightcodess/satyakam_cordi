@@ -1831,6 +1831,84 @@ class Website_model extends CI_Model{
 			return false;
 		}	
 	}
+	// '''''''''''''''''''''''''''''ADMIN''''''''''''''''''''''''''''''''''''''''''''''''
+	public function get_memberlist_for_admin(){
+		$this->db->where('t1.status',1);
+		$this->db->Select('t1.*,t2.sponsor_id');
+		$this->db->from('member_details t1');
+		$this->db->join('project_member t2','t1.signup_id=t2.id','left');
+		// $this->db->join('officer_details t2','t1.created_by=t2.id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
+	}
+
+	public function get_certificatelist($id){
+		$record = $this->find_certificate($id);
+		if(empty($record)){
+		  $data = $this->get_certificate_no();
+		  if(!empty($data)){
+		  	$query = $this->db->get_where('member_details',array('status'=>1,'id'=>$id));
+		    $records= $query->row_array();
+		  	$cf_no = trim($data['cf_no'],"CF");
+			$cf_no = $cf_no+1;
+			$final_cfno = 'CF'.$cf_no;
+			$records['cf_no'] = $final_cfno;
+			
+		    return $records;
+
+		  }else{
+		  	
+		  	$query = $this->db->get_where('member_details',array('status'=>1,'id'=>$id));
+		    $records= $query->row_array();
+		    $cf_no = 'CF0001';
+		  	$records['cf_no'] = $cf_no;
+		    return $records;
+		  }
+		}
+		else{
+			return $record;
+		}
+	}
+
+	public function find_certificate($id){
+		$query = $this->db->get_where('member_certificate',array('status'=>1,'member_id'=>$id));
+		    $records= $query->row_array();
+	}
+
+	public function get_certificate_no(){
+		$this->db->select('cf_no');
+		$this->db->from('member_certificate');
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get();
+
+		$res = $query->num_rows();
+		if($res=!null){
+			$res = $query->row_array();
+
+		}
+		else{
+			
+			$res=false;
+		}
+	}
+
+	public function create_member_certificate($data){
+		$data['added_on']=date('Y-m-d');
+		unset($data['save_dep']);
+		$status['varify']=$this->db->insert('member_certificate',$data);
+		// $qry = $this->db->last_query();
+		// print_r($qry);die;
+		$last_id=$this->db->insert_id();
+		if($status['varify']){
+			$query = $this->db->get_where('member_certificate',array('status'=>1,'id'=>$last_id));
+		    return $query->row_array();
+		}
+		else{
+			return false;
+		}
+	}
 
 
 

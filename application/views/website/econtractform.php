@@ -212,11 +212,7 @@
                                   </label>
                                 </div>
                               </div>
-                            </div>
-                           
-                            
-                            
-                              
+                            </div> 
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">My Documents Upload</h6>

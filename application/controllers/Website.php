@@ -242,12 +242,10 @@ class Website extends CI_Controller {
 			echo $html;
 		}
 		public function econtractform(){
-			$d['v'] = 'website/econtractform';
 			$signup_id =$_SESSION['signupid'];
 			$d['details']= $this->Website_model->signup_list($signup_id);
-			// echo PRE;
-			// print_r($d['details']);die;
 			$d['department'] = $this->Website_model->get_departlist();
+			$d['v'] = 'website/econtractform';
 			$this->load->view('website/template',$d);
 		}
 		public function get_post(){
@@ -3475,7 +3473,7 @@ class Website extends CI_Controller {
 
 
 	public function my_group(){
-
+			// print_r($_SESSION['member_id']);
 	   if(!empty($_SESSION['member_id'])){
 	   	$id = $_SESSION['member_id'];
 	   	$d['uploadfiles']=$this->Website_model->membership_uploadlist($id);

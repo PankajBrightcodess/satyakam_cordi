@@ -242,7 +242,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     border: 1px solid #2e3192;
 }
 .officialservices{
-    background-image:url('../images/bg.jpg'); background-size:cover; width:100%; height:100vh;
+    background-image:url('../images/bg.jpg'); background-size:cover; width:100%; 
 }
 .officialservices table tr th{
     background: #598AA8;
