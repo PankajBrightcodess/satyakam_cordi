@@ -8,7 +8,18 @@
               <div class="row">
                  <div class="col-md-12 mb-2">
                   <!-- <label for="application_date">OTP :</label> -->
-                  <input type="text" name="application_date" placeholder="Please Enter OTP :" class="form-control" required>
+                  <input type="text" name="OTP" placeholder="Please Enter 4 Disit OTP" maxlength="4" minlength="4"  class="form-control" required>
+                  <input type="hidden" name="application_date" value="<?= $data['application_date'];?>" class="form-control" required>
+                  <input type="hidden" name="state_unit_name" value="<?= $data['state_unit_name'];?>" class="form-control" required>
+                  <input type="hidden" name="division_unit_name" value="<?= $data['division_unit_name'];?>" class="form-control" required>
+                  <input type="hidden" name="dist" class="form-control" value="<?= $data['dist'];?>" required>
+                  <input type="hidden" name="sponsor_id" class="form-control" value="<?= $data['sponsor_id'];?>" required>
+                  <input type="hidden" name="created_by" class="form-control" value="<?= $data['created_by'];?>" required>
+                  <input type="hidden" name="applicant_name" class="form-control" value="<?= $data['applicant_name'];?>" required>
+                  <input type="hidden" name="dob" class="form-control" value="<?= $data['dob'];?>" required>
+                  <input type="hidden" name="mobile_no" class="form-control" value="<?= $data['mobile_no'];?>" required>
+                  <input type="hidden" name="email" class="form-control" value="<?= $data['email'];?>" required>
+                  
                 </div>
                 <div class="col-md-12 mb-2">
                   <input type="submit" class="mt-4 btn btn-sm" style="background:#233799;color:white">

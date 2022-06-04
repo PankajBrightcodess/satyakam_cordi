@@ -4,7 +4,7 @@
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
             <center class="tittle"><h3>Officer Sign Up Form</h3></center>
-            <form action="<?= base_url('website/create_signup')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
+            <form action="<?= base_url('website/create_signup_otp')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
               <div class="row">
                  <div class="col-md-12 mb-2">
                     <select class="form-control" name="state"  id="state" required>

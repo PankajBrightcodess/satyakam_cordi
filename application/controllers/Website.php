@@ -261,20 +261,75 @@ class Website extends CI_Controller {
 			echo $html;
 	}
 
+		public function create_signup_otp(){
+			$d['data'] = $this->input->post();
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
+			$d['v'] = 'website/create_sign_otp';
+			$this->load->view('website/template',$d);
+		}
+
+		public function otpgenerate($mobile_no){
+		 	$length = 4;
+		    $otp=substr(str_shuffle(str_repeat($x='123456789', ceil($length/strlen($x)))),1,$length);
+		    $_SESSION['create_otp']=$otp;
+		    $contact_no = $mobile_no;
+     		$message= $otp. ' is your OTP to proceed on Satyakam Foundation Trust. It is valid for 10 minutes. Do not share your OTP with anyone.';
+				// '''''''''next proceed here'''''''''
+   			 $base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+    		$senderId = "SKFOUN";
+    		$routeId = "1";
+    		if(!empty($contact_no)){
+      			$curl = curl_init();
+      			curl_setopt_array($curl, array(
+       		    CURLOPT_URL => $base_url,
+        		CURLOPT_RETURNTRANSFER => true,
+        		CURLOPT_ENCODING => "",
+        		CURLOPT_MAXREDIRS => 10,
+        		CURLOPT_TIMEOUT => 30,
+        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        		CURLOPT_CUSTOMREQUEST => "POST",
+        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+        		CURLOPT_HTTPHEADER => array(
+        			"Cache-Control: no-cache",
+        			"Content-Type: application/json"
+        		),
+      			));
+      	$response = curl_exec($curl);
+        $err = curl_error($curl);
+      	curl_close($curl);
+      	if($err){
+        	return false;
+      	}else{
+        	return $response;
+      	}
+        }
+	}
+
 		public function create_signup(){
 			$data = $this->input->post();
-
-			$status['signupid'] = $this->Website_model->savesignup($data);
-			$signupid = $this->session->set_userdata($status);
-			if(!empty($_SESSION['signupid'])){
-				redirect('website/econtractform');
-			$this->session->set_flashdata("web_msg","Added Successfully!!");
-            }
-            else{ 
+			$create_otp = $_SESSION['create_otp'];
+			$confirm_otp = $data['OTP'];
+			if($create_otp==$confirm_otp){
+				unset($_SESSION['create_otp']);
+				unset($data['OTP']);
+				$status['signupid'] = $this->Website_model->savesignup($data);
+				$signupid = $this->session->set_userdata($status);
+				if(!empty($_SESSION['signupid'])){
+					redirect('website/econtractform');
+					$this->session->set_flashdata("web_msg","Added Successfully!!");
+           		}
+            	else{ 
+					redirect('website/signup');
+					$this->session->set_flashdata("web_err_msg","Something Error !!");
+           		}
+			}
+			else{
 				redirect('website/signup');
-				$this->session->set_flashdata("web_err_msg","Something Error !!");
-            }
-		}
+					$this->session->set_flashdata("web_err_msg","Your OTP IS WRONG !!");
+			}
+			
+        }
 		
 
 		public function create_officer_details(){
@@ -3218,18 +3273,29 @@ class Website extends CI_Controller {
 		}
 
 		public function create_membership(){
-			$last_id=$_SESSION['last_id'];
-			$d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
-			// // print_r($last_id);die;
-			// echo PRE;
-			// print_r($d['allsignuprecords']);die;
-			$id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			$d['state'] = $this->Website_model->get_statelist();
-			$d['v'] = 'website/create_membership_form';
-			$this->load->view('website/template_1',$d);
+			$d['allsignuprecords'] = $this->input->post();
+			
+
+			$otp = $_SESSION['create_otp'];
+			$confirm_otp = $this->input->post('OTP');
+			unset($_SESSION['last_id']);
+			if($otp==$confirm_otp){
+				unset($_SESSION['create_otp']);
+
+				$id = $_SESSION['user_id'];
+				$record= $this->Website_model->getuser($id);
+				$finalrecord = $record[0];
+				$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+				$d['state'] = $this->Website_model->get_statelist();
+				$state_id['id'] = $this->input->post('state_unit_name');
+				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
+				$d['v'] = 'website/create_membership_form';
+				$this->load->view('website/template_1',$d);
+			}
+			else{
+				$this->session->set_flashdata('err_msg','Your OTP is not Correct');
+				redirect('website/membersignup_form');
+			}
 		}
 
 		public function addrecord_membership(){
@@ -3324,21 +3390,32 @@ class Website extends CI_Controller {
 		}
 
 		public function membership_otp(){
+			$d['data'] = $this->input->post();
 			
-			$id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['last_id'] = $this->input->get('eumndf');
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			$d['state'] = $this->Website_model->get_statelist();
-			$d['v'] = 'website/membership_otp_confirm';
-			$this->load->view('website/template_1',$d);
+			$mobile_no=$this->input->post('mobile_no');
+			
+			$record = $this->otpgenerate($mobile_no);
+				$id = $_SESSION['user_id'];
+				$record= $this->Website_model->getuser($id);
+				$finalrecord = $record[0];
+				$d['last_id'] = $this->input->get('eumndf');
+				$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+				$d['state'] = $this->Website_model->get_statelist();
+				$d['v'] = 'website/membership_otp_confirm';
+				$this->load->view('website/template_1',$d);
+			// }
+			// else{
+			// 	$this->session->set_flashdata('web_err_msg',$result['verify']);
+			// 	redirect('website/membersignup_form');
+			// }
 		}
 		public function membership_signup(){
-			$data = $this->input->post();
-			// echo PRE;
-			// print_r($data);die;
-			if($data['captcha']==$data['captcha_confirm']){
+			$d['data'] = $this->input->post();
+			$captcha=$this->input->post('captcha');
+			$captcha_confirm= $this->input->post('captcha_confirm');
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
+			if($captcha==$captcha_confirm){
 				$record= $this->Website_model->insert_membership($data);
 				if($record['varify']==true){
 					// .....create otp area......

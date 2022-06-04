@@ -12,7 +12,18 @@
                             <label>Application Date</label>
                             <input type="date" name="app_date" readonly  value="<?= $allsignuprecords['application_date'];?>" placeholder="Application Date :" class="form-control mb-3" required>
                             <label>State Unit Name</label>
-                            <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required>
+                             <select class="form-control states" disabled id="states" name="state_unit_name">
+                              <option>State :</option>
+                              <?php
+                                if(!empty($state)){
+                                  foreach ($state as $key => $value) {
+                                    ?><option <?php if($allsignuprecords['state_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['state'];?></option><?php
+                                  }
+                                }
+                              ?>
+                            </select>
+
+                            <!-- <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required> -->
                           </div>
                           <div class="col-md-4">
                             <div class="row">
@@ -29,7 +40,17 @@
                           </div>
                           <div class="col-md-12">
                             <label>Division Unit Name</label>
-                            <input type="text" name="division_unit_name" readonly  value="<?= $allsignuprecords['division'];?>" placeholder="Division Unit Name :" class="form-control mb-3" required>
+                            <select class="form-control" disabled  name="division_unit_name">
+                              <option>State :</option>
+                              <?php
+                                if(!empty($divisionlist)){
+                                  foreach ($divisionlist as $key => $value) {
+                                    ?><option <?php if($allsignuprecords['division_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['division'];?></option><?php
+                                  }
+                                }
+                              ?>
+                            </select>
+                            <!-- <input type="text" name="division_unit_name" readonly  value="<?= $allsignuprecords['division'];?>" placeholder="Division Unit Name :" class="form-control mb-3" required> -->
                             <label>Member Name</label>
                             <input type="text" name="applicant_name" readonly value="<?= $allsignuprecords['applicant_name'];?>" placeholder="Member Name :" class="form-control mb-3" required>
                             <label>Date Of Birth</label>
