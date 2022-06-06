@@ -1314,15 +1314,14 @@ public function update_submenu(){
 		$data['depart'] = $this->Website_model->get_departlist($data);	
 		$data['post'] = $this->Website_model->get_postlist($data);
 		$data['members']= $this->Website_model->get_memberlist_for_admin();
-		// echo PRE;
-		// print_r($data['members']);die;
 		$this->template->load('pages','memberlist',$data);
-
 	}
 
 	public function membership_certificate(){
 		$id = $this->uri->segment(3);
 	  $data['certificate'] = $this->Website_model->get_certificatelist($id);
+	  // echo PRE;
+	  // print_r($data['certificate']);die;
 		$data['title']=" Membership Certificate";
 		$data['datatable'] = true;	
 		$this->template->load('pages','membership_certificate',$data);
@@ -1330,12 +1329,79 @@ public function update_submenu(){
 
 
 	public function save_certificate(){
-		$data = $this->input->post();
-		$result = $this->Website_model->create_member_certificate($data);
-		echo PRE;
-		print_r($result);die;
+			$data = $this->input->post();
+			$photo = $this->input->post('image');
+			$result = $this->Website_model->create_member_certificate($data);
+			$pdf = $this->customfpdf->getInstance();
+     	$pdf->AliasNbPages();
+     	$pdf->AddPage();
+      $pdf->Header('Arial');
+     	$pdf->SetFont('Times','',25);
+     	$image="assets/images/logo1.jpg";
+     	$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     	$image1="assets/images/logo4.jpg";
+     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+     	$image2="assets/images/logo5.jpeg";
+     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+     	$image1="assets/images/logo2.jpg";
+     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+    	$image1="assets/images/logo3.jpg";
+    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+     	$pdf->SetFont('Arial','B',15);
+     	$pdf->Cell(0,30,'',0,1,'C');
+     	$pdf->Cell(0,0,'',1,1,'C');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'DIVISION  :'.$result['division'],1,0,'L');
+     	$pdf->Cell(63,5,'DISTRICT  :'.$result['dist'],1,0,'L');
+     	$pdf->Image(base_url($photo), 153, $pdf->GetY(), 21.78);
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->Cell(126,5,'SPONSOR ID NO.  :'.$result['sponser_id'],1,0,'L');
+     	$pdf->SetFont('Arial','',9);
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->Cell(126,5,'NAME OF MEMBER  :'.$result['member_name'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'C');
+     	$pdf->Cell(126,5,'FATHER/HUSBAND NAME  :'.$result['father_name'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->Cell(63,5,'EMAIL  :'.$result['email'],1,0,'L');
+     	$pdf->Cell(63,5,'MOBILE NO.  :'.$result['mobile'],1,0,'L');
+     	$pdf->Cell(63,5,'',0,1,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(189,9,'PROVISONAL ADDRESS',1,1,'C');
+      $pdf->SetFont('Arial','',9);
+      $pdf->Cell(94,5,'SAVING PLAN NUMBERS :'.$result['saving_plan_no'],1,0,'L');
+     	$pdf->Cell(95,5,'TERM YEARS  :'.$result['term_years'],1,1,'L');
+     	$pdf->Cell(94,5,'NUMINEE :'.$result['numinee_name'],1,0,'L');
+     	$pdf->Cell(95,5,'RELATION  :'.$result['numinee_relation'],1,1,'L');
+     	$pdf->Cell(94,5,'AGE :'.$result['numinee_age'],1,0,'L');
+     	$pdf->Cell(95,5,'AADHAR NO. :'.$result['numinee_age'],1,1,'L');
+     	$pdf->SetFont('Arial','B',10);
+     	$pdf->Cell(189,10,'INSTRUCTION',0,1,'C');
+      $pdf->SetFont('Arial','I',9);
+      $pdf->SetFont('Arial','B',8);
+      $pdf->Cell(189,5,'CERTIFIED THAT THE PERSON MENTIONED IN THE TABLE WANTS MEMBERSHIP AFTER UNDERSTANDING ALL THE RULES AND ',0,1,'C');
+      $pdf->Cell(189,5,'INSTRUCTIONS OF THE GROUP. AFTER MATCHING ALL THE DOCUMENTS. I ISSUE THIS MEMBERSHIP CERTIFICATE.',0,1,'C');
+      $pdf->Cell(189,5,'',0,1,'L');
+      $pdf->Cell(189,10,'',0,1,'L');
+      $pdf->SetFont('Arial','',9);
+      $pdf->SetFont('Arial','',9);
+     	$pdf->Cell(189,30,'',0,1,'L');
+     $pdf->Cell(94,5,'',0,0,'L');
+     $pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
+     $pdf->Cell(94,5,'',0,0,'L');
+     $pdf->SetFont('Arial','B',9);
+     $pdf->Cell(95,5,'GROUP CREATIVE DEPARTMENT',0,1,'R');
+      $pdf->Cell(189,30,'',0,1,'L');
+      $pdf->Cell(189,30,'',0,1,'L');
+      $pdf->Cell(189,25,'',0,1,'L');
+      // $pdf->Cell(94,5,'',0,0,'L');
+     $pdf->Cell(189,5,'CONTROL OFFICE',0,1,'C');
+     $pdf->Cell(189,10,'',0,1,'C');
+     $pdf->Cell(189,5,'Near Railway Station, Malgodam Road Suraj Ganj Ward No. 18 Madhubani(Bihar)847211',0,1,'C');
+     $pdf->Cell(189,5,'EMAIL : INDIASKFOUNDATION468@GMAIL.COM | WEBSITE : INDIASATYAKAM.COM',0,1,'C');
+    $file =  date('Ymdhis').'_details.pdf';
+    $pdf->Output($file,'I');
 	}
-
 // 	public function add_generalgroup(){
 // 		$records = $this->input->post();
 // 		if(!empty($_FILES['registered_group_list']['name'])){

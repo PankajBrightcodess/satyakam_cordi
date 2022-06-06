@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Satyakam</title>
-
 <link rel="icon" href="<?= base_url('assets/website/images/logo1.jpg');?>" type="image/icon type">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +20,6 @@
    swal("Good job!", "You clicked the button!", "success");
    swal('Opps!','<?php echo $this->session->web_err_msg;?>','error');
 </script>
-
       <?php }
       ?>
    </head>

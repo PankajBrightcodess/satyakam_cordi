@@ -1834,33 +1834,47 @@ class Website_model extends CI_Model{
 	// '''''''''''''''''''''''''''''ADMIN''''''''''''''''''''''''''''''''''''''''''''''''
 	public function get_memberlist_for_admin(){
 		$this->db->where('t1.status',1);
-		$this->db->Select('t1.*,t2.sponsor_id');
+		$this->db->Select('t1.*,t2.sponsor_id,t3.image');
 		$this->db->from('member_details t1');
 		$this->db->join('project_member t2','t1.signup_id=t2.id','left');
-		// $this->db->join('officer_details t2','t1.created_by=t2.id','left');
+		$this->db->join('upload_member_docs t3','t1.id=t3.member_details_id','left');
 		$query = $this->db->get();
 		$result =  $query->result_array();
-		return $result;
+		return $result;	
 	}
+
+		
+
+
 
 	public function get_certificatelist($id){
 		$record = $this->find_certificate($id);
 		if(empty($record)){
 		  $data = $this->get_certificate_no();
 		  if(!empty($data)){
-		  	$query = $this->db->get_where('member_details',array('status'=>1,'id'=>$id));
-		    $records= $query->row_array();
+		  	$this->db->where(['t1.status'=>1,'t1.id'=>$id]);
+			$this->db->Select('t1.*,t2.image');
+			$this->db->from('member_details t1');
+			$this->db->join('upload_member_docs t2','t1.id=t2.member_details_id','left');
+			$query = $this->db->get();
+			$records =  $query->row_array();
 		  	$cf_no = trim($data['cf_no'],"CF");
 			$cf_no = $cf_no+1;
-			$final_cfno = 'CF'.$cf_no;
+			if($cf_no>9){
+				$final_cfno = 'CF00'.$cf_no;
+			}else{
+				$final_cfno = 'CF000'.$cf_no;
+			}
 			$records['cf_no'] = $final_cfno;
-			
 		    return $records;
 
 		  }else{
-		  	
-		  	$query = $this->db->get_where('member_details',array('status'=>1,'id'=>$id));
-		    $records= $query->row_array();
+		  	$this->db->where(['t1.status'=>1,'t1.id'=>$id]);
+			$this->db->Select('t1.*,t2.image');
+			$this->db->from('member_details t1');
+			$this->db->join('upload_member_docs t2','t1.id=t2.member_details_id','left');
+			$query = $this->db->get();
+			$records =  $query->row_array();
 		    $cf_no = 'CF0001';
 		  	$records['cf_no'] = $cf_no;
 		    return $records;
@@ -1884,13 +1898,32 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 
 		$res = $query->num_rows();
-		if($res=!null){
-			$res = $query->row_array();
+		if($res>0){
+			return $res = $query->row_array();
 
 		}
 		else{
 			
-			$res=false;
+			return $res=false;
+		}
+	}
+
+	public function membership_certificate_model($id){
+		$this->db->where(['status'=>1,'signup_id'=>$id]);
+		$this->db->select('*');
+		$this->db->from('member_certificate');
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get();
+
+		$res = $query->num_rows();
+		if($res>0){
+			return $res = $query->row_array();
+
+		}
+		else{
+			
+			return $res=false;
 		}
 	}
 

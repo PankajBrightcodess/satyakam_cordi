@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><label class="ml-2">MEMBERSHIP CERTIFICATE</label> <a href="<?= base_url($uploadfiles['qualification_certificate']);?>" class="btn btn-sm btn-success mr-5" >DOWNLOAD</a></td>
+                    <td><label class="ml-2">MEMBERSHIP CERTIFICATE</label> <a href="<?= base_url('website/get_member_certificate');?>" class="btn btn-sm btn-success mr-5" >DOWNLOAD</a></td>
                     <td>AADHAR <a href="<?= base_url($uploadfiles['aadhar_front']);?>" class="btn btn-sm btn-success ml-2">DOWNLOAD</a></td>
                   </tr>
                   <tr>
