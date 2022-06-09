@@ -334,7 +334,8 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-				 // print_r($_FILES);die;
+			echo PRE;
+				 print_r($_FILES);
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
