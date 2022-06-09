@@ -334,8 +334,8 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-			echo PRE;
-				 print_r($_FILES);
+			// echo PRE;
+			// 	 print_r($_FILES);
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if(!empty($_FILES['image']['name'])){
@@ -389,8 +389,8 @@ class Website extends CI_Controller {
 				  $data['training_receipt'] = $image['path'];
 			  }
 		  }
-		  echo PRE;
-		  print_r($data);die;
+		  // echo PRE;
+		  // print_r($data);die;
 		  $data['signup_id'] = $_SESSION['signupid'];
 		$run=$this->Website_model->officer_details_model($data);
 
