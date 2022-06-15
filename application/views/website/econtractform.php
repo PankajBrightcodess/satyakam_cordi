@@ -23,7 +23,6 @@
                             <input type="hidden" name="post_id" value="<?= $details['post_id'];?>" readonly value="" placeholder="Post :" class="form-control" required>
                             <input type="text" name="post" readonly value="<?= $details['post'];?>" placeholder="Post :" class="form-control" required>
                              <input type="hidden" name="signup_id" readonly value="<?= $details['id'];?>" placeholder="Post :" class="form-control" required>
-
                              <label>Batch No</label>
                              <input type="text" name="batch_no" readonly value="<?= $details['batch_no'];?>" placeholder="Batch :" class="form-control" required>
                              <label>Join In Branch</label>
@@ -48,12 +47,15 @@
                                   </div>
                                   <label>Upload Picture</label>
                                   <input type="file" name="image" id="filePhoto" value=""  onchange="readURL(this,'#blah');">
+                                  <label class="text-danger">Maximum Size (200kb)</label>
+
                                 </div>
                               </div>
                               <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Upload Signature</label>
                                     <input class="form-control" name="signature" type="file" id="formFile">
+                                      <label class="text-danger">Maximum Size (50kb)</label>
                                 </div>
                               </div>
                             </div>
@@ -223,15 +225,15 @@
                                 <tbody>
                                   <tr>
                                     <th scope="row">AADHAR Upload</th>
-                                    <td><input class="form-control" type="file" name="aadhar" id="formFile"></td>
+                                    <td><input class="form-control" type="file" name="aadhar" id="formFile"><label class="text-danger">Maximum Size (50kb)</label></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">PAN CARD Upload</th>
-                                    <td><input class="form-control" name="pan" type="file" id="formFile"></td>
+                                    <td><input class="form-control" name="pan" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label></td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Bank Account Upload</th>
-                                    <td><input class="form-control" name="bank_account" type="file" id="formFile"></td>
+                                    <td><input class="form-control" name="bank_account" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label></td>
                                   </tr>
                                   <!-- <tr>
                                     <th scope="row">Signature Upload</th>
@@ -248,19 +250,19 @@
                                   <tr>
                                     <th scope="row">Security E-Receipt</th>
                                     <td colspan="3">
-                                      <input class="form-control" name="security_e_receipt" type="file" id="formFile">
+                                      <input class="form-control" name="security_e_receipt" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label>
                                     </td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Processing - Receipt</th>
                                     <td colspan="3">
-                                      <input class="form-control" name="processing_receipt" type="file" id="formFile">
+                                      <input class="form-control" name="processing_receipt" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label>
                                     </td>
                                   </tr>
                                   <tr>
                                     <th scope="row">Training Receipt</th>
                                     <td colspan="3">
-                                      <input class="form-control" name="training_receipt" type="file" id="formFile">
+                                      <input class="form-control" name="training_receipt" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label>
                                     </td>
                                   </tr>
                                 </tbody>

@@ -254,7 +254,7 @@ $("#filePhoto").change(function() {
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
-  var max_fields      = 500; //maximum input boxes allowed
+  var max_fields      = 500;
   var wrapper       = $(".expenses"); //Fields wrapper
   var add_button      = $(".add_expense"); //Add button ID
   
