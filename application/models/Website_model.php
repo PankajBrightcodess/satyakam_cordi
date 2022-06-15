@@ -39,7 +39,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function officer_details_model($data){
-		echo PRE;
 		$table="officer_details";  
 		$data['added_on']=date('Y-m-d');
 		unset($data['department']);
@@ -48,8 +47,6 @@ class Website_model extends CI_Model{
 		unset($data['app_date']);
 		unset($data['state_id']);
 		$status=$this->db->insert($table,$data);
-		echo print_r($status);
-		die;
 		if($status){
 			return true;
 		}
