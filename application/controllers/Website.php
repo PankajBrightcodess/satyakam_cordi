@@ -388,9 +388,10 @@ class Website extends CI_Controller {
 				  $data['training_receipt'] = $image['path'];
 			  }
 		  }
-		  // echo PRE;
-		  // print_r($data);die;
+		  
 		  $data['signup_id'] = $_SESSION['signupid'];
+		  echo PRE;
+		  print_r($data);die;
 		$run=$this->Website_model->officer_details_model($data);
 
 		if($run){
