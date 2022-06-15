@@ -48,7 +48,7 @@ class Website_model extends CI_Model{
 		unset($data['app_date']);
 		unset($data['state_id']);
 		$status=$this->db->insert($table,$data);
-		return echo $this->db->last_query();
+		return  $this->db->last_query();
 		die;
 		if($status){
 			return true;

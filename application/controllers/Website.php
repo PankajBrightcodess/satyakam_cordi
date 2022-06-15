@@ -392,6 +392,7 @@ class Website extends CI_Controller {
 		  $data['signup_id'] = $_SESSION['signupid'];
 		 
 		$run=$this->Website_model->officer_details_model($data);
+		print_r($run);
 die;
 		if($run){
 			unset($_SESSION['signupid']);
