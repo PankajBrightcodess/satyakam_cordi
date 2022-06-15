@@ -334,6 +334,11 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
+			unset($data['department']);
+		 	unset($data['post']);
+		  	unset($data['state']);
+		  	unset($data['app_date']);
+		  	unset($data['state_id']);
 			
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
@@ -390,6 +395,7 @@ class Website extends CI_Controller {
 		  }
 		  
 		  $data['signup_id'] = $_SESSION['signupid'];
+		 
 		 
 		$run=$this->Website_model->officer_details_model($data);
 		if($run){
