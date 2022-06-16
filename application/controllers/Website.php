@@ -334,18 +334,13 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-			unset($data['department']);
-		 	unset($data['post']);
-		  	unset($data['state']);
-		  	unset($data['app_date']);
-		  	unset($data['state_id']);
+		  	
 			
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if(!empty($_FILES['image']['name'])){
 		  			
 			  $image = upload_file("image", $upload_path, $allowed_types, time());
-
 			  if ($image !='') {
 				  $data['image'] = $image['path'];
 			  }
@@ -396,8 +391,9 @@ class Website extends CI_Controller {
 		  
 		  $data['signup_id'] = $_SESSION['signupid'];
 		 
-		 
 		$run=$this->Website_model->officer_details_model($data);
+		print_r($run);
+		die;
 		if($run){
 			unset($_SESSION['signupid']);
 			$this->session->set_flashdata("web_msg","News Added Successfully!!");

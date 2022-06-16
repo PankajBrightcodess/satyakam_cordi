@@ -8,20 +8,20 @@
                         <div class="row">
                           <div class="col-md-8">
                             <label>Application Date</label>
-                            <input type="text" name="app_date" readonly value="<?= date('Y-m-d');?>" placeholder="Application Date :" class="form-control" required>
+                            <input type="text" name="app_date" readonly disabled="" value="<?= date('Y-m-d');?>" placeholder="Application Date :" class="form-control" required>
                             <label>Application No.</label>
                             <input type="text" name="reg_no" placeholder="Registration No. :" readonly value="STKMRGE-<?php echo $details['id'];?>" class="form-control" required>
                             <label>State Unit Name</label>
                             <input type="hidden" name="state_id"  value="<?= $details['state'];?>"  readonly value="" placeholder="State Unit Name :"  class="form-control" required>
-                             <input type="text" name="state" readonly  value="<?= $details['state_name'];?>" placeholder="State Unit Name :"  class="form-control" required>
+                             <input type="text" name="state" readonly="" disabled=""  value="<?= $details['state_name'];?>" placeholder="State Unit Name :"  class="form-control" required>
 
                              <label>Department</label>
                             <input type="hidden" name="department_id"  readonly value="<?= $details['depart_id'];?>" placeholder="Mobile  No :" class="form-control" required>
-                            <input type="text" name="department" readonly value="<?= $details['department'];?>" placeholder="Department :" class="form-control" required>
+                            <input type="text" name="department" readonly value="<?= $details['department'];?>" placeholder="Department :" disabled="true" class="form-control" required>
 
                              <label>Post</label>
                             <input type="hidden" name="post_id" value="<?= $details['post_id'];?>" readonly value="" placeholder="Post :" class="form-control" required>
-                            <input type="text" name="post" readonly value="<?= $details['post'];?>" placeholder="Post :" class="form-control" required>
+                            <input type="text" name="post" disabled="" value="<?= $details['post'];?>" placeholder="Post :" class="form-control" required>
                              <input type="hidden" name="signup_id" readonly value="<?= $details['id'];?>" placeholder="Post :" class="form-control" required>
                              <label>Batch No</label>
                              <input type="text" name="batch_no" readonly value="<?= $details['batch_no'];?>" placeholder="Batch :" class="form-control" required>
@@ -235,18 +235,6 @@
                                     <th scope="row">Bank Account Upload</th>
                                     <td><input class="form-control" name="bank_account" type="file" id="formFile"><label class="text-danger">Maximum Size (50kb)</label></td>
                                   </tr>
-                                  <!-- <tr>
-                                    <th scope="row">Signature Upload</th>
-                                    <td colspan="3"><input class="form-control" name="signature_upload" type="file" id="formFile"></td>
-                                  </tr> -->
-                                  <!-- <tr>
-                                    <th scope="row">Photo Upload</th>
-                                    <td colspan="3">
-                                      <input class="form-control" name="photo_upload" type="file" id="formFile">
-                                    </td>
-                                  </tr> -->
-
-
                                   <tr>
                                     <th scope="row">Security E-Receipt</th>
                                     <td colspan="3">
