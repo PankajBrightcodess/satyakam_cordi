@@ -130,12 +130,12 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_member_all_records($data,$result){
-		$data['signup_id'] = $_SESSION['last_id'];
-		// echo PRE;
-		// print_r($data);die;
+		// $data['signup_id'] = $_SESSION['last_id'];
+		echo PRE;
+		print_r($_SESSION);
+		print_r($data);die;
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert('member_details',$data);
-
 		$result['member_details_id'] = $this->db->insert_id();
 		if($status){
 			// unset($_SESSION['last_id']);
