@@ -50,6 +50,13 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function deleted_officer($id){
+		$id = $data['id']; 
+	    $this->db->where("id", $id); 
+	    $query= $this->db->update("officer_details",array('status'=>0)); 
+		return $query;
+	}
+
 	public function signup_list($signup_id){
 		$this->db->where('t1.id',$signup_id);
 		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name');

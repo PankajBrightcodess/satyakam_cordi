@@ -1109,8 +1109,18 @@ public function update_submenu(){
     echo $results;
 		
 	}
+// '''''''''delete officer'''''''''''''
 
-
+	public function delete_officer(){
+		$id = $this->uri->segment(3);
+			$result = $this->Website_model->deleted_officer($id);
+		   if($result){
+			$this->session->set_flashdata('msg','Deleted Successfully');
+			}else{
+				$this->session->set_flashdata("err_msg","Something Error!");
+			}
+		redirect('admin/officer_details');
+	}
 
 	public function add_my_report(){
 			$records =$this->input->post();

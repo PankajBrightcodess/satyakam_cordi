@@ -107,7 +107,7 @@
 
                                             }else{
                                                 ?><button class="btn btn-success upd" type="button">Verified</button><?php
-                                            }?></td>
+                                            }?><a href="<?php echo base_url('admin/delete_officer/'.$val['id']);?>" class="btn btn-sm btn-danger">Delete</a></td>
                                         </tr>
                                        <?php 
                                         }
