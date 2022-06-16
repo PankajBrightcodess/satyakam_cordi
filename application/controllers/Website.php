@@ -3275,8 +3275,8 @@ class Website extends CI_Controller {
 		}
 
 		public function create_membership(){
-			echo PRE;
-			print_r($_SESSION);die;
+			// echo PRE;
+			// print_r($_SESSION);die;
 			$d['allsignuprecords'] = $this->input->post();
 			$otp = $_SESSION['create_otp'];
 			$confirm_otp = $this->input->post('OTP');
