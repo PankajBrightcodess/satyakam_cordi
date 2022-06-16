@@ -3303,8 +3303,10 @@ class Website extends CI_Controller {
 			$data =  $this->input->post();
 			echo PRE;
 			print_r($_SESSION);
-			print_r($data);die;
+			print_r($data);
 			$result = $this->upload_allmember_records($_FILES);
+			print_r($result);
+			die;
 
 			$record['varify']= $this->Website_model->insert_member_all_records($data,$result);
 			if($record['varify']==true){
