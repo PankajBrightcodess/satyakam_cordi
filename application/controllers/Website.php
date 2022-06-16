@@ -392,6 +392,7 @@ class Website extends CI_Controller {
 		  $data['signup_id'] = $_SESSION['signupid'];
 		 
 			$run=$this->Website_model->officer_details_model($data);
+			die;
 			if($run){
 				unset($_SESSION['signupid']);
 				$this->session->set_flashdata("web_msg","News Added Successfully!!");
