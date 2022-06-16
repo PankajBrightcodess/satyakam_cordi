@@ -391,17 +391,15 @@ class Website extends CI_Controller {
 		  
 		  $data['signup_id'] = $_SESSION['signupid'];
 		 
-		$run=$this->Website_model->officer_details_model($data);
-		print_r($run);
-		die;
-		if($run){
-			unset($_SESSION['signupid']);
-			$this->session->set_flashdata("web_msg","News Added Successfully!!");
-			redirect('website/office_login');
-		}else{
-			$this->session->set_flashdata("web_err_msg",$run);
-			redirect('website/econtractform');
-		}
+			$run=$this->Website_model->officer_details_model($data);
+			if($run){
+				unset($_SESSION['signupid']);
+				$this->session->set_flashdata("web_msg","News Added Successfully!!");
+				redirect('website/office_login');
+			}else{
+				$this->session->set_flashdata("web_err_msg",$run);
+				redirect('website/econtractform');
+			}
 		
 	}
 
