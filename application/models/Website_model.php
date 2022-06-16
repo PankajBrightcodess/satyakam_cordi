@@ -141,9 +141,9 @@ class Website_model extends CI_Model{
 		$result['member_details_id'] = $this->db->insert_id();
 		if($status){
 			// unset($_SESSION['last_id']);
-			$records = $this->uploads_membersrecords($result);
-			if($records){
-				return true;
+			$records['verify'] = $this->uploads_membersrecords($result);
+			if($records['verify']){
+				return $records;
 			}	
 		}
 		else{
