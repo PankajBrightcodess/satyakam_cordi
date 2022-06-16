@@ -3308,11 +3308,11 @@ class Website extends CI_Controller {
 			$record= $this->Website_model->insert_member_all_records($data,$result);
 			if($record==true){
 				// ......create otp area.......
-				$this->session->set_flashdata('web_err_msg','Submit Successfully');
+				$this->session->set_flashdata('web_msg','Submit Successfully');
 				redirect('website/member_login');
 			}
 			else{ 
-				$this->session->set_flashdata('err_msg','Something Error!');
+				$this->session->set_flashdata('web_err_msg','Something Error');
 				redirect('website/create_membership');
    		    }
 			
