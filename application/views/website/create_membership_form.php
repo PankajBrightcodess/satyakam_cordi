@@ -17,7 +17,7 @@
                               <?php
                                 if(!empty($state)){
                                   foreach ($state as $key => $value) {
-                                    ?><option <?php if($allsignuprecords['state_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['state'];?></option><?php
+                                    ?><option <?php if($allsignuprecords['state_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['state'];?>"><?= $value['state'];?></option><?php
                                   }
                                 }
                               ?>
@@ -45,7 +45,7 @@
                               <?php
                                 if(!empty($divisionlist)){
                                   foreach ($divisionlist as $key => $value) {
-                                    ?><option <?php if($allsignuprecords['division_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['division'];?></option><?php
+                                    ?><option <?php if($allsignuprecords['division_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['division'];?>"><?= $value['division'];?></option><?php
                                   }
                                 }
                               ?>
