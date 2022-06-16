@@ -72,6 +72,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function getofficerdetails(){
+		$this->db->where('t1.status',1);
 		$this->db->select('t1.*,t2.department,t3.post');
 		$this->db->from('officer_details t1');
 		$this->db->join('department t2','t1.department_id=t2.id','left');
