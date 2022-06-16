@@ -1324,8 +1324,6 @@ public function update_submenu(){
 		$data['depart'] = $this->Website_model->get_departlist($data);	
 		$data['post'] = $this->Website_model->get_postlist($data);
 		$data['members']= $this->Website_model->get_memberlist_for_admin();
-		echo PRE;
-		print_r($data['members']);die;
 		$this->template->load('pages','memberlist',$data);
 	}
 
