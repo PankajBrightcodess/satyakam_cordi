@@ -1113,7 +1113,7 @@ public function update_submenu(){
 
 	public function delete_officer(){
 		$id = $this->uri->segment(3);
-			$result = $this->Website_model->deleted_officer($id);
+				$result = $this->Website_model->deleted_officer($id);
 		   if($result){
 			$this->session->set_flashdata('msg','Deleted Successfully');
 			}else{

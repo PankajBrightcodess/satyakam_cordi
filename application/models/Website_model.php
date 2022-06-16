@@ -51,7 +51,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function deleted_officer($id){
-		$id = $data['id']; 
 	    $this->db->where("id", $id); 
 	    $query= $this->db->update("officer_details",array('status'=>0)); 
 		return $query;
