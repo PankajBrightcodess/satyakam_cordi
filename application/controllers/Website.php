@@ -3301,9 +3301,8 @@ class Website extends CI_Controller {
 
 		public function addrecord_membership(){
 			$data =  $this->input->post();
-			// echo PRE;
-			// print_r($_SESSION);
-			// print_r($data);
+			echo PRE;
+			print_r($data);die;
 			$result = $this->upload_allmember_records($_FILES);
 			$record= $this->Website_model->insert_member_all_records($data,$result);
 			if($record==true){
