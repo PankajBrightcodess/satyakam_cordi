@@ -42,11 +42,6 @@ class Website_model extends CI_Model{
 		$table="officer_details";  
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert($table,$data);
-		$qry = $this->db->last_query();
-		echo PRE;
-		print_r($qry);die;
-		// echo PRE;
-		// print_r($status);die;
 		if($status){
 			return true;
 		}
