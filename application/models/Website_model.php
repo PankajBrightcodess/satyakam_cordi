@@ -130,11 +130,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_member_all_records($data,$result){
-		// echo PRE;
-		// print_r($data);
-		// print_r($result);
-		// $uplaod = $this->uploads_membersrecords($result);
-		// die;
 		$data['signup_id'] = $_SESSION['last_id'];
 		// echo PRE;
 		// print_r($data);die;

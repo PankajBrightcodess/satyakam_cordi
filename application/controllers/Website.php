@@ -3275,9 +3275,9 @@ class Website extends CI_Controller {
 		}
 
 		public function create_membership(){
+			echo PRE;
+			print_r($_SESSION);die;
 			$d['allsignuprecords'] = $this->input->post();
-			
-
 			$otp = $_SESSION['create_otp'];
 			$confirm_otp = $this->input->post('OTP');
 			unset($_SESSION['last_id']);
@@ -3301,13 +3301,10 @@ class Website extends CI_Controller {
 
 		public function addrecord_membership(){
 			$data =  $this->input->post();
-			echo PRE;
-			print_r($_SESSION);
-			print_r($data);
+			// echo PRE;
+			// print_r($_SESSION);
+			// print_r($data);
 			$result = $this->upload_allmember_records($_FILES);
-			print_r($result);
-			die;
-
 			$record['varify']= $this->Website_model->insert_member_all_records($data,$result);
 			if($record['varify']==true){
 				// ......create otp area.......
