@@ -12,7 +12,7 @@
                             <label>Application Date</label>
                             <input type="date" name="app_date" readonly  value="<?= $allsignuprecords['application_date'];?>" placeholder="Application Date :" class="form-control mb-3" required>
                             <label>State Unit Name</label>
-                             <select class="form-control states" disabled id="states" name="state_unit_name">
+                             <select class="form-control states" id="states" name="state_unit_name">
                               <option>State :</option>
                               <?php
                                 if(!empty($state)){
@@ -40,7 +40,7 @@
                           </div>
                           <div class="col-md-12">
                             <label>Division Unit Name</label>
-                            <select class="form-control" disabled  name="division_unit_name">
+                            <select class="form-control"  name="division_unit_name">
                               <option>State :</option>
                               <?php
                                 if(!empty($divisionlist)){
