@@ -3309,7 +3309,7 @@ class Website extends CI_Controller {
 			if($record['varify']==true){
 				// ......create otp area.......
 				$this->session->set_flashdata('err_msg','Submit Successfully');
-				redirect('website/member_login'.$records);
+				redirect('website/member_login'.$record);
 			}
 			else{ 
 				$this->session->set_flashdata('err_msg',$result['verify']);
