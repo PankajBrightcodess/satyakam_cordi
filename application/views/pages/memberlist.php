@@ -47,8 +47,8 @@
                                              foreach ($members as $key => $value) {$i++; ?>
                                              <tr>    
                                                <td><?php echo $i;?></td>     
-                                               <td><?php echo $value['membership_no'];?></td><td><?php echo $value['state_unit_name'];?></td> 
-                                               <td><?php echo $value['division_unit_name'];?></td> 
+                                               <td><?php echo $value['membership_no'];?></td><td><?php echo $value['state'];?></td> 
+                                               <td><?php echo $value['division'];?></td> 
                                                <td><?php echo $value['applicant_name'];?></td> 
                                                <td><?php echo date('d-m-Y',strtotime($value['dob']));?></td> 
                                                <td><?php echo $value['mobile_no'];?></td> 
