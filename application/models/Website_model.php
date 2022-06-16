@@ -133,8 +133,6 @@ class Website_model extends CI_Model{
 		if(!empty($_SESSION['user_id'])){
 			$data['signup_id'] = $_SESSION['user_id'];
 		}
-		echo PRE;
-		print_r($data);die;
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert('member_details',$data);
 		$result['member_details_id'] = $this->db->insert_id();
