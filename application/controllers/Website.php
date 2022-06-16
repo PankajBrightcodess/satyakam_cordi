@@ -3305,8 +3305,8 @@ class Website extends CI_Controller {
 			// print_r($_SESSION);
 			// print_r($data);
 			$result = $this->upload_allmember_records($_FILES);
-			$record['varify']= $this->Website_model->insert_member_all_records($data,$result);
-			if($record['varify']==true){
+			$record= $this->Website_model->insert_member_all_records($data,$result);
+			if($record==true){
 				// ......create otp area.......
 				$this->session->set_flashdata('err_msg','Submit Successfully');
 				redirect('website/member_login'.$record);
