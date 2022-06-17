@@ -37,7 +37,7 @@
                                         <?php if(!empty($certificate['father_name'])) {
                                           ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','value'=>$certificate['father_name'],'class'=>'form-control','readonly'=>'true','placeholder'=>'Father Name','required'=>'true'));?><?php
                                         }else{
-                                            ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','class'=>'form-control','readonly'=>'true','placeholder'=>'Father Name','required'=>'true'));?><?php
+                                            ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Father Name','required'=>'true'));?><?php
                                         }?>
                                         
                                         
