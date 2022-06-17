@@ -129,6 +129,8 @@ class Website_model extends CI_Model{
     	return $query->row_array();
 	}
 
+
+
 	public function insert_member_all_records($data,$result){
 		if(!empty($_SESSION['user_id'])){
 			$data['signup_id'] = $_SESSION['user_id'];
@@ -1525,6 +1527,15 @@ class Website_model extends CI_Model{
 		 return $query;	
 	}
 
+	public function delete_member_model($data){
+		$status['status'] = 0;
+		$id  =$data['id'];
+		 $this->db->set($status); 
+         $this->db->where("id", $id); 
+         $query= $this->db->update("member_details", $status); 
+		 return $query;	
+	}
+
 
 	public function insert_applyform($data){
 		$data['added_on']=date('Y-m-d');
@@ -1655,6 +1666,26 @@ class Website_model extends CI_Model{
 	}
 
 	// '''''''''''''''''''''''''PROJECT''''''''''''''''''''''''''''''''
+	public function insert_membersignup($data){
+		unset($data['OTP']);
+		// unset($data['captcha_confirm']);
+		$data['added_on']= date('Y-m-d');
+		$status['varify']=$this->db->insert('project_member',$data);
+		$id=$this->db->insert_id();
+		if(!empty($id)){
+			$table="project_member";
+		    $query = $this->db->get_where($table,array('status'=>1,'id'=>$id));
+		    return  $query->row_array();	
+		}
+		else{
+			return false;
+		}
+	}
+
+
+
+
+
 	public function insert_membership($data){
 		unset($data['captcha']);
 		unset($data['captcha_confirm']);

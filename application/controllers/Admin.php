@@ -1735,6 +1735,13 @@ public function update_submenu(){
 	}
 
 
+	public function delete_member(){
+		$data = $this->input->post();
+		$result = $this->Website_model->delete_member_model($data);
+		echo $result;
+	}
+
+
 	public function online_applylist(){
 
 		$depart_id = $this->input->post('depart_id');

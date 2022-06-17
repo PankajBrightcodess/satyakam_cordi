@@ -42,6 +42,8 @@
                                     </thead>
                                     <tbody class="text-uppercase">
                                         <?php 
+                                        // echo PRE;
+                                        // print_r($members);die;
                                             if(!empty($members)){$i=0;
                                              foreach ($members as $key => $value) {$i++; ?>
                                              <tr>    
@@ -60,7 +62,7 @@
                                                  <a href="<?= base_url('admin/membership_certificate/'.$value['id']);?>" class="btn btn-info btn-xs" title="Membership Certificate" ><i class="fa fa-plus-circle"></i></a>
                                                 <button class="btn btn-warning btn-xs" title="Officer Details" value="<?php echo $value['id'];?>"><i class="fa fa-sticky-note"></i></button>
                                                  <button type="button" class="btn btn-success btn-xs updt" data-toggle="modal" data-target="#exampleModal" data-id="<?php echo $value['id'];?>" title="Edit" ><i class="fa fa-edit"></i></button>
-                                                 <button class="btn btn-danger btn-xs" title="Delete" value="<?php echo $value['id'];?>"><i class="fa fa-trash"></i></button> </td> 
+                                                 <button type="button" class="btn btn-danger btn-xs " title="Delete" id="delete" value="<?php echo $value['id'];?>"><i class="fa fa-trash"></i></button> </td> 
                                              </tr>
                                              <?php }} ?>
                                     </tbody>
@@ -137,7 +139,7 @@
 <script>
 
     
-    $(document).ready(function(e) {
+$(document).ready(function(e) {
         $('.hoverable').mouseenter(function(){
             //$('[data-toggle="popover"]').popover();
             $(this).popover('show');                    
@@ -190,6 +192,26 @@
 
 
              });
+
+             $('body').on('click','#delete',function(){
+                debugger;
+                var id = $(this).val();
+                $.ajax({
+                    url:"<?php echo base_url('admin/delete_member');?>",
+                    method:"POST",
+                    data:{id:id},
+                    success:function(data){
+                         if(data){
+                            swal("Good job!", "You clicked the button!", "success"); 
+                           }
+                           else{
+                            swal("Opps!", "Something Error!", "error");
+                           }
+                           location.reload(true); 
+
+                    }
+                })
+             })
         
         var table=$('.data-table').DataTable({
             scrollCollapse: true,
@@ -234,22 +256,22 @@
 
 
 
-$('.delete').click(function(e){
-    debugger;
-    var id=$(this).closest('tr').find('.delete').val();
-    if(confirm('Are you Sure !')){
-    $.ajax({
-            type:'GET',
-            url:"<?PHP echo base_url('admin/deletevecency'); ?>",
-            data: {id:id},
-            success: function(result){
-                location.reload();
-                },
-                error: function(){
-                alert("error");
-                }
-    });
-}
-return false;
-})
+// $('.delete').click(function(e){
+//     debugger;
+//     var id=$(this).closest('tr').find('.delete').val();
+//     if(confirm('Are you Sure !')){
+//     $.ajax({
+//             type:'GET',
+//             // url:"<?PHP echo base_url('admin/deletevecency'); ?>",
+//             data: {id:id},
+//             success: function(result){
+//                 location.reload();
+//                 },
+//                 error: function(){
+//                 alert("error");
+//                 }
+//     });
+// }
+// return false;
+// })
 </script>

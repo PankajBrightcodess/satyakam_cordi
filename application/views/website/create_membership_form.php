@@ -11,6 +11,7 @@
                           <!--   <input type="hidden" name="sponsor_id" readonly  value="<?= $allsignuprecords['sponsor_id'];?>" placeholder="Application Date :" class="form-control mb-3" required> -->
                             <label>Application Date</label>
                             <input type="date" name="app_date" readonly  value="<?= $allsignuprecords['application_date'];?>" placeholder="Application Date :" class="form-control mb-3" required>
+                             <input type="hidden" name="signup_id" readonly  value="<?= $allsignuprecords['id'];?>" class="form-control mb-3" required>
                             <label>State Unit Name</label>
                              <select class="form-control states" id="states" name="state_unit_name">
                               <option>State :</option>
