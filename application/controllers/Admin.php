@@ -1330,8 +1330,7 @@ public function update_submenu(){
 	public function membership_certificate(){
 		$id = $this->uri->segment(3);
 	  $data['certificate'] = $this->Website_model->get_certificatelist($id);
-	  // echo PRE;
-	  // print_r($data['certificate']);die;
+	 
 		$data['title']=" Membership Certificate";
 		$data['datatable'] = true;	
 		$this->template->load('pages','membership_certificate',$data);
@@ -1342,6 +1341,8 @@ public function update_submenu(){
 			$data = $this->input->post();
 			$photo = $this->input->post('image');
 			$result = $this->Website_model->create_member_certificate($data);
+			 echo PRE;
+	  print_r($result);die;
 			$pdf = $this->customfpdf->getInstance();
      	$pdf->AliasNbPages();
      	$pdf->AddPage();

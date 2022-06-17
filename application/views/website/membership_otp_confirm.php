@@ -13,6 +13,7 @@
                   <input type="hidden" name="state_unit_name" value="<?= $data['state_unit_name'];?>" class="form-control" required>
                   <input type="hidden" name="division_unit_name" value="<?= $data['division_unit_name'];?>" class="form-control" required>
                   <input type="hidden" name="dist" class="form-control" value="<?= $data['dist'];?>" required>
+                  <input type="hidden" name="father_name" class="form-control" value="<?= $data['father_name'];?>" required>
                   <input type="hidden" name="sponsor_id" class="form-control" value="<?= $data['sponsor_id'];?>" required>
                   <input type="hidden" name="created_by" class="form-control" value="<?= $data['created_by'];?>" required>
                   <input type="hidden" name="applicant_name" class="form-control" value="<?= $data['applicant_name'];?>" required>

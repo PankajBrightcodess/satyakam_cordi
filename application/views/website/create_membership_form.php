@@ -23,7 +23,7 @@
                               ?>
                             </select>
 
-                            <!-- <!-- <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required> --> -->
+                            <!-- <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required> -->
                           </div>
                           <div class="col-md-4">
                             <div class="row">
@@ -53,6 +53,8 @@
                             <!-- <input type="text" name="division_unit_name" readonly  value="<?= $allsignuprecords['division'];?>" placeholder="Division Unit Name :" class="form-control mb-3" required> -->
                             <label>Member Name</label>
                             <input type="text" name="applicant_name" readonly value="<?= $allsignuprecords['applicant_name'];?>" placeholder="Member Name :" class="form-control mb-3" required>
+                            <label>Father Name</label>
+                            <input type="text" name="father_name" readonly value="<?= $allsignuprecords['father_name'];?>" placeholder="Father Name :" class="form-control mb-3" required>
                             <label>Date Of Birth</label>
                             <input type="date" name="dob" readonly  value="<?= $allsignuprecords['dob'];?>" class="form-control mb-3" required>
                             <label>Mobile No.</label>
