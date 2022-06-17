@@ -37,6 +37,8 @@
                                             <th>Email</th>
                                             <th>Super Types</th>
                                             <th>Years</th>
+                                            <th>User Name</th>
+                                            <th>Password</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -58,6 +60,8 @@
                                                <td><?php echo $value['email'];?></td> 
                                                <td><?php echo $value['super'];?></td> 
                                                <td><?php echo $value['year'];?></td> 
+                                               <td><?php echo $value['username'];?></td> 
+                                               <td><?php echo $value['password'];?></td> 
                                                <td><span class="float-right">
                                                  <a href="<?= base_url('admin/membership_certificate/'.$value['id']);?>" class="btn btn-info btn-xs" title="Membership Certificate" ><i class="fa fa-plus-circle"></i></a>
                                                 <button class="btn btn-warning btn-xs" title="Officer Details" value="<?php echo $value['id'];?>"><i class="fa fa-sticky-note"></i></button>

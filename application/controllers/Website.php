@@ -3777,7 +3777,7 @@ class Website extends CI_Controller {
 			$this->load->helper('cookie');
       	    delete_cookie('member_cookie');
 		}
-		if($this->session->user!==NULL){
+		if(!empty($_SESSION['user_id'])){
       	  redirect('website/econtractdocx');
       	}
       	else{

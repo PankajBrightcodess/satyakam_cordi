@@ -1856,7 +1856,7 @@ class Website_model extends CI_Model{
 	// '''''''''''''''''''''''''''''ADMIN''''''''''''''''''''''''''''''''''''''''''''''''
 	public function get_memberlist_for_admin(){
 		$this->db->where('t1.status',1);
-		$this->db->Select('t1.*,t2.id as sign_id,t2.sponsor_id,t2.created_by,t3.image,t4.state,t5.division');
+		$this->db->Select('t1.*,t2.id as sign_id,t2.sponsor_id,t2.created_by,t2.username,t2.password,t3.image,t4.state,t5.division');
 		$this->db->from('member_details t1');
 		$this->db->join('project_member t2','t1.signup_id=t2.id','left');
 		$this->db->join('upload_member_docs t3','t1.id=t3.member_details_id','left');
