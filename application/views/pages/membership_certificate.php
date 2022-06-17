@@ -34,7 +34,12 @@
                                 </div>
                                  <div class="form-group row">
                                     <div class="col-sm-12">
-                                        <?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','value'=>$certificate['father_name'],'class'=>'form-control','readonly'=>'true','placeholder'=>'Father Name','required'=>'true'));?>
+                                        <?php if(!empty($certificate['father_name'])) {
+                                          ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','value'=>$certificate['father_name'],'class'=>'form-control','readonly'=>'true','placeholder'=>'Father Name','required'=>'true'));?><?php
+                                        }else{
+                                            ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','class'=>'form-control','readonly'=>'true','placeholder'=>'Father Name','required'=>'true'));?><?php
+                                        }?>
+                                        
                                         
                                         <input type="hidden" name="image" value="<?= $certificate['image'];?>">
                                         <input type="hidden" name="signup_id" value="<?= $certificate['signup_id'];?>">

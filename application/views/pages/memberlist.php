@@ -31,6 +31,7 @@
                                             <th>State</th>                
                                             <th>Division</th>                
                                             <th>Applicant Name</th>
+                                            <th>Father's Name</th>
                                             <th>DOB</th>                                            
                                             <th>Mobile No</th>
                                             <th>Email</th>
@@ -49,6 +50,7 @@
                                                <td><?php echo $value['state'];?></td> 
                                                <td><?php echo $value['division'];?></td> 
                                                <td><?php echo $value['applicant_name'];?></td> 
+                                               <td><?php echo $value['father_name'];?></td> 
                                                <td><?php echo date('d-m-Y',strtotime($value['dob']));?></td> 
                                                <td><?php echo $value['mobile_no'];?></td> 
                                                <td><?php echo $value['email'];?></td> 
