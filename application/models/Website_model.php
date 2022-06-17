@@ -1922,7 +1922,7 @@ class Website_model extends CI_Model{
 
 	public function create_member_certificate($data){
 		echo PRE;
-		print_r($data);
+	
 		$data['added_on']=date('Y-m-d');
 		unset($data['save_dep']);
 		$status['varify']=$this->db->insert('member_certificate',$data);
