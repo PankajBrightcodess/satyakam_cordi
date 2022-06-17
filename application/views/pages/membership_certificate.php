@@ -39,8 +39,6 @@
                                         }else{
                                             ?><?php echo form_input(array('type'=>'text','name'=>'father_name','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Father Name','required'=>'true'));?><?php
                                         }?>
-                                        
-                                        
                                         <input type="hidden" name="image" value="<?= $certificate['image'];?>">
                                         <input type="hidden" name="signup_id" value="<?= $certificate['signup_id'];?>">
                                     </div>                                    
