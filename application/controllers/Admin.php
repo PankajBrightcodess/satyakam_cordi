@@ -1330,6 +1330,7 @@ public function update_submenu(){
 	public function membership_certificate(){
 		$id = $this->uri->segment(3);
 	  $data['certificate'] = $this->Website_model->get_certificatelist($id);
+	  // $data['certificate_list']=$this->Website_model->get_list()
 		$data['title']=" Membership Certificate";
 		$data['datatable'] = true;	
 		$this->template->load('pages','membership_certificate',$data);
