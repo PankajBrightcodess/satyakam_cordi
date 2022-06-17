@@ -1921,6 +1921,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function create_member_certificate($data){
+		print_r($data);die;
 		$data['added_on']=date('Y-m-d');
 		unset($data['save_dep']);
 		$status['varify']=$this->db->insert('member_certificate',$data);
