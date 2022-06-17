@@ -1,7 +1,7 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/submembership_signup')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           <form action="<?= base_url('website/submembership_otp')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
             <center class="tittle"><h2>NEW SUB MEMBERSHIP REGISTER</h2><h4>SIGN UP(FORM)</h4></center>
@@ -44,6 +44,10 @@
                 <div class="col-md-6 mb-2"> 
                   <label for="applicant_name">Applicant Name :</label>
                   <input type="text" name="applicant_name" placeholder="Applicant Name :" class="form-control" required>
+                </div>
+                 <div class="col-md-6 mb-2"> 
+                  <label for="father_name">Father's Name :</label>
+                  <input type="text" name="father_name" placeholder="Father's Name :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="dob">DOB :</label>

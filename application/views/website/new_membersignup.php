@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="father_name">Father's Name :</label>
-                  <input type="text" name="father_name" placeholder="Applicant Name :" class="form-control" required>
+                  <input type="text" name="father_name" placeholder="Father's Name :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="dob">DOB :</label>

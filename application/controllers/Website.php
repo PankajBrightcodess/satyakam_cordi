@@ -3407,8 +3407,6 @@ class Website extends CI_Controller {
 		
 		public function membership_signup(){
 			$data =$this->input->post();
-			
-			 
 			$captcha=$this->input->post('captcha');
 			$captcha_confirm= $this->input->post('captcha_confirm');
 			$mobile_no=$this->input->post('mobile_no');
@@ -3712,15 +3710,37 @@ class Website extends CI_Controller {
 	   		}
 	}
 	public function submembership_otp(){
+			$d['data'] = $this->input->post();
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
 			$d['v'] = 'website/submembership_otp_confirm';
 			$this->load->view('website/template_2',$d);
 		}
 		public function create_submembership(){
-			$last_id=$_SESSION['last_id'];
-			$d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
-			$d['state'] = $this->Website_model->get_statelist();
-			$d['v'] = 'website/create_submembership_form';
+			// $last_id=$_SESSION['last_id'];
+			$data= $this->input->post();
+			$otp = $_SESSION['create_otp'];
+			$confirm_otp = $this->input->post('OTP');
+			unset($_SESSION['last_id']);
+			if($otp==$confirm_otp){
+				unset($_SESSION['create_otp']);
+				$d['allsignuprecords'] =$this->Website_model->insert_membersignup($data);
+				$d['state'] = $this->Website_model->get_statelist();
+				$state_id['id'] = $this->input->post('state_unit_name');
+				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
+				$d['v'] = 'website/create_submembership_form';
 			$this->load->view('website/template_2',$d);
+			}
+			else{
+				$this->session->set_flashdata('err_msg','Your OTP is not Correct');
+				redirect('website/submember_signup');
+			}
+			// echo PRE;
+			// print_r($_POST);die;
+			// $d['allsignuprecords']=$this->Website_model->get_signupdetails($last_id);
+			// $d['state'] = $this->Website_model->get_statelist();
+			// $d['v'] = 'website/create_submembership_form';
+			// $this->load->view('website/template_2',$d);
 		}
 		public function addrecord_submembership(){
 			 $data=  $this->input->post();
