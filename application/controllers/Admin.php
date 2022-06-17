@@ -1340,8 +1340,6 @@ public function update_submenu(){
 			$data = $this->input->post();
 			$photo = $this->input->post('image');
 			$result = $this->Website_model->create_member_certificate($data);
-			echo PRE;
-			print_r($result);die;
 			$pdf = $this->customfpdf->getInstance();
      	$pdf->AliasNbPages();
      	$pdf->AddPage();
