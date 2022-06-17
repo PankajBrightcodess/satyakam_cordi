@@ -1922,13 +1922,15 @@ class Website_model extends CI_Model{
 
 	public function create_member_certificate($data){
 		echo PRE;
-		print_r($data);die;
+		print_r($data);
 		$data['added_on']=date('Y-m-d');
 		unset($data['save_dep']);
 		$status['varify']=$this->db->insert('member_certificate',$data);
-		// $qry = $this->db->last_query();
-		// print_r($qry);die;
+		$qry = $this->db->last_query();
+		print_r($qry);
 		$last_id=$this->db->insert_id();
+		print_r($last_id);die;
+
 		if($status['varify']){
 			$query = $this->db->get_where('member_certificate',array('status'=>1,'id'=>$last_id));
 		    return $query->row_array();
