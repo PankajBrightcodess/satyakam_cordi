@@ -1926,9 +1926,7 @@ class Website_model extends CI_Model{
 		$data['added_on']=date('Y-m-d');
 		unset($data['save_dep']);
 		$status['varify']=$this->db->insert('member_certificate',$data);
-		print_r($status['varify']);die;
-		$qry = $this->db->last_query();
-		print_r($qry);
+	
 		$last_id=$this->db->insert_id();
 		print_r($last_id);die;
 
