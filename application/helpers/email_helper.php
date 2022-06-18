@@ -14,7 +14,6 @@
 			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 				ini_set('smtp','localhost');
 				ini_set('smtp_port',25);
-				
 				$config['protocol']='smtp';
 				$config['smtp_host']='smtp.gmail.com';
 				$config['smtp_port']='465';
@@ -31,7 +30,7 @@
 				$config['smtp_pass']='bk12345#';
 				$from=$config['smtp_user'];
 			}
-			
+
 			$config['newline']="\r\n";
 			$config['wordwrap'] = TRUE;
 			$config['charset'] = 'iso-8859-1';

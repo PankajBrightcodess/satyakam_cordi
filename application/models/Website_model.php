@@ -149,6 +149,11 @@ class Website_model extends CI_Model{
 		}	
 	}
 
+	public function send_mail_id_pass_model($signup_id){
+		$query=$this->db->get_where('project_member',array('id' =>$signup_id,'status'=>1));
+    	return $query->row_array();
+	}
+	
 	public function upldate_members_id_pass($updt){
 		$id = $updt['id'];
 		 $this->db->where("id",$id); 
@@ -156,10 +161,6 @@ class Website_model extends CI_Model{
 	    return $query;
 	}
 
-	public function send_mail_id_pass_model($signup_id){
-		$query=$this->db->get_where('project_member',array('id' =>$signup_id,'status'=>1));
-    	return $query->row_array();
-	}
 
 	public function uploads_membersrecords($result){
 		$status=$this->db->insert('upload_member_docs',$result);

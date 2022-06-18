@@ -3281,13 +3281,16 @@ class Website extends CI_Controller {
 			$record= $this->Website_model->insert_member_all_records($data,$result);
 			if(!empty($record['id'])){
 				$res = $this->send_mail_id_pass($record);
+		
 				if($res){
 					$this->session->set_flashdata('web_msg','Submit Successfully');
-					redirect('website/member_login');
+					redirect('website/submember_login');
 				}
 				else{
-					$this->session->set_flashdata('web_err_msg','Something Error');
-				    redirect('website/membersignup_form');
+					// ''''''''''''''''''mailing work not doing'''''''''''''
+					$this->session->set_flashdata('web_msg','Mailing Error! Please Consult Admin, Username, Password Provide admin');
+				    // redirect('website/membersignup_form');
+				    redirect('website/submember_login'); 
 				}	
 			}
 			else{ 
@@ -3303,6 +3306,7 @@ class Website extends CI_Controller {
 			$updt['id'] = $record['id'];
 			$updt['username'] = $user;
 			$updt['password'] = $pass;
+		
 			$pro_final = $this->Website_model->upldate_members_id_pass($updt);
 			if($pro_final==true){
 				$this->load->helper('email');
@@ -3751,7 +3755,7 @@ class Website extends CI_Controller {
 			unset($_SESSION['last_id']);
 			if($otp==$confirm_otp){
 				unset($_SESSION['create_otp']);
-				$d['allsignuprecordsa'] =$this->Website_model->insert_submembersignup($data);
+				$d['allsignuprecords'] =$this->Website_model->insert_submembersignup($data);
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
 				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
@@ -3773,14 +3777,23 @@ class Website extends CI_Controller {
 			 $data=  $this->input->post();
 			 $result = $this->upload_allmember_records($_FILES);
 			 $record['varify']= $this->Website_model->insert_member_all_records($data,$result);
-			 if($record['varify']==true){
-				$this->session->set_flashdata('err_msg','Submit Successfully');
-				redirect('website/submember_login'.$records);
+			if(!empty($record['id'])){
+				$res = $this->send_mail_id_pass($record);
+				if($res){
+					$this->session->set_flashdata('web_msg','Submit Successfully');
+					redirect('website/member_login');
+				}
+				else{
+					// ''''''''''''''''''mailing work not doing'''''''''''''
+					$this->session->set_flashdata('web_msg','Mailing Error! Please Consult Admin, Username, Password Provide admin');
+				    // redirect('website/membersignup_form');
+				    redirect('website/member_login'); 
+				}	
 			}
 			else{ 
-				$this->session->set_flashdata('err_msg',$result['verify']);
-				redirect('website/create_submembership');
-	   		}	
+				$this->session->set_flashdata('web_err_msg','Something Error!!!!!!!!!!!');
+				redirect('website/membersignup_form');
+   		    }		
 		}
 		public function submember_login(){
 			$d['v'] = 'website/submember_login';
