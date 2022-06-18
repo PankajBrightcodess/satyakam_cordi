@@ -3260,7 +3260,6 @@ class Website extends CI_Controller {
 		}
 
 		public function membersignup_form(){
-
 			$id = $_SESSION['user_id'];
 			$length = 5;
 			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
@@ -3280,19 +3279,53 @@ class Website extends CI_Controller {
 			$data =  $this->input->post();
 			$result = $this->upload_allmember_records($_FILES);
 			$record= $this->Website_model->insert_member_all_records($data,$result);
-			if($record==true){
-				// ......create otp area.......
-				$this->session->set_flashdata('web_msg','Submit Successfully');
-				redirect('website/member_login');
+			if(!empty($record['id'])){
+				$res = $this->send_mail_id_pass($record);
+				if($res){
+					$this->session->set_flashdata('web_msg','Submit Successfully');
+					redirect('website/member_login');
+				}
+				else{
+					$this->session->set_flashdata('web_err_msg','Something Error');
+				    redirect('website/membersignup_form');
+				}	
 			}
 			else{ 
 				$this->session->set_flashdata('web_err_msg','Something Error');
-				redirect('website/create_membership');
-   		    }
-			
-			
+				redirect('website/membersignup_form');
+   		    }	
+		}
+
+		public function send_mail_id_pass($record){
+
+			$user = 'STYKMMEM'.$record['id'].date('d');
+			$pass = date('mdyhis');
+			$updt['id'] = $record['id'];
+			$updt['username'] = $user;
+			$updt['password'] = $pass;
+			$pro_final = $this->Website_model->upldate_members_id_pass($updt);
+			if($pro_final==true){
+				$this->load->helper('email');
+				$from_email = "indiaskfoundation468@gmail.com"; 
+		         $to_email = $record['email']; 
+		         $username =$user; 
+		         $password = $pass; 
+		         $subject = 'Register Information';
+		         $message = 'Your Register is Verified.<br>We Provide userid and password on your mail.<br>UserId :'.$username.'<br>Password :'.$password;
+		   		 $send= sendemail($to_email,$subject,$message);
+		   		 return $send;
+		         //Send mail 
+		         // if($send) {
+		         //   $this->session->set_flashdata("web_msg","Email sent successfully."); 
+		         // }
+		         // else {
+		         //   $this->session->set_flashdata("web_err_msg","Error in sending Email."); 
+		         // }
+			}
+
 			
 		}
+
 		public function upload_allmember_records($files){
 			
 			$upload_path = './assets/uploads/member/';	
@@ -3331,7 +3364,6 @@ class Website extends CI_Controller {
 				  if ($image3 !='') {
 					  $data['aadhar_back'] = $image3['path'];
 				  }
-
 			}
 			if(!empty($_FILES['election_id_card']['name'])){
 				$image4 = upload_file("election_id_card", $upload_path, $allowed_types, time());
@@ -3342,10 +3374,8 @@ class Website extends CI_Controller {
 			if(!empty($_FILES['pan_card']['name'])){
 				$image5 = upload_file("pan_card", $upload_path, $allowed_types, time());
 				  if ($image5 !='') {
-
-					  $data['pan_card'] = $image5['path'];
+				  	 $data['pan_card'] = $image5['path'];
 				  }
-
 			}
 			if(!empty($_FILES['passbook_bank']['name'])){
 				$image6 = upload_file("passbook_bank", $upload_path, $allowed_types, time());
@@ -3361,12 +3391,9 @@ class Website extends CI_Controller {
 				  }
 			}
 			return $data;
-
-			
 		}
 
 	    public function create_membership(){
-		
 			$data= $this->input->post();
 			$otp = $_SESSION['create_otp'];
 			$confirm_otp = $this->input->post('OTP');
@@ -3405,32 +3432,32 @@ class Website extends CI_Controller {
 		}
 
 		
-		public function membership_signup(){
-			$data =$this->input->post();
-			$captcha=$this->input->post('captcha');
-			$captcha_confirm= $this->input->post('captcha_confirm');
-			$mobile_no=$this->input->post('mobile_no');
-			$record = $this->otpgenerate($mobile_no);
-			if($captcha==$captcha_confirm){
-				$record= $this->Website_model->insert_membership($data);
-				if($record['varify']==true){
-					// .....create otp area......
-					$last_id = $record['last_id'];
-					$last_ids['last_id'] = $last_id;
-			        $this->session->set_userdata($last_ids);
-					$this->session->set_flashdata('web_err_msg',$result['verify']);
-					redirect('website/membership_otp');
-				}
-				else{ 
-					$this->session->set_flashdata('web_err_msg',$result['verify']);
-					redirect('website/membersignup_form');
-	   		    }
-			}
-			else{ 
-				$this->session->set_flashdata('err_msg','Captch not match!');
-				redirect('website/membersignup_form');
-	   		}	
-		}
+		// public function membership_signup(){
+		// 	$data =$this->input->post();
+		// 	$captcha=$this->input->post('captcha');
+		// 	$captcha_confirm= $this->input->post('captcha_confirm');
+		// 	$mobile_no=$this->input->post('mobile_no');
+		// 	$record = $this->otpgenerate($mobile_no);
+		// 	if($captcha==$captcha_confirm){
+		// 		$record= $this->Website_model->insert_membership($data);
+		// 		if($record['varify']==true){
+		// 			// .....create otp area......
+		// 			$last_id = $record['last_id'];
+		// 			$last_ids['last_id'] = $last_id;
+		// 	        $this->session->set_userdata($last_ids);
+		// 			$this->session->set_flashdata('web_err_msg',$result['verify']);
+		// 			redirect('website/membership_otp');
+		// 		}
+		// 		else{ 
+		// 			$this->session->set_flashdata('web_err_msg',$result['verify']);
+		// 			redirect('website/membersignup_form');
+	 //   		    }
+		// 	}
+		// 	else{ 
+		// 		$this->session->set_flashdata('err_msg','Captch not match!');
+		// 		redirect('website/membersignup_form');
+	 //   		}	
+		// }
 
 		public function member_login(){
 			$id = $_SESSION['user_id'];
@@ -3724,7 +3751,7 @@ class Website extends CI_Controller {
 			unset($_SESSION['last_id']);
 			if($otp==$confirm_otp){
 				unset($_SESSION['create_otp']);
-				$d['allsignuprecords'] =$this->Website_model->insert_membersignup($data);
+				$d['allsignuprecordsa'] =$this->Website_model->insert_submembersignup($data);
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
 				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);

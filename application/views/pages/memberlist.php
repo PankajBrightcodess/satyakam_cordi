@@ -44,9 +44,8 @@
                                     </thead>
                                     <tbody class="text-uppercase">
                                         <?php 
-                                        // echo PRE;
-                                        // print_r($members);die;
-                                            if(!empty($members)){$i=0;
+                                            if(!empty($members)){
+                                                $i=0;
                                              foreach ($members as $key => $value) {$i++; ?>
                                              <tr>    
                                                <td><?php echo $i;?></td>     
