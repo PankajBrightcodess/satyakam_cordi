@@ -157,8 +157,16 @@ class Website_model extends CI_Model{
 	public function upldate_members_id_pass($updt){
 		$id = $updt['id'];
 		 $this->db->where("id",$id); 
-	    $query= $this->db->update("project_member",$updt);	
-	    return $query;
+	    $query= $this->db->update("project_member",$updt);
+	   return $query;
+	    // when we use sms on mobile than bellow code will be execute
+	    // if($query){
+	    // 	$qry=$this->db->get_where('project_member',array('id' =>$id,'status'=>1));
+    	//     return $qryy->row_array();
+	    // }
+	    // else{	
+	    // 	return $query;
+	    // }
 	}
 
 
@@ -1761,8 +1769,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_group_head($data){
-		unset($data['captcha']);
-		unset($data['captcha_confirm']);
+		unset($data['OTP']);
 		// echo PRE;
 		// print_r($data);die;
 		$data['added_on']=date('Y-m-d');
@@ -1794,6 +1801,16 @@ class Website_model extends CI_Model{
 			$status[]=$this->db->insert('group_details',$value);
 		}
 		return json_encode($status);
+	}
+
+	public function create_id_pass_group($group_signup_id){
+		$user = 'GROUP'.$group_signup_id;
+		$pass = date('ydm').$group_signup_id;
+		$update['username'] =$user;
+		$update['password'] =$pass;
+		$this->db->where('id',$group_signup_id);
+		$result = $this->db->update('group_signup',$update);
+		return $result;
 	}
 
 	public function get_grouplist($id){

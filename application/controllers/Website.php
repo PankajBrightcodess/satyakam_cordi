@@ -3280,23 +3280,73 @@ class Website extends CI_Controller {
 			$result = $this->upload_allmember_records($_FILES);
 			$record= $this->Website_model->insert_member_all_records($data,$result);
 			if(!empty($record['id'])){
+				//  when we use sms on mobile then this code will use
+				// $res = $this->send_id_pass_mobile($record);
+				
 				$res = $this->send_mail_id_pass($record);
-		
 				if($res){
 					$this->session->set_flashdata('web_msg','Submit Successfully');
-					redirect('website/submember_login');
+					redirect('website/member_login');
 				}
 				else{
 					// ''''''''''''''''''mailing work not doing'''''''''''''
 					$this->session->set_flashdata('web_msg','Mailing Error! Please Consult Admin, Username, Password Provide admin');
-				    // redirect('website/membersignup_form');
-				    redirect('website/submember_login'); 
+				    redirect('website/member_login'); 
 				}	
 			}
 			else{ 
 				$this->session->set_flashdata('web_err_msg','Something Error');
 				redirect('website/membersignup_form');
    		    }	
+		}
+
+		public function send_id_pass_mobile($record){
+			$user = 'STYKMMEM'.$record['id'].date('d');
+			$pass = date('mdyhis');
+			$updt['id'] = $record['id'];
+			$updt['username'] = $user;
+			$updt['password'] = $pass;
+			$pro_final = $this->Website_model->upldate_members_id_pass($updt);
+			if(!empty('$pro_final')){
+				$mobile = $pro_final['mobile_no'];
+				$rslt = $this->mobile_sms($mobile,$user,$pass);
+				return $rslt;
+			}
+
+		}
+
+		public function mobile_sms($mobile,$user,$pass){
+				$contact_no = $mobile;
+				$message= 'You are successfully register with SATYAKAM FOUNDATION as a member. Your id-'.$user.', Password- '.$pass;
+				// '''''''''next proceed here'''''''''
+   			 $base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+    		$senderId = "SKFOUN";
+    		$routeId = "1";
+    		if(!empty($contact_no)){
+      			$curl = curl_init();
+      			curl_setopt_array($curl, array(
+       		    CURLOPT_URL => $base_url,
+        		CURLOPT_RETURNTRANSFER => true,
+        		CURLOPT_ENCODING => "",
+        		CURLOPT_MAXREDIRS => 10,
+        		CURLOPT_TIMEOUT => 30,
+        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        		CURLOPT_CUSTOMREQUEST => "POST",
+        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+        		CURLOPT_HTTPHEADER => array(
+        			"Cache-Control: no-cache",
+        			"Content-Type: application/json"
+        		),
+      			));
+	      	$response = curl_exec($curl);
+	        $err = curl_error($curl);
+	      	curl_close($curl);
+	      	if($err){
+	        	return false;
+	      	}else{
+	        	return $response;
+	      	}
+	        }
 		}
 
 		public function send_mail_id_pass($record){
@@ -3776,23 +3826,24 @@ class Website extends CI_Controller {
 		public function addrecord_submembership(){
 			 $data=  $this->input->post();
 			 $result = $this->upload_allmember_records($_FILES);
-			 $record['varify']= $this->Website_model->insert_member_all_records($data,$result);
+			 $record= $this->Website_model->insert_member_all_records($data,$result);
 			if(!empty($record['id'])){
 				$res = $this->send_mail_id_pass($record);
 				if($res){
 					$this->session->set_flashdata('web_msg','Submit Successfully');
-					redirect('website/member_login');
+					redirect('website/submember_login');
 				}
 				else{
 					// ''''''''''''''''''mailing work not doing'''''''''''''
 					$this->session->set_flashdata('web_msg','Mailing Error! Please Consult Admin, Username, Password Provide admin');
 				    // redirect('website/membersignup_form');
-				    redirect('website/member_login'); 
-				}	
+				    redirect('website/submember_login'); 
+				}
+					
 			}
 			else{ 
-				$this->session->set_flashdata('web_err_msg','Something Error!!!!!!!!!!!');
-				redirect('website/membersignup_form');
+				$this->session->set_flashdata('web_err_msg','Something Error!!!!!!!!!!');
+				redirect('website/submember_signup');
    		    }		
 		}
 		public function submember_login(){
@@ -3843,6 +3894,9 @@ class Website extends CI_Controller {
 		}
 
 		public function groupmembership_otp(){
+			$d['data'] = $this->input->post();
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
@@ -3857,8 +3911,8 @@ class Website extends CI_Controller {
 
 		public function groupsingup_create(){
 			$data = $this->input->post();
-			// echo PRE;
-			// print_r($data);die;
+			
+
 			if($data['captcha']==$data['captcha_confirm']){
 				// echo PRE;
 				// print_r($data);die;
@@ -3883,15 +3937,25 @@ class Website extends CI_Controller {
 		}
 
 		public function group_reg_form(){
-			$last_group_id = $_SESSION['last_group'];
-			$d['group_records']= $this->Website_model->group_details($last_group_id);
-			$id = $_SESSION['user_id'];
-			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
-			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-			$d['state_code']= $this->Website_model->userdetails();
-			$d['v'] = 'website/group_registration_form';
-			$this->load->view('website/template_1',$d);
+			$data = $this->input->post();
+			$record= $this->Website_model->insert_group_head($data);
+			if($record['varify']==true){
+				$_SESSION['group_id'] = $record['last_id'];
+				$last_group_id = $_SESSION['group_id'];
+				$d['group_records']= $this->Website_model->group_details($last_group_id);
+				$id = $_SESSION['user_id'];
+				$record= $this->Website_model->getuser($id);
+				$finalrecord = $record[0];
+				$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+				$d['state_code']= $this->Website_model->userdetails();
+				$d['v'] = 'website/group_registration_form';
+				$this->load->view('website/template_1',$d);
+
+			}
+			else{
+				redirect('website/groupsignup_form');
+			}
+			
 		}	
 
 		public function groupdetails_insert(){
@@ -3981,8 +4045,17 @@ class Website extends CI_Controller {
 			$rslt = json_decode($result,true);
 			$submit_count = count($rslt);
 			if($count==$submit_count){
-				$this->session->set_flashdata('err_msg',$result['verify']);
+				$res = $this->Website_model->create_id_pass_group($group_signup_id);
+				
+				if($res==true){
+					$this->session->set_flashdata('web_msg','Group Create Successfully');
 					redirect('website/login_group');
+				}
+				else{
+					$this->session->set_flashdata('web_err_msg','Id Password Not Create!!!');
+					redirect('website/login_group');
+				}
+				
 			}
 			else{
 				redirect('website/group_reg_form');
@@ -4357,33 +4430,37 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_2',$d);
 		}
 		public function member_group_otp(){
+			$d['data'] = $this->input->post();
+			// echo PRE;
+			// print_r($d['data']);die;
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
 			$d['v'] = 'website/member_groupmembership_otp';
 			$this->load->view('website/template_2',$d);
 		}
-		public function member_groupsingup_create(){
-			$data = $this->input->post();
-			if($data['captcha']==$data['captcha_confirm']){
-				// echo PRE;
-				// print_r($data);die;
-				$record= $this->Website_model->insert_group_head($data);
-				if($record['varify']==true){
-					// .....create otp area......
-					$last_id = $record['last_id'];
-					$last_ids['last_group'] = $last_id;
-			        $this->session->set_userdata($last_ids);
-					$this->session->set_flashdata('err_msg',$result['verify']);
-					redirect('website/member_group_otp');
-				}
-				else{ 
-					$this->session->set_flashdata('err_msg',$result['verify']);
-					redirect('website/groupsignup_form');
-	   		    }
-			}
-			else{ 
-				$this->session->set_flashdata('err_msg','Captch not match!');
-				redirect('website/groupsignup_form');
-	   		}
-		}
+		// public function member_groupsingup_create(){
+		// 	$data = $this->input->post();
+		// 	if($data['captcha']==$data['captcha_confirm']){
+		// 		// echo PRE;
+		// 		// print_r($data);die;
+		// 		$record= $this->Website_model->insert_group_head($data);
+		// 		if($record['varify']==true){
+		// 			$last_id = $record['last_id'];
+		// 			$last_ids['last_group'] = $last_id;
+		// 	        $this->session->set_userdata($last_ids);
+		// 			$this->session->set_flashdata('err_msg',$result['verify']);
+		// 			redirect('website/member_group_otp');
+		// 		}
+		// 		else{ 
+		// 			$this->session->set_flashdata('err_msg',$result['verify']);
+		// 			redirect('website/groupsignup_form');
+	 //   		    }
+		// 	}
+		// 	else{ 
+		// 		$this->session->set_flashdata('err_msg','Captch not match!');
+		// 		redirect('website/groupsignup_form');
+	 //   		}
+		// }
 
 		public function create_account_page(){
 			$length = 5;

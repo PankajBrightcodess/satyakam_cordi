@@ -8,7 +8,19 @@
             <div class="row">
                <div class="col-md-12 mb-2">
                 <!-- <label for="application_date">OTP :</label> -->
-                <input type="text" name="application_date" placeholder="Please Enter OTP :" class="form-control" required>
+                <input type="text" name="OTP" placeholder="Please Enter 4 Disit OTP" maxlength="4" minlength="4"  class="form-control" required>
+                  <input type="hidden" name="inception_date" value="<?= $data['inception_date'];?>" class="form-control" required>
+                  <input type="hidden" name="state_unit_name" value="<?= $data['state_unit_name'];?>" class="form-control" required>
+                  <input type="hidden" name="division_unit_name" value="<?= $data['division_unit_name'];?>" class="form-control" required>
+                  <input type="hidden" name="dist" class="form-control" value="<?= $data['dist'];?>" required>
+                  <input type="hidden" name="sponsor_id" class="form-control" value="<?= $data['sponsor_id'];?>" required>
+                  <input type="hidden" name="block" class="form-control" value="<?= $data['block'];?>" required>
+                  <input type="hidden" name="gram_panchayat" class="form-control" value="<?= $data['gram_panchayat'];?>" required>
+                  <input type="hidden" name="ward_no" class="form-control" value="<?= $data['ward_no'];?>" required>
+                  <input type="hidden" name="created_by" class="form-control" value="<?= $data['created_by'];?>" required>
+                  <input type="hidden" name="group_name" class="form-control" value="<?= $data['group_name'];?>" required>
+                  <input type="hidden" name="mobile_no" class="form-control" value="<?= $data['mobile_no'];?>" required>
+                  <input type="hidden" name="email" class="form-control" value="<?= $data['email'];?>" required>
               </div>
               <div class="col-md-12 mb-2">
                 <input type="submit" class="mt-4 btn btn-sm" style="background:#233799;color:white">

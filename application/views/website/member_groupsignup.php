@@ -1,7 +1,8 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/groupsingup_create')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+            <!--  <form action="<?= base_url('website/groupsingup_create');?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;"> -->
+           <form action="<?= base_url('website/groupmembership_otp');?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
             <center class="tittle"><h2>NEW GROUP CREATE</h2><h4>SIGN UP(FORM)</h4></center>

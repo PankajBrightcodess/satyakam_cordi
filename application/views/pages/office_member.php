@@ -17,21 +17,21 @@
                                             <th>Batch No.</th>
                                             <th>Joining Branch</th>   
                                             <th>Branch Code</th>   
-                                            <th>department</th>                                            
+                                            <th>department</th>
                                             <th>Post</th>                                            
                                             <th>Mobile </th>                                            
                                             <th>Email </th>                                            
-                                            <th>Service DID</th>                                           
+                                            <th>Service DID</th>
                                             <th>Name</th>                                            
                                             <th>Guardian</th>                                            
                                             <th>Address</th>                                            
-                                            <th>Mother Occupation</th>                                            
-                                            <th>Annual Income</th>                                            
-                                            <th>Father Income</th>                                            
-                                            <th>Annual Income</th>                                            
+                                            <th>Mother Occupation</th>
+                                            <th>Annual Income</th>
+                                            <th>Father Income</th>
+                                            <th>Annual Income</th>
                                             <th>Sex</th>                                            
-                                            <th>Nationality</th>                                            
-                                            <th>Marriage Status</th>                                            
+                                            <th>Nationality</th>
+                                            <th>Marriage Status</th>
                                             <th>DOB</th>                                            
                                             <th>Aadhar No</th>                                            
                                             <th>PAN No</th> 
@@ -96,7 +96,6 @@
                                             <td ><a href="<?php echo base_url($val['aadhar'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['pan'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['bank_account'])?>">View</a></td>
-                                           
                                             <td ><a href="<?php echo base_url($val['security_e_receipt'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['processing_receipt'])?>">View</a></td>
                                             <td ><a href="<?php echo base_url($val['training_receipt'])?>">View</a></td>

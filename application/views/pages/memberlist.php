@@ -27,6 +27,7 @@
                                     <thead >
                                         <tr>    
                                             <th>#</th>
+                                            <th>Joining Date</th>
                                             <th>Membership No.</th>
                                             <th>State</th>                
                                             <th>Division</th>                
@@ -49,6 +50,7 @@
                                              foreach ($members as $key => $value) {$i++; ?>
                                              <tr>    
                                                <td><?php echo $i;?></td>     
+                                               <td><?php echo date('d-m-Y',strtotime($value['added_on']));?></td>
                                                <td><?php echo $value['membership_no'];?></td>
                                                <td><?php echo $value['state'];?></td> 
                                                <td><?php echo $value['division'];?></td> 
