@@ -1294,16 +1294,11 @@ class Website_model extends CI_Model{
 		$qry = $this->db->get();
 		if($qry->num_rows()>0)
 		{
-			return $result = $qry->result_array();
-
+		   return $result = $qry->result_array();
 		}else
 		{
-			return 0;
+		  return 0;
 		}
-
-
-
-
 		// $query = $this->db->get_where('submenu',array('status'=>1));
 		// $result = $query->result_array();
 	}
@@ -1775,17 +1770,18 @@ class Website_model extends CI_Model{
 
 	public function insert_group_head($data){
 		unset($data['OTP']);
-		// echo PRE;
-		// print_r($data);die;
 		$data['added_on']=date('Y-m-d');
-		$status['varify']=$this->db->insert('group_signup',$data);
-		$status['last_id']=$this->db->insert_id();
-		if($status){
-				return $status;
+		if($data['group_name']!=null){
+			$status['varify']=$this->db->insert('group_signup',$data);
+			$status['last_id']=$this->db->insert_id();
+			if($status){
+					return $status;
+			}
+			else{
+				return false;
+			}
 		}
-		else{
-			return false;
-		}	
+			
 	}
 
 	public function group_details($last_group_id){

@@ -15,18 +15,17 @@
                                     <thead>
                                         <tr>  
                                             <th>S.NO.</th>
-                                            <th>INCEPTION DATE</th>                
-                                            <th>GROUP NAME</th>                
-                                            <th>STATE</th>
-                                            <th>DIVISION</th>
-                                            <th>DIST</th>
-                                            <th>BLOCK</th>
-                                            <th>WARD NO</th>
-                                            <th>GRAM PANCHAYAT</th>
-                                            <th>MOBILE NO.</th>
-                                            <th>CREATED BY</th>
-                                            <th>ADDED ON</th>
-                                            <th>VIEW MEMBER LIST</th>
+                                            <th>User Id</th>                
+                                            <th>Password</th>                
+                                            <th>Group Name</th>
+                                            <th>Date</th>
+                                            <th>Chairman Name</th>
+                                            <th>Secretary Name</th>
+                                            <th>Treasureers Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>Email</th>
+                                            <th>Link</th>
+                                           
                                         </tr>
                                     </thead>
                                     <a class="pull-right btn btn-warning btn-large" style="margin-right:40px" href="<?php echo base_url('website/grouplist'); ?>"><i class="fa fa-file-excel-o"></i> Export to Excel</a>
@@ -36,18 +35,16 @@
                                             foreach($list as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['inception_date'];?></td>
+                                            <td ><?php echo $val['username'];?></td>
+                                            <td ><?php echo $val['password'];?></td>
                                             <td ><?php echo $val['group_name'];?></td>
-                                            <td ><?php echo $val['state'];?></td>
-                                            <td ><?php echo $val['division']; ?></td>
-                                            <td ><?php echo $val['dist']; ?></td>
-                                            <td ><?php echo $val['block']; ?></td>
-                                            <td ><?php echo $val['ward_no'];?></td>
-                                            <td ><?php echo $val['gram_panchayat'];?></td>
-                                            <td ><?php echo $val['mobile_no']; ?></td>
-                                            <td ><?php echo $val['officer_first_name'].' '.$val['officer_middle_name'].' '.$val['officer_last_name'].'['.$val['created_by'].']'; ?></td>
-                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on'])); ?></td>
-                                              <td ><a href="<?= base_url('website/member_group_member_list/?id='.$val['id']);?>" class="btn btn-sm btn-info ">View Member</a></td>
+                                            <td ><?php echo date('d-m-Y',strtotime($val['inception_date'])); ?></td>
+                                            <td ><?php echo $val['group_name']; ?></td>
+                                            <td ><?php echo $val['group_name']; ?></td>
+                                            <td ><?php echo $val['group_name'];?></td>
+                                            <td ><?php echo $val['mobile_no'];?></td>
+                                            <td ><?php echo $val['email']; ?></td>
+                                            <td ><a href="<?= base_url('website/member_login_group');?>" title="Login" class="btn btn-sm btn-info mb-3">Login</a><a href="<?= base_url('website/member_group_member_list/?id='.$val['id']);?>" title="Member List" class="btn btn-sm btn-success ">List</a></td>
                                         </tr>
                                        <?php 
                                         }

@@ -3746,20 +3746,19 @@ class Website extends CI_Controller {
 		}
 	}
 	public function member_group_status(){
+
 			$id = $_SESSION['member_id'];
 			$d['list']=$this->Website_model->get_grouplist($id);
-			// echo PRE;
-			// print_r($d['list']);die;
 			$d['v'] = 'website/member_group_status';
 			$this->load->view('website/template_2',$d);
-		}
-		public function member_group_member_list(){
-    	   $ids = $this->input->get('id');
-			$d['ides']=$ids;
-    	    $d['member_list']= $this->Website_model->getgroup_memberlist($ids);
-			$d['v'] = 'website/member_group_list';
-			$this->load->view('website/template_2',$d);
-		}
+	}
+	public function member_group_member_list(){
+    	$ids = $this->input->get('id');
+		$d['ides']=$ids;
+    	$d['member_list']= $this->Website_model->getgroup_memberlist($ids);
+		$d['v'] = 'website/member_group_list';
+		$this->load->view('website/template_2',$d);
+	}
 
 	public function submember_signup(){
 			$id = $_SESSION['member_id'];

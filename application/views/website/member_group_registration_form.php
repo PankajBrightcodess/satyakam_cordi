@@ -15,7 +15,6 @@
                       </tr> 
                       <tr>
                         <th scope="col">Application No. :&nbsp;&nbsp;</th>
-                       
                         <th scope="col">Division :&nbsp;&nbsp;<?php echo $group_records['division'];?></th>
                       </tr>  
                       <tr>
