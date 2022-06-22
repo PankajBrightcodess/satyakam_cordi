@@ -132,21 +132,23 @@ class Website_model extends CI_Model{
 
 
 	public function insert_member_all_records($data,$result){
+		
 		$signup_id = $data['signup_id'];
+	
 		$data['added_on']=date('Y-m-d');
-		$status=$this->db->insert('member_details',$data);
-		$result['member_details_id'] = $this->db->insert_id();
-		if($status){
-			// unset($_SESSION['last_id']);
-			$records = $this->uploads_membersrecords($result);
-			if($records){
+		if(!empty($data['applicant_name'])){
+			$status=$this->db->insert('member_details',$data);
+			$result['member_details_id'] = $this->db->insert_id();	
+			if(!empty($result['member_details_id'])){
+				$records = $this->uploads_membersrecords($result);
 				$final_records = $this->send_mail_id_pass_model($signup_id);
-				return $final_records;
-			}	
+				return $final_records;	
+			}
+			else{
+				return false;
+			}
 		}
-		else{
-			return false;
-		}	
+			
 	}
 
 	public function send_mail_id_pass_model($signup_id){
@@ -158,15 +160,13 @@ class Website_model extends CI_Model{
 		$id = $updt['id'];
 		 $this->db->where("id",$id); 
 	    $query= $this->db->update("project_member",$updt);
-	   return $query;
-	    // when we use sms on mobile than bellow code will be execute
-	    // if($query){
-	    // 	$qry=$this->db->get_where('project_member',array('id' =>$id,'status'=>1));
-    	//     return $qryy->row_array();
-	    // }
-	    // else{	
-	    // 	return $query;
-	    // }
+	    if($query){
+	    	$qry=$this->db->get_where('project_member',array('id' =>$id,'status'=>1));
+    	    return $qry->row_array();
+	    }
+	    else{	
+	    	return $query;
+	    }
 	}
 
 
@@ -1689,21 +1689,26 @@ class Website_model extends CI_Model{
 	public function insert_membersignup($data){
 		unset($data['OTP']);
 		$data['added_on']= date('Y-m-d');
-		$status=$this->db->insert('project_member',$data);
-		$id=$this->db->insert_id();
-			if(!empty($id)){
-		    $query = $this->db->get_where('project_member',array('id'=>$id));
-		    return  $query->row_array();	
+		if($data['applicant_name']!=null){
+			$status=$this->db->insert('project_member',$data);
+			$id=$this->db->insert_id();
+				if(!empty($id)){
+			    $query = $this->db->get_where('project_member',array('id'=>$id));
+
+			    return  $query->row_array();	
+			}
+			else{
+				return false;
+			}
+
 		}
-		else{
-			return false;
-		}
+		
 	}
 
 	public function insert_submembersignup($data){
 		unset($data['OTP']);
 		$data['added_on']= date('Y-m-d');
-		if(!empty($data['mobile_no'])){
+		if($data['applicant_name']!=null){
 			$status=$this->db->insert('project_member',$data);
 			if(!empty($status)){
 				$id=$this->db->insert_id();
@@ -1795,6 +1800,20 @@ class Website_model extends CI_Model{
 		$result =  $query->row_array();
 		return $result;
 	}
+
+	public function group_details_member($last_group_id){
+		$where = "t1.id='$last_group_id'";
+		$this->db->where($where);
+		$this->db->Select('t1.*,t2.state,t3.division,t4.mobile_no as cell_no,t4.applicant_name');
+		$this->db->from('group_signup t1');
+		$this->db->join('stk_state t2','t1.state_unit_name=t2.id','left');
+		$this->db->join('stk_division t3','t1.division_unit_name=t3.id','left');
+		$this->db->join('project_member t4','t1.created_by=t4.id','left');
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		return $result;
+	}
+
 
 	public function insert_groupdetails($final_array){
 		foreach ($final_array as $key => $value) {

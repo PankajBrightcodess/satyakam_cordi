@@ -29,17 +29,21 @@
                         <th scope="col">Email  :&nbsp;&nbsp;<?php echo $group_records['email'];?></th>
                       </tr>
                       <tr>
-                        <th scope="col" colspan="2">Group Name  :&nbsp;&nbsp;<?php echo $group_records['group_name'];?></th>
-                         <th scope="col" colspan="2">Landmark/Pin Code  :&nbsp;&nbsp;</th>
+                        <th scope="col" >Group Name  :&nbsp;&nbsp;<?php echo $group_records['group_name'];?></th>
+                         <th scope="col">Sponsor Id No.  :&nbsp;&nbsp;<?php echo $group_records['created_by'];?></th>
+                         <th scope="col">Sponsor Name  :&nbsp;&nbsp;<?php echo $group_records['officer_first_name'].' '.$group_records['officer_middle_name'].' '.$group_records['officer_last_name'];?></th>
                       </tr>
                      
                       <tr>
-                         <th scope="col" colspan="2">Sponsor Id No.  :&nbsp;&nbsp;<?php echo $group_records['created_by'];?></th>
-                         <th scope="col" colspan="2">Sponsor Name  :&nbsp;&nbsp;<?php echo $group_records['officer_first_name'].' '.$group_records['officer_middle_name'].' '.$group_records['officer_last_name'];?></th>
+                         <th scope="col" >Sponsor Id No.  :&nbsp;&nbsp;<?php echo $group_records['created_by'];?></th>
+                         <th scope="col" >Sponsor Name  :&nbsp;&nbsp;<?php echo $group_records['officer_first_name'].' '.$group_records['officer_middle_name'].' '.$group_records['officer_last_name'];?></th>
+                         <th scope="col">Mobile No.  :&nbsp;&nbsp;<?php echo $group_records['cell_no'];?></th>
                       </tr>
                       <tr>
-                         <th scope="col" colspan="2">Club Label  :&nbsp;&nbsp;</th>
-                         <th scope="col" colspan="2">Mobile No.  :&nbsp;&nbsp;<?php echo $group_records['cell_no'];?></th>
+                         <th scope="col" >Club Label  :&nbsp;&nbsp;</th>
+                         <th scope="col" ></th>
+                         <th scope="col" ></th>
+                         
                       </tr>
                     </thead>
                   </table> 
@@ -130,13 +134,13 @@
               </div>
               <div class="col-md-12"><hr></div>
               <div class="col-md-4"><label>President's signature</label>
-                  <input type="file" name="p_sign" id="filePhoto" value="">
+                  <input type="file" name="p_sign" value="">
               </div>
               <div class="col-md-4"><label>Secretary Signature</label>
-                  <input type="file" name="s_sign" id="filePhoto" value="">
+                  <input type="file" name="s_sign" value="">
               </div>
               <div class="col-md-4"><label>Treasurer Signature</label>
-                  <input type="file" name="t_sign" id="filePhoto" value="">
+                  <input type="file" name="t_sign" value="">
               </div>
               <div class="col-md-12"><hr></div>
               <div class="col-md-12 mb-2 text-center text-info"><h5>MENDATORY INSTRUCTIONS</h5></div>

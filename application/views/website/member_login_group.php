@@ -28,14 +28,14 @@
           <div class="col-md-3"></div>
           
           <div class="col-md-6">
-          <!--   <div class="text-center">
-              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>"></a>
-            </div> -->
+             <div class="text-center">
+              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"> </a>
+            </div>
             <div class="loginbox">
               <form method="POST" action="<?= base_url('website/member_check_grouplogin');?>">  
               <div class="row">
               <div class="col-md-12">
-                <h3 class="text-center" style="color: white">GROUP LOGIN</h3>
+                <h3 class="text-center" style="color: black">GROUP LOGIN</h3>
               </div>
               <div class="col-md-12">
                

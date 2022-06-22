@@ -1,7 +1,7 @@
    <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/member_groupsingup_create')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           <form action="<?= base_url('website/member_group_otp')?>" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
             <center class="tittle"><h2>NEW GROUP CREATE</h2><h4>SIGN UP(FORM)</h4></center>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                    <label for="mobile_no">Ward No. :</label>
-                   <input type="text" name="ward_no" maxlength="10" minlength="10" placeholder="Ward No :" class="form-control" required>
+                   <input type="text" name="ward_no" placeholder="Ward No :" class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
                     <label for="mobile_no">Sponsor Id No. :</label>

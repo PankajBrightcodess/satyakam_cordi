@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                    <label for="mobile_no">Ward No. :</label>
-                   <input type="text" name="ward_no" maxlength="10" minlength="10" placeholder="Ward No :" class="form-control" required>
+                   <input type="text" name="ward_no" placeholder="Ward No :" class="form-control" required>
                 </div>
                  <div class="col-md-6 mb-2"> 
                     <label for="mobile_no">Sponsor Id No. :</label>

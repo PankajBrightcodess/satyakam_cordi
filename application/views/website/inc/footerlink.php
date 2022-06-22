@@ -53,6 +53,9 @@
 $("#filePhoto").change(function() {
   readURL(this);
 });
+$("#professor_sign").change(function() {
+  readURL(this);
+});
  });
  </script>
  <script type="text/javascript">
