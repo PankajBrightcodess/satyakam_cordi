@@ -121,7 +121,7 @@
                             <label>Sex (FOR WOMEN ONLY)</label>
                             <select class="form-control" name="sex">
                               <option value="">---SELECT---</option>
-                              <option value="rural">Female</option>
+                              <option value="Female">Female</option>
                             </select>
                           </div>
                           <div class="col-md-3 mb-3">

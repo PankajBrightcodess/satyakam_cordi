@@ -16,7 +16,7 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Join The Club</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/club_membership');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>

@@ -14,14 +14,16 @@
                                     <thead>
                                         <tr>  
                                             <th>S.NO.</th>
-                                            <th>MEMBER ID</th>                
-                                            <th>MEMBER NAME</th>                
-                                            <th>DATE OF BIRTH</th>
-                                            <th>FATHER NAME</th>
+                                            <th>USERID NO</th>                
+                                            <th>PASSWORD</th>                
+                                            <th>USER NAME</th>
+                                            <th>SUBSCRIPTION DATE</th>
+                                            <th>FATHER'S/HUSBAND'S NAME</th>
+                                            <th>NOMINEE NAME</th>
+                                            <th>RELATION</th>
                                             <th>MOBILE NO</th>
-                                            <th>AADHAR NO</th>
-                                            <th>DESIGNATION</th>
-                                            <th>ADDED ON</th>
+                                            <th>EMAIL</th>
+                                            <th>WEBLINK</th>
                                            
                                         </tr>
                                     </thead>
@@ -32,15 +34,17 @@
                                             foreach($member_list as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td ><?php echo $i ?></td>
-                                            <td ><?php echo $val['member_id'];?></td>
+                                            <td ><?php echo $val['username'];?></td>
+                                            <td ><?php echo $val['password'];?></td>
                                             <td ><?php echo $val['member_name'];?></td>
-                                            <td ><?php echo $val['dob'];?></td>
+                                            <td ><?php echo date('d-m-Y', strtotime($val['inception_date'])); ?></td>
                                             <td ><?php echo $val['father_name']; ?></td>
-                                            <td ><?php echo $val['mobile']; ?></td>
-                                            <td ><?php echo $val['aadhar_no']; ?></td>
-                                            <td ><?php echo $val['designation'];?></td>
+                                            <td ><?php echo $val['nominee_name']; ?></td>
+                                            <td ><?php echo $val['nominee_relation'];?></td>
+                                            <td ><?php echo $val['mobile'];?></td>
+                                            <td ><?php echo $val['email'];?></td>
                                            
-                                            <td ><?php echo date('d-m-Y',strtotime($val['added_on'])); ?></td>
+                                            <td ><a href="<?= base_url('website/submember_login');?>" class="btn btn-sm btn-success">LOGIN</a></td>
                                         </tr>
                                        <?php 
                                         }

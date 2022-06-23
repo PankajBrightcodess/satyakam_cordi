@@ -3760,6 +3760,13 @@ class Website extends CI_Controller {
 		$this->load->view('website/template_2',$d);
 	}
 
+	public function member_submember_list(){
+		$id = $_SESSION['member_id'];
+		$d['member_list']=$this->Website_model->get_member_submemberlist($id);
+		$d['v'] = 'website/member_submember_list';
+		$this->load->view('website/template_2',$d);
+	}
+
 	public function submember_signup(){
 			$id = $_SESSION['member_id'];
 			$length = 5;
@@ -4558,7 +4565,7 @@ class Website extends CI_Controller {
 				  }
 			  }
 			  $extraimagepath = json_encode($img);
-			$data = $this->input->post();
+			  $data = $this->input->post();
 			// echo PRE;
 			// print_r($data);die;
 			$group_signup_id = $data['group_signup_id'];
@@ -4630,17 +4637,13 @@ class Website extends CI_Controller {
 					else{
 						redirect('website/member_login_group');
 					}
-
 		    	}
-			
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$record['verify']);
 			redirect('website/member_login_group');
 		}
 	}
-
-
 // ...................team close......................................
 
 	// '''''''''''''''''''''''''''''''''''account start'''''''''''''''''''''''''''''''''
@@ -4665,7 +4668,58 @@ class Website extends CI_Controller {
 
 	public function adddivision(){
 		$d['depart'] = $this->Website_model->get_departlist();
-			$d['v'] = 'website/division';
-			$this->load->view('website/template_1',$d);
+		$d['v'] = 'website/division';
+		$this->load->view('website/template_1',$d);
+	}
+
+	// '''''''''''''''''''''''''''''CLUB START''''''''''''''''''''''
+	public function club_membership(){
+		$d['state'] = $this->Website_model->get_statelist();	
+		$d['v'] = 'website/club_membership';
+		$this->load->view('website/template_2',$d);
+	}
+
+
+	public function add_club_membership(){
+		$data = $this->input->post();
+	      $upload_path = './assets/uploads/club/';	
+	      $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+		  if($_FILES['image']['name'] !=''){
+		  	$image = upload_file("image", $upload_path, $allowed_types, time());
+
+			  if ($image !='') {
+				  $data['image'] = $image['path'];
+			  }
+		  }
+		$result = $this->Website_model->add_club_membership_model($data);
+		$inserted_id = $result['inserted_id'];
+		$this->session->set_userdata();
+		print_r($_SESSION);die;
+		if($result['verify']=true){
+
+			
+
+			$this->session->set_flashdata('web_msg','Club Successfully Create');
+			redirect('website/club_payment');
+		}else{
+			$this->session->set_flashdata('web_err_msg','Something Error!!!');
+			redirect('website/member_login_group');
+		}
+
+
+	}
+
+	public function club_payment(){
+		$data['title'] = "Club Registration Payment";            
+        $id = $this->session->userdata('inserted_id');
+        print_r($id);die;
+        $data['rows']=$this->Website_model->fatch_club_details($id);
+    	echo PRE;
+    	print_r($data['rows']);die;
+        $data['v'] = 'website/club_payment_request';
+      	$this->load->view('website/template_2',$data);
+        //$order_id_array = json_decode($order_value,true);        
+        // $showdata = array();$total_amount = 0;$orderno = array();$show_id=0;
+        
 	}
 }

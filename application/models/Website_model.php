@@ -1871,8 +1871,26 @@ class Website_model extends CI_Model{
 	}
 
 	public function getgroup_memberlist($ids){
-		$query = $this->db->get_where('group_details',array('status'=>1,'sign_up_id'=>$ids));
-		return  $query->result_array();
+		$where = "t1.sign_up_id='$ids'";
+		$this->db->where($where);
+		$this->db->select('t1.*,t2.email,t2.nominee_name,t2.nominee_relation,t3.username,t3.password,t4.inception_date');
+		$this->db->from('group_details t1');
+		$this->db->join('member_details t2','t1.member_id=t2.membership_no','left');
+		$this->db->join('project_member t3','t2.signup_id=t3.id','left');
+		$this->db->join('stk_group_signup t4','t1.sign_up_id=t4.id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
+	}
+
+	public function get_member_submemberlist($id){
+		$this->db->where(['t2.sponsor_id'=>$id,'t2.created_by'=>$id]);
+		$this->db->select('t1.id,t1.nominee_name,t1.nominee_relation,t1.app_date,t2.*');
+		$this->db->from('member_details t1');
+		$this->db->join('project_member t2','t1.signup_id=t2.id','left');
+		$query = $this->db->get();
+		$result =  $query->result_array();
+		return $result;
 	}
 
 	public function group_login($data){
@@ -2023,6 +2041,31 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
+	}
+
+	public function add_club_membership_model($data){
+		$arr[] = $data['confirm_1'];
+		$arr[] = $data['confirm_2'];
+		$arr[] = $data['confirm_3'];
+		$arr[] = $data['confirm_4'];
+		unset($data['confirm_1']);
+		unset($data['confirm_2']);
+		unset($data['confirm_3']);
+		unset($data['confirm_4']);
+		$final_conf = json_encode($arr);
+		$length = 15;
+		 $request_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+		$data['confirm']= $final_conf;
+		$data['request_id']=$request_no;
+		$data['added_on']=date('Y-m-d');
+		$status['varify']=$this->db->insert('club_details',$data);
+		 $status['inserted_id'] = $this->db->insert_id();
+		return $status;
+	}
+
+	public function fatch_club_details($id){
+		$query = $this->db->get_where('club_details',array('status'=>1,'id'=>$id));
+		    return $query->row_array();
 	}
 
 
