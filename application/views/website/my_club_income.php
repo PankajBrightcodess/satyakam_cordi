@@ -31,7 +31,7 @@
                         <th scope="col" colspan="2">User Id No. :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_id'])){ echo $club_income_details[0]['member_id']; } ?></th>
                       </tr> 
                       <tr>
-                        <th scope="col" colspan="2">Outhorized Member : &nbsp;&nbsp;<?php if($club_income_details[0]['member_name']){ echo $club_income_details[0]['member_name']; } ?></th>
+                        <th scope="col" colspan="2">Outhorized Member : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_name'])){ echo $club_income_details[0]['member_name']; } ?></th>
                       </tr> 
                        <tr>
                         <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
@@ -39,7 +39,7 @@
                       </tr> 
                       <tr>
                         <th scope="col">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
-                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if($club_income_details[0]['member_creator']==0){echo $club_income_details[0]['created_by'];}else{
+                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ echo $club_income_details[0]['created_by'];}else{
                           echo $club_income_details[0]['member_creator'];
                         } ?></th>
                       </tr> 
