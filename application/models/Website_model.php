@@ -1784,6 +1784,17 @@ class Website_model extends CI_Model{
 			
 	}
 
+	public function get_allclubincome($id){
+		$this->db->where('t1.member_id',$id);
+		$this->db->select('t1.*,t2.username,t2.sponsor_id as member_creator,t2.created_by,t3.state,t4.division');
+		$this->db->from('club_details t1');
+		$this->db->join('project_member t2','t1.member_id=t2.id','left');
+		$this->db->join('state t3','t2.state_unit_name=t3.id','left');
+		$this->db->join('division t4','t2.division_unit_name=t4.id','left');
+		$query = $this->db->get();
+		return  $query->result_array();
+	}
+
 	public function group_details($last_group_id){
 		$where = "t1.id='$last_group_id'";
 		$this->db->where($where);
@@ -2057,6 +2068,7 @@ class Website_model extends CI_Model{
 		 $request_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 		$data['confirm']= $final_conf;
 		$data['request_id']=$request_no;
+		$data['member_id']=$_SESSION['member_id'];
 		$data['added_on']=date('Y-m-d');
 		$status['varify']=$this->db->insert('club_details',$data);
 		 $status['inserted_id'] = $this->db->insert_id();
@@ -2066,6 +2078,23 @@ class Website_model extends CI_Model{
 	public function fatch_club_details($id){
 		$query = $this->db->get_where('club_details',array('status'=>1,'id'=>$id));
 		    return $query->row_array();
+	}
+
+
+	public function update_club_success($postdata){
+	 $payment_id = $postdata['razorpay_payment_id'];
+      $paymentdetail = json_encode($postdata);
+      $inserted_id = $this->session->userdata('inserted_id');
+      //$order_array = json_decode($order_id,true);
+      if(!empty($inserted_id)){
+        $updatestatus= $this->db->update('club_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$inserted_id));
+        $this->session->unset_userdata('inserted_id');
+        if($updatestatus==true){
+        	return true;
+        }else{
+        	return false;
+        }         
+      } 
 	}
 
 

@@ -184,15 +184,9 @@ class Admin extends CI_Controller {
 			}
 			echo $html;
 	}
-
-	
-
 	public function savesubmenu(){
 		$data = $this->input->post();
-		// echo PRE;
-		// print_r($data);die;
 		$result = $this->Website_model->add_submenu($data);
-	
 		if($result){
 			$this->session->set_flashdata('msg','Submenu Add Successfully');
 		}else{

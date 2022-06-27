@@ -38,6 +38,7 @@
                                <div class="col-md-6 col-6">
                                  <label>District Unit Name</label>
                                   <input type="text" name="dist_no"   value="" placeholder="District Name :" class="form-control" required>
+                                  
                                </div>
                                <div class="col-md-6 col-6 mb-2">
                                   <label>Sponsor Id Number</label>

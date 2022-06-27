@@ -334,8 +334,6 @@ class Website extends CI_Controller {
 
 		public function create_officer_details(){
 			$data = $this->input->post();
-		  	
-			
 			$upload_path = './assets/uploads/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if(!empty($_FILES['image']['name'])){
@@ -390,8 +388,7 @@ class Website extends CI_Controller {
 		  }
 		  
 		  $data['signup_id'] = $_SESSION['signupid'];
-		 
-			$run=$this->Website_model->officer_details_model($data);
+		  $run=$this->Website_model->officer_details_model($data);
 			if($run){
 				unset($_SESSION['signupid']);
 				$this->session->set_flashdata("web_msg","News Added Successfully!!");
@@ -3745,6 +3742,30 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
+	public function my_club_group(){
+		if(!empty($_SESSION['member_id'])){	
+			$d['v'] = 'website/my_club_status';
+			$id = $_SESSION['member_id'];
+			$d['club_income']= $this->Website_model->get_allclubincome($id);
+			
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+
+	public function club_income(){
+		if(!empty($_SESSION['member_id'])){	
+			$id = $_SESSION['member_id'];
+			$d['club_income_details']= $this->Website_model->get_allclubincome($id);
+			$d['v'] = 'website/my_club_income';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
 	public function member_group_status(){
 
 			$id = $_SESSION['member_id'];
@@ -4682,6 +4703,8 @@ class Website extends CI_Controller {
 
 	public function add_club_membership(){
 		$data = $this->input->post();
+		// echo PRE;
+		// print_r($data);die;
 	      $upload_path = './assets/uploads/club/';	
 	      $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
 		  if($_FILES['image']['name'] !=''){
@@ -4692,14 +4715,9 @@ class Website extends CI_Controller {
 			  }
 		  }
 		$result = $this->Website_model->add_club_membership_model($data);
-		$inserted_id = $result['inserted_id'];
-		$this->session->set_userdata();
-		print_r($_SESSION);die;
+		$inserted_id = array('inserted_id'=>$result['inserted_id']);
+		$this->session->set_userdata($inserted_id);
 		if($result['verify']=true){
-
-			
-
-			$this->session->set_flashdata('web_msg','Club Successfully Create');
 			redirect('website/club_payment');
 		}else{
 			$this->session->set_flashdata('web_err_msg','Something Error!!!');
@@ -4712,14 +4730,19 @@ class Website extends CI_Controller {
 	public function club_payment(){
 		$data['title'] = "Club Registration Payment";            
         $id = $this->session->userdata('inserted_id');
-        print_r($id);die;
-        $data['rows']=$this->Website_model->fatch_club_details($id);
-    	echo PRE;
-    	print_r($data['rows']);die;
+        $data['row']=$this->Website_model->fatch_club_details($id);
         $data['v'] = 'website/club_payment_request';
-      	$this->load->view('website/template_2',$data);
-        //$order_id_array = json_decode($order_value,true);        
-        // $showdata = array();$total_amount = 0;$orderno = array();$show_id=0;
-        
+      	$this->load->view('website/template_2',$data); 
 	}
+
+	public function club_success(){
+      $postdata = $this->input->post();
+       $result=$this->Website_model->update_club_success($postdata);
+        if($result==true){
+               $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
+               redirect('website/my_club_group_features');
+        }else{
+        	$this->session->set_flashdata('web_err_msg',"Something Error");
+        }
+    }
 }

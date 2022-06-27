@@ -1,9 +1,9 @@
 <?php 
 $someprice = $row['amount'];
 $paisaprice = $someprice*100;
-$orderno = $row['request_no'];
-$custname = $row['candidate_name'];
-$productinfo = 'Order From Customer';
+$orderno = $row['request_id'];
+$custname = $row['member_name'];
+$productinfo = 'Order From Club Member';
 $txnid = time();
 $surl = base_url("website/success/");
 $furl = base_url("website/success/");
@@ -13,8 +13,8 @@ $total = $paisaprice;
 $amount = $someprice;
 $merchant_order_id = strtoupper(random_string('alpha', 4)).random_string('numeric', 4);
 $card_holder_name = $custname;
-$email =  'abc@gmail.com';
-$phone = $rows['mobile_no'];
+$email =  $row['email'];
+$phone = $row['mobile_no'];
 $name = "Customer of $custname - $orderno";
 $return_url = site_url().'razorpay/callback';
 ?>
@@ -48,7 +48,7 @@ $return_url = site_url().'razorpay/callback';
                                 <div class="form-row p-2">
                                     <div class="col-1 col-md-2"></div>
                                     <div class="col-10 col-md-8 text-center">
-                                        <?php echo form_open('website/success','id="razorpay-form"'); ?>
+                                        <?php echo form_open('website/club_success','id="razorpay-form"'); ?>
                                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
                                         <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $merchant_order_id; ?>"/>
                                         <input type="hidden" name="merchant_trans_id" id="merchant_trans_id" value="<?php echo $txnid; ?>"/>

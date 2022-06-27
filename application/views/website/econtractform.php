@@ -177,6 +177,7 @@
                           <div class="col-md-12">
                             <input type="text" name="bank_name" placeholder="Bank Name" class="form-control mb-3" required>
                             <input type="text" name="branch_name" placeholder="Branch Name" class="form-control mb-3" required>
+                            <input type="text" name="ac_no" placeholder="Account No" class="form-control mb-3" required>
                             <input type="text" name="type_of_account" placeholder="Type Of Account" class="form-control mb-3" required>
                             <input type="text" name="ifsc_code" placeholder="IFSC Code" class="form-control mb-3" required>
                           </div>
