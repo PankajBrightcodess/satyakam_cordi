@@ -3747,7 +3747,6 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/my_club_status';
 			$id = $_SESSION['member_id'];
 			$d['club_income']= $this->Website_model->get_allclubincome($id);
-			
 		    $this->load->view('website/template_2',$d);
 		}
 		else{
