@@ -3765,6 +3765,54 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
+
+	public function bike_fund(){
+		if(!empty($_SESSION['member_id'])){	
+			$id = $_SESSION['member_id'];
+			$d['club_income_details']= $this->Website_model->get_allclubincome($id);
+			$d['v'] = 'website/bike_fund';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+
+	public function car_fund(){
+		if(!empty($_SESSION['member_id'])){	
+			$id = $_SESSION['member_id'];
+			$d['club_income_details']= $this->Website_model->get_allclubincome($id);
+			$d['v'] = 'website/car_fund';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+
+	public function house_fund(){
+		if(!empty($_SESSION['member_id'])){	
+			$id = $_SESSION['member_id'];
+			$d['club_income_details']= $this->Website_model->get_allclubincome($id);
+			$d['v'] = 'website/house_fund';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
+
+	public function myclub_report(){
+		if(!empty($_SESSION['member_id'])){	
+			$id = $_SESSION['member_id'];
+			$d['club_income_details']= $this->Website_model->get_allclubincome($id);
+			$d['v'] = 'website/myclub_report';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+	}
 	public function member_group_status(){
 
 			$id = $_SESSION['member_id'];

@@ -36,22 +36,22 @@
                   <tr>
                     <th scope="row">4</th>
                     <td>Bike Fund-Income</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/bike_fund');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
                     <td>Car Fund Income</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/car_fund');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                    <tr>
                     <th scope="row">6</th>
                     <td>House Fund Income</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/house_fund');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                    <tr>
                     <th scope="row">7</th>
                     <td>My Reports</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/myclub_report');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                    <tr>
                     <th scope="row">8</th>
