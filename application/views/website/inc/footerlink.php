@@ -349,6 +349,36 @@ $("#professor_sign").change(function() {
 });
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+  var max_fields      = 500;
+  var wrapper       = $(".myclub_report"); //Fields wrapper
+  var add_button      = $(".add_clubreport"); //Add button ID
+  
+  var x = 1; //initlal text box count
+  $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+    if(x < max_fields){ //max input box allowed
+      x++; //text box increment
+      $(wrapper).append('<tr><td><select class="form-control" name="month[]" id="month"><option value="">--SELECT--</option><?php
+                            for ($i=1; $i < 13; $i++) { 
+                               $value = date('M',strtotime(date('Y-'.$i)));
+                               ?><option value="<?php echo $i;?>"><?php echo $value;?></option><?php
+                            }
+                           ?>
+                          </select></td><td><input type="date" name="close_date[]" id="close_date" class="form-control"></td><td><input type="text" name="rank[]" id="rank" class="form-control"></td><td><input type="text" name="level[]" id="level" class="form-control"></td><td><input type="text" name="club_team[]" id="club_team" class="form-control"></td><td><input type="text" name="bike_fund[]" id="bike_fund" class="form-control"></td><td><input type="text" name="domin_deduct[]" id="domin_deduct" class="form-control"></td><td><input type="text" name="payment[]" id="payment" class="form-control"></td><td><input type="text" name="bill_no[]" id="bill_no" class="form-control"></td> <td><input type="date" name="billing_date[]" id="billing_date" class="form-control"></td> <td><input type="text" name="check_no[]" id="check_no" class="form-control"></td><td><a class="btn btn-info  btn-sm remove_clubreport" ><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>'); 
+    }
+  });
+  
+  $('body').on('click','.remove_clubreport', function(e){ 
+  
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+});
+</script>
+
 
 
 <script>
@@ -568,6 +598,26 @@ $('body').on('change','.year', function(){
         success: function(data){
           console.log(data);
           $('#post').html(data);
+        }
+      });
+    });
+
+     $('body').on('keyup','#member_id',function(){
+      var member_id=$(this).val();
+      $.ajax({
+        type:"POST",
+        url:"<?php echo base_url("website/get_memberlist_byid"); ?>",
+        data:{member_id:member_id},
+        dataType:'JSON',
+        success: function(data){
+          if(data.applicant_name!=''){
+            $('#mem_name').val(data.applicant_name);
+            $('#fath_name').val(data.father_name);
+            $('#dob_date').val(data.dob);
+          }else{
+             swal("Opps!", "Your membership Id is Not Exist!", "error");
+          }
+          
         }
       });
     });

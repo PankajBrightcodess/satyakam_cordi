@@ -129,6 +129,18 @@ class Website_model extends CI_Model{
     	return $query->row_array();
 	}
 
+	public function e_contract_doc_list($id){
+		$allrecord = $this->all_recordlist($id);
+		$qry = $this->db->get_where('my_document',array('depart_id'=>$allrecord['department_id'],'posts'=>$allrecord['post_id']));
+		return $qry->row_array();
+		
+	}
+
+	public function all_recordlist($id){
+		$query=$this->db->select('department_id, post_id')->from('officer_details')->where('id',$id)->get()->row_array();
+		return $query;
+	}
+
 
 
 	public function insert_member_all_records($data,$result){
@@ -192,10 +204,9 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row_array();
 	}
-
+	// '''''suppense function start'''''''''
 	public function get_teamlist($depart_id){
 		$id = $depart_id['depart_id'];
-		print_r($id);die;
 		$this->db->where('id',$last_id);
 		$this->db->select('t1.*,t2.state,t3.division');
 		$this->db->from('project_member t1');
@@ -204,6 +215,18 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row_array();
 
+	}
+	// '''''suppense function end'''''''''
+
+
+	public function get_teamlistofficer($depart_id){
+		$id = $depart_id['depart_id'];
+		$this->db->where('t1.department_id',$id);
+		$this->db->select('t1.*,t2.name as statename');
+		$this->db->from('officer_details t1');
+		$this->db->join('all_state t2','t1.state_id=t2.id','left');
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 
 	public function vacencylist(){
@@ -500,15 +523,22 @@ class Website_model extends CI_Model{
 		return $result;	
 	}
 
+
+	public function getmemberlist_model($member_no){
+		// $this->db->Select();
+		// $this->db->from('member_details t1');
+		// $this->db->join('project_member t2','t1.signup')
+		$query = $this->db->get_where('member_details',array('membership_no'=>$member_no,'status'=>1));
+		return  $query->row_array();
+	}
+
 	public function account_creates_model($data){
-		// echo PRE;
-		// print_r($data);die;
 		 $membership_on = $data['member_id'];
 		 $where = "membership_no='$membership_on'";
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
 		 $ac_no = $this->account_no_create();
-		 	
+
 		 if($result==true && !empty($ac_no)){
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
@@ -554,7 +584,6 @@ class Website_model extends CI_Model{
 		}
 		else{
 			$result = $query->row_array();
-			echo PRE;
 			$ac_no = trim($result['account_no'],"SATYA");
 			$ac_no = $ac_no+1;
 			$final_acno = 'SATYA'.$ac_no;
@@ -1044,7 +1073,6 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
-
 	}
 
 	public function add_myoffice($data){
@@ -1794,6 +1822,20 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		return  $query->result_array();
 	}
+
+	public function my_clubreport_insert_model($final_data){
+		foreach ($final_data as $key => $value) {
+			$result[] = $this->db->insert('member_club_report',$value);
+		}
+		return $result;
+	}
+
+
+
+
+
+
+
 
 	public function group_details($last_group_id){
 		$where = "t1.id='$last_group_id'";

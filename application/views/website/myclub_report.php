@@ -1,8 +1,8 @@
 <section class="officialservices">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <form method="POST" action="<?= base_url('website/expense_insert')?>">
+            <form method="POST" action="<?= base_url('website/my_clubreport_insert')?>">
             <div class="row">
               <div class="col-md-12 mb-2">
                 <div class="table-responsive">
@@ -20,32 +20,35 @@
                  <table class="table table-hover" >
                     <thead>
                       <tr>
-                        <th scope="col" colspan="2">Updating Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
+                        <th scope="col" >Updating Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
                         <th scope="col" >To Date :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['added_on'])){ echo date('d-m-Y',strtotime($club_income_details[0]['added_on'])); } ?></th>
+                        <th scope="col">User Name : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['username'])){  echo $club_income_details[0]['username'] ; }?></th>
+                        <th scope="col">User Id No. :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_id'])){ echo $club_income_details[0]['member_id']; } ?></th>
+                         <th scope="col">Outhorized Member : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_name'])){ echo $club_income_details[0]['member_name']; } ?></th>
+                         
                       </tr> 
                       <tr>
-                        <th scope="col" colspan="2">User Name : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['username'])){  echo $club_income_details[0]['username'] ; }?></th>
-                        <th scope="col" rowspan="6"></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col" colspan="2">User Id No. :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_id'])){ echo $club_income_details[0]['member_id']; } ?></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col" colspan="2">Outhorized Member : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_name'])){ echo $club_income_details[0]['member_name']; } ?></th>
-                      </tr> 
-                       <tr>
-                        <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
+                       
+                          <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
                         <th scope="col">Divison Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['division'])){ echo $club_income_details[0]['division']; } ?></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
-                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}else{
+                         <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
+                           <th scope="col">Divison Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['division'])){ echo $club_income_details[0]['division']; } ?></th>
+                         <th scope="col">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
+                        
+                      </tr>
+                      
+                       <tr>
+                        <th scope="col" colspan="2">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}else{
                           echo $club_income_details[0]['member_creator'];
                         } ?></th>
+                        <th scope="col" colspan="2">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>
+                        <th scope="col">E-Mail : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['email']; } ?></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>
-                        <th scope="col">E-Mail : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['email']; } ?></th>
+                       
+                      </tr> 
+                      <tr>
+                        
                       </tr>
                     </thead>
                   </table> 
@@ -69,45 +72,45 @@
                         <th>Check No.</th> 
                         <th colspan="2">Action</th>  
                       </tr>
-                      <tr>
-                        <th colspan="14"><button class="btn-sm btn-success btn add_expense">+</button></th>
+                      <!-- <tr>
+                        <th colspan="14"><button class="btn-sm btn-success btn add_clubreport">+</button></th> -->
                         
                       </tr>
                     </thead>
-                    <tbody class="billing">
+                    <tbody class="myclub_report">
                       <tr>
-                        <td><input type="text" name="equipment[]" id="equipment" class="form-control"></td>
-                        <td><input type="text" name="quantity[]" id="quantity" class="form-control"></td>
-                        <td><input type="text" name="rate[]" id="rate" class="form-control"></td>
-                        <td><input type="text" name="amount[]" id="amount" class="form-control"></td>
-                        <td><input type="text" name="bill[]" id="bill" class="form-control"></td>
-                        <td><input type="text" name="payment_receipt[]" id="payment_receipt" class="form-control"></td>
-                        <td><input type="text" name="payment_method[]" id="payment_method" class="form-control"></td>
-                        <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td>
-                         <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td> <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td> <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td> <td><input type="text" name="neft_check[]" id="neft_check" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs remove_equipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td>
+                          <select class="form-control" name="month[]" id="month">
+                            <option value="">--SELECT--</option>
+                           <?php
+                            for ($i=1; $i < 13; $i++) { 
+                               $value = date('M',strtotime(date('Y-'.$i)));
+                               ?><option value="<?php echo $i;?>"><?php echo $value;?></option><?php
+                            }
+                           ?>
+                          </select>
+                         <!--  <input type="text" name="month[]" id="month" value="<?= date('M');?>" class="form-control"> --></td>
+                        <td><input type="date" name="close_date[]" id="close_date" class="form-control"></td>
+                        <td><input type="text" name="rank[]" id="rank" class="form-control"></td>
+                        <td><input type="text" name="level[]" id="level" class="form-control"></td>
+                        <td><input type="text" name="club_team[]" id="club_team" class="form-control"></td>
+                        <td><input type="text" name="bike_fund[]" id="bike_fund" class="form-control"></td>
+                        <td><input type="text" name="domin_deduct[]" id="domin_deduct" class="form-control"></td>
+                        <td><input type="text" name="payment[]" id="payment" class="form-control"></td>
+                         <td><input type="text" name="bill_no[]" id="bill_no" class="form-control"></td> <td><input type="date" name="billing_date[]" id="billing_date" class="form-control"></td> <td><input type="text" name="check_no[]" id="check_no" class="form-control"></td>
+                        <td><button class="btn-sm btn-success btn add_clubreport"><i class="fa fa-plus" aria-hidden="true"></i></button><!-- <button class="btn btn-info btn-xs remove_clubreport" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button> --></td>
                       </tr>
                     </tbody>
                   </table>
                   <div class="mb-2">
-                  <input type="text" name="total_revenue" class="form-control" placeholder="Total Expense">
+                  <input type="text" name="total_revenue" class="form-control" placeholder="In Terms Of Total Revenue">
                 </div>
 
                 
                  
               </div>
-              <div class="col-md-12 mb-5">
-                <div class="row">
-                <div class="col-md-1 col-1 col-lg-1"><input type="checkbox" id="mandatory1" name="mandatory1" value="1"></div>
-                <div class="col-md-11 col-11 col-lg-11"><label>DAILY EXPENSES WILL BE VALID IN THE ITEMS ATTESTED BY THE INSTITUTE THE DETAILS OF ILLEGAL EXPENDITURE WILL BE CONSIDERED AGAINST THE RULES OF THE INSTITUTE AND IT WILL NEVER BE ACCEPTED.</label></div>
-                 
-              </div>
-              </div>
-             <!--  <div class="col-md-4"><a href="" class="btn btn-sm btn-success form-control">Progress</a></div>
-              <div class="col-md-4 mb-5"><a href="" class="btn btn-sm btn-warning form-control">Edit</a></div>
-              <div class="col-md-4 mb-5"><a href="" class="btn btn-sm btn-info form-control">Cancel</a></div> -->
-              <div class="col-md-6">Report Confirmation Number :</div>
-              <div class="col-md-6 mb-5"><input type="text" name="report_confirm" placeholder="Please Provide Confirmation Number" class="form-control"></div>
+             
+             
               <div class="col-md-12 mb-5 text-center"><input type="submit"  class="btn btn-lg btn-secondary" value="SUBMIT"></div>
 
             </div>

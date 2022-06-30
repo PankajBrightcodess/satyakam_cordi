@@ -61,6 +61,7 @@ class Website extends CI_Controller {
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
+			$d['documents']= $this->Website_model->e_contract_doc_list($id);
 			$d['v'] = 'website/econtractdocx';
 			$this->load->view('website/template_1',$d);
 		}
@@ -3813,6 +3814,42 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 	}
+
+	public function my_clubreport_insert(){
+
+	 	$data = $this->input->post();
+	 	$member_id  = $_SESSION['member_id'];
+	 	$count = count($data['month']);
+	 	for ($i=0; $i < $count; $i++) { 
+	 		$record = array('month'=>$data['month'][$i],'close_date'=>$data['close_date'][$i],'rank'=>$data['rank'][$i],'level'=>$data['level'][$i],'club_team'=>$data['club_team'][$i],'bike_fund'=>$data['bike_fund'][$i],'domin_deduct'=>$data['domin_deduct'][$i],'payment'=>$data['payment'][$i],'bill_no'=>$data['bill_no'][$i],'billing_date'=>$data['billing_date'][$i],'check_no'=>$data['check_no'][$i],'total_revenue'=>$data['total_revenue'],'member_id'=>$member_id, 'added_on'=>date('Y-m-d H:i:s'));
+	 		$final_data[] = $record;
+
+	 	}
+	 	$result = $this->Website_model->my_clubreport_insert_model($final_data);
+	 	$cnt = count($result);
+	 	for ($j=0; $j < $cnt; $j++) { 
+	 		if($result[$j]){
+	 			$this->session->set_flashdata('web_msg','Successfully Created');
+	 		}
+	 		else{
+	 			$this->session->set_flashdata('web_err_msg','This Check No. is Already Exist');
+	 		}
+	 	}
+	 	redirect('website/myclub_report');
+	 	
+	 	
+
+
+	}
+
+
+
+
+
+
+
+
+
 	public function member_group_status(){
 
 			$id = $_SESSION['member_id'];
@@ -4544,19 +4581,25 @@ class Website extends CI_Controller {
 
 		public  function create_account(){
 			$data = $this->input->post();
-			
 			$result = $this->Website_model->account_creates_model($data);
-			// print_r($result);die;
-			$rslt = json_decode($result,true);
-			$submit_count = count($rslt);
-			if($count==$submit_count){
-				$this->session->set_flashdata('err_msg',$result['verify']);
+			// $rslt = json_decode($result,true);
+			// $submit_count = count($rslt);
+			if($result==true){
+				$this->session->set_flashdata('web_msg','Your Account Successfully Created');
 					redirect('website/create_account_page');
 			}
 			else{
+				$this->session->set_flashdata('web_err_msg','Something Error');
 				redirect('website/my_saving_account_features');
 				
 			}
+		}
+
+		public function get_memberlist_byid(){
+			$member_no = $this->input->post('member_id');
+			$result = $this->Website_model->getmemberlist_model($member_no);
+			$json_result = json_encode($result);
+			print_r($json_result);
 		}
 
 

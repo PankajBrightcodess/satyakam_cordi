@@ -632,13 +632,9 @@ public function update_submenu(){
 	}
 
 	public function my_report(){
-		// echo PRE;
 		$depart_id = $this->input->post('depart_id');
-		// print_r($_POST);die;
 		$data['title']="Daily Activity Report(My Office)";
-		$data['datatable'] = true;	
-		// $data['depart'] = $this->Website_model->get_departlist($data);	
-		// $data['post'] = $this->Website_model->get_postlist($data);
+		$data['datatable'] = true;
 		$data['officer_list']= $this->Website_model->get_officer_list_for_myofficedetails($depart_id);
 
 		$this->template->load('pages','my_report',$data);
@@ -2090,9 +2086,7 @@ public function update_submenu(){
 		$depart_id= $this->input->post();
 		 $data['title']="Team List";
 			$data['datatable'] = true;
-			$data['depart'] = $this->Website_model->get_teamlist($depart_id);
-			echo PRE;
-			print_r($data['depart']);die;
+			$data['depart'] = $this->Website_model->get_teamlistofficer($depart_id);
 			$this->template->load('pages','team_list',$data);
 	}
 

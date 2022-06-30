@@ -1,10 +1,10 @@
   <section class="officialservices">
       <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
           <div class="col-md-12">
             <h1 class="tittle">My Club Status</h1>
             <div class="table-responsive">
-              <table class="table table-hover">
+              <table class="table table-hover" style="border:2px dashed #2e3192;">
                 <thead>
                   <tr>
                     <td scope="col">LIC No.</td>
