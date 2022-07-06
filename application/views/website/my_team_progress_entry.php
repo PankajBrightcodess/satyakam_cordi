@@ -81,7 +81,7 @@
                         <td><input type="text" name="fee[]" id="fee" class="form-control"></td>
                         <td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td>
                         <td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs form_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -121,7 +121,7 @@
                         <td><input type="text" name="other_fee1[]" id="other_fee" class="form-control"></td>
                         <td><input type="text" name="total_banking[]" id="total_banking" class="form-control"></td>
                         <td><input type="text" name="banking_id2[]" id="banking_id" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs form1_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -166,7 +166,7 @@
                         <td><input type="text" name="late_fine_fee[]" id="late_fine_fee" class="form-control"></td>
                        
                         <td><input type="text" name="banking_id3[]" id="banking_id" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs form2_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -205,7 +205,7 @@
                         <td><input type="text" name="sponsor_level[]" id="sponsor_level" class="form-control"></td>
                         <td><input type="text" name="joining_fee[]" id="joining_fee" class="form-control"></td>
                         <td><input type="text" name="banking_id4[]" id="banking_id" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs form3_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -247,7 +247,7 @@
                         <td><input type="text" name="departure_km[]" id="departure_km" class="form-control"></td>
                         <td><input type="text" name="other_fee2[]" id="other_fee" class="form-control"></td>
                         <td><input type="text" name="result[]" id="result" class="form-control"></td>
-                        <td><button class="btn btn-info btn-xs duplicate" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                        <td><button class="btn btn-info btn-xs form4_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
                   </table>

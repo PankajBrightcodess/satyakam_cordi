@@ -660,6 +660,7 @@ public function update_submenu(){
 		$data['group'] = $this->Website_model->grouplist($user_id);
 		$data['club'] = $this->Website_model->clublist($user_id);
 		$data['travelling'] = $this->Website_model->travellinglist($user_id);
+
 		if(!empty($data['revenue'])||!empty($data['security'])||!empty($data['group'])||!empty($data['club'])||!empty($data['travelling'])){
 			$data['title']="Daily Activity Report List ";
 			$data['datatable'] = true;	
@@ -1189,8 +1190,7 @@ public function update_submenu(){
 		$data['title']=" Office Expense(My Office)";
 		// $data['datatable'] = true;
 		$depart_id = $this->input->post();
-		$data['expense_list'] = $this->Website_model->get_expenselist($depart_id );
-		
+		$data['expense_list'] = $this->Website_model->get_expenselist($depart_id);
 		$data['post'] = $this->Website_model->get_postlist($data);
 		$this->template->load('pages','office_expense',$data);
 	}
@@ -2084,9 +2084,11 @@ public function update_submenu(){
 
 	public function my_team(){
 		$depart_id= $this->input->post();
+
 		 $data['title']="Team List";
 			$data['datatable'] = true;
-			$data['depart'] = $this->Website_model->get_teamlistofficer($depart_id);
+			$data['depart_list'] = $this->Website_model->get_teamlist($depart_id);
+
 			$this->template->load('pages','team_list',$data);
 	}
 

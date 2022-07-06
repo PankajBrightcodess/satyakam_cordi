@@ -33,35 +33,37 @@
                                     <thead>
                                         <tr>    
                                             <th>S.NO.</th>
-                                            <th>NAME</th>                
-                                            <th>DEPARTMENT</th>                
-                                            <th>POST</th>                                            
-                                            <th>BATCH NO.</th>                                            
-                                            <th>BRANCH</th>                                            
-                                            <th>STATE</th>                                            
-                                            <th>CODE</th>                                            
-                                            <th>MOBILE</th>                                            
-                                            <th>EMAIL</th>
+                                            <th>TEAM HEAD REG. NO.</th>                
+                                            <th>TEAM HEAD NAME</th>                
+                                            <th>TEAM MEMBER NAME</th>                
+                                            <th>FATHER NAME</th>                                       
+                                            <th>ADDRESS</th>                                            
+                                            <th>MOBILE </th>                                            
+                                            <th>EMAIL</th>                                            
+                                            <th>DOB</th>                                            
+                                            <th>AADHAR</th>                                            
+                                            <th>PAN</th>
                                             <th>ACTION</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i=0;
-                                         if(!empty($officer_list)){
-                                            foreach($officer_list as $val){$i++; $id=$val['id']; ?>
+                                         if(!empty($depart_list)){
+                                            foreach($depart_list as $val){$i++; $id=$val['id']; ?>
                                         <tr>
                                             <td ><?php echo $i ?></td>
+                                            <td ><?php echo $val['reg_no'];?></td>
+                                            <td ><?php echo $val['team_head_first_name'].' '.$val['team_head_middle_name'].' '.$val['team_head_last_name']; ?></td>
                                             <td ><?php echo $val['officer_first_name'].' '.$val['officer_middle_name'].' '.$val['officer_last_name']; ?></td>
-                                            <td ><?php echo $val['department'] ?></td>
-                                            <td ><?php echo $val['post'] ?></td>
-                                            <td ><?php echo $val['batch_no'] ?></td>
-                                            <td ><?php echo $val['Join_in_branch'] ?></td>
-                                            <td ><?php echo $val['state'] ?></td>
-                                            <td ><?php echo $val['code'] ?></td>
-                                            <td ><?php echo $val['mobile_no'] ?></td>
-                                            <td ><?php echo $val['email_id'] ?></td>
+                                            <td ><?php echo $val['father_first'].' '.$val['father_middle'].' '.$val['father_last']; ?></td>
+                                            <td ><?php echo $val['query']; ?></td>
+                                            <td ><?php echo $val['mobile_no']; ?></td>
+                                            <td ><?php echo $val['email_id']; ?></td>
+                                            <td ><?php echo date('d-m-Y',strtotime($val['dob']));?></td>
+                                            <td ><?php echo $val['aadhar_no'] ?></td>
+                                            <td ><?php echo $val['pan_no'] ?></td>
                                             <td><span class="float-right">
-                                                <a href="<?php echo base_url('admin/daily_report_list?id='.$val['id'])?>" class="btn btn-success btn-xs">View Reports</a>
+                                                <a href="<?php echo base_url('admin/daily_report_list?id='.$val['id']);?>" class="btn btn-success btn-xs">View Reports</a>
                                              <!-- <button type="button" class="btn btn-success btn-xs updt" data-id="<?php echo $val['id'];?>">View Reports</button> -->
                                            </td>
                                         </tr>

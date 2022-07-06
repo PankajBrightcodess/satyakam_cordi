@@ -143,13 +143,19 @@ $("#professor_sign").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name[]" id="post_name" class="form-control"></td><td><input type="text" name="fee[]" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="registration_no[]" id="registration_no" class="form-control"></td><td><input type="text" name="applicant_name[]" id="applicant_name" class="form-control"></td><td><input type="text" name="father_husband[]" id="father_husband" class="form-control"></td><td><input type="date" name="dob[]" id="dob" class="form-control"></td><td><input type="text" name="post_name[]" id="post_name" class="form-control"></td><td><input type="text" name="fee[]" id="fee" class="form-control"></td><td><input type="date" name="date_payment[]" id="date_payment" class="form-control"></td><td><input type="text" name="banking_id1[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs form_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
+   $('body').on('click','.form_del', function(e){ 
   
-  $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
+  
+  // $(wrapper).on("click",".form_del", function(e){ //user click on remove text
+  //   e.preventDefault(); $(this).parent('tr').remove(); x--;
+  // })
 });
 </script>
  <script type="text/javascript">
@@ -163,13 +169,16 @@ $("#professor_sign").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="reg_no[]" id="reg_no[]" class="form-control"></td><td><input type="text" name="name[]" id="name" class="form-control"></td><td><input type="text" name="name_of_post[]" id="name_of_post" class="form-control"></td><td><input type="text" name="security_fund[]" id="security_fund" class="form-control"></td><td><input type="text" name="training_fee[]" id="training_fee" class="form-control"></td><td><input type="text" name="processing_fee[]" id="processing_fee" class="form-control"></td><td><input type="text" name="other_fee1[]" id="other_fee" class="form-control"></td><td><input type="text" name="total_banking[]" id="total_banking" class="form-control"></td><td><input type="text" name="banking_id2[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field1" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="reg_no[]" id="reg_no[]" class="form-control"></td><td><input type="text" name="name[]" id="name" class="form-control"></td><td><input type="text" name="name_of_post[]" id="name_of_post" class="form-control"></td><td><input type="text" name="security_fund[]" id="security_fund" class="form-control"></td><td><input type="text" name="training_fee[]" id="training_fee" class="form-control"></td><td><input type="text" name="processing_fee[]" id="processing_fee" class="form-control"></td><td><input type="text" name="other_fee1[]" id="other_fee" class="form-control"></td><td><input type="text" name="total_banking[]" id="total_banking" class="form-control"></td><td><input type="text" name="banking_id2[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs form1_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  $(wrapper).on("click",".remove_field1", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+   $('body').on('click','.form1_del', function(e){ 
+  
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
 });
 </script>
 <script type="text/javascript">
@@ -183,13 +192,16 @@ $("#professor_sign").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append(' <tr><td><input type="text" name="group_no_a[]" id="group_no" class="form-control"></td><td><input type="text" name="group_name_a[]" id="group_name" class="form-control"></td><td><input type="text" name="group_address[]" id="group_address" class="form-control"></td><td><select class="form-control" name="meeting_no[]"><option>---SELECT---</option><option value="1 week">1 Week</option><option value="2 week">2 Week</option><option value="3 week">3 Week</option><option value="4 week">4 Week</option><option value="5 week">5 Week</option></select></td><td><input type="text" name="passbook_issue_fee[]" id="passbook_issue_fee" class="form-control"></td><td><input type="text" name="weekly_saving_deposit[]" id="weekly_saving_deposit" class="form-control"></td><td><input type="text" name="emi_deposit[]" id="emi_deposit" class="form-control"></td><td><input type="text" name="bouncing_fee[]" id="bouncing_fee" class="form-control"></td><td><input type="text" name="late_fine_fee[]" id="late_fine_fee" class="form-control"></td><td><input type="text" name="banking_id3[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field2" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append(' <tr><td><input type="text" name="group_no_a[]" id="group_no" class="form-control"></td><td><input type="text" name="group_name_a[]" id="group_name" class="form-control"></td><td><input type="text" name="group_address[]" id="group_address" class="form-control"></td><td><select class="form-control" name="meeting_no[]"><option>---SELECT---</option><option value="1 week">1 Week</option><option value="2 week">2 Week</option><option value="3 week">3 Week</option><option value="4 week">4 Week</option><option value="5 week">5 Week</option></select></td><td><input type="text" name="passbook_issue_fee[]" id="passbook_issue_fee" class="form-control"></td><td><input type="text" name="weekly_saving_deposit[]" id="weekly_saving_deposit" class="form-control"></td><td><input type="text" name="emi_deposit[]" id="emi_deposit" class="form-control"></td><td><input type="text" name="bouncing_fee[]" id="bouncing_fee" class="form-control"></td><td><input type="text" name="late_fine_fee[]" id="late_fine_fee" class="form-control"></td><td><input type="text" name="banking_id3[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs form2_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  $(wrapper).on("click",".remove_field2", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+   $('body').on('click','.form2_del', function(e){ 
+  
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
 });
 </script>
 <script type="text/javascript">
@@ -203,13 +215,16 @@ $("#professor_sign").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="group_no_b[]" id="group_no" class="form-control"></td><td><input type="text" name="group_name_b[]" id="group_name" class="form-control"></td><td><input type="text" name="club_id_no[]" id="club_id_no" class="form-control"></td><td><input type="text" name="club_member_name[]" id="club_member_name" class="form-control"></td><td><input type="text" name="sponsor_no[]" id="sponsor_no" class="form-control"></td><td><input type="text" name="sponsor_level[]" id="sponsor_level" class="form-control"></td><td><input type="text" name="joining_fee[]" id="joining_fee" class="form-control"></td><td><input type="text" name="banking_id4[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field3" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="group_no_b[]" id="group_no" class="form-control"></td><td><input type="text" name="group_name_b[]" id="group_name" class="form-control"></td><td><input type="text" name="club_id_no[]" id="club_id_no" class="form-control"></td><td><input type="text" name="club_member_name[]" id="club_member_name" class="form-control"></td><td><input type="text" name="sponsor_no[]" id="sponsor_no" class="form-control"></td><td><input type="text" name="sponsor_level[]" id="sponsor_level" class="form-control"></td><td><input type="text" name="joining_fee[]" id="joining_fee" class="form-control"></td><td><input type="text" name="banking_id4[]" id="banking_id" class="form-control"></td><td><button class="btn btn-info btn-xs form3_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  $(wrapper).on("click",".remove_field3", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+  $('body').on('click','.form3_del', function(e){ 
+  
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
 });
 </script>
 <script type="text/javascript">
@@ -223,13 +238,16 @@ $("#professor_sign").change(function() {
     e.preventDefault();
     if(x < max_fields){ //max input box allowed
       x++; //text box increment
-      $(wrapper).append('<tr><td><input type="text" name="inspection_area[]" id="inspection_area" class="form-control"></td><td><input type="text" name="objective[]" id="objective" class="form-control"></td><td><input type="text" name="arrival_time[]" id="arrival_time" class="form-control"></td><td><input type="text" name="arrival_km[]" id="arrival_km" class="form-control"></td><td><select class="form-control" name="port_of_department[]"><option>---SELECT---</option><option value="Home">Home</option><option value="Office">Office</option><option value="new_inspection_area">New Inspection Area</option><option value="other">Other</option></select></td><td><input type="text" name="departure_km[]" id="departure_km" class="form-control"></td><td><input type="text" name="other_fee2[]" id="other_fee" class="form-control"></td><td><input type="text" name="result[]" id="result" class="form-control"></td><td><button class="btn btn-info btn-xs remove_field4" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
+      $(wrapper).append('<tr><td><input type="text" name="inspection_area[]" id="inspection_area" class="form-control"></td><td><input type="text" name="objective[]" id="objective" class="form-control"></td><td><input type="text" name="arrival_time[]" id="arrival_time" class="form-control"></td><td><input type="text" name="arrival_km[]" id="arrival_km" class="form-control"></td><td><select class="form-control" name="port_of_department[]"><option>---SELECT---</option><option value="Home">Home</option><option value="Office">Office</option><option value="new_inspection_area">New Inspection Area</option><option value="other">Other</option></select></td><td><input type="text" name="departure_km[]" id="departure_km" class="form-control"></td><td><input type="text" name="other_fee2[]" id="other_fee" class="form-control"></td><td><input type="text" name="result[]" id="result" class="form-control"></td><td><button class="btn btn-info btn-xs form4_del" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td></tr>'); 
     }
   });
   
-  $(wrapper).on("click",".remove_field4", function(e){ //user click on remove text
-    e.preventDefault(); $(this).parent('tr').remove(); x--;
-  })
+   $('body').on('click','.form4_del', function(e){ 
+  
+    e.preventDefault(); 
+    $(this).closest('tr').remove(); 
+    x--;
+  });
 });
 </script>
 <script type="text/javascript">

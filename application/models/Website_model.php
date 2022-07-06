@@ -207,27 +207,29 @@ class Website_model extends CI_Model{
 	// '''''suppense function start'''''''''
 	public function get_teamlist($depart_id){
 		$id = $depart_id['depart_id'];
-		$this->db->where('id',$last_id);
-		$this->db->select('t1.*,t2.state,t3.division');
-		$this->db->from('project_member t1');
-		$this->db->join('state t2','t1.state_unit_name=t2.id','left');
-		$this->db->join('division t3','t1.division_unit_name=t3.id','left');
+		$this->db->where('t1.depart_id',$id);
+		$this->db->select('t1.*,t2.state,t3.reg_no,t3.officer_first_name as team_head_first_name,t3.officer_middle_name as team_head_middle_name,t3.officer_last_name as team_head_last_name,t3.father_first as team_father_first,t3.father_middle as team_father_middle,t3.father_last as team_father_last');
+		$this->db->from('team t1');
+		$this->db->join('state t2','t1.state=t2.id','left');
+		$this->db->join('officer_details t3','t1.user_id=t3.id','left');
 		$query = $this->db->get();
-		return $query->row_array();
+		return $query->result_array();
 
 	}
 	// '''''suppense function end'''''''''
 
 
-	public function get_teamlistofficer($depart_id){
-		$id = $depart_id['depart_id'];
-		$this->db->where('t1.department_id',$id);
-		$this->db->select('t1.*,t2.name as statename');
-		$this->db->from('officer_details t1');
-		$this->db->join('all_state t2','t1.state_id=t2.id','left');
-		$query = $this->db->get();
-		return $query->result_array();
-	}
+	// public function get_teamlistofficer($depart_id){
+	// 	$id = $depart_id['depart_id'];
+	// 	$this->db->where('department_id',$id);
+	// 	$this->db->select('t1.*,t2.state,t3.division');
+	// 	$this->db->from('officer_details t1');
+	// 	$this->db->join('state t2','t1.state_unit_name=t2.id','left');
+	// 	$this->db->join('division t3','t1.division_unit_name=t3.id','left');
+	// 	$this->db->last_query();
+	// 	$query = $this->db->get();
+	// 	return $query->row_array();
+	// }
 
 	public function vacencylist(){
 		$this->db->where('t2.payment_status',1);
@@ -538,7 +540,6 @@ class Website_model extends CI_Model{
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
 		 $ac_no = $this->account_no_create();
-
 		 if($result==true && !empty($ac_no)){
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
@@ -558,7 +559,8 @@ class Website_model extends CI_Model{
 		 	$final['added_on'] = date('Y-m-d');
 		 	$table = 'account_details';
 		 	$status=$this->db->insert($table,$final);
-			if($status){
+		 	$last_insert_id = $this->db->insert_id();
+			if($status ){
 			     return true;
 			}
 			else{
@@ -712,11 +714,11 @@ class Website_model extends CI_Model{
 		return  $query->result_array();
 	}
 	public function get_expenselist($depart_id){
-		// print_r($depart_id);die;
 		$this->db->where('t2.department_id',$depart_id['depart_id']);
-		$this->db->select('t1.*,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name');
+		$this->db->select('t1.*,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name,t2.batch_no,t2.reg_no,t2.mobile_no,t3.name as state_name');
 		$this->db->from('expense t1');
 		$this->db->join('officer_details t2','t1.user_id=t2.id','left');
+		$this->db->join('all_state t3','t2.state_id=t3.id','left');
 	    $query = $this->db->get();
 		return  $query->result_array();
 	}
@@ -827,6 +829,7 @@ class Website_model extends CI_Model{
 
 
 	public function userdetails(){
+		
 		$batch_no = $_SESSION['batch_no'];
 		$this->db->where('t1.batch_no',$batch_no);
 		$this->db->select('t1.*,t2.code,t3.state');
@@ -1174,25 +1177,46 @@ class Website_model extends CI_Model{
 	}
 
 	public function addteam_model($data){
+		// echo PRE;
+		// print_r($data);die;
 		$batch_no =$data['batch_no'];
 		$user_id =$data['user_id'];
-		$query = $this->db->get_where('team',array('user_id'=>$user_id,'batch_no'=>$batch_no));
-		// echo $this->db->last_query();die;
-		$count =  $query->num_rows();
-		if($count==0){
-			$table="team";
-			$data['added_on']=date('Y-m-d');
-			$status=$this->db->insert($table,$data);
-			if($status){
-				return true;
+		$service_did=$data['service_did'];
+		$check = $this->check_officer($service_did,$batch_no);
+		if($check==true){
+			
+			$query = $this->db->get_where('team',array('user_id'=>$user_id,'batch_no'=>$batch_no,'status'=>1));
+			// echo $this->db->last_query();die;
+			$count =  $query->num_rows();
+			if($count==0){
+				$table="team";
+				$data['added_on']=date('Y-m-d');
+				$status=$this->db->insert($table,$data);
+				if($status){
+					return true;
+				}
+				else{
+					return false;
+				}
 			}
 			else{
 				return false;
-			}
+			}	
 		}
 		else{
 			return false;
-		}	
+		}
+	}
+
+	public function check_officer($service_did,$batch_no){
+		$query = $this->db->get_where('officer_details',array('service_did'=>$service_did,'batch_no'=>$batch_no,'status'=>1));
+			$count =  $query->num_rows();
+			if($count>0){
+				return true;
+			}else{
+				return false;
+			}
+
 	}
 
 
@@ -1878,7 +1902,11 @@ class Website_model extends CI_Model{
 		$update['password'] =$pass;
 		$this->db->where('id',$group_signup_id);
 		$result = $this->db->update('group_signup',$update);
-		return $result;
+		if($result==true){
+			$query = $this->db->get_where('group_signup',array('id'=>$group_signup_id));
+			return $query->row_array();
+		}
+		// return $result;
 	}
 
 	public function get_grouplist($id){

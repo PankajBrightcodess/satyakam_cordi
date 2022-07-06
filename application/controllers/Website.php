@@ -109,12 +109,12 @@ class Website extends CI_Controller {
 			$data = $this->input->post();
 			$result = $this->Website_model->addteam_model($data);
 			if($result){
-				$this->session->set_flashdata("msg","Team Added Successfully!!");
+				$this->session->set_flashdata("web_msg","Team Added Successfully!!");
 				redirect('website/create_team');
 			}
 			else{
 				redirect('website/create_team');
-				$this->session->set_flashdata("msg","Something Error!!");
+				$this->session->set_flashdata("web_err_msg","Something Error!!");
 			}
 		}
 
@@ -2639,7 +2639,9 @@ class Website extends CI_Controller {
 	public function myteam_daily_report()
 	{
 		$data = $this->input->post();
-		$revenue['registration_no']= $data['registration_no'];
+		// echo PRE;
+		// print_r($data);die;
+		$revenue['registration_no']= $data['reg_no'];
 		$revenue['applicant_name']= $data['applicant_name'];
 		$revenue['father_husband']= $data['father_husband'];
 		$revenue['dob']= $data['dob'];
@@ -2738,6 +2740,12 @@ class Website extends CI_Controller {
 			$arr4 = array('inspection_area'=>$travelling['inspection_area'][$l],'objective'=>$travelling['objective'][$l],'arrival_time'=>$travelling['arrival_time'][$l],'arrival_km'=>$travelling['arrival_km'][$l],'port_of_department'=>$travelling['port_of_department'][$l],'departure_km'=>$travelling['departure_km'][$l],'other_fee2'=>$travelling['other_fee2'][$l],'result'=>$travelling['result'][$l],'user_id'=>$travelling['user_id'],'batch_no'=>$travelling['batch_no'],'added_on'=>$travelling['added_on']);
 			$travellingarray[]=$arr4;
 		}
+		// echo PRE;
+		// print_r($revenuearray);
+		// print_r($securityarray);
+		// print_r($grouparray);
+		// print_r($clubarray);
+		// print_r($travellingarray);die;
 		
 		$form_1 = json_encode($revenuearray);
 		$form_2 = json_encode($securityarray);
@@ -3836,19 +3844,8 @@ class Website extends CI_Controller {
 	 		}
 	 	}
 	 	redirect('website/myclub_report');
-	 	
-	 	
-
 
 	}
-
-
-
-
-
-
-
-
 
 	public function member_group_status(){
 
@@ -4571,8 +4568,9 @@ class Website extends CI_Controller {
 		// }
 
 		public function create_account_page(){
+
 			$length = 5;
-			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+			$captcha=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)))),1,$length);
 			$d['captcha'] =$captcha;
 			$d['state'] = $this->Website_model->get_statelist();
 			$d['v'] = 'website/account_form';
@@ -4582,16 +4580,13 @@ class Website extends CI_Controller {
 		public  function create_account(){
 			$data = $this->input->post();
 			$result = $this->Website_model->account_creates_model($data);
-			// $rslt = json_decode($result,true);
-			// $submit_count = count($rslt);
 			if($result==true){
 				$this->session->set_flashdata('web_msg','Your Account Successfully Created');
-					redirect('website/create_account_page');
+				redirect('website/create_account_page');
 			}
 			else{
 				$this->session->set_flashdata('web_err_msg','Something Error');
 				redirect('website/my_saving_account_features');
-				
 			}
 		}
 
@@ -4602,7 +4597,6 @@ class Website extends CI_Controller {
 			print_r($json_result);
 		}
 
-
 		public function member_group_reg_form(){
 			$data = $this->input->post();
 			$record= $this->Website_model->insert_group_head($data);
@@ -4610,7 +4604,7 @@ class Website extends CI_Controller {
 				$_SESSION['group_id'] = $record['last_id'];
 				$last_group_id = $_SESSION['group_id'];
 				$d['group_records']= $this->Website_model->group_details_member($last_group_id);
-				$d['state_code']= $this->Website_model->userdetails();
+				// $d['state_code']= $this->Website_model->userdetails();
 				$d['v'] = 'website/member_group_registration_form';
 				$this->load->view('website/template_2',$d);
 
@@ -4623,6 +4617,8 @@ class Website extends CI_Controller {
 
 
 		public function member_groupdetails_insert(){
+			echo PRE;
+			// print_r($_FILES);die;
 			if(!empty($_FILES['photo']['name'][0])){
 				$files['name']=$_FILES['photo']['name'];
 				$files['type']=$_FILES['photo']['type'];
@@ -4634,6 +4630,7 @@ class Website extends CI_Controller {
 					$file = array('name'=>$files['name'][$j],'type'=>$files['type'][$j],'tmp_name'=>$files['tmp_name'][$j],'error'=>$files['error'][$j],'size'=>$files['size'][$j]);
 					$final_files[]['photo']=$file;
 				}
+
 				foreach ($final_files as $key => $value) { 
 					$photo1 = $value['photo']['name'];
 					$photo1 = explode('.',$photo1);
@@ -4708,13 +4705,57 @@ class Website extends CI_Controller {
 			$submit_count = count($rslt);
 			if($count==$submit_count){
 				$res = $this->Website_model->create_id_pass_group($group_signup_id);
-				if($res){
-					$this->session->set_flashdata('web_msg','Group Successfully Create');
-					redirect('website/member_login_group');
-				}else{
-					$this->session->set_flashdata('web_err_msg','Id Password Not Create!!!');
-					redirect('website/member_login_group');
+				if(!empty($res)){
+					$contact_no = $res['mobile_no'];
+					$user = $res['username'];
+					$pass = $res['password'];
+					$message= 'Congratulations! Your Group has been created, Group Id '.$user.', Password '.$pass.' SATYAKAM FOUNDATION';
+
+		   			 $base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+		    		$senderId = "SKFOUN";
+		    		$routeId = "1";
+		    		if(!empty($contact_no)){
+		      			$curl = curl_init();
+		      			curl_setopt_array($curl, array(
+		       		    CURLOPT_URL => $base_url,
+		        		CURLOPT_RETURNTRANSFER => true,
+		        		CURLOPT_ENCODING => "",
+		        		CURLOPT_MAXREDIRS => 10,
+		        		CURLOPT_TIMEOUT => 30,
+		        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		        		CURLOPT_CUSTOMREQUEST => "POST",
+		        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+		        		CURLOPT_HTTPHEADER => array(
+		        			"Cache-Control: no-cache",
+		        			"Content-Type: application/json"
+		        		),
+		      			));
+			      	$response = curl_exec($curl);
+			        $err = curl_error($curl);
+			      	curl_close($curl);
+			      	if($err){
+			        	// return false;
+			        	redirect('website/member_group_reg_form');
+			        	$this->session->set_flashdata('web_err_msg','Something Error');
+			      	}else{
+			      		if($response==true){
+			      			$this->session->set_flashdata('web_msg','Your Group Account Successfully Created');
+			      			redirect('website/member_login_group');
+			      		}else{
+			      			redirect('website/member_group_reg_form');
+			      			$this->session->set_flashdata('web_err_msg','Something Error');
+			      		}
+			      	}
+			    }
+			// }
 				}
+				// if($res){
+				// 	$this->session->set_flashdata('web_msg','Group Successfully Create');
+				// 	redirect('website/member_login_group');
+				// }else{
+				// 	$this->session->set_flashdata('web_err_msg','Id Password Not Create!!!');
+				// 	redirect('website/member_login_group');
+				// }
 				
 			}
 			else{
@@ -4746,13 +4787,14 @@ class Website extends CI_Controller {
 						redirect('website/groupdashboard');
 					}
 					else{
+						$this->session->set_flashdata('err_msg','Your Group Created Successfully');
 						redirect('website/member_login_group');
 					}
 		    	}
 		}
 		else{ 
 			$this->session->set_flashdata('err_msg',$record['verify']);
-			redirect('website/member_login_group');
+			redirect('website/groupsignup_form_member');
 		}
 	}
 // ...................team close......................................

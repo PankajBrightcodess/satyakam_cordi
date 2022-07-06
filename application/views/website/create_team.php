@@ -250,8 +250,6 @@
                                       <input class="form-control" name="photo_upload" type="file" id="formFile">
                                     </td>
                                   </tr>
-
-
                                   <tr>
                                     <th scope="row">Security E-Receipt</th>
                                     <td colspan="3">

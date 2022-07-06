@@ -23,7 +23,10 @@
                                             <th>Payment Method</th>
                                             <th>Neft Check</th>
                                             <th>Total Revenue</th>
+                                            <th>Officer Reg. No</th>
+                                            <th>Officer Batch No.</th>
                                             <th>Officer Name</th>
+                                            <th>Officer Mobile No.</th>
                                             <th>Added On</th>
                                         </tr>
                                     </thead>
@@ -42,8 +45,10 @@
                                             <td ><?php echo $val['payment_method']; ?></td>
                                             <td ><?php echo $val['neft_check']; ?></td>
                                             <td ><?php echo $val['total_revenue']; ?></td>
+                                            <td ><?php echo $val['reg_no']; ?></td>
+                                            <td ><?php echo $val['batch_no']; ?></td>
                                             <td ><?php echo $val['officer_first_name'].' '.$val['officer_middle_name'].' '.$val['officer_last_name']; ?></td>
-                                           
+                                            <td ><?php echo $val['mobile_no']; ?></td>
                                             <td ><?php echo date('d-m-Y',strtotime($val['added_on'])) ;?></td>
                                            
                                         </tr>
