@@ -4617,8 +4617,6 @@ class Website extends CI_Controller {
 
 
 		public function member_groupdetails_insert(){
-			echo PRE;
-			// print_r($_FILES);die;
 			if(!empty($_FILES['photo']['name'][0])){
 				$files['name']=$_FILES['photo']['name'];
 				$files['type']=$_FILES['photo']['type'];
