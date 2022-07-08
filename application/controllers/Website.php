@@ -1118,18 +1118,17 @@ class Website extends CI_Controller {
 			$id = $result['id'];
 			$records = $this->vacency_check($id);
 			if($records['verify']===true){
-				$this->createvacencyession($result);
-				redirect('website/vacencyform',$result);
-				
+				$this->session->set_flashdata('web_err_msg',$result['verify']);
+				redirect('website/vacency_login');
 			}
 			else{ 
-					$this->session->set_flashdata('web_err_msg',$result['verify']);
-				redirect('website/vacency_login');  ///send payment page
+				$this->createvacencyession($result);
+				redirect('website/vacencyform',$result);	 ///send payment page
 			}
 		}
 		else{
 			$this->session->set_flashdata('web_err_msg','Please Signup!');
-				redirect('website/vacency_login');
+			redirect('website/vacency_login');
 		}	
 	}
 
@@ -3585,7 +3584,7 @@ class Website extends CI_Controller {
 			
 		}
 		else{ 
-			$this->session->set_flashdata('web_err_msg',$record['verify']);
+					$this->session->set_flashdata('web_err_msg',$record['verify']);
 			redirect('website/member_login');
 		}
 	}
