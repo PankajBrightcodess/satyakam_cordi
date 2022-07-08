@@ -209,26 +209,35 @@ class Website extends CI_Controller {
 			$d['state'] = $this->Website_model->get_statelist();
 			$this->load->view('website/template',$d);
 		}
+		public function vacency_signup_otp(){
+			$d['data'] = $this->input->post();
+			$mobile_no=$this->input->post('mobile_no');
+			$record = $this->otpgenerate($mobile_no);
+			$d['v'] = 'website/vacency_signup_otp';
+			$this->load->view('website/template',$d);
+		}
 
 		public function vacencysignup_create(){
-			$data = $this->input->post();                                                  
-			if($data['password']==$data['conf_password']){
-			   unset($data['conf_password']);
+			$data = $this->input->post();
+			// if($data['password']==$data['conf_password']){
+			   // unset($data['conf_password']);
 			   $post = explode("-",$data['post']);
 			   $data['post']=$post[0];
 			   $data['amount']=$post[1];
 			   $savevacencysignup= $this->Website_model->savevacencysignup($data);
-			   if(!empty($savevacencysignup)){
-					$this->vacency_login();
+			   if($savevacencysignup==true){
+			   	$this->session->set_flashdata("msg","Create Successfully !!");
+			   	redirect('website/vacency_login/');
+					// $this->vacency_login();
 			    }else{
 			    	$this->session->set_flashdata("msg","Create Successfully !!");
-				redirect('website/vacencysignup/');
+				   redirect('website/vacencysignup/');
 			    }
-			}
-			else{
-				$this->session->set_flashdata("msg","Something Error !!");
-				redirect('website/vacencysignup/');
-			}
+			// }
+			// else{
+			// 	$this->session->set_flashdata("msg","Something Error !!");
+			// 	redirect('website/vacencysignup/');
+			// }
 		}
 
 		public function get_division(){
@@ -264,6 +273,7 @@ class Website extends CI_Controller {
 
 		public function create_signup_otp(){
 			$d['data'] = $this->input->post();
+
 			$mobile_no=$this->input->post('mobile_no');
 			$record = $this->otpgenerate($mobile_no);
 			$d['v'] = 'website/create_sign_otp';
@@ -1108,16 +1118,17 @@ class Website extends CI_Controller {
 			$id = $result['id'];
 			$records = $this->vacency_check($id);
 			if($records['verify']===true){
-				// $this->session->set_flashdata('err_msg',$result['verify']);
-				redirect('website/vacency_login');  ///send payment page
+				$this->createvacencyession($result);
+				redirect('website/vacencyform',$result);
+				
 			}
 			else{ 
-				$this->createvacencyession($result);
-				redirect('website/vacencyform',$result);	
+					$this->session->set_flashdata('web_err_msg',$result['verify']);
+				redirect('website/vacency_login');  ///send payment page
 			}
 		}
 		else{
-			$this->session->set_flashdata('err_msg','Please Signup!');
+			$this->session->set_flashdata('web_err_msg','Please Signup!');
 				redirect('website/vacency_login');
 		}	
 	}
@@ -3574,7 +3585,6 @@ class Website extends CI_Controller {
 			
 		}
 		else{ 
-			die;
 			$this->session->set_flashdata('web_err_msg',$record['verify']);
 			redirect('website/member_login');
 		}
@@ -3596,7 +3606,6 @@ class Website extends CI_Controller {
 					else{
 						redirect('website/submember_login_home');
 					}
-
 		    	}
 		}
 		else{

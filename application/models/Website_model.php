@@ -39,9 +39,12 @@ class Website_model extends CI_Model{
 	}
 
 	public function officer_details_model($data){
-		$table="officer_details";  
+		$table="officer_details"; // ye table  hai officer_details isko ek variable me store kr rhe hai
+
 		$data['added_on']=date('Y-m-d');
-		$status=$this->db->insert($table,$data);
+		$status=$this->db->insert($table,$data);  
+
+
 		if($status){
 			return true;
 		}
@@ -51,20 +54,21 @@ class Website_model extends CI_Model{
 	}
 
 	public function deleted_officer($id){
+
 	    $this->db->where("id", $id); 
 	    $query= $this->db->update("officer_details",array('status'=>0)); 
 		return $query;
 	}
 
 	public function signup_list($signup_id){
-		$this->db->where('t1.id',$signup_id);
-		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name');
-		$this->db->from('signup t1');
-		$this->db->join('department t2','t1.depart_id=t2.id','left');
-		$this->db->join('post t3','t1.post_id=t3.id','left');
-		$this->db->join('state t4','t1.state=t4.id','left');
+		$this->db->where('t1.id',$signup_id);// where condition line hai 
+		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name'); //ye line select krne ke liye hai isme dikh rha hoga t1,t2,t3,t4 type kaa kuch paas kiye hai ye sare alag alag table ko indecate kr rhe hai aur alag alag table se data le ke aa rhe hai koi doubt is line me hmm alias ke liye hi use kiye hai, wo niche likhenge 
+		$this->db->from('signup t1');// isme signup table kaa naam hai aur  t1 iska alias hai
+		$this->db->join('department t2','t1.depart_id=t2.id','left'); // same waise hi t2 department kaa alias hai  aur isme hmm t1 waale table se join kr rhe hai isme t1 table ke andar jo depart_id hai wo hi id t2 ke andar id ke naam se hai... koi doubt????  ok
+		$this->db->join('post t3','t1.post_id=t3.id','left'); 
+		$this->db->join('state t4','t1.state=t4.id','left'); 
 		// $this->db->order_by('t1.depart_id','desc');
-		$query = $this->db->get();
+		$query = $this->db->get(); 
 		return  $query->row_array();
 		
 		// $query=$this->db->get_where('signup',array('id' => $signup_id));
@@ -104,6 +108,8 @@ class Website_model extends CI_Model{
 	}
 
 	public function get_idpass($id){
+		//ab hmm dekhte hai get aur get_where me difference.
+		// av hmm get dekhe the upar usme where condition alag se lagaye the isme ab get aur where dono sath rahte hai iska syntex hai $this->db->get_where('table_name','condition'); iska use v hmm databse se data ko le aane ke liye krte hai jo select me krte hai.. kuch puchna hai isme?? hmm dono same work krta hai pr isme hmm yaa pura 
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();
 
@@ -146,7 +152,6 @@ class Website_model extends CI_Model{
 	public function insert_member_all_records($data,$result){
 		
 		$signup_id = $data['signup_id'];
-	
 		$data['added_on']=date('Y-m-d');
 		if(!empty($data['applicant_name'])){
 			$status=$this->db->insert('member_details',$data);
@@ -353,11 +358,10 @@ class Website_model extends CI_Model{
 	public function checkvacenylogin($data){
 		$emailid =  $data['emailid'];
 		$password = $data['password'];
-		$where = "email='$emailid'  OR user_name='$emailid' AND password='$password'";
+		$where = "email='$emailid' OR user_name='$emailid' AND password='$password'";
 		$query = $this->db->get_where('vacency_signup',$where);
-		$qry = $this->db->last_query();
 		$result =  $query->row_array();
-		if(!empty($result)){
+		if(!empty($result['id'])){
 			$result['verify']=true;
 		}
 		else{
@@ -424,16 +428,16 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('result',array('admitcard_id'=>$admitcard_id,'status'=>1));
 		return  $query->row_array();
 	}
-
-	public function get_resultlist($depart_id){
-		$this->db->where('t2.depart_id',$depart_id);
-		$this->db->select('t1.*');
+// ab hmm log dekh lete hai result_array(); tum dekh rhi ho n????? ok  v hmm log model me hi hai...
+	public function get_resultlist($depart_id){ 
+		$this->db->where('t2.depart_id',$depart_id);// ye where condition hai jo pahle bata chuke hai
+		$this->db->select('t1.*'); // ye select  function hai 
 		$this->db->from('result t1');
 		$this->db->join('vacency_signup t2','t1.applicant_no=t2.id');
-		$query=$this->db->get();
+		$query=$this->db->get(); // yha tk sayad ho chuka tha
 
 		// $query = $this->db->get_where('result',array('status'=>1));
-		return  $query->result_array();
+		return  $query->result_array(); 
 
 	}
 
@@ -571,7 +575,6 @@ class Website_model extends CI_Model{
 		 	$record['verify']="Member Id does not Exist!";
 		 }
 	}
-
 	public function account_no_create(){
 		$this->db->select('*');
 		$this->db->from('account_details');
@@ -749,26 +752,46 @@ class Website_model extends CI_Model{
     	  $query = $this->db->get_where('vacency_signup',array('email'=>$email));
 		   $rows =  $query->num_rows();
 		   if($rows==0){
-		   	    $table = 'vacency_signup';
+		   	$result=$this->create_user_pass_for_candidate();
+		   	if(!empty($result)){
+		   		$table = 'vacency_signup';
 			   	$data['added_on']=date('Y-m-d');
+			   	unset($data['OTP']);
+			   	$data['user_name']=$result['username'];
+			   	$data['password']=$result['password'];
 		    	$status=$this->db->insert($table,$data);
-		    	$last_query = $this->db->last_query();
-		    	// print_r($last_query);die;
-				if($status){
-				   return true;
-				}
-				else{
-					return false;
-				}
-
+		    	// $last_query = $this->db->last_query();
+				if($status){ return true; }
+				else{ return false; }
+		   	}
 		   }
-		   else{
-		   	 return false;
-		   }
-    	}
-    	
-    	
+		   else{ return false; }
+    	}	
     }
+
+    public function create_user_pass_for_candidate(){
+    	$this->db->select('id,user_name');
+    	$this->db->from('vacency_signup');
+    	$this->db->order_by('id','DESC');
+    	$qry = $this->db->get();
+    	$record =  $qry->row_array();
+    	if(!empty($record)){
+    		$condt= date('d').$record['id']+1;
+    		$user = 'CANDSF-'.$condt;
+			$pass = date('my').$condt.date('d');
+			$update['username'] =$user;
+			$update['password'] =$pass;
+			return $update;	
+			}
+		else{
+			$condt= 01;
+    		$user = 'CANDSF-'.date('d').$condt;
+			$pass = date('my').$condt.date('d');
+			$update['username'] =$user;
+			$update['password'] =$pass;
+			return $update;	
+			}
+    	}
 
     public function expensemonth($user_id,$month){
 		$user_id= $user_id['id'];
@@ -1564,7 +1587,7 @@ class Website_model extends CI_Model{
 		$qry = $this->db->get();
 		if($qry->num_rows()>0)
 		{
-			return $result = $qry->result_array();
+		   return $result = $qry->result_array();
 
 		}else
 		{
@@ -1582,7 +1605,7 @@ class Website_model extends CI_Model{
 		$check = $query->num_rows();
 			$this->db->set($vecency);
 		    $this->db->where("id",$id);
-		    $query = $this->db->update("vecency",$vecency);
+		$query = $this->db->update("vecency",$vecency);
 		    return $query;
 	}
 
@@ -1778,7 +1801,7 @@ class Website_model extends CI_Model{
 	// 	$status['varify']=$this->db->insert('project_member',$data);
 	// 	$status['last_id']=$this->db->insert_id();
 	// 	if($status){
-	// 			return $status;
+	// 		return $status;
 	// 	}
 	// 	else{
 	// 		return false;
@@ -1789,10 +1812,10 @@ class Website_model extends CI_Model{
 	public function membership_login($data){
 		$emailid =  $data['emailid'];
 		$password =  $data['password'];
-		$where = "email='$emailid'  OR username='$emailid' AND password='$password'";
+		$where = "email='$emailid' OR username='$emailid' AND password='$password'";
 		$query = $this->db->get_where('project_member',$where);
 		// echo $this->db->last_query();die;
-		$result =  $query->row_array();
+		$result = $query->row_array();
 		
 		if(!empty($result)){
 			$result['verify']=true;
