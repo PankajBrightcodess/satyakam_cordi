@@ -106,6 +106,11 @@
                     <td>Manipur</td>
                     <td><a href="<?= base_url('website/vacency_login');?>" class="btn btn-sm btn-success" >Online Apply</a></td>
                   </tr>
+                  <tr>
+                    <th scope="row">SPMC-MNP000019</th>
+                    <td>Odisha</td>
+                    <td><a href="<?= base_url('website/vacency_login');?>" class="btn btn-sm btn-success" >Online Apply</a></td>
+                  </tr>
 
                   
                 </tbody>
