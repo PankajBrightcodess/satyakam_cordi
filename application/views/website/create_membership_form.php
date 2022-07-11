@@ -8,7 +8,7 @@
                           <div class="col-md-8">
                             <label>Application No.</label>
                             <input type="text" name="app_no" placeholder="Application No :" class="form-control mb-3" required>
-                          <!--   <input type="hidden" name="sponsor_id" readonly  value="<?= $allsignuprecords['sponsor_id'];?>" placeholder="Application Date :" class="form-control mb-3" required> -->
+                          
                             <label>Application Date</label>
                             <input type="date" name="app_date" readonly  value="<?= $allsignuprecords['application_date'];?>" placeholder="Application Date :" class="form-control mb-3" required>
                              <input type="hidden" name="signup_id" readonly  value="<?= $allsignuprecords['id'];?>" class="form-control mb-3" required>

@@ -108,11 +108,10 @@ class Website_model extends CI_Model{
 	}
 
 	public function get_idpass($id){
-		$this->db->select('username,password');
+		$this->db->select('username,password,mobile_no');
 		$this->db->where('id',$id);
 		$query=$this->db->get('officer_details');
     	return $query->row_array();
-
 	}
 
 	public function kyc_details($id){
@@ -120,6 +119,7 @@ class Website_model extends CI_Model{
 		$query=$this->db->get_where('officer_details',array('id' => $id));
     	return $query->row_array();
 	}
+
 	public function getuser($id){
 		$this->db->where('t1.id',$id);
 		$this->db->select('t1.post_id,t3.state,t1.officer_first_name,t1.officer_middle_name,t1.officer_last_name');

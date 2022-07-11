@@ -51,25 +51,67 @@ class Admin extends CI_Controller {
 
 	}
 	public function send_mail($id){
-		$this->load->helper('email');
+		// $this->load->helper('email');
 		$run=$this->Website_model->get_idpass($id);
-		echo PRE;
-		print_r($run);die;
-		$from_email = "indiaskfoundation468@gmail.com"; 
-         $to_email = $run['email_id']; 
-         $username = $run['username']; 
-         $password = $run['username']; 
-         $subject = 'Document Verification';
-         $message = 'Your Document is Verified.<br>UserId :'.$username.'<br>Password :'.$password;
-   		 $send= sendemail($to_email,$subject,$message);
-         //Send mail 
-         if($send) {
-           $this->session->set_flashdata("msg","Email sent successfully."); 
-         }
-         else {
-           $this->session->set_flashdata("err_msg","Error in sending Email."); 
-         }
-         redirect('admin/officer_details'); 
+		if(!empty($run)){
+					$contact_no = $run['mobile_no'];
+					$user = $run['username'];
+					$pass = $run['password'];
+					$message= 'Congratulations! Your all details has been verified, everything is clear, we provide username '.$user.' and Password '.$pass.' SATYAKAM FOUNDATION';
+
+		   			 $base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+		    		$senderId = "SKFOUN";
+		    		$routeId = "1";
+		    		if(!empty($contact_no)){
+		      			$curl = curl_init();
+		      			curl_setopt_array($curl, array(
+		       		    CURLOPT_URL => $base_url,
+		        		CURLOPT_RETURNTRANSFER => true,
+		        		CURLOPT_ENCODING => "",
+		        		CURLOPT_MAXREDIRS => 10,
+		        		CURLOPT_TIMEOUT => 30,
+		        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		        		CURLOPT_CUSTOMREQUEST => "POST",
+		        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+		        		CURLOPT_HTTPHEADER => array(
+		        			"Cache-Control: no-cache",
+		        			"Content-Type: application/json"
+		        		),
+		      			));
+			      	$response = curl_exec($curl);
+			        $err = curl_error($curl);
+			      	curl_close($curl);
+			      	if($err){
+			        	// return false;
+			        	$this->session->set_flashdata('err_msg','Something Error!');
+			        	redirect('admin/officer_details');
+			      	}else{
+			      		if($response==true){
+			      			$this->session->set_flashdata('msg','Successfully Forword username and Password on register Mobile No.');
+			      			redirect('admin/officer_details');
+			      		}else{
+			      			$this->session->set_flashdata('err_msg','Something Error');
+			      			redirect('admin/officer_details');
+			      		}
+			      	}
+			    // }
+				}
+
+		// $from_email = "indiaskfoundation468@gmail.com"; 
+  //        $to_email = $run['email_id']; 
+  //        $username = $run['username']; 
+  //        $password = $run['username']; 
+  //        $subject = 'Document Verification';
+  //        $message = 'Your Document is Verified.<br>UserId :'.$username.'<br>Password :'.$password;
+  //  		 $send= sendemail($to_email,$subject,$message);
+  //  		  if($send) {
+  //          $this->session->set_flashdata("msg","Email sent successfully."); 
+  //        }
+  //        else {
+  //          $this->session->set_flashdata("err_msg","Error in sending Email."); 
+  //        }
+  //        redirect('admin/officer_details'); 
+	}
 	}
 	public function department(){
 		$data['title']="Department";
