@@ -397,7 +397,6 @@ class Website extends CI_Controller {
 				  $data['training_receipt'] = $image['path'];
 			  }
 		  }
-		  print_r($_SESSION['signupid']);die;
 		  $data['signup_id'] = $_SESSION['signupid'];
 		  $run=$this->Website_model->officer_details_model($data);
 			if($run){
