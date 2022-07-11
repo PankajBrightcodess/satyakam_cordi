@@ -3567,23 +3567,23 @@ class Website extends CI_Controller {
 		    	if(empty($_SESSION['member_id'])){
 		    		$this->createsession_member($record);
 					if(!empty($_SESSION['member_id'])){
-						$this->session->set_flashdata('web_msg',$result['verify']);
+						$this->session->set_flashdata('web_msg','Login Successfully');
 						redirect('website/memberdashboard');
 					}
 					else{
-						$this->session->set_flashdata('web_err_msg',$result['verify']);
+						$this->session->set_flashdata('web_err_msg','Something Error!');
 						redirect('website/member_login');
 					}
 
 		    	}
 		    	else{
-		    		$this->session->set_flashdata('web_msg',$result['verify']);
+		    		$this->session->set_flashdata('web_msg','Something Error!');
 		    		redirect('website/memberdashboard');
 		    	}
 			
 		}
 		else{ 
-					$this->session->set_flashdata('web_err_msg',$record['verify']);
+					$this->session->set_flashdata('web_err_msg','Something Error!');
 			redirect('website/member_login');
 		}
 	}
