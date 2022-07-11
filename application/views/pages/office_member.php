@@ -18,22 +18,22 @@
                                             <th>Joining Branch</th>   
                                             <th>Branch Code</th>   
                                             <th>department</th>
-                                            <th>Post</th>                                            
-                                            <th>Mobile </th>                                            
-                                            <th>Email </th>                                            
+                                            <th>Post</th>
+                                            <th>Mobile </th>
+                                            <th>Email </th>
                                             <th>Service DID</th>
-                                            <th>Name</th>                                            
-                                            <th>Guardian</th>                                            
-                                            <th>Address</th>                                            
+                                            <th>Name</th>
+                                            <th>Guardian</th>
+                                            <th>Address</th>
                                             <th>Mother Occupation</th>
                                             <th>Annual Income</th>
                                             <th>Father Income</th>
                                             <th>Annual Income</th>
-                                            <th>Sex</th>                                            
+                                            <th>Sex</th>
                                             <th>Nationality</th>
                                             <th>Marriage Status</th>
-                                            <th>DOB</th>                                            
-                                            <th>Aadhar No</th>                                            
+                                            <th>DOB</th>
+                                            <th>Aadhar No</th>
                                             <th>PAN No</th> 
                                             <th>Security Fund Amount</th> 
                                             <th>Processing Fund Amount</th> 
@@ -53,7 +53,7 @@
                                             <th>Training Receipt</th> 
                                             <th>Username</th> 
                                             <th>Password</th> 
-                                            <th>Action</th>                                            
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

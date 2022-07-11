@@ -41,6 +41,7 @@ class Admin extends CI_Controller {
 		// print_r($run);die;
 		if($run){
 			$this->send_mail($id);
+			die;
 			redirect('admin/officer_details');
 			$this->session->set_flashdata("msg","Userid And Password Updated!!");
 		}else{
@@ -52,6 +53,8 @@ class Admin extends CI_Controller {
 	public function send_mail($id){
 		$this->load->helper('email');
 		$run=$this->Website_model->get_idpass($id);
+		echo PRE;
+		print_r($run);die;
 		$from_email = "indiaskfoundation468@gmail.com"; 
          $to_email = $run['email_id']; 
          $username = $run['username']; 

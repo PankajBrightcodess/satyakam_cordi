@@ -108,9 +108,9 @@ class Website_model extends CI_Model{
 	}
 
 	public function get_idpass($id){
-		//ab hmm dekhte hai get aur get_where me difference.
-		// av hmm get dekhe the upar usme where condition alag se lagaye the isme ab get aur where dono sath rahte hai iska syntex hai $this->db->get_where('table_name','condition'); iska use v hmm databse se data ko le aane ke liye krte hai jo select me krte hai.. kuch puchna hai isme?? hmm dono same work krta hai pr isme hmm yaa pura 
-		$query=$this->db->get_where('officer_details',array('id' => $id));
+		$this->db->select('username,password');
+		$this->db->where('id',$id);
+		$query=$this->db->get('officer_details');
     	return $query->row_array();
 
 	}
