@@ -15,12 +15,12 @@
    swal("Good job!", "You clicked the button!", "success");
    swal('Good job!','<?php echo $this->session->web_msg;?>','success');
 </script>
-   <?php $this->session->unset('web_msg');}else if(isset($this->session->web_err_msg)){ ?>
+   <?php unset($_SESSION['web_msg']);}else if(isset($this->session->web_err_msg)){ ?>
 <script type="text/javascript">
    swal("Good job!", "You clicked the button!", "success");
    swal('Opps!','<?php echo $this->session->web_err_msg;?>','error');
 </script>
-      <?php $this->session->unset('web_err_msg');}
+      <?php unset($_SESSION['web_err_msg']);}
       ?>
    </head>
    <body>
