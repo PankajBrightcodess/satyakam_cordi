@@ -184,6 +184,10 @@
                             <label>Super(E) Benefit Rs. 100 Per Week</label>
                             <input type="radio" class="ml-5" value="super_e" name="super">
                           </div>
+                          <div class="col-md-4 mb-3 border-right border-success">
+                            <label>Super(F) Benefit Rs. 150 Per Week</label>
+                            <input type="radio" class="ml-5" value="super_f" name="super">
+                          </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Team Year</h6>
                           </div>
