@@ -110,8 +110,8 @@ class Website extends CI_Controller {
 				redirect('website/create_team');
 			}
 			else{
-				redirect('website/create_team');
 				$this->session->set_flashdata("web_err_msg","Something Error!!");
+				redirect('website/create_team');
 			}
 		}
 
