@@ -8,7 +8,6 @@ class Website extends CI_Controller {
 		parent::__construct();
 		check_and_setcookie();
 	}
-	
 		public function index(){
 			if ($_SERVER['REQUEST_SCHEME'] != 'https' && $_SERVER['HTTP_HOST'] != 'localhost') {
       			redirect('/');
@@ -30,7 +29,6 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 
 		}
-
 		public function apply_online(){
 			$d['v'] = 'website/apply_online';
 			$this->load->view('website/template',$d);
@@ -45,7 +43,6 @@ class Website extends CI_Controller {
 				$this->session->set_flashdata("err_msg","Try Again !!");
 				redirect('website/apply_online/');
 		    }
-			
 		}
 		public function officer_dashboard(){
 			$id = $_SESSION['user_id'];
@@ -224,13 +221,15 @@ class Website extends CI_Controller {
 			   $post = explode("-",$data['post']);
 			   $data['post']=$post[0];
 			   $data['amount']=$post[1];
-			   $savevacencysignup= $this->Website_model->savevacencysignup($data);
-			   if($savevacencysignup==true){
-			   	$this->session->set_flashdata("msg","Create Successfully !!");
+			   $id= $this->Website_model->savevacencysignup($data);
+			   if(!empty($id)){
+			   	$details= $this->Website_model->get_candidate_user_pass($id);
+			   	print_r($details);die;
+			   	$this->session->set_flashdata("web_msg","Create Successfully !!");
 			   	redirect('website/vacency_login/');
 					// $this->vacency_login();
 			    }else{
-			    	$this->session->set_flashdata("msg","Create Successfully !!");
+			    	$this->session->set_flashdata("web_err_msg","Something Error!!");
 				   redirect('website/vacencysignup/');
 			    }
 			// }

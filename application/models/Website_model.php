@@ -760,13 +760,18 @@ class Website_model extends CI_Model{
 			   	$data['user_name']=$result['username'];
 			   	$data['password']=$result['password'];
 		    	$status=$this->db->insert($table,$data);
+		    	$last_inst_id = $this->db->insert_id();
 		    	// $last_query = $this->db->last_query();
-				if($status){ return true; }
+				if(!empty($last_inst_id)){ return $last_inst_id; }
 				else{ return false; }
 		   	}
 		   }
 		   else{ return false; }
     	}	
+    }
+
+    public function get_candidate_user_pass($id){
+    	// $this->db->select('')
     }
 
     public function create_user_pass_for_candidate(){
@@ -1200,8 +1205,6 @@ class Website_model extends CI_Model{
 	}
 
 	public function addteam_model($data){
-		// echo PRE;
-		// print_r($data);die;
 		$batch_no =$data['batch_no'];
 		$user_id =$data['user_id'];
 		$service_did=$data['service_did'];
@@ -1209,7 +1212,6 @@ class Website_model extends CI_Model{
 		if($check==true){
 			
 			$query = $this->db->get_where('team',array('user_id'=>$user_id,'batch_no'=>$batch_no,'status'=>1));
-			// echo $this->db->last_query();die;
 			$count =  $query->num_rows();
 			if($count==0){
 				$table="team";
