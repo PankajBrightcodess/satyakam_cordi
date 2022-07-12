@@ -1205,13 +1205,14 @@ class Website_model extends CI_Model{
 	}
 
 	public function addteam_model($data){
-		$batch_no =$data['batch_no'];
+		echo PRE;
+		print_r($data);die;
+		// $batch_no =$data['batch_no'];
 		$user_id =$data['user_id'];
 		$service_did=$data['service_did'];
-		$check = $this->check_officer($service_did,$batch_no);
-		if($check==true){
-			
-			$query = $this->db->get_where('team',array('user_id'=>$user_id,'batch_no'=>$batch_no,'status'=>1));
+		$check = $this->check_officer($service_did);
+		if($check>0){
+			$query = $this->db->get_where('team',array('user_id'=>$user_id,'status'=>1));
 			$count =  $query->num_rows();
 			if($count==0){
 				$table="team";
@@ -1233,13 +1234,14 @@ class Website_model extends CI_Model{
 		}
 	}
 
-	public function check_officer($service_did,$batch_no){
-		$query = $this->db->get_where('officer_details',array('service_did'=>$service_did,'batch_no'=>$batch_no,'status'=>1));
+	public function check_officer($service_did){
+		$query = $this->db->get_where('officer_details',array('service_did'=>$service_did,'status'=>1));
+		
 			$count =  $query->num_rows();
 			if($count>0){
-				return true;
+				return $count;
 			}else{
-				return false;
+				return $count;
 			}
 
 	}
