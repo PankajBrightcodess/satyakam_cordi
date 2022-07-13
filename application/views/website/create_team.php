@@ -40,7 +40,7 @@
                              
                             <input type="text" name="mobile_no" placeholder="Mobile Number :" class="form-control mb-3" required>
                             <input type="text" name="email_id" placeholder="Email Id :" class="form-control mb-3" required>
-                            <input type="text" name="service_did" placeholder="Service DID / Contract No :" class="form-control mb-3" required>
+                            <input type="text" name="service_did" placeholder="Registered Service DID No. :" class="form-control mb-3" required>
                           </div>
                           <div class="col-md-4">
                             <div class="row">
