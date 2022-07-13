@@ -29,18 +29,18 @@
                     <thead>
                       <tr>
                         <th scope="col">Branch Unit : <?php echo $state_code['Join_in_branch'];?>&nbsp;&nbsp;</th>
-                        <th scope="col">Code No : <?php echo $state_code['branch_code'];?></th>
+                        <th scope="col"><!-- Code No -->Service Did No. : <?php echo $officer_list['service_did'];?></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Unit Incharge : &nbsp;&nbsp;</th>
-                        <th scope="col">Mobile No : <?php echo $state_code['mobile_no'];?></th>
+                        <th scope="col">Unit Incharge : <?php echo $officer_list['officer_first_name'].' '.$officer_list['officer_middle_name'].' '.$officer_list['officer_last_name'];?>&nbsp;&nbsp;</th>
+                        <th scope="col">Mobile No : <?php echo $officer_list['mobile_no'];?></th>
                       </tr> 
+                  <!--<tr>
+                         <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
+                      </tr>-->
                       <tr>
-                        <th scope="col" colspan="2"><center>  OFFICE ADDRESS</center></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col">Email : <?php echo $state_code['email_id'];?>&nbsp;&nbsp;</th>
-                        <th scope="col">HelpLine No. : </th>
+                        <th scope="col">Email : <?php echo $officer_list['email_id'];?>&nbsp;&nbsp;</th>
+                        <th scope="col">HelpLine No. :  </th>
                       </tr> 
                        <tr>
                         <th scope="col" colspan="2"><select name="type_of_revenue" class="form-control">

@@ -492,6 +492,7 @@ class Website extends CI_Controller {
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
+		$d['officer_list'] = $this->Website_model->get_officer_list($id);
 		$d['v'] = 'website/open_progress';
         $this->load->view('website/template_1',$d);
 	}
@@ -1289,6 +1290,7 @@ class Website extends CI_Controller {
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
+		$d['officer_list'] = $this->Website_model->get_officer_list($id);
 		$d['v'] = 'website/daily_expense';
 		$this->load->view('website/template_1',$d);
 
@@ -1654,6 +1656,7 @@ class Website extends CI_Controller {
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
+		$d['officer_list'] = $this->Website_model->get_officer_list($id);
 		$d['v'] = 'website/group_resourceform';
 		$this->load->view('website/template_1',$d);
 	}
@@ -2643,8 +2646,7 @@ class Website extends CI_Controller {
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
 		$d['officer_list'] = $this->Website_model->get_officer_list($id);
-		// echo PRE;
-		// print_r($d['officer_list']);die;
+
 		$d['v'] = 'website/my_team_progress_entry';
         $this->load->view('website/template_1',$d);
 	}
