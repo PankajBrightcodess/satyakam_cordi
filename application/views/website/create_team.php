@@ -33,7 +33,6 @@
                               <select class="form-control post mb-3" id="post" required name="post_id">
                                   <option value=" ">Post :</option>
                               </select>
-
                             <input type="text" name="batch_no"  placeholder="Batch Number :" class="form-control mb-3" required>
                             <input type="text" name="Join_in_branch"  placeholder="Joining In Branch :" class="form-control mb-3" required>
                             <input type="text" name="branch_code" placeholder="Branch Code :" class="form-control mb-3" required>

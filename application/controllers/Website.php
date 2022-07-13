@@ -15,6 +15,7 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/index';
 			$this->load->view('website/template',$d);
 		}
+		
 
 		public function aboutus(){
 			$d['v'] = 'website/aboutus';
