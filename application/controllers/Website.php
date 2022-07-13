@@ -1301,6 +1301,7 @@ class Website extends CI_Controller {
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
+		$d['officer_list'] = $this->Website_model->get_officer_list($id);
 		$d['v'] = 'website/requisition_form';
 		$this->load->view('website/template_1',$d);
 	}
