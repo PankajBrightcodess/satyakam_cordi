@@ -15,7 +15,7 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/index';
 			$this->load->view('website/template',$d);
 		}
-		
+
 
 		public function aboutus(){
 			$d['v'] = 'website/aboutus';
@@ -216,22 +216,21 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
+
+
 		public function vacencysignup_create(){
 			$data = $this->input->post();
-			// if($data['password']==$data['conf_password']){
-			   // unset($data['conf_password']);
 			   $post = explode("-",$data['post']);
 			   $data['post']=$post[0];
 			   $data['amount']=$post[1];
 			   $id= $this->Website_model->savevacencysignup($data);
-			   if(!empty($id)){
+			   if($id>0){
 			   	$details= $this->Website_model->get_candidate_user_pass($id);
-			   	print_r($details);die;
 			   	$this->session->set_flashdata("web_msg","Create Successfully !!");
-			   	redirect('website/vacency_login/');
+			   	redirect('website/vacencyform/');
 					// $this->vacency_login();
 			    }else{
-			    	$this->session->set_flashdata("web_err_msg","Something Error!!");
+			    	$this->session->set_flashdata("web_err_msg","$id");
 				   redirect('website/vacencysignup/');
 			    }
 			// }
@@ -2637,11 +2636,15 @@ class Website extends CI_Controller {
 	}
 	// '''''''''''''''''''''''''''''''My Team Office'''''''''''''''''''''''''''''''''''''''''
 	public function myteam_progress_report(){
+
 		$id = $_SESSION['user_id'];
 		$record= $this->Website_model->getuser($id);
 		$finalrecord = $record[0];
 		$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$d['state_code']= $this->Website_model->userdetails();
+		$d['officer_list'] = $this->Website_model->get_officer_list($id);
+		// echo PRE;
+		// print_r($d['officer_list']);die;
 		$d['v'] = 'website/my_team_progress_entry';
         $this->load->view('website/template_1',$d);
 	}
@@ -4882,5 +4885,16 @@ class Website extends CI_Controller {
         }else{
         	$this->session->set_flashdata('web_err_msg',"Something Error");
         }
+    }
+
+
+    public function account_status(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/account_status';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
     }
 }

@@ -745,11 +745,14 @@ class Website_model extends CI_Model{
     }
 
     public function savevacencysignup($data){
+    	echo PRE;
+    	// print_r($data);die;
     	// echo PRE;
     	// print_r($data['email']);die;
-    	$email = $data['email'];
-    	if(!empty($email)){
-    	  $query = $this->db->get_where('vacency_signup',array('email'=>$email));
+    	$mobile_no = $data['mobile_no'];
+    	if(!empty($mobile_no)){
+    	  $query = $this->db->get_where('vacency_signup',array('mobile_no'=>$mobile_no));
+
 		   $rows =  $query->num_rows();
 		   if($rows==0){
 		   	$result=$this->create_user_pass_for_candidate();
@@ -766,7 +769,7 @@ class Website_model extends CI_Model{
 				else{ return false; }
 		   	}
 		   }
-		   else{ return false; }
+		   else{ return 'Mobile No. Already Exist!'; }
     	}	
     }
 
@@ -867,6 +870,14 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		return  $query->row_array();
 	}
+
+	public function get_officer_list($id){
+			$qry = $this->db->get_where('officer_details',array('id'=>$id));
+			return $qry->row_array();
+	}	
+
+
+
 
 	public function open_monthly_report($id){
 
