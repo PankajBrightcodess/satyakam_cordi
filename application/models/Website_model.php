@@ -1205,14 +1205,13 @@ class Website_model extends CI_Model{
 	}
 
 	public function addteam_model($data){
-		echo PRE;
-		print_r($data);die;
+
 		// $batch_no =$data['batch_no'];
 		$user_id =$data['user_id'];
 		$service_did=$data['service_did'];
 		$check = $this->check_officer($service_did);
 		if($check>0){
-			$query = $this->db->get_where('team',array('user_id'=>$user_id,'status'=>1));
+			$query = $this->db->get_where('team',array('user_id'=>$user_id,'service_did'=>$service_did,'status'=>1));
 			$count =  $query->num_rows();
 			if($count==0){
 				$table="team";

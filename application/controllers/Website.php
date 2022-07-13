@@ -106,8 +106,7 @@ class Website extends CI_Controller {
 			$data = $this->input->post();
 
 			$result = $this->Website_model->addteam_model($data);
-			print_r($result);die;
-			if($result){
+			if($result==true){
 				$this->session->set_flashdata("web_msg","Team Added Successfully!!");
 				redirect('website/create_team');
 			}
