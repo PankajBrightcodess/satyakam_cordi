@@ -28,7 +28,7 @@
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
                       <tr>
-                        <th scope="col">Branch Unit : <?php echo $officer_list['batch_no'];?>&nbsp;&nbsp;</th>
+                        <th scope="col">Branch Unit : <?php echo $state_code['Join_in_branch'];?>&nbsp;&nbsp;</th>
                         <th scope="col"><!-- Code No -->Service Did No. : <?php echo $officer_list['service_did'];?></th>
                       </tr> 
                       <tr>
