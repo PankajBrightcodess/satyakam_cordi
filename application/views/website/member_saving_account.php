@@ -16,12 +16,12 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Open Saving Account</td>
-                    <td><a href="<?= base_url('website/create_account_page')?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/create_account_page');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Account Status</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a> </td>
+                    <td><a href="<?= base_url('website/account_status');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a> </td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>

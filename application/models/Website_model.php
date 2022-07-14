@@ -544,28 +544,71 @@ class Website_model extends CI_Model{
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
 		 $ac_no = $this->account_no_create();
+		 
 		 if($result==true && !empty($ac_no)){
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
-		 	$final['name'] = $data['name'];
-		 	$final['group_name'] = $data['group_name'];
-		 	$final['father_husband'] = $data['father_husband'];
-		 	$final['dob'] = $data['dob'];
-		 	$final['c_address'] = $data['c_address'];
-		 	$final['p_address'] = $data['p_address'];
-		 	$final['group_no'] = $data['group_no'];
-		 	$final['mobile_no'] = $data['mobile_no'];
-		 	$final['aadhar'] = $data['aadhar'];
-		 	$final['email'] = $data['email'];
+		 	$final['username'] = $data['username'];
 		 	$final['state_unit_name'] = $data['state_unit_name'];
-		 	$final['sponser_id'] = $_SESSION['member_id'];
-		 	$final['sponser_name'] = $_SESSION['member_name'];
+		 	$final['division_unit'] = $data['division_unit'];
+		 	$final['dist_unit'] = $data['dist_unit'];
+		 	$final['sponsor_id'] = $data['sponsor_id'];
+		 	$final['mobile_no'] = $data['mobile_no'];
+		 	$final['email'] = $data['email'];
+		 	$final['account_holder_name'] = $data['account_holder_name'];
+		 	$final['father_husband_name'] = $data['father_husband_name'];
+		 	$final['dob'] = $data['dob'];
+		 	$final['occupation'] = $data['occupation'];
+		 	$final['gender'] = $data['gender'];
+		 	$final['aadhar_no'] = $data['aadhar_no'];
+		 	$final['pan_no'] = $data['pan_no'];
+		 	$final['village'] = $data['village'];
+		 	$final['panchayat'] = $data['panchayat'];
+		 	$final['ward_no'] = $data['ward_no'];
+		 	$final['police_station'] = $data['police_station'];
+		 	$final['block'] = $data['block'];
+		 	$final['subdivision'] = $data['subdivision'];
+		 	$final['district'] = $data['district'];
+		 	$final['pin_code'] = $data['pin_code'];
+		 	$final['form'] = $data['form'];
+		 	$final['nationality'] = $data['nationality'];
+		 	$final['category'] = $data['category'];
+		 	$final['ident_marks'] = $data['ident_marks'];
+		 	$final['marital_status'] = $data['marital_status'];
+		 	$final['saving_plan_name'] = $data['saving_plan_name'];
+		 	$final['team_year'] = $data['team_year'];
+		 	$final['maintenance_fee'] = $data['maintenance_fee'];
+		 	$final['nominee_name'] = $data['nominee_name'];
+		 	$final['relation'] = $data['relation'];
+		 	$final['age'] = $data['age'];
+		 	$final['nominee_aadhar'] = $data['nominee_aadhar'];
+		 	$final['group_name'] = $data['group_name'];
+		 	$final['group_no'] = $data['group_no'];
+		 	$final['meeting_no'] = $data['meeting_no'];
+		 	$final['collective_saving_form_no'] = $data['collective_saving_form_no'];
+		 	$final['upi_banking'] = $data['upi_banking'];
 		 	$final['added_on'] = date('Y-m-d');
+
+
+
+
+		 	// $final['name'] = $data['name'];
+		 	// $final['group_name'] = $data['group_name'];
+		 	// $final['father_husband'] = $data['father_husband'];
+		 	// $final['dob'] = $data['dob'];
+		 	// $final['c_address'] = $data['c_address'];
+		 	// $final['p_address'] = $data['p_address'];
+		 	// $final['group_no'] = $data['group_no'];
+		 	// $final['mobile_no'] = $data['mobile_no'];
+		 	// $final['aadhar'] = $data['aadhar'];
+		 	// $final['email'] = $data['email'];
+		 
+		 	
 		 	$table = 'account_details';
 		 	$status=$this->db->insert($table,$final);
 		 	$last_insert_id = $this->db->insert_id();
-			if($status ){
-			     return true;
+			if(!empty($last_insert_id)){
+			     return $last_insert_id;
 			}
 			else{
 				return false;
@@ -575,6 +618,16 @@ class Website_model extends CI_Model{
 		 	$record['verify']="Member Id does not Exist!";
 		 }
 	}
+
+	public function get_account_no($inst_id){
+		$this->db->select('account_no,mobile_no');
+		$this->db->from('account_details');
+		$this->db->where('id',$inst_id);
+		$query = $this->db->get();
+		return $query->row_array();
+
+	}
+
 	public function account_no_create(){
 		$this->db->select('*');
 		$this->db->from('account_details');
@@ -773,9 +826,7 @@ class Website_model extends CI_Model{
     	}	
     }
 
-    public function get_candidate_user_pass($id){
-    	// $this->db->select('')
-    }
+   
 
     public function create_user_pass_for_candidate(){
     	$this->db->select('id,user_name');
@@ -873,7 +924,7 @@ class Website_model extends CI_Model{
 
 	public function get_officer_list($id){
 			$qry = $this->db->get_where('officer_details',array('id'=>$id));
-			return $qry->row_array();
+			return$qry->row_array();
 	}	
 
 
@@ -2202,6 +2253,15 @@ class Website_model extends CI_Model{
         	return false;
         }         
       } 
+	}
+
+
+	public function account_check_details($data){
+		print_r($data);
+		$mobile = $data['mobile'];
+		$account_no = $data['ac_no'];
+		$query = $this->db->get_where('stk_account_details',array('mobile_no'=>$mobile,'account_no'=>$account_no));
+		    return $query->row_array();
 	}
 
 

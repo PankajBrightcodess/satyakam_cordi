@@ -41,8 +41,7 @@
                       <tr>
                         <th scope="col">Email : <?php echo $officer_list['email_id'];?>&nbsp;&nbsp;</th>
                         <th scope="col">HelpLine No. :  </th>
-                      </tr> 
-                       
+                      </tr>
                     </thead>
                   </table> 
                 </div>

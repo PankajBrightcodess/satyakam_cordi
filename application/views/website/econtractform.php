@@ -67,7 +67,7 @@
                             <input type="text" name="officer_first_name" placeholder="Officer's First Name :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="officer_middle_name" placeholder="Officer's Middle Name  :" class="form-control" required>
+                            <input type="text" name="officer_middle_name" placeholder="Officer's Middle Name  :" class="form-control" >
                           </div>
                           <div class="col-md-4 mb-3">
                             <input type="text" name="officer_last_name" placeholder="Officer's Last Name  :" class="form-control">

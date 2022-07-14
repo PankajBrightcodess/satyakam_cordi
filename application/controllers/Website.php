@@ -225,9 +225,9 @@ class Website extends CI_Controller {
 			   $data['amount']=$post[1];
 			   $id= $this->Website_model->savevacencysignup($data);
 			   if($id>0){
-			   	$details= $this->Website_model->get_candidate_user_pass($id);
-			   	$this->session->set_flashdata("web_msg","Create Successfully !!");
-			   	redirect('website/vacencyform/');
+			   	// $details= $this->Website_model->get_candidate_user_pass($id);
+			   	redirect('website/vacencyform');
+			   	// $this->session->set_flashdata("web_msg","Create Successfully !!");
 					// $this->vacency_login();
 			    }else{
 			    	$this->session->set_flashdata("web_err_msg","$id");
@@ -4594,15 +4594,66 @@ class Website extends CI_Controller {
 		public  function create_account(){
 			$data = $this->input->post();
 			$result = $this->Website_model->account_creates_model($data);
-			if($result==true){
-				$this->session->set_flashdata('web_msg','Your Account Successfully Created');
-				redirect('website/create_account_page');
+			if(!empty($result)){
+				$inst_id = $result;
+				$request = $this->Website_model->get_account_no($inst_id);
+			
+				if(!empty($request)){
+					 $account_no = $request['account_no'];
+		    		 $contact_no = $request['mobile_no'];
+		    	
+		    		$message='Congratulation! Your account has been created successfully in Satyakam Foundation. Your A/c No. is '.$account_no.'';
+					$base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+		   			$senderId = "SKFOUN";
+		    		$routeId = "1";
+		    		if(!empty($contact_no)){
+		      			$curl = curl_init();
+		      			curl_setopt_array($curl, array(
+		       		    CURLOPT_URL => $base_url,
+		        		CURLOPT_RETURNTRANSFER => true,
+		        		CURLOPT_ENCODING => "",
+		        		CURLOPT_MAXREDIRS => 10,
+		        		CURLOPT_TIMEOUT => 30,
+		        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		        		CURLOPT_CUSTOMREQUEST => "POST",
+		        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+		        		CURLOPT_HTTPHEADER => array(
+		        			"Cache-Control: no-cache",
+		        			"Content-Type: application/json"
+		        		),
+		      			));
+			      	$response = curl_exec($curl);
+			        $err = curl_error($curl);
+			      	curl_close($curl);
+			      	if($err){
+			        	$this->session->set_flashdata('web_err_msg','Something Error');
+						redirect('website/my_saving_account_features');
+			        	
+			      	}else{
+			      		$this->session->set_flashdata('web_msg','Your Account Successfully Created');
+						redirect('website/create_account_page');
+			      	}
+			    }
+				}
+
+				if($response){
+				
+				}
+				else{
+					
+				}
 			}
 			else{
-				$this->session->set_flashdata('web_err_msg','Something Error');
+				$this->session->set_flashdata('web_err_msg','Your Account Not Created');
 				redirect('website/my_saving_account_features');
 			}
+			
 		}
+
+		public function account_sms_send($request){
+			
+		}
+
 
 		public function get_memberlist_byid(){
 			$member_no = $this->input->post('member_id');
@@ -4899,5 +4950,31 @@ class Website extends CI_Controller {
 		else{
 			redirect('website/member_login');
 		}
+    }
+
+    public function account_check(){
+    	$data = $this->input->post();
+    	$result=$this->Website_model->account_check_details($data);
+        if(!empty($result['id'])){
+        		$account_id['acc_id']=$result['id'];
+        	   $this->session->set_userdata($account_id);
+               $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
+               redirect('website/account_details_status');
+        }else{
+        	$this->session->set_flashdata('web_err_msg',"Something Error");
+        	redirect('website/account_status');
+        }
+    }
+
+    public function account_details_status(){
+    	if(!empty($_SESSION['member_id'])){
+    		
+			$d['v'] = 'website/weekly_saving_form';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+
     }
 }
