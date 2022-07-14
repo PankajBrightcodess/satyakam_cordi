@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h1 class="tittle">MY SAVING ACCOUNT FEATURE</h1>
+            <h1 class="tittle">E-DEPOSIT(FORM)/E-RECEIPT</h1>
             <div class="table-responsive">
               <table class="table table-hover" style="text-align: center;">
                 <thead>
@@ -26,7 +26,7 @@
                   <tr>
                     <th scope="row">3</th>
                     <td>Deposit Account</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/e_deposit_form');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>

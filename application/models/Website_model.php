@@ -2257,7 +2257,6 @@ class Website_model extends CI_Model{
 
 
 	public function account_check_details($data){
-		print_r($data);
 		$mobile = $data['mobile'];
 		$account_no = $data['ac_no'];
 		$query = $this->db->get_where('stk_account_details',array('mobile_no'=>$mobile,'account_no'=>$account_no));

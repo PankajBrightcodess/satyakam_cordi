@@ -4958,7 +4958,7 @@ class Website extends CI_Controller {
         if(!empty($result['id'])){
         		$account_id['acc_id']=$result['id'];
         	   $this->session->set_userdata($account_id);
-               $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
+               // $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
                redirect('website/account_details_status');
         }else{
         	$this->session->set_flashdata('web_err_msg',"Something Error");
@@ -4968,7 +4968,6 @@ class Website extends CI_Controller {
 
     public function account_details_status(){
     	if(!empty($_SESSION['member_id'])){
-    		
 			$d['v'] = 'website/weekly_saving_form';
 		    $this->load->view('website/template_2',$d);
 		}
@@ -4976,5 +4975,21 @@ class Website extends CI_Controller {
 			redirect('website/member_login');
 		}
 
+    }
+
+    public function e_deposit_form(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/e_deposit_form';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function e_deposit_form_submit(){
+    	$data = $this->input->post();
+    	echo PRE;
+    	print_r($data);die;
     }
 }
