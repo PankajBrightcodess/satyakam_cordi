@@ -77,7 +77,7 @@
                             <input type="text" name="father_first" placeholder="S/O / D/O First Name :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="father_middle" placeholder="S/O / D/O Middle Name :" class="form-control" required>
+                            <input type="text" name="father_middle" placeholder="S/O / D/O Middle Name :" class="form-control">
                           </div>
                           <div class="col-md-4 mb-3">
                             <input type="text" name="father_last"  placeholder="S/O / D/O Last Name :" class="form-control">
