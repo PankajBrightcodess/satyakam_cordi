@@ -67,20 +67,20 @@
                             <input type="text" name="officer_first_name" placeholder="Officer's First Name :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="officer_middle_name" placeholder="Officer's Middle Name  :" class="form-control" required>
+                            <input type="text" name="officer_middle_name" placeholder="Officer's Middle Name  :" class="form-control">
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="officer_last_name" placeholder="Officer's Last Name  :" class="form-control" required>
+                            <input type="text" name="officer_last_name" placeholder="Officer's Last Name  :" class="form-control" >
                           </div>
 
                           <div class="col-md-4 mb-3">
                             <input type="text" name="father_first" placeholder="S/O / D/O First Name :" class="form-control" required>
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="father_middle" placeholder="S/O / D/O Middle Name :" class="form-control" required>
+                            <input type="text" name="father_middle" placeholder="S/O / D/O Middle Name :" class="form-control" >
                           </div>
                           <div class="col-md-4 mb-3">
-                            <input type="text" name="father_last" placeholder="S/O / D/O Last Name :" class="form-control" required>
+                            <input type="text" name="father_last" placeholder="S/O / D/O Last Name :" class="form-control" >
                           </div>
                           <div class="col-md-12 mb-3">
                             <textarea name="query" placeholder="Address :" name="address" class="form-control py-4 mb-3" required style="min-height:65px;"></textarea>
