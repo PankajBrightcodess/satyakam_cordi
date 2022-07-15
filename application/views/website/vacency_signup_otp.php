@@ -18,7 +18,7 @@
                   <input type="hidden" name="post" value="<?php if(!empty($data['post'])) echo $data['post'];?>" class="form-control" required>
                 </div>
                 <div class="col-md-12 mb-2">
-                  <input type="submit" class="mt-4 btn btn-sm" style="background:#233799;color:white">
+                  <input type="submit" class="mt-4 btn btn-sm" style="background:#233799;color:white;">
                 </div>
               </div>
             </form>
