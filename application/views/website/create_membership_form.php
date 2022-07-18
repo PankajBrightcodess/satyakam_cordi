@@ -303,7 +303,7 @@
                                   </tr>
                                   <tr>
                                     <td> <label>Aadhar Front Side</label><input class="form-control" type="file" name="aadhar_front" id="formFile"></td>
-                                    <td><label>Aadhar Back Side</label><input class="form-control" type="file" name="aadhar_back" id="formFile"></td>
+                                    <td><label>Aadhar Back Side</label><input class="form-control" type="file" name="aadhar_back" id="formFile" ></td>
                                   </tr>
                                   <tr>
                                     <td> <label>Election Id Card</label><input class="form-control" type="file" name="election_id_card" id="formFile"></td>
@@ -319,7 +319,7 @@
                                   </tr>
                                    <tr>
                                     <td> <label>Mobile No.</label><input class="form-control" type="text" name="witness_mobile_no"></td>
-                                    <td><label>Membership No.</label><input class="form-control" type="text" name="membership_no"></td>
+                                    <!-- <td><label>Membership No.</label><input class="form-control" type="text" name="membership_no"></td> -->
                                   </tr>
                                   <tr>
                                     <td colspan="2" class="text-center"><button type="button" class="btn btn-sm btn-success">VERIFICATION</button> </td>

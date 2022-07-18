@@ -3478,7 +3478,6 @@ class Website extends CI_Controller {
 
 	    public function create_membership(){
 			$data= $this->input->post();
-
 			$otp = $_SESSION['create_otp'];
 			$confirm_otp = $this->input->post('OTP');
 			unset($_SESSION['last_id']);
@@ -3497,8 +3496,6 @@ class Website extends CI_Controller {
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
 				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
-				// echo PRE;
-				// print_r($d['divisionlist']);die;
 				$d['v'] = 'website/create_membership_form';
 				$this->load->view('website/template_1',$d);
 			}
