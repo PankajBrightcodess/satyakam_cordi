@@ -321,22 +321,23 @@
                                     <td> <label>Mobile No.</label><input class="form-control" type="text" name="witness_mobile_no"></td>
                                     <!-- <td><label>Membership No.</label><input class="form-control" type="text" name="membership_no"></td> -->
                                   </tr>
-                                  <tr>
-                                    <td colspan="2" class="text-center"><button type="button" class="btn btn-sm btn-success">VERIFICATION</button> </td>
-                                   
-                                  </tr>
+                                  
 
 
                                   <tr>
                                     <th scope="row" colspan="2" class="text-center">Name Of The Verifing Officer</th>
                                   </tr>
                                   <tr>
-                                     <td> <label>Designation</label><input class="form-control" type="text" name="designation"></td>
-                                    <td><label>Service Number</label><input class="form-control" type="text" name="service_no"></td>
+                                     <td> <label>Designation</label><input class="form-control" type="text" name="designation" id="designation"></td>
+                                    <td><label>Service Number</label><input class="form-control" type="text" name="service_no" id="service_no"></td>
                                   </tr>
                                  <tr>
-                                     <td> <label>Batch No.</label><input class="form-control" type="text" name="batch_no"></td>
-                                    <td><label>Mobile No.</label><input class="form-control" type="number" name="officer_mobile_no"></td>
+                                     <td> <label>Batch No.</label><input class="form-control" type="text" name="batch_no" id="batch_no"></td>
+                                    <td><label>Mobile No.</label><input class="form-control" type="number" name="officer_mobile_no" id="officer_mobile_no"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="2" class="text-center"><button type="button" id="varification" class="btn btn-sm btn-success">VERIFICATION</button> </td>
+                                   
                                   </tr>
                                 </tbody>
                               </table>

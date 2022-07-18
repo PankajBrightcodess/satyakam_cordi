@@ -3486,13 +3486,11 @@ class Website extends CI_Controller {
 
 				$member_data = $this->Website_model->insert_membersignup($data);
 				$d['allsignuprecords'] = $member_data;
-				
 				unset($_SESSION['create_otp']);
 				$id = $_SESSION['user_id'];
 				$record= $this->Website_model->getuser($id);
 				$finalrecord = $record[0];
 				$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
-
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
 				$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
@@ -3517,6 +3515,12 @@ class Website extends CI_Controller {
 				$d['state'] = $this->Website_model->get_statelist();
 				$d['v'] = 'website/membership_otp_confirm';
 				$this->load->view('website/template_1',$d);
+		}
+
+		public function verificationlist(){
+			$data = $this->input->post();
+			$records= $this->Website_model->varificationcheck($data);
+			
 		}
 
 		

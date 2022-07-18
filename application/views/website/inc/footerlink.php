@@ -467,6 +467,26 @@ for (i = 0; i < acc.length; i++) {
     });
    });
 
+   $('body').on('click','#varification', function(){
+      debugger;
+      var designation = $('#designation').val();
+      var service_no = $('#service_no').val();
+      var batch_no = $('#batch_no').val();
+      var officer_mobile_no = $('#officer_mobile_no').val();
+        $.ajax({
+          type: "POST",
+          url: '<?php echo base_url('website/verificationlist');?>',
+          data: {designation:designation,service_no:service_no,batch_no:batch_no,officer_mobile_no:officer_mobile_no},
+          // dataType: 'JSON',
+          success: function(result){
+              alert(result);
+          },
+
+        });
+
+
+    });
+
 $('body').on('change','.year', function(){
     var year = $(this).val();
     $.ajax({
