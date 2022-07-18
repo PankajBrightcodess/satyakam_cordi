@@ -74,8 +74,9 @@
                 </div>
                 <div class="col-md-6 mb-2">
 
-                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white; width: 100px; margin: 20px; padding:10px"><?php echo $captcha;?></label>
-                  <input type="hidden" name="captcha_confirm" value="<?php echo $captcha;?>">
+                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white; width: 100px; margin: 20px; padding:10px" id="referesh_c"><?php echo $captcha;?></label>
+                   <input type="hidden" name="captcha_confirm" id="captcha_confirm" value="<?php echo $captcha;?>">
+                  <input type="button" class="btn btn-sm btn-secondary" id="referesh_captch" value="Refresh">
                   
                 </div>
                 <div class="col-md-12 mb-2">

@@ -59,10 +59,7 @@ $("#professor_sign").change(function() {
  });
  </script>
  <script type="text/javascript">
-
-        $('body').on('click','#confrmidpass',function(){
-          // alert('jhdfs');
-    
+  $('body').on('click','#confrmidpass',function(){
         var userid = $('#txtUserid').val();
         var password = $('#txtPassword').val();
        
@@ -434,6 +431,22 @@ for (i = 0; i < acc.length; i++) {
 
     });
    });
+
+
+   $('body').on('click','#referesh_captch',function(){
+    debugger;
+    $.ajax({
+      type: 'POST',
+      url: '<?php echo base_url('website/referesh_captcha')?>',
+       data: {},
+       dataType: 'JSON',
+      success:function(result){
+        $('#referesh_c').html(result.referesh_c);
+        $('#captcha_confirm').val(result.referesh_c);
+      },
+    });
+
+   })
 
     $('body').on('change','#year', function(){
     var year = $(this).val();

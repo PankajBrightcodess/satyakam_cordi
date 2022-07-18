@@ -46,8 +46,8 @@
                   <input type="text" name="applicant_name" placeholder="Applicant Name :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
-                  <label for="father_name">Father's Name :</label>
-                  <input type="text" name="father_name" placeholder="Father's Name :" class="form-control" required>
+                  <label for="father_name">Father's/Husband's Name :</label>
+                  <input type="text" name="father_name" placeholder="Father's/Husband's Name :" class="form-control" required>
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="dob">DOB :</label>
@@ -67,8 +67,10 @@
                 </div>
                 <div class="col-md-6 mb-2">
 
-                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white; width: 100px; margin: 20px; padding:10px"><?php echo $captcha;?></label>
-                  <input type="hidden" name="captcha_confirm" value="<?php echo $captcha;?>">
+                  <label style="border: 1px solid red; font-weight : 900; font-size: 20px; letter-spacing: 2px; font-style: italic;  background: gray; color: white;  width: 100px; margin: 20px; padding:10px" id="referesh_c"><?php echo $captcha;?></label>
+
+                  <input type="hidden" name="captcha_confirm" id="captcha_confirm" value="<?php echo $captcha;?>">
+                  <input type="button" class="btn btn-sm btn-secondary" id="referesh_captch" value="Refresh">
                   
                 </div>
                 <div class="col-md-12 mb-2">

@@ -798,14 +798,9 @@ class Website_model extends CI_Model{
     }
 
     public function savevacencysignup($data){
-    	echo PRE;
-    	// print_r($data);die;
-    	// echo PRE;
-    	// print_r($data['email']);die;
     	$mobile_no = $data['mobile_no'];
     	if(!empty($mobile_no)){
     	  $query = $this->db->get_where('vacency_signup',array('mobile_no'=>$mobile_no));
-
 		   $rows =  $query->num_rows();
 		   if($rows==0){
 		   	$result=$this->create_user_pass_for_candidate();

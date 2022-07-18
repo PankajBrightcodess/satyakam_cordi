@@ -3295,6 +3295,15 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
+		public function referesh_captcha(){
+			$length = 5;
+			$captcha['referesh_c']=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+		   $final= json_encode($captcha);
+		   echo $final;
+
+
+		}
+
 	
 
 		public function addrecord_membership(){
