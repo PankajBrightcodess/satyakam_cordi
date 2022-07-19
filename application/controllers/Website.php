@@ -105,7 +105,58 @@ class Website extends CI_Controller {
 
 		public function add_team(){
 			$data = $this->input->post();
-
+			$upload_path = './assets/uploads/team/';	
+		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+			  if(!empty($_FILES['image']['name'])){
+			  			
+				  $image = upload_file("image", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['image'] = $image['path'];
+				  }
+			  }
+			  if(!empty($_FILES['signature']['name'])){
+				  $image = upload_file("signature", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['signature'] = $image['path'];
+				  }
+			  }
+			  if(!empty($_FILES['aadhar']['name'])){
+				  $image = upload_file("aadhar", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['aadhar'] = $image['path'];
+				  }
+			  }
+			   if(!empty($_FILES['pan']['name'])){
+				  $image = upload_file("pan", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['pan'] = $image['path'];
+				  }
+			  }
+			   if(!empty($_FILES['bank_account']['name'])){
+				  $image = upload_file("bank_account", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['bank_account'] = $image['path'];
+				  }
+			  }
+		  
+			   if(!empty($_FILES['security_e_receipt']['name'])){
+				  $image = upload_file("security_e_receipt", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['security_e_receipt'] = $image['path'];
+				  }
+			  }
+			  if(!empty($_FILES['processing_receipt']['name'])){
+				  $image = upload_file("processing_receipt", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['processing_receipt'] = $image['path'];
+				  }
+			  }
+			   if(!empty($_FILES['training_receipt']['name'])){
+				  $image = upload_file("training_receipt", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['training_receipt'] = $image['path'];
+				  }
+			  }
 			$result = $this->Website_model->addteam_model($data);
 			if($result==true){
 				$this->session->set_flashdata("web_msg","Team Added Successfully!!");

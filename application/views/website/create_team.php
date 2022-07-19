@@ -272,7 +272,7 @@
                                     <th scope="row">Bank Account Upload</th>
                                     <td><input class="form-control" name="bank_account" type="file" id="formFile"></td>
                                   </tr>
-                                  <tr>
+                                 <!--  <tr>
                                     <th scope="row">Signature Upload</th>
                                     <td colspan="3"><input class="form-control" name="signature_upload" type="file" id="formFile"></td>
                                   </tr>
@@ -281,7 +281,7 @@
                                     <td colspan="3">
                                       <input class="form-control" name="photo_upload" type="file" id="formFile">
                                     </td>
-                                  </tr>
+                                  </tr> -->
                                   <tr>
                                     <th scope="row">Security E-Receipt</th>
                                     <td colspan="3">
