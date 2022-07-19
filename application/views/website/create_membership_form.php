@@ -98,7 +98,7 @@
                           </div>
                           <div class="col-md-4 mb-3">
                             <label>Pin Code</label>
-                            <input type="number" name="pin_code" maxlength="6" minlength="6" placeholder="Pin Code No. :" class="form-control" required>
+                            <input type="number" name="pin_code" maxlength="6" minlength="6" placeholder="Pin Code No. :" class="form-control">
                           </div>
                           <div class="col-md-4 mb-3">
                             <label>Aadhar No.</label>
