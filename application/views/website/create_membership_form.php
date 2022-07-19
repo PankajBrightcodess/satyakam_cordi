@@ -61,7 +61,7 @@
                             <label>Mobile No.</label>
                             <input type="text" name="mobile_no" readonly  value="<?= $allsignuprecords['mobile_no'];?>" placeholder="Mobile No :" class="form-control mb-3" required>
                             <label>Email Id.</label>
-                            <input type="email" name="email" readonly placeholder="Email Id :" class="form-control mb-3" value="<?= $allsignuprecords['email'];?>" required>
+                            <input type="email" name="email" readonly placeholder="Email Id :" class="form-control mb-3" value="<?= $allsignuprecords['email'];?>">
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Provisional Address (As Per Aadhar Card)</h6>
@@ -259,6 +259,21 @@
                           <div class="col-md-6 mb-5">
                             <input type="text" name="nominee_aadhar" placeholder="Aadhar" class="form-control" required>
                           </div>
+                          <div class="col-md-12 mb-3 ">
+                            <h6 class="tittle">Bank Details</h6>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="text" placeholder="Bank Name" name="bank_name" class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="number" name="account_no" placeholder="Account No." class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="text" name="type_account" placeholder="Type Of Account" class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-5">
+                            <input type="text" name="ifsc_code" placeholder="IFSC Code" class="form-control" required>
+                          </div>
 
                            <div class="col-md-12 text-center text-info">
                             <h4>INSTRUCTION</h4>
@@ -306,12 +321,15 @@
                                     <td><label>Aadhar Back Side</label><input class="form-control" type="file" name="aadhar_back" id="formFile" ></td>
                                   </tr>
                                   <tr>
-                                    <td> <label>Election Id Card</label><input class="form-control" type="file" name="election_id_card" id="formFile"></td>
-                                    <td><label>PAN Card</label><input class="form-control" type="file" name="pan_card" id="formFile"></td>
+                                    <td> <label>Election Id Card(Front)</label><input class="form-control" type="file" name="election_id_card" id="formFile"></td>
+                                     <td> <label>Election Id Card(Back)</label><input class="form-control" type="file" name="election_id_card_back" id="formFile"></td>
                                   </tr>
                                   <tr>
+                                    <td><label>PAN Card</label><input class="form-control" type="file" name="pan_card" id="formFile"></td>
                                     <td> <label>Passbook (Bank A/C)</label><input class="form-control" type="file" name="passbook_bank" id="formFile"></td>
-                                    <td><label>Qualification Certificate</label><input class="form-control" type="file" name="qualification_certificate" id="formFile"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="2"><label>Qualification Certificate</label><input class="form-control" type="file" name="qualification_certificate" id="formFile"></td>
                                   </tr>
                                   <tr>
                                     <td> <label>Witness Name</label><input class="form-control" type="text" name="witness_name"></td>

@@ -97,9 +97,9 @@ defined('NTYPE')                 OR define('NTYPE',"toastr"); //Notification Typ
 /*--------------Template Colors-------------*/
 //////////////////////////////////////////////
 defined('ACCENT_COLOR')        OR define('ACCENT_COLOR',"accent-danger");
-defined('NAVBAR_COLOR')        OR define('NAVBAR_COLOR',"navbar-light navbar-warning");
+defined('NAVBAR_COLOR')        OR define('NAVBAR_COLOR',"navbar-light navbar-info");
 defined('BRAND_COLOR')         OR define('BRAND_COLOR',"navbar-light");
-defined('SIDEBAR_COLOR')       OR define('SIDEBAR_COLOR',"sidebar-dark-warning");
+defined('SIDEBAR_COLOR')       OR define('SIDEBAR_COLOR',"sidebar-dark-info");
 //////////////////////////////////////////////
 
 if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){

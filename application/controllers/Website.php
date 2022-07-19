@@ -3505,6 +3505,12 @@ class Website extends CI_Controller {
 					  $data['election_id_card'] = $image4['path'];
 				  }
 			}
+			if(!empty($_FILES['election_id_card_back']['name'])){
+				$image4 = upload_file("election_id_card_back", $upload_path, $allowed_types, time());
+				  if ($image4 !='') {
+					  $data['election_id_card_back'] = $image4['path'];
+				  }
+			}
 			if(!empty($_FILES['pan_card']['name'])){
 				$image5 = upload_file("pan_card", $upload_path, $allowed_types, time());
 				  if ($image5 !='') {
