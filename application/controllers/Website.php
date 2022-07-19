@@ -5027,7 +5027,7 @@ class Website extends CI_Controller {
         		$account_id['acc_id']=$result['id'];
         	   $this->session->set_userdata($account_id);
                // $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
-               redirect('website/account_details_status');
+               redirect('website/e_deposit_form');
         }else{
         	$this->session->set_flashdata('web_err_msg',"Something Error");
         	redirect('website/account_status');
@@ -5046,7 +5046,14 @@ class Website extends CI_Controller {
     }
 
     public function e_deposit_form(){
+
     	if(!empty($_SESSION['member_id'])){
+    		$id = $this->session->userdata('acc_id');
+    		$d['state'] = $this->Website_model->get_statelist();
+    		$result = $this->Website_model->get_all_data($id);	
+    		$d['account_details']=$result;
+    		$state_id['id'] = $result['state_unit_name'];
+			$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
 			$d['v'] = 'website/e_deposit_form';
 		    $this->load->view('website/template_2',$d);
 		}
@@ -5055,9 +5062,5 @@ class Website extends CI_Controller {
 		}
     }
 
-    public function e_deposit_form_submit(){
-    	$data = $this->input->post();
-    	echo PRE;
-    	print_r($data);die;
-    }
+    
 }

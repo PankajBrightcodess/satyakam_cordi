@@ -2266,6 +2266,13 @@ class Website_model extends CI_Model{
 		    return $query->row_array();
 	}
 
+	public function get_all_data($id){
+		$query = $this->db->get_where('stk_account_details',array('id'=>$id));
+		    return $query->row_array();
+	}
+
+	
+
 
 
 

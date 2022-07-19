@@ -32,7 +32,7 @@
               <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"> </a>
             </div>
             <div class="loginbox">
-              <form method="POST" action="<?= base_url('website/e_deposit_form_submit')?>">  
+              <form method="POST" action="<?= base_url('website/account_check')?>">  
               <div class="row">
               <div class="col-md-12">
                 <h5 class="text-center" style="color: black; font-weight: 700;">Account Status</h5>

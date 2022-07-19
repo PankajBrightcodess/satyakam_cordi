@@ -29,8 +29,11 @@
                           ?>
                   </select></div>
                   <!-- //////////////////////////////// -->
-                    <div class="col-md-2 mt-3">Division Unit :</div>
-                      <div class="col-md-4"><input type="text"  class="form-control" name="division_unit" required></div>
+                      <div class="col-md-2 mt-3">Division Unit :</div>
+                          <div class="col-md-4"><select class="form-control division" id="division" name="division_unit_name">
+                            <option>Division :</option>
+                         </select>
+                      </div>
                       <div class="col-md-2">District Unit :</div>
                       <div class="col-md-4">  <input type="text" name="dist_unit" id="dist_unit" placeholder="District Unit :" class="form-control" required></div>
                       <!-- //////////////////////////////// -->

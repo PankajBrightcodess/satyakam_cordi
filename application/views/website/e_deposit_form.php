@@ -7,40 +7,61 @@
             <center class="tittle"><h2>E-DEPOSIT(FORM)</h2><h4><?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4></center>
            
               <div class="row">
-                  
+                  <!-- <?= PRE; print_r($account_details);?> -->
                   <div class="col-md-2 mt-2">Deposit Date</div>
-                  <div class="col-md-4 mt-2"><input type="date" name="deposit_date" id="deposit_date" class="form-control" value="<?= date('Y-m-d');?>" required></div>
+                  <div class="col-md-4 mt-2"><input type="date" name="deposit_date" id="deposit_date" class="form-control" value="<?= date('Y-m-d');?>" readonly required></div>
                   <div class="col-md-2 mt-2">Meeting No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="meeting_no" id="meeting_no" placeholder="Meeting No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="meeting_no"  id="meeting_no" placeholder="Meeting No. :" class="form-control"  required></div>
                   <div class="col-md-2 mt-2">Account No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="account_no" id="account_no" placeholder="Account No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="account_no" value="<?php echo $account_details['account_no'];?>" id="account_no" placeholder="Account No. :" readonly class="form-control" required></div>
                   <div class="col-md-2 mt-2">Account Holder Name</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="account_holder_name" id="account_holder_name" placeholder="Account Holder Name :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" value="<?php echo $account_details['account_holder_name'];?>" name="account_holder_name" readonly id="account_holder_name" placeholder="Account Holder Name :" class="form-control" required></div>
                   <div class="col-md-2 mt-2">Mobile No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="mobile_no" id="mobile_no" placeholder="Mobile No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" value="<?php echo $account_details['mobile_no'];?>"   name="mobile_no" id="mobile_no" placeholder="Mobile No. :" readonly class="form-control" required></div>
                   <div class="col-md-2 mt-2">E-mail</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="email"  id="email" placeholder="E-mail :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="email" value="<?php echo $account_details['email'];?>"  id="email" placeholder="E-mail :" readonly class="form-control"></div>
                   <div class="col-md-2 mt-2">User Name</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="username"  id="username" placeholder="User Name :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="username" readonly  value="<?php echo $account_details['username'];?>"  id="username" placeholder="User Name :" class="form-control" required></div>
                    <div class="col-md-2 mt-2">User Id No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="user_id_no"  id="user_id_no" placeholder="User Id No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="user_id_no" value="<?php echo $account_details['member_id'];?>"   id="user_id_no" readonly placeholder="User Id No. :" class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">State Unit/Code No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="state_unit_code"  id="state_unit_code" placeholder="State Unit/Code No. :" class="form-control" required></div>
-                  
+                  <div class="col-md-4 mt-2">
+                    <select class="form-control states" id="state_unit_code" readonly name="state_unit_code" required>
+                    <option>State :</option>
+                    <?php
+                      if(!empty($state)){
+                        foreach ($state as $key => $value) {
+                           ?><option <?php if($account_details['state_unit_name']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['state'];?></option><?php
+                        }
+                      }
+                    ?>
+                  </select>
+                  </div>
                   <div class="col-md-2 mt-2">Division Unit/Code No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="division_unit"  id="division_unit" placeholder="Division Unit/Code No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2">
+                    <select class="form-control"  name="division_unit" readonly>
+                      <option>Division :</option>
+                    <?php
+                         if(!empty($divisionlist)){
+                            foreach ($divisionlist as $key => $value) {
+                              ?><option <?php if($account_details['division_unit']==$value['id']){?> selected="selected"<?php }?> value="<?= $value['id'];?>"><?= $value['division'];?></option><?php
+                             }
+                          }
+                       ?>
+                  </select>
+                  </div>
 
                   <div class="col-md-2 mt-2">District Branch/Code No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="district_branch"  id="district_branch" placeholder="District Branch/Code No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" value="<?php echo $account_details['dist_unit'];?>" name="district_branch"  id="district_branch" readonly placeholder="District Branch/Code No. :" class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">Sponsor Id No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="sponsor_id"  id="sponsor_id" placeholder="Sponsor Id No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" value="<?php echo $account_details['sponsor_id'];?>" name="sponsor_id"  id="sponsor_id" readonly placeholder="Sponsor Id No. :" class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">Group Name/No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="group_name"  id="group_name" placeholder="Group Name/No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="group_name"  id="group_name" placeholder="Group Name/No. :" class="form-control" readonly value="<?php echo $account_details['group_name'];?>" required></div>
 
-                  <div class="col-md-2 mt-2">Colective Saving Form No.</div>
+                  <div class="col-md-2 mt-2">Collective Saving Form No.</div>
                   <div class="col-md-4 mt-2"><input type="text" name="collective_saving_form_no"  id="collective_saving_form_no" placeholder="Colective Saving Form No. :" class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">Manual Receipt No.</div>
@@ -50,9 +71,9 @@
                   <div class="col-md-4 mt-2"><input type="text" name="weekly_deposit_in_word"  id="weekly_deposit_in_word" placeholder="Weekly Deposit(Rs.) In Words. :" class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">Weekly Deposit(Rs.) In Numbers.</div>
-                  <div class="col-md-4 mt-2"><input type="number" name="weekly_deposit_in_number"  id="weekly_deposit_in_number" placeholder="Weekly Deposit(Rs.) In Words. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="number" name="weekly_deposit_in_number"  id="weekly_deposit_in_number" placeholder="Weekly Deposit(Rs.) In Numbrers. :" class="form-control" required></div>
                   <div class="col-md-2 mt-2">Collective/UPI/Banking No.</div>
-                  <div class="col-md-4 mt-2"><input type="number" name="banking_upi_no"  id="banking_upi_no" placeholder="Collective/UPI/Banking No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="number" name="banking_upi_no"  id="banking_upi_no" placeholder="Collective/UPI/Banking No. :" readonly value="<?php echo $account_details['upi_banking'];?>"  class="form-control" required></div>
                  <div class="col-md-3 mb-2"></div> 
                  <div class="col-md-3 mb-2"> </div>
                  <div class="col-md-3 mb-2"> </div>

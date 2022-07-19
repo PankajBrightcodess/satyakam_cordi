@@ -23,8 +23,6 @@
                                 }
                               ?>
                             </select>
-
-                            <!-- <input type="text" name="state_unit_name" readonly  value="<?= $allsignuprecords['state'];?>" placeholder="State Unit Name :" class="form-control mb-3" required> -->
                           </div>
                           <div class="col-md-4">
                             <div class="row">
