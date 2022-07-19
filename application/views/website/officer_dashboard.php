@@ -16,8 +16,8 @@
               <div class="col-md-3 col-6 mb-2"> <a href="<?php echo base_url('website/vacency_report')?>" class="buttondesign btn">Vacancy <br>List </a></div>
               <div class="col-md-3 col-6 mb-2 "><a href="#" class="buttondesign btn">Events<br> List </a></div>
             
-              <div class="col-md-3 col-6 mb-2"><a href="#" class="buttondesign btn">Gallery<br> List </a></div>
-              <div class="col-md-3 col-6 mb-2"><a href="#" class="buttondesign btn">I-CON India </a></div>
+              <div class="col-md-3 col-6 mb-5"><a href="#" class="buttondesign btn">Gallery<br> List </a></div>
+              <div class="col-md-3 col-6 mb-5"><a href="#" class="buttondesign btn">I-CON India </a></div>
              
             </div>
           </div>
