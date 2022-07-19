@@ -137,7 +137,9 @@
                             <h6 class="tittle">Information Related To Security Fund, Processing & Training Fee</h6>
                           </div>
                           <div class="col-md-12 mb-3">
-                            <div class="table-responsive">
+                            <h6 class="tittle">Security Fund</h6>
+
+                            <!-- <div class="table-responsive">
                               <table class="table">
                                 <tbody>
                                   <tr>
@@ -169,8 +171,38 @@
 
                                 </tbody>
                               </table>
-                            </div>
+                            </div> -->
                           </div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="security_rs_amount" placeholder="RS (AMOUNT)" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="security_transaction_id" placeholder="Transaction ID" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="date" name="date" placeholder="Date" class="form-control" required></div>
+
+                          <div class="col-md-12 mb-3">
+                            <h6 class="tittle">Processing Fund</h6>
+                          </div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="processing_rs_amount" placeholder="RS (AMOUNT)" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="processing_rs_transaction" placeholder="Transaction ID" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="date" name="processing_rs_date" placeholder="Date" class="form-control" required></div>
+
+                          <div class="col-md-12 mb-3">
+                            <h6 class="tittle">Training Fee</h6>
+                          </div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="training_rs" placeholder="RS (AMOUNT)" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="text" name="training_transaction" placeholder="Transaction ID" class="form-control" required></div>
+                          <div class="col-md-4 col-12 mb-2"><input type="date" name="training_date" placeholder="Date" class="form-control" required></div>
+
+                          <div class="col-md-12 mb-3">
+                            <h6 class="tittle">Total Deposit In Words</h6>
+                          </div>
+                          <div class="col-md-12 col-12 mb-2"><input type="text" name="total_deposit" placeholder="Total Deposit In Words" class="form-control" required></div>
+                          <div class="col-md-12 mb-3">
+                            <h6 class="tittle">Bank Name</h6>
+                          </div>
+                          <div class="col-md-12 col-12 mb-2"><input type="text" name="total_deposit" placeholder="Bank Name" class="form-control" required></div>
+                         
+
+
+
                           <div class="col-md-12">
                             <h6 class="tittle">Personal Account Details</h6>
                           </div>
