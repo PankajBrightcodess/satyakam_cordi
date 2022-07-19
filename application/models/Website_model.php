@@ -1274,7 +1274,6 @@ class Website_model extends CI_Model{
 				$table="team";
 				$data['added_on']=date('Y-m-d');
 				$status=$this->db->insert($table,$data);
-				return $this->db->last_query();
 				if($status){
 					return true;
 				}
