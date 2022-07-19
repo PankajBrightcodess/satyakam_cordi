@@ -214,7 +214,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
      padding-top: 40px;padding-bottom: 40px;
 }
 .officer_dashboard{
-    background-image:url('../images/1234.jpg'); background-size:cover; width:100%; height:100vh;
+    background-image:url('../images/1234.jpg'); background-size:cover; width:100%; height:auto;
     /* padding-top: 40px;padding-bottom: 40px;*/
 }
 .officer_dashboard  .buttondesign{
