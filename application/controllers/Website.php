@@ -466,7 +466,7 @@ class Website extends CI_Controller {
 		$result= $this->Website_model->getlogindetails($data);
 		// echo PRE;
 		// print_r($result);die;
-		if($result['verify']===true){
+		if($result['verify']===true || !empty($_SESSION['user_id'])){
 			$this->createsession($result);
 			redirect('website/officer_dashboard');
 			$this->session->set_flashdata('web_msg','Login Successfully');
