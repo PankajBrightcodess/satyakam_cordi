@@ -15,11 +15,7 @@
               <div class="col-md-3 col-6 mb-2"><a href="<?php echo base_url('website/my_loan_account_features');?>" class="buttondesign btn">Notification</a></div>
               <div class="col-md-3 col-6 mb-2"> <a href="<?php echo base_url('website/create_account_page')?>" class="buttondesign btn">Create <br>Account </a></div>
               <div class="col-md-3 col-6 mb-2"><a href="#" class="buttondesign btn">Account<br> Status </a></div>
-             <!--  <div class="col-md-3"></div>
-              <div class="col-md-3"><a href="#" class="buttondesign btn">Gallery<br> List </a></div>
-              <div class="col-md-3"><a href="#" class="buttondesign btn">I-CON India   </a></div>
-              
-              <div class="col-md-3"></div> -->
+             
              
             </div>
           </div>

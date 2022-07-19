@@ -4798,8 +4798,8 @@ class Website extends CI_Controller {
 			  }
 			  $extraimagepath = json_encode($img);
 			  $data = $this->input->post();
-			// echo PRE;
-			// print_r($data);die;
+			echo PRE;
+			print_r($data);die;
 			$group_signup_id = $data['group_signup_id'];
 			$records['member_id'] = $data['member_id'];
 			$records['member_name'] = $data['member_name'];
