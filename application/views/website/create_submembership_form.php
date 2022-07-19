@@ -56,7 +56,7 @@
                             <label>Mobile No.</label>
                             <input type="text" name="mobile_no" readonly  value="<?= $allsignuprecords['mobile_no'];?>" placeholder="Mobile No :" class="form-control mb-3" required>
                             <label>Email Id.</label>
-                            <input type="email" name="email" readonly placeholder="Email Id :" class="form-control mb-3" value="<?= $allsignuprecords['email'];?>" required>
+                            <input type="email" name="email" readonly placeholder="Email Id :" class="form-control mb-3" value="<?= $allsignuprecords['email'];?>">
                           </div>
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Provisional Address (As Per Aadhar Card)</h6>
@@ -93,7 +93,7 @@
                           </div>
                           <div class="col-md-4 mb-3">
                             <label>Pin Code</label>
-                            <input type="number" name="pin_code" maxlength="6" minlength="6" placeholder="Pin Code No. :" class="form-control" required>
+                            <input type="number" name="pin_code" maxlength="6" minlength="6" placeholder="Pin Code No. :" class="form-control" >
                           </div>
                           <div class="col-md-4 mb-3">
                             <label>Aadhar No.</label>
@@ -250,6 +250,21 @@
                           <div class="col-md-6 mb-5">
                             <input type="text" name="nominee_aadhar" placeholder="Aadhar" class="form-control" required>
                           </div>
+                          <div class="col-md-12 mb-3 ">
+                            <h6 class="tittle">Bank Details</h6>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="text" placeholder="Bank Name" name="bank_name" class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="number" name="account_no" placeholder="Account No." class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="text" name="type_account" placeholder="Type Of Account" class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-5">
+                            <input type="text" name="ifsc_code" placeholder="IFSC Code" class="form-control" required>
+                          </div>
 
                            <div class="col-md-12 text-center text-info">
                             <h4>INSTRUCTION</h4>
@@ -281,7 +296,7 @@
                           </div>
 
                           <div class="col-md-12 mb-3">
-                            <div class="table-responsive">
+                             <div class="table-responsive">
                               <table class="table">
                                 <tbody>
                                   <tr>
@@ -294,15 +309,18 @@
                                   </tr>
                                   <tr>
                                     <td> <label>Aadhar Front Side</label><input class="form-control" type="file" name="aadhar_front" id="formFile"></td>
-                                    <td><label>Aadhar Back Side</label><input class="form-control" type="file" name="aadhar_back" id="formFile"></td>
+                                    <td><label>Aadhar Back Side</label><input class="form-control" type="file" name="aadhar_back" id="formFile" ></td>
                                   </tr>
                                   <tr>
-                                    <td> <label>Election Id Card</label><input class="form-control" type="file" name="election_id_card" id="formFile"></td>
+                                    <td> <label>Election Id Card(Front)</label><input class="form-control" type="file" name="election_id_card" id="formFile"></td>
+                                     <td> <label>Election Id Card(Back)</label><input class="form-control" type="file" name="election_id_card_back" id="formFile"></td>
+                                  </tr>
+                                  <tr>
                                     <td><label>PAN Card</label><input class="form-control" type="file" name="pan_card" id="formFile"></td>
+                                    <td> <label>Passbook (Bank A/C)</label><input class="form-control" type="file" name="passbook_bank" id="formFile"></td>
                                   </tr>
                                   <tr>
-                                    <td> <label>Passbook (Bank A/C)</label><input class="form-control" type="file" name="passbook_bank" id="formFile"></td>
-                                    <td><label>Qualification Certificate</label><input class="form-control" type="file" name="qualification_certificate" id="formFile"></td>
+                                    <td colspan="2"><label>Qualification Certificate</label><input class="form-control" type="file" name="qualification_certificate" id="formFile"></td>
                                   </tr>
                                   <tr>
                                     <td> <label>Witness Name</label><input class="form-control" type="text" name="witness_name"></td>
@@ -310,24 +328,25 @@
                                   </tr>
                                    <tr>
                                     <td> <label>Mobile No.</label><input class="form-control" type="text" name="witness_mobile_no"></td>
-                                    <td><label>Membership No.</label><input class="form-control" type="text" name="membership_no"></td>
+                                    <!-- <td><label>Membership No.</label><input class="form-control" type="text" name="membership_no"></td> -->
                                   </tr>
-                                  <tr>
-                                    <td colspan="2" class="text-center"><button type="button" class="btn btn-sm btn-success">VERIFICATION</button> </td>
-                                   
-                                  </tr>
+                                  
 
 
                                   <tr>
                                     <th scope="row" colspan="2" class="text-center">Name Of The Verifing Officer</th>
                                   </tr>
                                   <tr>
-                                     <td> <label>Designation</label><input class="form-control" type="text" name="designation"></td>
-                                    <td><label>Service Number</label><input class="form-control" type="text" name="service_no"></td>
+                                     <td> <label>Designation</label><input class="form-control" type="text" name="designation" id="designation"></td>
+                                    <td><label>Service Number</label><input class="form-control" type="text" name="service_no" id="service_no"></td>
                                   </tr>
                                  <tr>
-                                     <td> <label>Batch No.</label><input class="form-control" type="text" name="batch_no"></td>
-                                    <td><label>Mobile No.</label><input class="form-control" type="number" name="officer_mobile_no"></td>
+                                     <td> <label>Batch No.</label><input class="form-control" type="text" name="batch_no" id="batch_no"></td>
+                                    <td><label>Mobile No.</label><input class="form-control" type="number" name="officer_mobile_no" id="officer_mobile_no"></td>
+                                  </tr>
+                                  <tr>
+                                    <td colspan="2" class="text-center"><button type="button" id="varification" class="btn btn-sm btn-success">VERIFICATION</button> </td>
+                                   
                                   </tr>
                                 </tbody>
                               </table>
