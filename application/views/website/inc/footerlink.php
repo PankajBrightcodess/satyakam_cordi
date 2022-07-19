@@ -477,9 +477,12 @@ for (i = 0; i < acc.length; i++) {
           type: "POST",
           url: '<?php echo base_url('website/verificationlist');?>',
           data: {designation:designation,service_no:service_no,batch_no:batch_no,officer_mobile_no:officer_mobile_no},
-          // dataType: 'JSON',
           success: function(result){
-              alert(result);
+              if(result>0){
+                swal("Good job!", "Verified Successfully", "success");
+              }else{
+                swal("Opps!", "Person Not available", "error");
+              }
           },
 
         });

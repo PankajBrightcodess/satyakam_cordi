@@ -3571,6 +3571,7 @@ class Website extends CI_Controller {
 		public function verificationlist(){
 			$data = $this->input->post();
 			$records= $this->Website_model->varificationcheck($data);
+			print_r($records);
 			
 		}
 
@@ -4798,8 +4799,7 @@ class Website extends CI_Controller {
 			  }
 			  $extraimagepath = json_encode($img);
 			  $data = $this->input->post();
-			// echo PRE;
-			// print_r($data);die;
+			
 			$group_signup_id = $data['group_signup_id'];
 			$records['member_id'] = $data['member_id'];
 			$records['member_name'] = $data['member_name'];
@@ -4825,6 +4825,7 @@ class Website extends CI_Controller {
 				$final_array[]=$arr;
 			}
 			$result = $this->Website_model->insert_groupdetails($final_array);
+			
 			$rslt = json_decode($result,true);
 			$submit_count = count($rslt);
 			if($count==$submit_count){

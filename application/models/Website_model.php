@@ -404,6 +404,14 @@ class Website_model extends CI_Model{
 	}
 
 
+	public function varificationcheck($data){
+		$query = $this->db->get_where('officer_details',array('service_did'=>$data['service_no'],'verify_status'=>'1'));
+		return $query->num_rows();
+
+
+	}
+
+
 	public function save_result($data){
 		$admitcard_id =$data['admitcard_id'];
 		// $admitcard_id =7;
