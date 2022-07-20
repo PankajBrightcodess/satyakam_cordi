@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-6 mb-2"> 
                   <label for="email">Email :</label>
-                  <input type="email" name="email" placeholder="Email Id"  class="form-control" required>
+                  <input type="email" name="email" placeholder="Email Id"  class="form-control">
                 </div>
                  <div class="col-md-6 mb-2"> 
                   <label for="email">Captcha :</label>

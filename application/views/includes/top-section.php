@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo file_url("includes/plugins/icheck-bootstrap/icheck-bootstrap.min.css"); ?>">
+        
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo file_url("includes/dist/css/adminlte.min.css"); ?>">
         <!-- overlayScrollbars -->

@@ -2271,6 +2271,63 @@ class Website_model extends CI_Model{
 		    return $query->row_array();
 	}
 
+	public function add_e_deposit($data){
+		$trans['member_id'] = $_SESSION['member_id'];
+		$trans['account_no'] = $data['account_no'];
+		$trans['trans_type'] = 'Cradit';
+		$trans['trans_amount'] = $data['weekly_deposit_in_number'];
+		$trans['trans_amount_in_word'] = $data['weekly_deposit_in_word'];
+		$trans['added_on'] = date('Y-m-d H:i:s');
+		$result = $this->add_trans($data);
+		if(!empty($result))
+		{	$id = $result;
+		 	$trans['trans_details_id'] = $result;
+		 	$res['verify'] = $this->db->insert('stk_transaction',$trans);
+		 	if($res['verify']==true){
+		 		$this->db->where('id',$id);
+		 		$this->db->select('recept_no');
+		 		$this->db->from('stk_transaction_details');
+		 		$qry = $this->db->get();
+		 		$res['recept_no'] = $qry->row('recept_no');
+		 		return $res;
+		 		
+		 	}
+		 	else{
+		 		return $res;
+		 	}	
+		}
+		else{
+			return false;
+		}
+
+	}
+
+	public function add_trans($data){
+		unset($data['weekly_deposit_in_word']);
+		unset($data['weekly_deposit_in_number']);
+		$this->db->select('recept_no');
+		$this->db->from('stk_transaction_details');
+		$this->db->order_by('id DESC');
+		$qry = $this->db->get();
+		$res['recpt_no'] = $qry->row('recept_no');
+		if(!empty($res)){
+			$recp = trim($res['recpt_no'],"REC-");
+			$recp = $recp+1;
+			$data['recept_no'] = 'REC-'.$recp;
+			$data['added_on']=date('Y-m-d H:i:s');
+		    $result = $this->db->insert('stk_transaction_details',$data);
+		    return $this->db->insert_id();
+			
+		}else{
+			$data['recept_no'] = 'REC-1001';
+			$data['added_on']=date('Y-m-d H:i:s');
+		    $result = $this->db->insert('stk_transaction_details',$data);
+		    return $this->db->insert_id();
+		}
+
+		
+	}
+
 	
 
 

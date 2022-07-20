@@ -1,8 +1,12 @@
 <!-- <body> in top-section-->
-
+    <style type="text/css">
+        .login-page{
+                background: linear-gradient(58deg, #1b3b91, #c50e0e);
+        }
+    </style>
         <div class="login-box">
             <div class="login-logo">
-                <a href="<?php echo base_url(); ?>"><b><?php echo PROJECT_NAME; ?></b></a>
+                <a href="<?php echo base_url(); ?>"><b style="color:white;"><?php echo PROJECT_NAME; ?></b></a>
             </div>
             <!-- /.login-logo -->
             <div class="card">

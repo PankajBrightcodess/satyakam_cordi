@@ -5062,5 +5062,18 @@ class Website extends CI_Controller {
 		}
     }
 
-    
+    public function e_deposit_form_submit(){
+    	$data=$this->input->post();
+    	$result = $this->Website_model->add_e_deposit($data);
+    	if($result['verify']==true){
+			$result=$result['recept_no'];
+    		$this->session->set_flashdata('web_msg',"E-Recept No :". $result);
+    		redirect('website/account_status');
+    	}else{
+    		$this->session->set_flashdata('web_err_msg',"Something Error");
+    	}
+
+    }
+
+        //
 }
