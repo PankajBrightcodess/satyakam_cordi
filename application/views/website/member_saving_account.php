@@ -31,7 +31,7 @@
                   <tr>
                     <th scope="row">4</th>
                     <td>Deposit E-Receipt</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/receipt_login');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>

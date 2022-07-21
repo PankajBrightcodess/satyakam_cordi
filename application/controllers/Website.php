@@ -4661,6 +4661,14 @@ class Website extends CI_Controller {
 
 		public  function create_account(){
 			$data = $this->input->post();
+			if(!empty($_FILES['image']['name'])){
+				  $upload_path = './assets/uploads/account_holder/';	
+		          $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
+				  $image = upload_file("image", $upload_path, $allowed_types, time());
+				  if ($image !='') {
+					  $data['image'] = $image['path'];
+				  }
+			  }
 			$result = $this->Website_model->account_creates_model($data);
 			if(!empty($result)){
 				$inst_id = $result;
@@ -5075,5 +5083,94 @@ class Website extends CI_Controller {
 
     }
 
-        //
+    public function receipt_login(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/e_recept_login';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function receipt_check(){
+    	$data = $this->input->post();
+    	$result = $this->Website_model->e_receipt_check($data);
+    	if(!empty($result['id'])){
+    		$d['details']=$result;
+			$d['v'] = 'website/e_recept_details';
+		    $this->load->view('website/template_2',$d);
+    		
+    	}	
+    	else{
+	   		$this->session->set_flashdata('web_err_msg',"Please Add Correct Receipt no or Date");
+	   		redirect('website/receipt_login');
+	   	}
+    }
+
+    public function print_e_receipt(){
+    	$recpt = $this->input->get('receipt');
+    	$result = $this->Website_model->print_e_receipt_model($recpt);
+    	if(!empty($result['id'])){
+	   		$pdf = $this->customfpdf->getInstance();
+     		$pdf->AliasNbPages();
+     		$pdf->AddPage();
+      		$pdf->Header('Arial');
+     		$pdf->SetFont('Times','',25);
+     		$image="assets/images/logo1.jpg";
+     		$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     		$image1="assets/images/logo4.jpg";
+	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+	     	$image2="assets/images/logo5.jpeg";
+	     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+	     	$image1="assets/images/logo2.jpg";
+	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+	    	$image1="assets/images/logo3.jpg";
+	    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+     		
+	     	$pdf->Cell(0,30,'',0,1,'C');
+	     	$pdf->Cell(0,0,'',0,1,'C');
+	     	$pdf->SetFont('Arial','B',15);
+	     	$pdf->Cell(0,10,'E-DEPOSIT RECEIPT',0,1,'C');
+	     	$pdf->Cell(0,15,date('Y').'-'.date('y',strtotime('+1 year')),0,1,'C');
+	     	$pdf->SetFont('Arial','B',10);
+	     	$pdf->Cell(189,9,'A/C No. :' .$result['account_no'],1,1,'C');
+		    $pdf->SetFont('Arial','B',9);
+
+		    $pdf->Cell(94,7,'RECEIPT NO. :' .$result['recept_no'],1,0,'L');
+	     	$pdf->Cell(95,7,'A/C HOLDER NAME  :'.$result['account_holder_name'],1,1,'L');
+	     	$pdf->Cell(94,7,'MOBILE NO. :'.$result['mobile_no'],1,0,'L');
+	     	$pdf->Cell(95,7,'EMAIL NO.  :'.$result['email'],1,1,'L');
+	     	$pdf->Cell(94,7,'USER NAME :'.$result['username'],1,0,'L');
+	     	$pdf->Cell(95,7,'USERID NO. :'.$result['user_id_no'],1,1,'L');
+
+	     	$pdf->Cell(94,7,'STATE UNIT/CODE NO. :' .$result['state'],1,0,'L');
+	     	$pdf->Cell(95,7,'DIVISION UNIT/CODE NO.'.$result['division'],1,1,'L');
+	     	$pdf->Cell(94,7,'SPONSOR ID NO. :'.$result['sponsor_id'],1,0,'L');
+	     	$pdf->Cell(95,7,'GROUP NAME NO.  :'.$result['group_name'],1,1,'L');
+	     	$pdf->Cell(94,7,'COLLECTIVE SAVING FORM NO. :'.$result['collective_saving_form_no'],1,0,'L');
+	     	$pdf->Cell(95,7,'MANUAL RECEIPT NO. :'.$result['manual_receipt_no'],1,1,'L');
+
+	     	$pdf->Cell(94,7,'STATE UNIT/CODE NO. :' .$result['state'],1,0,'L');
+	     	$pdf->Cell(95,7,'DIVISION UNIT/CODE NO.'.$result['division'],1,1,'L');
+	     	$pdf->Cell(94,7,'SPONSOR ID NO. :'.$result['sponsor_id'],1,0,'L');
+	     	$pdf->Cell(95,7,'GROUP NAME NO.  :'.$result['group_name'],1,1,'L');
+	     	$pdf->Cell(94,7,'COLLECTIVE SAVING FORM NO. :'.$result['collective_saving_form_no'],1,0,'L');
+	     	$pdf->Cell(95,7,'MANUAL RECEIPT NO. :'.$result['manual_receipt_no'],1,1,'L');
+
+	     	$pdf->Cell(94,7,'WEEKLY DEPOSIT(Rs./-) :' .$result['trans_amount'],1,0,'L');
+	     	$pdf->Cell(95,7,'WEEKLY DEPOSIT(IN WORD)'.$result['trans_amount_in_word'],1,1,'L');
+	     	$pdf->Cell(94,7,'DEPOSIT DATE :' .date('d-m-Y',strtotime($result['deposit_date'])),1,0,'L');
+	     	$pdf->Cell(95,7,'COLLECTIVE/UPI/BANKING NO. :'.$result['banking_upi_no'],1,1,'L');
+      		$pdf->SetFont('Arial','B',9);
+     		$pdf->Cell(189,30,'',0,1,'L');
+    		$pdf->Cell(94,5,'',0,0,'L');
+     		$pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
+    		$file =  date('Ymdhis').'_details.pdf';
+    		$pdf->Output($file,'I');
+	   	}
+	   
+
+
+    }
 }

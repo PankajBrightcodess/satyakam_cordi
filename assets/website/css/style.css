@@ -18,7 +18,16 @@
   color: red;  
   margin-left: 5px;  
 }  
-
+.e_deposit{
+    font-size: 14px;
+   font-weight: 900;
+  
+}
+.e_deposit_heading{
+    font-size: 14px;
+     font-weight: 600;
+    
+}
 .contact .contact-info {
     position: relative;
     display: flex;
@@ -83,6 +92,7 @@
     border-radius: 15px;
     margin-bottom: 25px;
 }
+
 
 .contact .contact-form input {
     padding: 15px;

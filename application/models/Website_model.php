@@ -552,13 +552,12 @@ class Website_model extends CI_Model{
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
 		 $ac_no = $this->account_no_create();
-		 
-		 if($result==true && !empty($ac_no)){
+		 if($result>0 && !empty($ac_no)){
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
 		 	$final['username'] = $data['username'];
 		 	$final['state_unit_name'] = $data['state_unit_name'];
-		 	$final['division_unit'] = $data['division_unit'];
+		 	$final['division_unit'] = $data['division_unit_name'];
 		 	$final['dist_unit'] = $data['dist_unit'];
 		 	$final['sponsor_id'] = $data['sponsor_id'];
 		 	$final['mobile_no'] = $data['mobile_no'];
@@ -595,22 +594,8 @@ class Website_model extends CI_Model{
 		 	$final['meeting_no'] = $data['meeting_no'];
 		 	$final['collective_saving_form_no'] = $data['collective_saving_form_no'];
 		 	$final['upi_banking'] = $data['upi_banking'];
+		 	$final['image'] = $data['image'];
 		 	$final['added_on'] = date('Y-m-d');
-
-
-
-
-		 	// $final['name'] = $data['name'];
-		 	// $final['group_name'] = $data['group_name'];
-		 	// $final['father_husband'] = $data['father_husband'];
-		 	// $final['dob'] = $data['dob'];
-		 	// $final['c_address'] = $data['c_address'];
-		 	// $final['p_address'] = $data['p_address'];
-		 	// $final['group_no'] = $data['group_no'];
-		 	// $final['mobile_no'] = $data['mobile_no'];
-		 	// $final['aadhar'] = $data['aadhar'];
-		 	// $final['email'] = $data['email'];
-		 
 		 	
 		 	$table = 'account_details';
 		 	$status=$this->db->insert($table,$final);
@@ -2324,6 +2309,30 @@ class Website_model extends CI_Model{
 		    $result = $this->db->insert('stk_transaction_details',$data);
 		    return $this->db->insert_id();
 		}
+	}
+
+	public function e_receipt_check($data){
+		$date = $data['dp_date'];
+		$e_receipt = $data['recept_no'];
+		$this->db->where(array('t1.deposit_date'=>date('Y-m-d',strtotime($date)),'t1.recept_no'=>$e_receipt));
+		$this->db->select('t1.*,t2.trans_type,t2.trans_amount,t2.trans_amount_in_word,t3.state,t4.division');
+		$this->db->from('stk_transaction_details t1');
+		$this->db->join('stk_transaction t2','t1.id=t2.trans_details_id','left');
+		$this->db->join('stk_state t3','t1.state_unit_code=t3.id','left');
+		$this->db->join('stk_division t4','t1.division_unit=t4.id','left');
+		$qry = $this->db->get();
+		return $qry->row_array();
+	}
+
+	public function print_e_receipt_model($recpt){
+		$this->db->where(array('t1.recept_no'=>$recpt));
+		$this->db->select('t1.*,t2.trans_type,t2.trans_amount,t2.trans_amount_in_word,t3.state,t4.division');
+		$this->db->from('stk_transaction_details t1');
+		$this->db->join('stk_transaction t2','t1.id=t2.trans_details_id','left');
+		$this->db->join('stk_state t3','t1.state_unit_code=t3.id','left');
+		$this->db->join('stk_division t4','t1.division_unit=t4.id','left');
+		$qry = $this->db->get();
+		return $qry->row_array();
 
 		
 	}
