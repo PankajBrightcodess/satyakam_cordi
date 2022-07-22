@@ -2263,6 +2263,25 @@ class Website_model extends CI_Model{
 		    return $query->row_array();
 	}
 
+	public function account_cr_balance($data){
+		$trans_type = CR;
+		$this->db->where(['account_no'=>$data,'trans_type'=>$trans_type,'status'=>1]);
+		$this->db->select("SUM(trans_amount) as credit_amount");
+		$this->db->from('stk_transaction');
+		$query = $this->db->get();
+		return $query->row_array();
+
+	}
+
+	public function account_dr_balance($data){
+		    $trans_type = DR;
+			$this->db->where(['account_no'=>$data,'trans_type'=>$trans_type,'status'=>1]);
+			$this->db->select("SUM(trans_amount) as debit_amount");
+			$this->db->from('stk_transaction');
+			$qry = $this->db->get();
+			return  $qry->row_array();
+	}
+
 	public function get_all_data($id){
 		$query = $this->db->get_where('stk_account_details',array('id'=>$id));
 		    return $query->row_array();
@@ -2271,7 +2290,7 @@ class Website_model extends CI_Model{
 	public function add_e_deposit($data){
 		$trans['member_id'] = $_SESSION['member_id'];
 		$trans['account_no'] = $data['account_no'];
-		$trans['trans_type'] = 'Cradit';
+		$trans['trans_type'] = CR;
 		$trans['trans_amount'] = $data['weekly_deposit_in_number'];
 		$trans['trans_amount_in_word'] = $data['weekly_deposit_in_word'];
 		$trans['added_on'] = date('Y-m-d H:i:s');
@@ -2347,6 +2366,55 @@ class Website_model extends CI_Model{
 		return $qry->row_array();
 
 		
+	}
+
+	public function add_withdraw_details($data){
+		$account_no = $data['account_no'];
+		$withdraw_amount = $data['withdraw_amount_in_number'];
+		$cr = $this->Check_cr_amount($account_no);
+		$dr = $this->Check_dr_amount($account_no);
+		$current_amount = $cr['credit_amount']-$dr['dabit_amount'];
+		if($current_amount>$withdraw_amount && $current_amount>0){
+			$add_amount['trans_amount'] = $data['withdraw_amount_in_number'];
+			$add_amount['trans_amount_in_word'] = $data['withdraw_amount_in_word'];
+			$add_amount['account_no'] = $data['account_no'];
+			$add_amount['added_on'] =date('Y-m-d H:i:s');
+			$add_amount['trans_type'] ='Dabit';
+			$add_amount['member_id'] =$_SESSION['member_id'];
+			unset($data['withdraw_amount_in_number']);
+			unset($data['withdraw_amount_in_word']);
+			$res = $this->db->insert('stk_withdraw_details',$data);
+			if($res==true){
+				$last_insert_ids = $this->db->insert_id();
+				$add_amount['trans_details_id'] =$last_insert_ids;
+				$final_result = $this->db->insert('stk_transaction',$add_amount);
+
+				return $final_result;
+
+			}
+			else{
+				return 'Something Error';
+			}
+		}
+		return 'You have no sufficient balance';
+	}
+	public function Check_cr_amount($account_no){
+		$trans_type = CR;
+		$this->db->where(['account_no'=>$account_no,'trans_type'=>$trans_type,'status'=>1]);
+		$this->db->select("SUM(trans_amount) as credit_amount");
+		$this->db->from('stk_transaction');
+		$query = $this->db->get();
+		return $query->row_array();
+
+	}
+	public function Check_dr_amount($account_no){
+		$trans_type = DR;
+		$this->db->where(['account_no'=>$account_no,'trans_type'=>$trans_type,'status'=>1]);
+		$this->db->select("SUM(trans_amount) as dabit_amount");
+		$this->db->from('stk_transaction');
+		$query = $this->db->get();
+		return $query->row_array();
+
 	}
 
 	

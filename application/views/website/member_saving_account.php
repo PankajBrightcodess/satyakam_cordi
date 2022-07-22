@@ -36,7 +36,7 @@
                   <tr>
                     <th scope="row">5</th>
                     <td>Withdrawal</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/withdraw_login_controller');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <th scope="row" rowspan="3">6 MASTER KEY</th>

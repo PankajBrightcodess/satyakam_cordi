@@ -92,6 +92,8 @@ defined('SESSION_YEAR')        OR define('SESSION_YEAR',"$curyear");
 defined('SITE_SALT')           OR define('SITE_SALT',"Admin Template");
 defined('TP')        		   OR define('TP',"stk_"); // Table Prefix
 defined('PRE')                 OR define('PRE',"<pre>");
+defined('CR')                 OR define('CR',"Credit");
+defined('DR')                 OR define('DR',"Dabit");
 defined('NTYPE')                 OR define('NTYPE',"toastr"); //Notification Type
 //////////////////////////////////////////////
 /*--------------Template Colors-------------*/

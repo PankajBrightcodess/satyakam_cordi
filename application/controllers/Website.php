@@ -5129,17 +5129,61 @@ class Website extends CI_Controller {
 
     public function receipt_check(){
     	$data = $this->input->post();
-    	$result = $this->Website_model->e_receipt_check($data);
-    	if(!empty($result['id'])){
-    		$d['details']=$result;
-			$d['v'] = 'website/e_recept_details';
-		    $this->load->view('website/template_2',$d);
-    		
-    	}	
+    	if(!empty($data)){
+    		$result = $this->Website_model->e_receipt_check($data);
+	    	if(!empty($result['id'])){
+	    		$d['details']=$result;
+				$d['v'] = 'website/e_recept_details';
+			    $this->load->view('website/template_2',$d);
+	    		
+	    	}	
+	    	else{
+		   		$this->session->set_flashdata('web_err_msg',"Please Add Correct Receipt no or Date");
+		   		redirect('website/receipt_login');
+		   	}
+    	}
     	else{
-	   		$this->session->set_flashdata('web_err_msg',"Please Add Correct Receipt no or Date");
-	   		redirect('website/receipt_login');
-	   	}
+    		redirect('website/my_saving_account_features');
+    	}	
+    }
+
+    public function withdraw_login_controller(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/withdraw_login';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function withdraw_account_check(){
+    	if(!empty($_SESSION['member_id'])){
+    		$data= $this->input->post();
+    		$d['state'] = $this->Website_model->get_statelist();
+    		$result=$this->Website_model->account_check_details($data);
+    		$state_id['id'] = $result['state_unit_name'];
+    		$d['account_details'] = $result;
+			$d['divisionlist'] = $this->Website_model->get_divisionlist($state_id);
+    		if(!empty($d['account_details'])){
+    			$credit=$this->Website_model->account_cr_balance($data['ac_no']);
+    			$dabit=$this->Website_model->account_dr_balance($data['ac_no']);
+    			if($credit['credit_amount']>$dabit['debit_amount']){
+    				$current_balance = $credit['credit_amount']-$dabit['debit_amount'];
+    				$d['account_balance']=$current_balance;
+    			}else{
+    				$d['account_balance']=0.00;
+    			}
+				$d['v'] = 'website/withdraw_page';
+		    	$this->load->view('website/template_2',$d);
+    		}else{
+				$this->session->set_flashdata('web_err_msg',"Please Enter Correct Details!");
+				redirect('website/withdraw_login_controller');
+    		}
+		}
+		else{
+			redirect('website/member_login');
+		}
     }
 
     public function print_e_receipt(){
@@ -5161,7 +5205,6 @@ class Website extends CI_Controller {
 	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
 	    	$image1="assets/images/logo3.jpg";
 	    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
-     		
 	     	$pdf->Cell(0,30,'',0,1,'C');
 	     	$pdf->Cell(0,0,'',0,1,'C');
 	     	$pdf->SetFont('Arial','B',15);
@@ -5201,9 +5244,22 @@ class Website extends CI_Controller {
     		$pdf->Cell(94,5,'',0,0,'L');
      		$pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
     		$file =  date('Ymdhis').'_details.pdf';
-    		$pdf->Output($file,'I');
+    		 $pdf->Output($file,'I');
+    		
 	   	}
-	   
+    }
+
+    public function withdraw_form_submit(){
+    	$data = $this->input->post();
+
+    	$result = $this->Website_model->add_withdraw_details($data);
+    	if($result==true){
+    		$this->session->set_flashdata('web_msg',"Withdraw Successfully");
+    		redirect('website/withdraw_login_controller');
+    	}else{
+    		$this->session->set_flashdata('web_err_msg',$result);
+    		redirect('website/withdraw_login_controller');
+    	}
 
 
     }

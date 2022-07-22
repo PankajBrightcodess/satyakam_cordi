@@ -32,10 +32,10 @@
               <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"> </a>
             </div>
             <div class="loginbox">
-              <form method="POST" action="<?= base_url('website/account_check')?>">  
+              <form method="POST" action="<?= base_url('website/withdraw_account_check')?>">  
               <div class="row">
               <div class="col-md-12">
-                <h5 class="text-center" style="color: black; font-weight: 700;">Deposit Account login</h5>
+                <h5 class="text-center" style="color: black; font-weight: 700;">Withdraw Account Login</h5>
               </div>
               <div class="col-md-12">
                   <label>ACCOUNT NO.</label>
