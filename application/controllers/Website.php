@@ -274,22 +274,28 @@ class Website extends CI_Controller {
 			   $post = explode("-",$data['post']);
 			   $data['post']=$post[0];
 			   $data['amount']=$post[1];
-			   $id= $this->Website_model->savevacencysignup($data);
+			   $result['last_vacency_signup_id']= $this->Website_model->savevacencysignup($data);
+			   $this->session->set_userdata($result);
+			   $id = $this->session->userdata('last_vacency_signup_id');
 			   if($id>0){
-			   	// $details= $this->Website_model->get_candidate_user_pass($id);
 			   	redirect('website/vacencyform');
-			   	// $this->session->set_flashdata("web_msg","Create Successfully !!");
-					// $this->vacency_login();
 			    }else{
 			    	$this->session->set_flashdata("web_err_msg","$id");
 				   redirect('website/vacencysignup/');
 			    }
-			// }
-			// else{
-			// 	$this->session->set_flashdata("msg","Something Error !!");
-			// 	redirect('website/vacencysignup/');
-			// }
 		}
+
+	public function vacencyform(){
+		$id = $this->session->userdata('last_vacency_signup_id');
+		if(!empty($id)){
+			$d['details']= $this->Website_model->getdetailsuser($id);
+			$d['v'] = 'website/vacency_form';
+		    $this->load->view('website/template',$d);
+		}else{
+			redirect('website/vacency_login');
+		}
+		
+	}
 
 		public function get_division(){
 			$state_id = $this->input->post();
@@ -1200,17 +1206,7 @@ class Website extends CI_Controller {
 		}		// redirect('website/office_login');
 	}
 
-	public function vacencyform(){
-		$id = $this->session->userdata('candidate_id');
-		if(!empty($id)){
-			$d['details']= $this->Website_model->getdetailsuser($id);
-			$d['v'] = 'website/vacency_form';
-		    $this->load->view('website/template',$d);
-		}else{
-			redirect('website/vacency_login');
-		}
-		
-	}
+
 
 	public function vacencyform_submit(){
 		$data = $this->input->post();
