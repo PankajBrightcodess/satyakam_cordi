@@ -726,6 +726,18 @@ class Website_model extends CI_Model{
 		return $result;
 
 	}
+
+	public function details_sms($lastids){
+		$this->db->where('t1.id',$lastids);
+		$this->db->select('t2.user_name,t2.password,t1.id,t2.mobile_no');
+		$this->db->from('stk_vacency_candidate_details t1');
+		$this->db->join('stk_vacency_signup t2','t1.signup_id=t2.id','left');
+		$query = $this->db->get();
+		$result =  $query->row_array();
+		return $result;
+		
+	}
+
 	public function getdetailsuser($id){
 		$this->db->where('t1.id',$id);
 		$this->db->select('t1.*,t2.department,t3.post as post_name,t4.state,t5.division');

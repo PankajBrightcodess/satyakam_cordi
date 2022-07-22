@@ -9,6 +9,7 @@
                  <div class="col-md-12 mb-2">
                   <input type="text" name="OTP" placeholder="Please Enter OTP :" class="form-control" required>
                   <input type="hidden" name="state_unit_name" value="<?php if(!empty($data['state_unit_name'])) echo $data['state_unit_name'];?>" class="form-control" required>
+                  <input type="hidden" name="application_date" value="<?php if(!empty($data['application_date'])) echo $data['application_date'];?>" class="form-control" required>
                   <input type="hidden" name="division_unit_name" value="<?php if(!empty($data['division_unit_name'])) echo $data['division_unit_name'];?>" class="form-control" required>
                   <input type="hidden" name="applicant_name" value="<?php if(!empty($data['applicant_name'])) echo $data['applicant_name'];?>" class="form-control" required>
                   <input type="hidden" name="dob" value="<?php if(!empty($data['dob'])) echo $data['dob'];?>" class="form-control" required>

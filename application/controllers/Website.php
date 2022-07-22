@@ -276,7 +276,7 @@ class Website extends CI_Controller {
 			   $data['amount']=$post[1];
 			   $result['last_vacency_signup_id']= $this->Website_model->savevacencysignup($data);
 			   $this->session->set_userdata($result);
-			   $id = $this->session->userdata('last_vacency_signup_id');
+			  $id = $this->session->userdata('last_vacency_signup_id');
 			   if($id>0){
 			   	redirect('website/vacencyform');
 			    }else{
@@ -316,7 +316,7 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 		public function get_post(){
-		$id = $this->input->post('depart_id');
+			$id = $this->input->post('depart_id');
 			$data = $this->Website_model->get_submenulist($id);
 
 			if(!empty($data)){
@@ -326,7 +326,7 @@ class Website extends CI_Controller {
 				}
 			}
 			echo $html;
-	}
+		}
 
 		public function create_signup_otp(){
 			$d['data'] = $this->input->post();
@@ -1307,9 +1307,9 @@ class Website extends CI_Controller {
       //$order_array = json_decode($order_id,true);
       if(!empty($lastids)){
             $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
-            $this->session->unset_userdata('lastids');
             if($updatestatus==true){
-            		redirect('website/payment_success');
+                
+            	redirect('website/payment_success');
                 $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
             }else{
             	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
@@ -1320,8 +1320,46 @@ class Website extends CI_Controller {
     }
 	
      public function payment_success(){
-     	$d['v'] = 'website/payment_success';
-		$this->load->view('website/template',$d);
+     	$lastids = $this->session->userdata('lastids');
+     	$result = $this->Website_model->details_sms($lastids);
+     	if(!empty($result)){
+				$mobile = $result['mobile_no'];
+				$user = $result['user_name'];
+				$pass = $result['password'];
+				$contact_no = $mobile;
+				$message= 'Dear Candidate, Your registration has been successfully submitted in SATYAKAM FOUNDATION. Username '.$user.' and Password '.$pass.'';
+				// '''''''''next proceed here'''''''''
+		   			 $base_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=d86d79b187995b8785fce5a58023ab34";
+		    		$senderId = "SKFOUN";
+		    		$routeId = "1";
+		    		if(!empty($contact_no)){
+		      			$curl = curl_init();
+		      			curl_setopt_array($curl, array(
+		       		    CURLOPT_URL => $base_url,
+		        		CURLOPT_RETURNTRANSFER => true,
+		        		CURLOPT_ENCODING => "",
+		        		CURLOPT_MAXREDIRS => 10,
+		        		CURLOPT_TIMEOUT => 30,
+		        		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		        		CURLOPT_CUSTOMREQUEST => "POST",
+		        		CURLOPT_POSTFIELDS => "{\"smsContent\":\"$message\",\"routeId\":\"$routeId\",\"mobileNumbers\":\"$contact_no\",\"senderId\":\"$senderId\",\"signature\":\"signature\",\"smsContentType\":\"english\"}",
+		        		CURLOPT_HTTPHEADER => array(
+		        			"Cache-Control: no-cache",
+		        			"Content-Type: application/json"
+		        		),
+		      			));
+			      	$response = curl_exec($curl);
+			        $err = curl_error($curl);
+			      	curl_close($curl);
+			      	if($err){
+			        	return false;
+			      	}else{
+			        	$this->session->unset_userdata('lastids');
+     					$d['v'] = 'website/payment_success';
+						$this->load->view('website/template',$d);
+			      	}
+			    }
+			}
     }
 
 
