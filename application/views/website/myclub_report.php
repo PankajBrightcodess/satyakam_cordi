@@ -38,9 +38,11 @@
                       </tr>
                       
                        <tr>
-                        <th scope="col" colspan="2">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}else{
-                          echo $club_income_details[0]['member_creator'];
-                        } ?></th>
+                        <th scope="col" colspan="2">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}
+                        // else{
+                        //   echo $club_income_details[0]['member_creator'];
+                        // } 
+                      ?></th>
                         <th scope="col" colspan="2">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>
                         <th scope="col">E-Mail : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['email']; } ?></th>
                       </tr> 

@@ -39,9 +39,14 @@
                       </tr> 
                       <tr>
                         <th scope="col">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
-                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}else{
-                          echo $club_income_details[0]['member_creator'];
-                        } ?></th>
+                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}
+                        // else{
+                        //   echo $club_income_details[0]['member_creator'];
+                        // }
+                         ?>
+                          
+
+                        </th>
                       </tr> 
                       <tr>
                         <th scope="col">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>

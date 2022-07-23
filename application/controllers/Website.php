@@ -5068,11 +5068,52 @@ class Website extends CI_Controller {
         if(!empty($result['id'])){
         		$account_id['acc_id']=$result['id'];
         	   $this->session->set_userdata($account_id);
-               // $this->session->set_flashdata('web_msg',"Your Payment is Successfully Submitted!!");
                redirect('website/e_deposit_form');
         }else{
         	$this->session->set_flashdata('web_err_msg',"Something Error");
         	redirect('website/account_status');
+        }
+    }
+
+    public function account_holder_login(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/account_holder_login';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function account_holder_details(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/account_holder_details';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+
+    }
+
+    public function account_details_check(){
+    	$data = $this->input->post();
+    	$result=$this->Website_model->account_check_details_by_own_member($data);
+
+        if(!empty($result['id'])){
+        		$d['details'] = $result;
+        		$account_id['acc_id']=$result['id'];
+        	   $this->session->set_userdata($account_id);
+               if(!empty($_SESSION['member_id'])){
+					$d['v'] = 'website/account_holder_details';
+		    		$this->load->view('website/template_2',$d);
+				}
+				else{
+					redirect('website/member_login');
+				}
+        }else{
+        	$this->session->set_flashdata('web_err_msg',"Something Error");
+        	redirect('website/account_holder_login');
         }
     }
 
@@ -5260,7 +5301,181 @@ class Website extends CI_Controller {
     		$this->session->set_flashdata('web_err_msg',$result);
     		redirect('website/withdraw_login_controller');
     	}
+    }
+
+    public function account_list(){
+    	if(!empty($_SESSION['member_id'])){
+    		$id = $_SESSION['member_id'];
+    		$d['acc_list']=$this->Website_model->account_list($id);
+
+			$d['v'] = 'website/account_list_by_id';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
 
 
+    public function print_acc_list(){
+    	if(!empty($_SESSION['member_id'])){
+    		$id = $_SESSION['member_id'];
+    		$result=$this->Website_model->account_list($id);
+    		// echo PRE;
+    		// print_r($result);die;
+    		$i=0;
+    		if(!empty($result)){
+    		$pdf = $this->customfpdf->getInstance();
+     		$pdf->AliasNbPages();
+     		$pdf->AddPage();
+      		$pdf->Header('Arial');
+     		$pdf->SetFont('Times','',25);
+     		$image="assets/images/logo1.jpg";
+     		$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     		$image1="assets/images/logo4.jpg";
+	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+	     	$image2="assets/images/logo5.jpeg";
+	     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+	     	$image1="assets/images/logo2.jpg";
+	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+	    	$image1="assets/images/logo3.jpg";
+	    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+	     	$pdf->Cell(0,30,'',0,1,'C');
+	     	$pdf->Cell(0,0,'',0,1,'C');
+	     	$pdf->SetFont('Arial','B',15);
+	     	$pdf->Cell(189,9,'ACCOUNT HOLDER DETAILS',1,1,'C');
+		    $pdf->SetFont('Arial','B',9);
+		    $pdf->Cell(12,7,'SL NO.' ,1,0,'C');
+	     	$pdf->Cell(20,7,'User Id',1,0,'C');
+	     	$pdf->Cell(19,7,'Pass Code',1,0,'C');
+	     	$pdf->Cell(18,7,'User Name',1,0,'C');
+	     	$pdf->Cell(25,7,'A/H Name',1,0,'C');
+	     	$pdf->Cell(23,7,'A/C No.',1,0,'C');
+	     	$pdf->Cell(18,7,'Date',1,0,'C');
+	     	$pdf->Cell(17,7,'Plan Name',1,0,'C');
+	     	$pdf->Cell(16,7,'Term Year',1,0,'C');
+	     	$pdf->Cell(21,7,'Mobile No.',1,1,'C');
+	     	$pdf->SetFont('Arial','',7);
+
+	     	foreach ($result as $key => $value) {$i++;
+	     		$pdf->Cell(12,7,$i,1,0,'C');
+		     	$pdf->Cell(20,7,$value['member_id'],1,0,'C');
+		     	$pdf->Cell(19,7,'Pass Code',1,0,'C');
+		     	$pdf->Cell(18,7,$value['username'],1,0,'C');
+		     	$pdf->Cell(25,7,$value['account_holder_name'],1,0,'C');
+		     	$pdf->Cell(23,7,$value['account_no'],1,0,'C');
+		     	$pdf->Cell(18,7,date('d-m-Y',strtotime($value['added_on'])),1,0,'C');
+		     	$pdf->Cell(17,7,$value['saving_plan_name'],1,0,'C');
+		     	$pdf->Cell(16,7,$value['team_year'],1,0,'C');
+		     	$pdf->Cell(21,7,$value['mobile_no'],1,1,'C');
+	     	}
+
+	     	
+      		$pdf->SetFont('Arial','B',9);
+     		$pdf->Cell(189,30,'',0,1,'L');
+    		$pdf->Cell(94,5,'',0,0,'L');
+     		$pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
+    		$file =  date('Ymdhis').'_details.pdf';
+    		 $pdf->Output($file,'I');
+    	}
+    	else{
+			$this->session->set_flashdata('web_err_msg',"No Record Found!");
+			redirect('website/account_list');
+		}
+    		
+
+			
+		}
+		else{
+			redirect('website/member_login');
+		}	
+
+
+    }
+
+    public function member_account_details(){
+    	if(!empty($_SESSION['member_id'])){
+    		$id = $_SESSION['member_id'];
+    		$acc_no = $this->input->get('acc_no');
+    		$d['acc_no'] = $acc_no;
+    		$d['acc_details_by_id']=$this->Website_model->find_Account_details($acc_no);
+
+			$d['v'] = 'website/account_details_by_id';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}	
+    }
+
+    public function account_holder_status_check(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/account_holder_status';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function print_details(){
+    	$acc_no = $this->input->get('acc_no');
+    	$result=$this->Website_model->find_Account_details($acc_no);
+    	$i=0;
+    	if(!empty($result)){
+    		$pdf = $this->customfpdf->getInstance();
+     		$pdf->AliasNbPages();
+     		$pdf->AddPage();
+      		$pdf->Header('Arial');
+     		$pdf->SetFont('Times','',25);
+     		$image="assets/images/logo1.jpg";
+     		$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     		$image1="assets/images/logo4.jpg";
+	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+	     	$image2="assets/images/logo5.jpeg";
+	     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+	     	$image1="assets/images/logo2.jpg";
+	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+	    	$image1="assets/images/logo3.jpg";
+	    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+	     	$pdf->Cell(0,30,'',0,1,'C');
+	     	$pdf->Cell(0,0,'',0,1,'C');
+	     	$pdf->SetFont('Arial','B',15);
+	     	$pdf->Cell(189,9,'ACCOUNT DETAILS',1,1,'C');
+		    $pdf->SetFont('Arial','B',9);
+		    $pdf->Cell(21,7,'SL NO.' ,1,0,'C');
+	     	$pdf->Cell(32,7,'A/C NO.',1,0,'C');
+	     	$pdf->Cell(37,7,'TRANSCATION TYPE',1,0,'C');
+	     	$pdf->Cell(31,7,'AMOUNT',1,0,'C');
+	     	$pdf->Cell(37,7,'AMOUNT(in word)',1,0,'C');
+	     	$pdf->Cell(31,7,'DATE',1,1,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	 foreach ($result as $key => $value) {$i++;
+	     	 	$pdf->Cell(21,7,$i,1,0,'C');
+	     		$pdf->Cell(32,7,$value['account_no'],1,0,'C');
+	     		
+	     		if($value['trans_type']=="Credit"){
+	     			$pdf->SetTextColor(0,128,0);
+	     			$pdf->Cell(37,7,$value['trans_type'],1,0,'C');
+	     		}elseif($value['trans_type']=="Dabit"){
+	     			$pdf->SetTextColor(194,8,8);
+	     			$pdf->Cell(37,7,$value['trans_type'],1,0,'C');
+	     		}
+	     		$pdf->SetTextColor(0,0,0);
+	     		$pdf->Cell(31,7,$value['trans_amount'],1,0,'C');
+	     		$pdf->Cell(37,7,$value['trans_amount_in_word'],1,0,'C');
+	     		$pdf->Cell(31,7,date('d-m-Y',strtotime($value['added_on'])),1,1,'C');
+	     	 }
+      		$pdf->SetFont('Arial','B',9);
+     		$pdf->Cell(189,30,'',0,1,'L');
+    		$pdf->Cell(94,5,'',0,0,'L');
+     		$pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
+    		$file =  date('Ymdhis').'_details.pdf';
+    		 $pdf->Output($file,'I');
+    	}
+    	else{
+    		$this->session->set_flashdata('web_err_msg',"No Record Found!");
+			redirect('website/member_account_details');
+    	}
     }
 }

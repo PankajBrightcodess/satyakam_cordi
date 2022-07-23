@@ -11,7 +11,8 @@
                       </div>
                       <div class="contact-text">
                           <h3>By Calling</h3>
-                          <p>+91-987654321</p>
+                          <p>+91-9031023059</p>
+                          <p>+91-9031023060</p>
                       </div>
                   </div>
               </div>

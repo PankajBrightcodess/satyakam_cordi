@@ -2262,6 +2262,13 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('stk_account_details',array('mobile_no'=>$mobile,'account_no'=>$account_no));
 		    return $query->row_array();
 	}
+	public function account_check_details_by_own_member($data){
+		$mobile = $data['mobile'];
+		$account_no = $data['ac_no'];
+		$member_id = $_SESSION['member_id'];
+		$query = $this->db->get_where('stk_account_details',array('mobile_no'=>$mobile,'account_no'=>$account_no,'sponsor_id'=>$member_id ));
+		    return $query->row_array();
+	}
 
 	public function account_cr_balance($data){
 		$trans_type = CR;
@@ -2415,6 +2422,18 @@ class Website_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row_array();
 
+	}
+
+	public function account_list($id){
+
+		$query = $this->db->get_where('stk_account_details',array('sponsor_id'=>$id));
+		return $query->result_array();
+	}
+
+	public function find_Account_details($acc_no){
+		$this->db->order_by('id DESC');
+		$query = $this->db->get_where('stk_transaction',array('account_no'=>$acc_no,'status'=>1));
+		return $query->result_array();
 	}
 
 	

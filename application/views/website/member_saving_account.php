@@ -21,7 +21,7 @@
                   <tr>
                     <th scope="row">2</th>
                     <td>Account Status</td>
-                    <td><a href="<?= base_url('website/account_status');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a> </td>
+                    <td><a href="<?= base_url('website/account_holder_login');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a> </td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
@@ -41,7 +41,7 @@
                   <tr>
                     <th scope="row" rowspan="3">6 MASTER KEY</th>
                     <td>All Account Holder List And Account Status</td>
-                    <td><a href="#" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
+                    <td><a href="<?= base_url('website/account_list');?>" class="btn btn-sm btn-success ml-2" >CLICK HERE</a></td>
                   </tr>
                   <tr>
                     <td></td>
