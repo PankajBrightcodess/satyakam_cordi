@@ -6,7 +6,7 @@
             <div class="row text-center" >
             <div class="col-md-3 col-12 mb-2"><a href="<?= base_url('website/account_status');?>" class="btn btn-lg btn-info form-control">DEPOSIT</a></div>
             <div class="col-md-3 col-12 mb-2"><a href="<?= base_url('website/receipt_login');?>" class="btn btn-lg btn-info form-control">E-RECEIPT</a></div>
-            <div class="col-md-3 col-12 mb-2"><a href="<?= base_url('website/account_list');?>" class="btn btn-lg btn-info form-control">DEPOSIT DETAILS</a></div>
+            <div class="col-md-3 col-12 mb-2"><a href="<?= base_url('website/session_wise_search');?>" class="btn btn-lg btn-info form-control">DEPOSIT DETAILS</a></div>
             <div class="col-md-3 col-12 mb-2"><a href="<?= base_url('website/withdraw_login_controller');?>" class="btn btn-lg btn-info form-control">WITHDRAWAL</a></div>
           </div>
           

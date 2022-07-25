@@ -5478,4 +5478,93 @@ class Website extends CI_Controller {
 			redirect('website/member_account_details');
     	}
     }
+
+    public function session_wise_search(){
+    	if(!empty($_SESSION['member_id'])){
+    		if(!empty($_SESSION['acc_id'])){
+    			$d['v'] = 'website/session_wise_seaching';
+		       $this->load->view('website/template_2',$d);
+
+    		}else{
+    			redirect('website/account_holder_login');
+    			$this->session->set_flashdata('web_err_msg',"Please Give Correct Account Number");
+    		}
+			
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function find_record_by_session(){
+    	if(!empty($_SESSION['acc_id'])){
+    		$data = $this->input->post();
+    		$data['acc_no']=$this->session->userdata('acc_id');
+    		$result =$this->Website_model->find_deposit_details($data);
+    		// echo PRE;
+    		// print_r($result);
+    		foreach ($result as $key => $value) {
+    			if(date('d',strtotime($value['added_on']))<07){
+    				$week_1 = $value['added_on'];
+    				$week_1_amount = $value['trans_amount'];
+    			}else{
+    				$week_1 = '';
+    				$week_1_amount = '';
+    			}
+    			if(date('d',strtotime($value['added_on']))<13 && date('d',strtotime($value['added_on']))>06){
+    				$week_2 = $value['added_on'];
+    				$week_2_amount = $value['trans_amount'];
+    			}
+    			else{
+    				$week_2 = '';
+    				$week_2_amount = '';
+    			}
+    			if(date('d',strtotime($value['added_on']))<19 && date('d',strtotime($value['added_on']))>12){
+    				$week_3 = $value['added_on'];
+    				$week_3_amount = $value['trans_amount'];
+    			}
+    			else{
+    				$week_3 = '';
+    				$week_3_amount = '';
+    			}
+    			if(date('d',strtotime($value['added_on']))<25 && date('d',strtotime($value['added_on']))>18){
+    				$week_4 = $value['added_on'];
+    				$week_4_amount = $value['trans_amount'];
+    			}
+    			else{
+    				$week_4 = '';
+    				$week_4_amount = '';
+    			}
+    			if(date('d',strtotime($value['added_on']))<32 && date('d',strtotime($value['added_on']))>24){
+    				$week_5 = $value['added_on'];
+    				$week_5_amount = $value['trans_amount'];
+    			}
+    			else{
+    				$week_5 = '';
+    				$week_5_amount = '';
+    			}
+    			$final[]=array('week_1'=>$week_1,'week_1_amount'=>$week_1_amount,'week_2'=>$week_2,'week_2_amount'=>$week_2_amount,'week_3'=>$week_3,'week_3_amount'=>$week_3_amount,'week_4'=>$week_4,'week_4_amount'=>$week_4_amount,'week_5'=>$week_5,'week_5_amount'=>$week_5_amount);
+    			
+    		}
+
+    		$count = count($final);
+    		for ($i=0; $i < $count; $i++) { 
+    				$recs[] = array('final_week_1'=>$value[$i]['week_1'],'final_week_2'=>$value[$i]['week_2'],'final_week_3'=>$value[$i]['week_3'],'final_week_4'=>$value[$i]['week_4'],'final_week_5'=>$value[$i]['week_5']);
+    			
+    		}
+    		echo PRE;
+    		print_r($recs);die;
+
+    		////////please Continoue//////////////////////////////////////////////////////////////////
+    		$d['final_records']=$final;
+    		echo PRE;
+    		print_r($recs);die;
+			$d['v'] = 'website/deposit_card';
+		    $this->load->view('website/template_2',$d);
+
+    	}else{
+    		redirect('website/account_holder_login');
+    		$this->session->set_flashdata('web_err_msg',"Please Enter A/C No.");
+    	}
+    }
 }

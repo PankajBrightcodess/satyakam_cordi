@@ -2301,6 +2301,7 @@ class Website_model extends CI_Model{
 		$trans['trans_amount'] = $data['weekly_deposit_in_number'];
 		$trans['trans_amount_in_word'] = $data['weekly_deposit_in_word'];
 		$trans['added_on'] = date('Y-m-d H:i:s');
+		$data['deposit_session'] = date('Y').'-'.date('Y',strtotime('+1 year'));
 		$result = $this->add_trans($data);
 		if(!empty($result))
 		{	$id = $result;
@@ -2324,6 +2325,8 @@ class Website_model extends CI_Model{
 		}
 
 	}
+
+
 
 	public function add_trans($data){
 		unset($data['weekly_deposit_in_word']);
@@ -2434,6 +2437,26 @@ class Website_model extends CI_Model{
 		$this->db->order_by('id DESC');
 		$query = $this->db->get_where('stk_transaction',array('account_no'=>$acc_no,'status'=>1));
 		return $query->result_array();
+	}
+
+
+	public function find_deposit_details($data){
+		$id  = $data['acc_no'];
+		$query = $this->db->get_where('stk_account_details',array('id'=>$id,'status'=>1));
+		$data['account_no'] =  $query->row('account_no');
+
+		if(!empty($data['account_no'])){
+			unset($data['acc_no']);
+			$session = $data['deposit_session'];
+			$acc_no = $data['account_no'];
+			$this->db->where(['t1.deposit_session'=>$session,'t1.account_no'=>$acc_no,'t2.trans_type'=>'Credit']);
+			$this->db->select('t2.trans_type,t2.added_on,t2.trans_amount');
+			$this->db->from('stk_transaction_details t1');
+			$this->db->join('stk_transaction t2','t1.id=t2.trans_details_id','left');
+			$qry = $this->db->get();
+			return $qry->result_array();
+		}
+
 	}
 
 	
