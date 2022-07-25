@@ -5547,18 +5547,18 @@ class Website extends CI_Controller {
     			
     		}
 
-    		$count = count($final);
-    		for ($i=0; $i < $count; $i++) { 
-    				$recs[] = array('final_week_1'=>$value[$i]['week_1'],'final_week_2'=>$value[$i]['week_2'],'final_week_3'=>$value[$i]['week_3'],'final_week_4'=>$value[$i]['week_4'],'final_week_5'=>$value[$i]['week_5']);
+    		// $count = count($final);
+    		// for ($i=0; $i < $count; $i++) { 
+    		// 		$recs[] = array('final_week_1'=>$value[$i]['week_1'],'final_week_2'=>$value[$i]['week_2'],'final_week_3'=>$value[$i]['week_3'],'final_week_4'=>$value[$i]['week_4'],'final_week_5'=>$value[$i]['week_5']);
     			
-    		}
-    		echo PRE;
-    		print_r($recs);die;
+    		// }
+    		// echo PRE;
+    		// print_r($recs);die;
 
     		////////please Continoue//////////////////////////////////////////////////////////////////
     		$d['final_records']=$final;
-    		echo PRE;
-    		print_r($recs);die;
+    		// echo PRE;
+    		// print_r($recs);die;
 			$d['v'] = 'website/deposit_card';
 		    $this->load->view('website/template_2',$d);
 
