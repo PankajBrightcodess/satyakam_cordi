@@ -835,7 +835,7 @@ class Website_model extends CI_Model{
     	$qry = $this->db->get();
     	$record =  $qry->row_array();
     	if(!empty($record)){
-    		$condt= date('d').$record['id']+1;
+    		$condt= ((int)date('d').$record['id'])+1;
     		$user = 'CANDSF-'.$condt;
 			$pass = date('my').$condt.date('d');
 			$update['username'] =$user;
