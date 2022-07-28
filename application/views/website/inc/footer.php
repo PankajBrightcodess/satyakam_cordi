@@ -9,13 +9,18 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="footer-link">
+                    <div class="footer-link " style="font-size:13px">
                         <h2 style="border-bottom: 1px solid white;">Quick Links</h2>
-                        <a href="#">Home</a>
+                        <!-- <a href="#">Home</a>
                         <a href="#">Services</a>
                         <a href="#">Gallery</a>
                         <a href="#">About Us</a>
-                        <a href="#">Contact Us</a>
+                        <a href="#">Contact Us</a> -->
+                       <a href="<?php echo base_url('website/term_condition');?>">Terms and Condition</a>
+                        <a href="<?php echo base_url('website/privacypolicy');?>">Privacy Policy</a>
+                        <a href="<?php echo base_url('website/changepolicy');?>">Return and Refund Policy</a>
+                        <a href="<?php echo base_url('website/cancel_policy');?>">Cancellation Policy</a>
+
                     </div>
                 </div>
                 <div class="col-md-4">

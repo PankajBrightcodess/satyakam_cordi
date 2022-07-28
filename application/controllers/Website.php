@@ -236,6 +236,21 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
+		public function term_condition(){
+			$d['v'] = 'website/termcondition';
+			$this->load->view('website/template',$d);
+		}
+
+		public function changepolicy(){
+			$d['v'] = 'website/change_policy';
+			$this->load->view('website/template',$d);
+		}
+
+		public function cancel_policy(){
+			$d['v'] = 'website/cancel_policy';
+			$this->load->view('website/template',$d);
+		}
+
 		public function contactus(){
 			$d['v'] = 'website/contactus';
 			$this->load->view('website/template',$d);
