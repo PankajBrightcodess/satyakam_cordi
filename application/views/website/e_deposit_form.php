@@ -9,7 +9,7 @@
               <div class="row">
                   <!-- <?= PRE; print_r($account_details);?> -->
                   <div class="col-md-2 mt-2">Deposit Date</div>
-                  <div class="col-md-4 mt-2"><input type="date" name="deposit_date" id="deposit_date" class="form-control" value="<?= date('Y-m-d');?>" readonly required></div>
+                  <div class="col-md-4 mt-2"><input type="date" name="deposit_date" id="deposit_date" class="form-control" value="<?= date('Y-m-d');?>" required></div>
                   <div class="col-md-2 mt-2">Meeting No.</div>
                   <div class="col-md-4 mt-2"><input type="text" name="meeting_no"  id="meeting_no" placeholder="Meeting No. :" class="form-control"  required></div>
                   <div class="col-md-2 mt-2">Account No.</div>

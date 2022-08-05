@@ -14,13 +14,13 @@
                 <tbody>
                   <tr>
                       <td>LOAN REQUEST FORM</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?php echo base_url('website/loan_req_form_group');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                       <td>LOAN REQUEST FORM</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?php echo base_url('website/loan_req_form_member');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                   </tr>
                    <tr>
                       <td>ACCOUNT STATUS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?= base_url('website/group_loan_request');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                       <td>ACCOUNT STATUS</td>
                       <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
                   </tr>

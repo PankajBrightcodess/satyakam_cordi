@@ -2300,7 +2300,7 @@ class Website_model extends CI_Model{
 		$trans['trans_type'] = CR;
 		$trans['trans_amount'] = $data['weekly_deposit_in_number'];
 		$trans['trans_amount_in_word'] = $data['weekly_deposit_in_word'];
-		$trans['added_on'] = date('Y-m-d H:i:s');
+		$trans['added_on'] = $data['deposit_date'];
 		$data['deposit_session'] = date('Y').'-'.date('Y',strtotime('+1 year'));
 		$result = $this->add_trans($data);
 		if(!empty($result))
@@ -2457,6 +2457,103 @@ class Website_model extends CI_Model{
 			return $qry->result_array();
 		}
 
+	}
+
+	public function getdata($date,$data){
+		$id  = $data['acc_no'];
+		$query = $this->db->get_where('stk_account_details',array('id'=>$id,'status'=>1));
+		$data['account_no'] =  $query->row('account_no');
+		if(!empty($data['account_no'])){
+			$m = date('m',strtotime($date));
+			$y = date('Y',strtotime($date));
+
+			unset($data['acc_no']);
+			$session = $data['deposit_session'];
+			$acc_no = $data['account_no'];
+			$this->db->where(['t1.deposit_session'=>$session,'t1.account_no'=>$acc_no,'t2.trans_type'=>'Credit','month(t2.added_on)'=>$m,'year(t2.added_on)'=>$y]);
+			$this->db->select('t2.trans_type,t2.added_on,t2.trans_amount');
+			$this->db->from('stk_transaction_details t1');
+			$this->db->join('stk_transaction t2','t1.id=t2.trans_details_id','left');
+			$qry = $this->db->get();
+			return $qry->result_array();
+
+
+		}
+			
+	}
+	public function group_loan_add($data){
+		$check['member_id'] = $data['member_id'];
+		$check['group_id'] = $data['group_id'];
+		$rec = $this->group_check_loan_details($check);
+		if($rec){
+			$data['added_on']= date('Y-m-d');
+			$query = $this->db->insert('loan_group',$data);
+			if($query==true){
+				$return['status']=true;
+				$return['msg']="Group Loan Request Successfully Submitted !!";
+			}else{
+				$return['status']=false;
+				$error=$this->db->error();
+				$return['msg']="code : ".$error['code']."\n Message : ".$error['message'];
+			}
+		 	
+		}else{
+			$return['status']=false;
+			$error=$this->db->error();
+			$return['msg']="Record Not Match please give correct Details.";
+		}
+		return $return;
+	}
+
+	public function group_check_loan_details($check){
+		$id = $this->session->userdata('member_id');
+		$qry = $this->db->get_where('member_details',array('membership_no'=>$check['member_id'],'signup_id'=>$id));
+		$request = $qry->result_array();
+		if(!empty($request[0]['id'])){
+			$qrys = $this->db->get_where('group_signup',array('username'=>$check['group_id'],'created_by'=>$id));
+			$row = $qrys->num_rows();
+			if($row>0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+
+	public function get_group_loan_status($check){
+		$this->db->select('*');
+		$this->db->from('loan_group');
+		$this->db->where(['member_id'=>$check['member_id'],'group_id'=>$check['group_id'],'approvel_status'=>1]);
+		$this->db->order_by('id','desc');
+		$this->db->limit(1);
+
+		$qry = $this->db->get();
+		return $qry->result_array();
+
+	}
+
+	public function add_loan_request_member($data){
+		
+			$member_id = $data['member_id'];
+			$rec = $this->check_member_for_loan($member_id);
+			if($rec){
+				$data['added_on']=date('Y-m-d');
+				return $this->db->insert('loan_member',$data);
+			}else{
+				return false;
+			}
+
+	}
+
+	public function check_member_for_loan($member_id){
+		$id = $this->session->userdata('member_id');
+		$qry = $this->db->get_where('member_details',array('membership_no'=>$member_id,'signup_id'=>$id));
+		$row = $qry->num_rows();
+		if($row>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	

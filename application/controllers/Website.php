@@ -16,24 +16,26 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
-
 		public function aboutus(){
 			$d['v'] = 'website/aboutus';
 			$this->load->view('website/template',$d);
 		}
+
 		public function foundermessage(){
 			$d['v'] = 'website/foundermessage';
 			$this->load->view('website/template',$d);	
 		}
+
 		public function office_login(){
 			$d['v'] = 'website/office_login';
 			$this->load->view('website/template',$d);
-
 		}
+
 		public function apply_online(){
 			$d['v'] = 'website/apply_online';
 			$this->load->view('website/template',$d);
 		}
+
 		public function applyform(){
 			$data = $this->input->post();
 			$result = $this->Website_model->insert_applyform($data);
@@ -45,6 +47,7 @@ class Website extends CI_Controller {
 				redirect('website/apply_online/');
 		    }
 		}
+
 		public function officer_dashboard(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -63,6 +66,7 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/econtractdocx';
 			$this->load->view('website/template_1',$d);
 		}
+
 		public function econtractkyc(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -74,6 +78,7 @@ class Website extends CI_Controller {
 			// print_r($d['kyc']);die;
 			$this->load->view('website/template_1',$d);
 		}
+
 		public function econtractmyteam(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -82,6 +87,7 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/econtractmyteam';
 			$this->load->view('website/template_1',$d);
 		}
+
 		public function myofficereport(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -185,6 +191,7 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/myofficeexpense_details';
 			$this->load->view('website/template_1',$d);
 		}
+
 		public function myofficemyteam(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -194,7 +201,6 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_1',$d);
 		}
 
-		
 		public function ajeevikamyclubgrp(){
 			$id = $_SESSION['user_id'];
 			$record= $this->Website_model->getuser($id);
@@ -217,10 +223,12 @@ class Website extends CI_Controller {
 			$d['v'] = 'website/mainvacency';
 			$this->load->view('website/template',$d);
 		}
+
 		public function Gallery(){
 			$d['v'] = 'website/gallery';
 			$this->load->view('website/template',$d);
 		}
+
 		public function legaldoc(){
 			$d['v'] = 'website/legaldoc';
 			$this->load->view('website/template',$d);
@@ -267,7 +275,7 @@ class Website extends CI_Controller {
 			$d['state'] = $this->Website_model->get_statelist();
 			$this->load->view('website/template',$d);
 		}
-
+		
 		public function vacencysignup(){
 			$d['v'] = 'website/vacency_signup';
 			$d['depart'] = $this->Website_model->get_departlist();
@@ -5162,6 +5170,7 @@ class Website extends CI_Controller {
 
     public function e_deposit_form_submit(){
     	$data=$this->input->post();
+
     	$result = $this->Website_model->add_e_deposit($data);
     	if($result['verify']==true){
 			$result=$result['recept_no'];
@@ -5515,9 +5524,19 @@ class Website extends CI_Controller {
     	if(!empty($_SESSION['acc_id'])){
     		$data = $this->input->post();
     		$data['acc_no']=$this->session->userdata('acc_id');
-    		$result =$this->Website_model->find_deposit_details($data);
-    		// echo PRE;
-    		// print_r($result);
+    		$d['data'] = $data;
+			$d['v'] = 'website/deposit_card';
+		    $this->load->view('website/template_2',$d);
+
+    	}else{
+    		redirect('website/account_holder_login');
+    		$this->session->set_flashdata('web_err_msg',"Please Enter A/C No.");
+    	}
+    }
+
+
+    public function deposit_list(){
+    	$result =$this->Website_model->find_deposit_details($data);
     		foreach ($result as $key => $value) {
     			if(date('d',strtotime($value['added_on']))<07){
     				$week_1 = $value['added_on'];
@@ -5562,24 +5581,87 @@ class Website extends CI_Controller {
     			
     		}
 
-    		// $count = count($final);
-    		// for ($i=0; $i < $count; $i++) { 
-    		// 		$recs[] = array('final_week_1'=>$value[$i]['week_1'],'final_week_2'=>$value[$i]['week_2'],'final_week_3'=>$value[$i]['week_3'],'final_week_4'=>$value[$i]['week_4'],'final_week_5'=>$value[$i]['week_5']);
-    			
-    		// }
-    		// echo PRE;
-    		// print_r($recs);die;
+    		echo PRE;
+    		print_r($final);die;
+    }
 
-    		////////please Continoue//////////////////////////////////////////////////////////////////
-    		$d['final_records']=$final;
-    		// echo PRE;
-    		// print_r($recs);die;
-			$d['v'] = 'website/deposit_card';
+
+    public function loan_req_form_group(){
+    	if(!empty($_SESSION['member_id'])){
+    		$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/loan_request_form_group';
 		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
 
+    public function loan_request_group(){
+    	$data = $this->input->post();
+    	$result  = $this->Website_model->group_loan_add($data);
+    	if($result['status']){
+    		$this->session->set_flashdata('web_msg',$result['msg']);
+    	}
+    	else{
+    		$this->session->set_flashdata('web_err_msg','Something Error !');
+    	}
+    	redirect('website/loan_req_form_group');
+    	
+    }
+
+    public function group_loan_request(){
+    	if(!empty($_SESSION['member_id'])){
+			$d['v'] = 'website/group_loan_account_status';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+    public function group_check(){
+    	$check = $this->input->post();
+
+    	$result  = $this->Website_model->group_check_loan_details($check);
+
+    	if($result){
+    		$record = $this->Website_model->get_group_loan_status($check);
+    		$d['details'] = $record;
+
+    		$d['v'] = 'website/group_check_list';
+		    $this->load->view('website/template_2',$d);
     	}else{
-    		redirect('website/account_holder_login');
-    		$this->session->set_flashdata('web_err_msg',"Please Enter A/C No.");
+    		$this->session->set_flashdata('web_err_msg','Something Error !');
+    		redirect('website/member_login');
     	}
     }
+
+     public function loan_req_form_member(){
+    	if(!empty($_SESSION['member_id'])){
+    		$d['state'] = $this->Website_model->get_statelist();
+			$d['v'] = 'website/loan_request_form_member';
+		    $this->load->view('website/template_2',$d);
+		}
+		else{
+			redirect('website/member_login');
+		}
+    }
+
+
+    public function loan_request_member(){
+    	$data = $this->input->post();
+    	$record = $this->Website_model->add_loan_request_member($data);
+    	if($record){
+    		$this->session->set_flashdata('web_msg','Insert Successfully');
+    	}
+    	else{
+    		$this->session->set_flashdata('web_err_msg','Something Error !');
+    	}
+    	redirect('website/loan_req_form_member');
+    }
+
+
+
+
 }
