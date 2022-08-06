@@ -394,7 +394,7 @@ $("#professor_sign").change(function() {
 });
 </script>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
    $(document).ready(function() {
@@ -675,6 +675,29 @@ $('body').on('change','.year', function(){
         }
       });
     });
+
+      $('body').on('click','#d_group_mem',function(){
+            if(confirm('Are You Sure?')){
+              var id = $(this).data('id');
+              $.ajax({
+                  data : {id:id},
+                  type:'POST',
+                  url:'<?php echo base_url('website/delete_group_m')?>',
+                  success :function(result){
+                      // alert(result);
+                     if(result==true){
+                          swal("Good job!", "You are registered successfully!", "success");
+                     }  else{
+                          swal("Opps!", "Something error!", "error");
+                     }
+                     location.reload();   
+                  }
+              })
+
+            }
+            
+
+        })
 });
 </script>
 </body>

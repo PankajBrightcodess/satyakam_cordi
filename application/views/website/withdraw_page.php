@@ -65,7 +65,7 @@
                   <div class="col-md-4 mt-2"><input type="number" name="banking_upi_no"  id="banking_upi_no" placeholder="Collective/UPI/Banking No. :" readonly value="<?php echo $account_details['upi_banking'];?>"  class="form-control" required></div>
 
                   <div class="col-md-2 mt-2">Withdraw Form No.</div>
-                  <div class="col-md-4 mt-2"><input type="text" name="withdraw_form_no"  id="withdraw_form_no" placeholder="Colective Saving Form No. :" class="form-control" required></div>
+                  <div class="col-md-4 mt-2"><input type="text" name="withdraw_form_no"  id="withdraw_form_no" placeholder="Withdraw Form No. :" class="form-control" required></div>
 
                  <!--  <div class="col-md-2 mt-2">Manual Receipt No.</div>
                   <div class="col-md-4 mt-2"><input type="text" name="manual_receipt_no"  id="manual_receipt_no" placeholder="Manual Receipt No. :" class="form-control" required></div> -->

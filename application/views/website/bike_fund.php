@@ -18,37 +18,29 @@
              <div class="col-md-12 mb-2">
                 <div class="table-responsive">
                  <table class="table table-hover" >
-                    <thead>
+                   <thead>
                       <tr>
                         <th scope="col" colspan="2">Updating Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
-                        <th scope="col" >To Date :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['added_on'])){ echo date('d-m-Y',strtotime($club_income_details[0]['added_on'])); } ?></th>
+                        <th scope="col" colspan="2" >To Date :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['added_on'])){ echo date('d-m-Y',strtotime($club_income_details[0]['added_on'])); } ?></th>
                       </tr> 
                       <tr>
                         <th scope="col" colspan="2">User Name : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['username'])){  echo $club_income_details[0]['username'] ; }?></th>
-                        <th scope="col" rowspan="6"></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col" colspan="2">User Id No. :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_id'])){ echo $club_income_details[0]['member_id']; } ?></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col" colspan="2">Outhorized Member : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_name'])){ echo $club_income_details[0]['member_name']; } ?></th>
-                      </tr> 
-                       <tr>
-                        <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
-                        <th scope="col">Divison Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['division'])){ echo $club_income_details[0]['division']; } ?></th>
-                      </tr> 
-                      <tr>
-                        <th scope="col">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
-                        <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}
-                        // else{
-                        //   echo $club_income_details[0]['member_creator'];
-                        // } 
+                         <th scope="col" >User Id No. :&nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_id'])){ echo $club_income_details[0]['member_id']; } ?></th>
+                         <th scope="col">Sponsor Id No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_creator']) && $club_income_details[0]['member_creator']==0){ if(!empty($club_income_details[0]['member_creator'])){ echo $club_income_details[0]['created_by']; }}
                       ?></th>
                       </tr> 
                       <tr>
-                        <th scope="col">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>
+                          <th scope="col" colspan="2">Outhorized Member : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['member_name'])){ echo $club_income_details[0]['member_name']; } ?></th>
+                          <th scope="col">State Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['state'])){ echo $club_income_details[0]['state']; } ?></th>
+                        <th scope="col">Divison Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['division'])){ echo $club_income_details[0]['division']; } ?></th>
+                      </tr> 
+                      <tr>
+                         <th scope="col" colspan="2">District Unit : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['dist'])){ echo $club_income_details[0]['dist']; } ?></th>
+                        
+                       <th scope="col">Mobile No. : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['mobile_no']; } ?></th>
                         <th scope="col">E-Mail : &nbsp;&nbsp;<?php if(!empty($club_income_details[0]['mobile_no'])){ echo $club_income_details[0]['email']; } ?></th>
-                      </tr>
+                      </tr> 
+                       
                     </thead>
                   </table> 
                 </div>

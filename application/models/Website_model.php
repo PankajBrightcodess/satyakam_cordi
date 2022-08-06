@@ -107,6 +107,7 @@ class Website_model extends CI_Model{
 		
 	}
 
+
 	public function get_idpass($id){
 		$this->db->select('username,password,mobile_no');
 		$this->db->where('id',$id);
@@ -1926,11 +1927,12 @@ class Website_model extends CI_Model{
 
 	public function get_allclubincome($id){
 		$this->db->where('t1.member_id',$id);
-		$this->db->select('t1.*,t2.username,t2.sponsor_id as member_creator,t2.created_by,t3.state,t4.division');
+		$this->db->select('t1.*,t2.username,t2.sponsor_id as member_creator,t2.created_by,t3.state,t4.division,t5.membership_no,t5.applicant_name,t5.mobile_no as member_mobile,t5.email as member_email,t2.username,t5.super');
 		$this->db->from('club_details t1');
 		$this->db->join('project_member t2','t1.member_id=t2.id','left');
 		$this->db->join('state t3','t2.state_unit_name=t3.id','left');
 		$this->db->join('division t4','t2.division_unit_name=t4.id','left');
+		$this->db->join('member_details t5','t2.id=t5.signup_id','left');
 		$query = $this->db->get();
 		return  $query->result_array();
 	}
@@ -1981,6 +1983,17 @@ class Website_model extends CI_Model{
 			$status[]=$this->db->insert('group_details',$value);
 		}
 		return json_encode($status);
+	}
+
+	public function membership_list_by_group($id){
+		$qry = $this->db->get_where('group_details',array('sign_up_id'=>$id,'status'=>1));
+		return $qry->result_array();
+	}
+
+	public function delete_group_member($id){
+		$record = $this->db->update('group_details',array('status'=>0),array('id'=>$id));
+		return $record;
+
 	}
 
 	public function create_id_pass_group($group_signup_id){

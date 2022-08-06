@@ -35,7 +35,7 @@
               <form method="POST" action="<?= base_url('website/check_memberlogin');?>">  
               <div class="row">
               <div class="col-md-12">
-                <h3 class="text-center" style="color: white">MEMBER LOGIN</h3>
+                <h3 class="text-center" style="color: black">MEMBER LOGIN</h3>
               </div>
               <div class="col-md-12">
                

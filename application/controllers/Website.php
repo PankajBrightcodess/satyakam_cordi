@@ -3667,7 +3667,9 @@ class Website extends CI_Controller {
 		// }
 
 		public function member_login(){
+
 			$id = $_SESSION['user_id'];
+			
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
@@ -3894,7 +3896,21 @@ class Website extends CI_Controller {
 		if(!empty($_SESSION['member_id'])){	
 			$d['v'] = 'website/my_club_status';
 			$id = $_SESSION['member_id'];
-			$d['club_income']= $this->Website_model->get_allclubincome($id);
+			$details= $this->Website_model->get_allclubincome($id);
+			$count  = count($details);
+			$final['membership_no'] =$details[0]['membership_no'];
+			$final['applicant_name'] =$details[0]['applicant_name'];
+			$final['member_mobile'] =$details[0]['member_mobile'];
+			$final['member_email'] =$details[0]['member_email'];
+			$final['member_creator'] =$details[0]['member_creator'];
+			$final['state'] =$details[0]['state'];
+			$final['division'] =$details[0]['division'];
+			$final['username'] =$details[0]['username'];
+			$final['super'] =$details[0]['super'];
+			$final['member_count'] =$count;
+			$d['all_data'] = $final;
+			// echo PRE;
+			// print_r($d['all_data']);die;
 		    $this->load->view('website/template_2',$d);
 		}
 		else{
@@ -4391,6 +4407,7 @@ class Website extends CI_Controller {
 	public function memberslink(){
 		if(!empty($_SESSION['group_id'])){
 	   	$id = $_SESSION['group_id'];
+
 	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
 			$d['v'] = 'website/group_member_link';
 		    $this->load->view('website/template_3',$d);
@@ -4399,6 +4416,24 @@ class Website extends CI_Controller {
 			redirect('website/login_group');
 		}	
 	}
+
+	public function add_new_member_in_group(){
+		if(!empty($_SESSION['group_id'])){
+	   	$last_group_id = $_SESSION['group_id'];
+		$d['group_records']= $this->Website_model->group_details_member($last_group_id);
+
+	   	// $d['uploadfiles']=$this->Website_model->membership_uploadlist($id);
+			$d['v'] = 'website/add_group_member';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}
+	}
+
+
+
+
 	public function collective_saving(){
 		if(!empty($_SESSION['group_id'])){
 	   	$id = $_SESSION['group_id'];
@@ -4649,22 +4684,25 @@ class Website extends CI_Controller {
 	}
 
 	public function group_logout(){
-		if(!empty($_SESSION['member_id'])){
-			unset($_SESSION['member_id']);
+	    if(!empty($_SESSION['member_id'])){
+			// unset($_SESSION['member_id']);
 			unset($_SESSION['last_id']);
-			unset($_SESSION['member_name']);
+			// unset($_SESSION['member_name']);
 			unset($_SESSION['group_id']);
 			unset($_SESSION['group_name']);
 			$this->load->helper('cookie');
-  	    	delete_cookie('member_cookie');
+  	    	// delete_cookie('member_cookie');
   	    	delete_cookie('group_cookie');
-	}
-		if($this->session->user!==NULL){
-      	  redirect('website/econtractdocx');
-      	}
-      	else{
-      		redirect('/');
-      	}
+  	    	 redirect('website/memberdashboard');
+		}else{
+			redirect('/');
+		}
+	// if($this->session->user_id!==NULL){
+ //  	  redirect('website/econtractdocx');
+ //  	}
+ //  	else{
+ //  		redirect('/');
+ //  	}
 	}
 
 	public function groupsignup_form_member(){
@@ -4814,6 +4852,9 @@ class Website extends CI_Controller {
 
 
 
+
+
+
 		public function member_groupdetails_insert(){
 			if(!empty($_FILES['photo']['name'][0])){
 				$files['name']=$_FILES['photo']['name'];
@@ -4959,6 +5000,13 @@ class Website extends CI_Controller {
 				redirect('website/member_group_reg_form');
 			}
 		}
+
+
+
+
+
+
+
 		public function member_login_group(){
 			
 			$d['v'] = 'website/member_login_group';
@@ -4969,9 +5017,9 @@ class Website extends CI_Controller {
 		    $data = $this->input->post();
 		    $record= $this->Website_model->group_login($data);
 		    if($record['verify']==true){
-		    	unset($_SESSION['member_id']);
-				unset($_SESSION['last_id']);
-				unset($_SESSION['member_name']);
+		  //   	unset($_SESSION['member_id']);
+				// unset($_SESSION['last_id']);
+				// unset($_SESSION['member_name']);
 				unset($_SESSION['group_id']);
 				unset($_SESSION['group_name']);
 				$this->load->helper('cookie');
@@ -4992,6 +5040,88 @@ class Website extends CI_Controller {
 			$this->session->set_flashdata('err_msg',$record['verify']);
 			redirect('website/groupsignup_form_member');
 		}
+	}
+
+
+
+	public function add_member_in_group(){
+				if(!empty($_FILES['photo']['name'][0])){
+				$files['name']=$_FILES['photo']['name'];
+				$files['type']=$_FILES['photo']['type'];
+				$files['tmp_name']=$_FILES['photo']['tmp_name'];
+				$files['error']=$_FILES['photo']['error'];
+				$files['size']=$_FILES['photo']['size'];
+				$file_count = count($files['name']);
+				for ($j=0; $j < $file_count; $j++) { 
+					$file = array('name'=>$files['name'][$j],'type'=>$files['type'][$j],'tmp_name'=>$files['tmp_name'][$j],'error'=>$files['error'][$j],'size'=>$files['size'][$j]);
+					$final_files[]['photo']=$file;
+				}
+
+				foreach ($final_files as $key => $value) { 
+					$photo1 = $value['photo']['name'];
+					$photo1 = explode('.',$photo1);
+					$image1= time().$photo1[0];
+					$extension1 = $photo1[1];
+					$imagename1 = $value['photo']['tmp_name'];
+					$upload_path = './assets/uploads/groups/';	
+					$allext=array("gif","jpg","jpeg","png","pdf","GIF","JPG","JPEG","PNG","PDF");
+					if(!empty($value['photo']['name'])){
+						$check1[] = upload_files($upload_path,'photo',$allext,"1800000","1800000",'100000000',$image1,$extension1);
+						$images[]['image'] = $image1.".jpg";
+					}
+				}
+			}
+			
+			$data = $this->input->post();
+			
+			$group_signup_id = $data['group_signup_id'];
+			$records['member_id'] = $data['member_id'];
+			$records['member_name'] = $data['member_name'];
+			$records['dob'] = $data['dob'];
+			$records['father_name'] = $data['father_name'];
+			$records['mobile'] = $data['mobile'];
+			$records['aadhar_no'] = $data['aadhar_no'];
+			$records['designation'] = $data['designation'];
+			
+			$count = count($records['member_id']);
+			for ($i=0; $i < $count; $i++) { 
+				$arr = array('member_id'=>$records['member_id'][$i],'member_name'=>$records['member_name'][$i],'dob'=>$records['dob'][$i],'father_name'=>$records['father_name'][$i],'mobile'=>$records['mobile'][$i],'aadhar_no'=>$records['aadhar_no'][$i],'designation'=>$records['designation'][$i],'images'=>$images[$i]['image'],'sign_up_id'=>$group_signup_id,'added_on'=>date('Y-m-d'));
+				$final_array[]=$arr;
+			}
+			
+			$result = $this->Website_model->insert_groupdetails($final_array);
+			$status = json_decode($result);
+			$final_count = count($status);
+			if($final_count==$count){
+				$this->session->set_flashdata('web_msg','Group Member Successfully Added!');
+				redirect('website/memberslink');
+						
+			}else{
+				$this->session->set_flashdata('web_err_msg','Something Error');
+				redirect('website/add_new_member_in_group');
+			}
+		
+	}
+
+
+	public function group_member_delete(){
+		if(!empty($_SESSION['group_id'])){
+	   	$id = $_SESSION['group_id'];
+	   	$records=$this->Website_model->membership_list_by_group($id);
+	   		$d['group_member']=$records;
+			$d['v'] = 'website/group_member_delete';
+		    $this->load->view('website/template_3',$d);
+		}
+		else{
+			redirect('website/login_group');
+		}	
+	}
+
+	public function delete_group_m(){
+		$id = $this->input->post('id');
+		$result = $this->Website_model->delete_group_member($id);
+		echo $result;
+
 	}
 // ...................team close......................................
 
@@ -5581,8 +5711,8 @@ class Website extends CI_Controller {
     			
     		}
 
-    		echo PRE;
-    		print_r($final);die;
+    		// echo PRE;
+    		// print_r($final);die;
     }
 
 
@@ -5616,7 +5746,8 @@ class Website extends CI_Controller {
 		    $this->load->view('website/template_2',$d);
 		}
 		else{
-			redirect('website/member_login');
+			$this->session->set_flashdata('web_err_msg','Please Provide Your Own Group And member Details !');
+			redirect('website/group_loan_request');
 		}
     }
 
@@ -5632,8 +5763,8 @@ class Website extends CI_Controller {
     		$d['v'] = 'website/group_check_list';
 		    $this->load->view('website/template_2',$d);
     	}else{
-    		$this->session->set_flashdata('web_err_msg','Something Error !');
-    		redirect('website/member_login');
+    		$this->session->set_flashdata('web_err_msg','Please Provide Your Own Group And member Details !');
+			redirect('website/group_loan_request');
     	}
     }
 
