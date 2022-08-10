@@ -692,12 +692,10 @@ $('body').on('change','.year', function(){
                      }
                      location.reload();   
                   }
-              })
+              });
 
             }
-            
-
-        })
+        });
 });
 </script>
 </body>
