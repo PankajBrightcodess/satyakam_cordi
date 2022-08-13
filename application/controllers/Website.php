@@ -1233,6 +1233,7 @@ class Website extends CI_Controller {
 
 	public function vacencyform_submit(){
 		$data = $this->input->post();
+
 		  if($_FILES['photo']['name'] !=''){
 		  	$upload_path = './assets/vacency/photo/';	
 		    $allowed_types = 'gif|jpg|jpeg|png|pdf|GIF|JPG|JPEG|PNG|PDF';
@@ -1289,6 +1290,7 @@ class Website extends CI_Controller {
 				  $data['thumb'] = $image['path'];
 			  }
 		  }
+
 		  $records= $this->Website_model->vacencydetails_submit($data);
 		  // print_r($records);die;
 		  if($records['verify']===true){
@@ -1308,8 +1310,7 @@ class Website extends CI_Controller {
 	}
 	public function makepayment(){
         $data['title'] = "Make Payment";            
-        $id = $this->session->userdata('lastids');
-        //$order_id_array = json_decode($order_value,true);        
+        $id = $this->session->userdata('lastids');        
         $showdata = array();$total_amount = 0;$orderno = array();$show_id=0;
         if(!empty($id)){
 	    	$records=$this->Website_model->fatch_vacency($id);
@@ -1324,9 +1325,12 @@ class Website extends CI_Controller {
     }
         public function success(){
       $postdata = $this->input->post();
+      // echo PRE;
+      // print_r($postdata);die;
       $payment_id = $postdata['razorpay_payment_id'];
       $paymentdetail = json_encode($postdata);
       $lastids = $this->session->userdata('lastids');
+      // print_r($lastids);die;
       //$order_array = json_decode($order_id,true);
       if(!empty($lastids)){
             $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
@@ -1681,6 +1685,7 @@ class Website extends CI_Controller {
     public function vacencylist_excel(){
     	$fileName = 'vacency.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
+		print_r($user_id['id']);die;
 		$vacencylist = $this->Website_model->vacencylist();
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

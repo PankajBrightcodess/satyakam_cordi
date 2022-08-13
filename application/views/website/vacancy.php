@@ -7,9 +7,9 @@
           <div class="col-md-3">
              <a class="dropdown-item" href="<?= base_url('website/mainvacency');?>" style="color:white"><h6 class="tittle">Vacancy</h6></a>
           </div>
-          <div class="col-md-3">
+         <!--  <div class="col-md-3">
             <a class="dropdown-item" target="_blank" href="<?= base_url('assets/website/legaldocpdf/sgdh.pdf')?>" style="color:white"><h6 class="tittle">Guideline</h6></a> 
-          </div>
+          </div> -->
           <div class="col-md-3">
             <a class="dropdown-item" href="<?= base_url('website/vacency_login');?>" style="color:white"><h6 class="tittle">Online Apply</h6></a>
           </div>

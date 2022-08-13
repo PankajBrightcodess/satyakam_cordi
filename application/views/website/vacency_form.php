@@ -165,22 +165,21 @@
                                      
                                      <th scope="row">Marksheet Upload</th>
                                      <th scope="row">Other Qualification Certificate uploads</th>
-                                     <th scope="row">Experience certificate Uploads</th>
-                                     <th scope="row">Aadhar Upload</th>
+                                     <th scope="row" colspan="1">Experience certificate Uploads</th>
+                                     <!-- <th scope="row">Aadhar Upload</th> -->
                                    
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td><input type="file" name="marksheet" placeholder="Exam Passed" class="form-control" required></td>
+                                  <td ><input type="file" name="marksheet" placeholder="Exam Passed" class="form-control" required></td>
                                    <td><input type="file" name="other_quali" placeholder="Name Of Board/University" class="form-control" required></td>
-                                    <td><input type="file" name="exprience" placeholder="Year Of Passing" class="form-control" required></td>
-                                     <td><input type="file" name="aadhar" placeholder="Total Marks" class="form-control" required></td>
+                                    <td colspan="1"><input type="file" name="exprience" placeholder="Year Of Passing" class="form-control"></td>
+                                     
                                   </tr>
                                   <tr>
-                                  <td colspan="3">
-                                    <label>Left Hend Thumb Impression</label>
-                                  </td>
-                                     <td><input type="file" name="thumb" placeholder="Total Marks" class="form-control" required></td>
+                                  <td colspan="2">
+                                    <label>Aadhar Front</label><input type="file" name="aadhar" placeholder="Total Marks" class="form-control" required>
+                                  </td ><td colspan="2"><label>Aadhar Back</label><input type="file" name="thumb" placeholder="Total Marks" class="form-control" required></td>
                                   </tr>
                                 </tbody>
                               </table>
