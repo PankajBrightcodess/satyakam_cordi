@@ -1637,8 +1637,7 @@ class Website extends CI_Controller {
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
 		$d['vacency_details'] = $this->Website_model->vacencylist();
-		// echo PRE;
-		// print_r($d['vacency_details']);die;
+		$d['datatable']=true;
 		$d['v'] = 'website/vacency_list';
         $this->load->view('website/template_1',$d);
 	}
@@ -1687,7 +1686,7 @@ class Website extends CI_Controller {
 		$user_id['id'] = $_SESSION['user_id'];
 
 		$vacencylist = $this->Website_model->vacencylist();
-		
+
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
        	$sheet->setCellValue('A1','Sl.No.');
