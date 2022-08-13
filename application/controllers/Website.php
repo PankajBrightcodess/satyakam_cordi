@@ -1685,8 +1685,9 @@ class Website extends CI_Controller {
     public function vacencylist_excel(){
     	$fileName = 'vacency.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
-		print_r($user_id['id']);die;
+
 		$vacencylist = $this->Website_model->vacencylist();
+		print_r($vacencylist);die;
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
        	$sheet->setCellValue('A1','Sl.No.');
