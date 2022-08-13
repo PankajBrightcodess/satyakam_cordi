@@ -10,7 +10,7 @@
                     <div class="card-body">
                     <div class="row">
                             <div class="col-md-12 col-lg-12">
-                                <div class="col-md-12 col-lg-12 table-responsive table1" id="table1">
+                                <div class="col-md-12 col-lg-12 col-12 table-responsive table1">
                                 <table class="table data-table stripe hover nowrap table-bordered">
                                     <thead>
                                         <tr>    
@@ -114,19 +114,23 @@
         });
 
 		var table=$('.data-table').DataTable({
-			scrollCollapse: true,
-			autoWidth: false,
-			responsive: true,
-			columnDefs: [{
-				targets: "no-sort",
-				orderable: false,
-			}],
-			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-			"language": {
-				"info": "_START_-_END_ of _TOTAL_ entries",
-				searchPlaceholder: "Search"
-			},
-		});		
+            scrollCollapse: true,
+            autoWidth: false,
+            responsive: true,
+              dom: 'Bfrtip',
+                 buttons: [
+                       'excel','pdf','print'
+             ],
+            columnDefs: [{
+                targets: "no-sort",
+                orderable: false,
+            }],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "language": {
+                "info": "_START_-_END_ of _TOTAL_ entries",
+                searchPlaceholder: "Search"
+            },
+        });		
         
 		
 

@@ -97,8 +97,26 @@
 	}
 	
 	function loaddatatable(){
-		$this->styles['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css";
-		$this->top_script['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js";
+		// $this->styles['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css";
+		// $this->top_script['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js";
+
+			$this->styles['link'][]="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css";
+        $this->styles['link'][]="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css";
+        $this->styles['link'][]="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css";
+        $this->styles['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css";
+        $this->top_script['link'][]="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js";
+        $this->top_script['link'][]="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js";
+        $this->top_script['link'][]="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js";
+        $this->top_script['link'][]="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js";
+        $this->top_script['link'][]="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js";
 	}
 	
 	function loadselect2(){
