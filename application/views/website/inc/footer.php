@@ -27,7 +27,7 @@
                     <div class="footer-contact">
                         <h2 style="border-bottom: 1px solid white;">Our Address</h2>
                         <p><i class="fa fa-map-marker-alt"></i>Satyakam Foundation Trust</p>
-                        <p><i class="fa fa-phone-alt"></i>+91-9939852737</p>
+                        <p><i class="fa fa-phone-alt"></i>+91-9031023059, 9031023060</p>
                         <p><i class="fa fa-envelope"></i>indiaskfoundation468@gmail.com</p>
                     </div>
                 </div>
