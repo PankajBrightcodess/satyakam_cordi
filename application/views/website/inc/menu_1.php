@@ -5,7 +5,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContentt">
     <ul class="navbar-nav mx-auto">
-       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/officer_dashboard')?>">Dashboard</a></li>
+       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/officer_dashboard')?>"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
 
   <!-- <?php 
       print_r($records);?>  -->
@@ -13,7 +13,7 @@
           if($records['e_contract']=='true'){
             ?>
             <li class="nav-item dropdown  active">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">E-Contract</a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i> E-Contract</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="<?= base_url('website/econtractdocx');?>" style="color:white">My Documents</a>
                 <a class="dropdown-item" href="<?= base_url('website/econtractkyc');?>" style="color:white">KYC</a>
@@ -26,9 +26,9 @@
     <?php if($records['my_office']=='true'){
       ?>
       <li class="nav-item dropdown  active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">My Office</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-briefcase" aria-hidden="true"></i> My Office</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<?= base_url('website/myofficereport');?>" style="color:white">My Report</a>
+          <a class="dropdown-item" href="<?= base_url('website/myofficereport');?>" style="color:white"> My Report</a>
           <a class="dropdown-item" href="<?= base_url('website/myofficeexpense');?>" style="color:white">Office Expense</a>
           <a class="dropdown-item" href="<?= base_url('website/myofficemyteam');?>" style="color:white">My Team Office</a>
         </div>
@@ -40,7 +40,7 @@
       ?>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
-          My Project
+          <i class="fa fa-building" aria-hidden="true"></i> My Project
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li class="dropdown-submenu">
@@ -86,17 +86,17 @@
       <?php
     }?>
       <?php if($records['events']=='true'){
-        ?><li class="nav-item  active"><a class="nav-link" href="#">Events</a></li><?php
+        ?><li class="nav-item  active"><a class="nav-link" href="#"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i> Events</a></li><?php
       }?>
 
       <?php if($records['gallery']=='true'){
-        ?><li class="nav-item  active"><a class="nav-link" href="#">Gallery</a></li><?php
+        ?><li class="nav-item  active"><a class="nav-link" href="#"><i class="fa fa-binoculars" aria-hidden="true"></i> Gallery</a></li><?php
       }?>
       <?php if($records['vecency']=='true'){
-        ?><li class="nav-item  active"><a class="nav-link" href="<?php echo base_url('website/vacency_report')?>">Vacancy</a></li><?php
+        ?><li class="nav-item  active"><a class="nav-link" href="<?php echo base_url('website/vacency_report')?>"><i class="fa fa-life-ring" aria-hidden="true"></i> Vacancy</a></li><?php
       }?>
       <li class="nav-item dropdown  active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">Setting</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> Setting</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?= base_url('website/logout');?>" style="color:white">Logout</a>
         </div>
