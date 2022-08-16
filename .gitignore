@@ -30,7 +30,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /vendor
 /tests/results/
-/assets/excel/
+# /assets/excel/
 /assets/uploads/
 /assets/vacency/
 
