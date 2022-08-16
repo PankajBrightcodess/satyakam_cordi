@@ -28,7 +28,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-workspace
 *.sublime-project
 /tests/tests/
-# /vendor
 /tests/results/
 /assets/excel/
 /assets/uploads/
