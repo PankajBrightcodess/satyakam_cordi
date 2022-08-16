@@ -1700,22 +1700,22 @@ class Website extends CI_Controller {
         $sheet->setCellValue('J1','GENDER');        
         $sheet->setCellValue('K1','CREATE-DATE');       
         $rows = 12;
-        $i=1;
-        foreach ($vacencylist as $val){
-        	$i++;
-            $sheet->setCellValue('A' . $rows, $i);
-            $sheet->setCellValue('B' . $rows, $val['applicant_name']);
-            $sheet->setCellValue('C' . $rows, date('d-m-Y',strtotime($val['dob'])));
-            $sheet->setCellValue('D' . $rows, $val['father_name']);
-	        $sheet->setCellValue('E' . $rows, $val['department']);
-            $sheet->setCellValue('F' . $rows, $val['Profile']);
-            $sheet->setCellValue('G' . $rows, $val['mobile_no']);
-            $sheet->setCellValue('H' . $rows, $val['email']);
-            $sheet->setCellValue('I' . $rows, $val['category']);
-            $sheet->setCellValue('J' . $rows, $val['gender']);
-            $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
-            $rows++;
-        } 
+        // $i=1;
+        // foreach ($vacencylist as $val){
+        // 	$i++;
+        //     $sheet->setCellValue('A' . $rows, $i);
+        //     $sheet->setCellValue('B' . $rows, $val['applicant_name']);
+        //     $sheet->setCellValue('C' . $rows, date('d-m-Y',strtotime($val['dob'])));
+        //     $sheet->setCellValue('D' . $rows, $val['father_name']);
+	       //  $sheet->setCellValue('E' . $rows, $val['department']);
+        //     $sheet->setCellValue('F' . $rows, $val['Profile']);
+        //     $sheet->setCellValue('G' . $rows, $val['mobile_no']);
+        //     $sheet->setCellValue('H' . $rows, $val['email']);
+        //     $sheet->setCellValue('I' . $rows, $val['category']);
+        //     $sheet->setCellValue('J' . $rows, $val['gender']);
+        //     $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+        //     $rows++;
+        // } 
         $writer = new Xlsx($spreadsheet);
 		// $writer->save("assets/excel/".$fileName);
 		header("Content-Type: application/vnd.ms-excel");
