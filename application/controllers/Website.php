@@ -1699,7 +1699,7 @@ class Website extends CI_Controller {
         $sheet->setCellValue('I1','CATEGORY');       
         $sheet->setCellValue('J1','GENDER');        
         $sheet->setCellValue('K1','CREATE-DATE');       
-        $rows = 2;
+        $rows = 12;
         $i=1;
         foreach ($vacencylist as $val){
         	$i++;
