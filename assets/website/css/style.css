@@ -215,14 +215,15 @@ nav .navbar-nav .nav-item .nav-link:hover {
 .dropdown-item:focus, .dropdown-item:hover {
     color: #16181b;
     text-decoration: none;
-    background-color: #ff0000;
+    background-color: #9dbcf3;
+    border-radius: 10px;
 }
 .misvis{ 
 
     padding-top: 40px;padding-bottom: 40px;
 }
 .vncy{
-     background-image:url('../images/491677.jpg'); background-size:cover; width:100%; height:100vh;
+     background-image:url('../images/vacancy1.jpg'); background-size:cover; width:100%; height:100vh;
      padding-top: 40px;padding-bottom: 40px;
 }
 .officer_dashboard{
@@ -278,12 +279,14 @@ nav .navbar-nav .nav-item .nav-link:hover {
     text-align: center;
 }
 .tittle{
+
     /*#ff0000*/
-    background:#EF5634;
+    background:#9dbcf3;
     color: white;
     padding: 10px;
     text-align: center;
     margin-top: 10px;
+    border-radius: 10px;
 }
 .map{padding-top: 20px;padding-bottom: 20px;}
 .gallery{padding-top: 40px;padding-bottom: 40px;}
