@@ -5,35 +5,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mx-auto">
-      <li class="nav-item active"><a class="nav-link" href="<?= base_url('website');?>">Home <span class="sr-only">(current)</span></a></li>
+      <li class="nav-item active"><a class="nav-link" href="<?= base_url('website');?>"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
       <li class="nav-item dropdown  active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">About Us</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-id-card" aria-hidden="true"></i> About Us</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?= base_url('website/aboutus');?>" style="color:white">About Us</a>
           <a class="dropdown-item" href="<?= base_url('website/foundermessage');?>" style="color:white">Founder Message</a>
         </div>
       </li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/office_login');?>">Official Services</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/submember_login_home');?>">Projects</a></li>
-       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/vacancy');?>">Vacancy</a></li>
-     <!--  <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
-          Vacancy
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <li><a class="dropdown-item" href="<?= base_url('website/mainvacency');?>" style="color:white">Vacancy</a></li>
-          <li><a class="dropdown-item" target="_blank" href="<?= base_url('assets/website/legaldocpdf/sgdh.pdf')?>" style="color:white">Guideline</a></li>
-          <li><a class="dropdown-item" href="<?= base_url('website/vacency_login');?>" style="color:white">Online Apply</a></li>
-          <li><a class="dropdown-item" href="<?= base_url('website/vacency_login_foradmitcard');?>" style="color:white;">Download Admit Card</a></li>
-          <li><a class="dropdown-item" href="<?= base_url('website/vacency_login_forresult');?>" style="color:white">Results</a></li>
-          <li><a class="dropdown-item" href="<?= base_url('website/helpline');?>" style="color:white">Helpline</a></li>
-        </ul>
-      </li> -->
-      <li class="nav-item  active"><a class="nav-link" href="#">Events</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/gallery');?>">Gallery</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/legaldoc');?>">Legal Documents</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/privacypolicy');?>">Privacy Policy</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/contactus');?>">Contact Us</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/office_login');?>"><i class="fa fa-briefcase" aria-hidden="true"></i> Official Services</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/submember_login_home');?>"><i class="fa fa-life-ring" aria-hidden="true"></i> Projects</a></li>
+       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/vacancy');?>"><i class="fa fa-cube" aria-hidden="true"></i> Vacancy</a></li>
+     
+      <li class="nav-item  active"><a class="nav-link" href="#"><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i> Events</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/gallery');?>"><i class="fa fa-film" aria-hidden="true"></i> Gallery</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/legaldoc');?>"><i class="fa fa-space-shuttle" aria-hidden="true"></i> Legal Documents</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/privacypolicy');?>"><i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Policy</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/contactus');?>"><i class="fa fa-tty" aria-hidden="true"></i> Contact Us</a></li>
     </ul>
   </div>
 </nav>
