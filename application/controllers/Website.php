@@ -1686,12 +1686,8 @@ class Website extends CI_Controller {
 		$user_id['id'] = $_SESSION['user_id'];
 
 		$vacencylist = $this->Website_model->vacencylist();
-		echo PRE;
-			print_r($vacencylist);
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        print_r($sheet);
-        die;
        	$sheet->setCellValue('A1','Sl.No.');
         $sheet->setCellValue('B1','APPLICANT NAME');
         $sheet->setCellValue('C1','DATE OF BIRTH');
