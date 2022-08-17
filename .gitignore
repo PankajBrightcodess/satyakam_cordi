@@ -33,4 +33,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /assets/uploads/
 /assets/excel/
 /assets/vacency/
-/assets/vacency1/
+# /assets/vacency1/
