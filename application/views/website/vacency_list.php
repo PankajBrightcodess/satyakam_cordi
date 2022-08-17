@@ -131,7 +131,7 @@
             }],
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             "language": {
-            "info": "_START_-_END of TOTAL_ entries",
+            // "info": "_START_-_END of TOTAL_ entries",
                 searchPlaceholder: "Search"
             },
         });
