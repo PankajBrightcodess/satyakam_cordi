@@ -1681,50 +1681,48 @@ class Website extends CI_Controller {
         redirect(base_url()."assets/excel/".$fileName); 
     }
 
-    public function vacencylist_excel(){
-    	$fileName = 'vacency.xlsx';
-		$user_id['id'] = $_SESSION['user_id'];
-		$vacencylist = $this->Website_model->vacencylist();
-		// echo PRE;
-		// print_r($vacencylist );die;
-		$spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-       	$sheet->setCellValue('A1','Sl.No.');
-        $sheet->setCellValue('B1','APPLICANT NAME');
-        $sheet->setCellValue('C1','DATE OF BIRTH');
-        $sheet->setCellValue('D1','FATHER NAME');
-		$sheet->setCellValue('E1','DEPARTMENT');
-        $sheet->setCellValue('F1','POST');       
-        $sheet->setCellValue('G1','MOBILE NO.');       
-        $sheet->setCellValue('H1','EMAIL');       
-        $sheet->setCellValue('I1','CATEGORY');       
-        $sheet->setCellValue('J1','GENDER');        
-        $sheet->setCellValue('K1','CREATE-DATE');       
-        $rows = 2;
-        $i=1;
-        foreach ($vacencylist as $val){
-        	$i++;
-            $sheet->setCellValue('A' . $rows, $i);
-            $sheet->setCellValue('B' . $rows, $val['applicant_name']);
-            $sheet->setCellValue('C' . $rows, date('d-m-Y',strtotime($val['dob'])));
-            $sheet->setCellValue('D' . $rows, $val['father_name']);
-	        $sheet->setCellValue('E' . $rows, $val['department']);
-            $sheet->setCellValue('F' . $rows, $val['Profile']);
-            $sheet->setCellValue('G' . $rows, $val['mobile_no']);
-            $sheet->setCellValue('H' . $rows, $val['email']);
-            $sheet->setCellValue('I' . $rows, $val['category']);
-            $sheet->setCellValue('J' . $rows, $val['gender']);
-            $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
-            $rows++;
-        } 
-        $writer = new Xlsx($spreadsheet);
-        echo PRE;
-		print_r($writer );die;
-		$writer->save("assets/excel/".$fileName);
-		header("Content-Type: application/vnd.ms-excel");
-        redirect(base_url()."assets/excel/".$fileName); 
+  //   public function vacencylist_excel(){
+  //   	$fileName = 'vacency.xlsx';
+		// $user_id['id'] = $_SESSION['user_id'];
+		// $vacencylist = $this->Website_model->vacencylist();
+		// $spreadsheet = new Spreadsheet();
+  //       $sheet = $spreadsheet->getActiveSheet();
+  //      	$sheet->setCellValue('A1','Sl.No.');
+  //       $sheet->setCellValue('B1','APPLICANT NAME');
+  //       $sheet->setCellValue('C1','DATE OF BIRTH');
+  //       $sheet->setCellValue('D1','FATHER NAME');
+		// $sheet->setCellValue('E1','DEPARTMENT');
+  //       $sheet->setCellValue('F1','POST');       
+  //       $sheet->setCellValue('G1','MOBILE NO.');       
+  //       $sheet->setCellValue('H1','EMAIL');       
+  //       $sheet->setCellValue('I1','CATEGORY');       
+  //       $sheet->setCellValue('J1','GENDER');        
+  //       $sheet->setCellValue('K1','CREATE-DATE');       
+  //       $rows = 2;
+  //       $i=1;
+  //       foreach ($vacencylist as $val){
+  //       	$i++;
+  //           $sheet->setCellValue('A' . $rows, $i);
+  //           $sheet->setCellValue('B' . $rows, $val['applicant_name']);
+  //           $sheet->setCellValue('C' . $rows, date('d-m-Y',strtotime($val['dob'])));
+  //           $sheet->setCellValue('D' . $rows, $val['father_name']);
+	 //        $sheet->setCellValue('E' . $rows, $val['department']);
+  //           $sheet->setCellValue('F' . $rows, $val['Profile']);
+  //           $sheet->setCellValue('G' . $rows, $val['mobile_no']);
+  //           $sheet->setCellValue('H' . $rows, $val['email']);
+  //           $sheet->setCellValue('I' . $rows, $val['category']);
+  //           $sheet->setCellValue('J' . $rows, $val['gender']);
+  //           $sheet->setCellValue('K' . $rows, date('d-m-Y',strtotime($val['added_on'])));
+  //           $rows++;
+  //       } 
+  //       $writer = new Xlsx($spreadsheet);
+  //       echo PRE;
+		// print_r($writer );die;
+		// $writer->save("assets/excel/".$fileName);
+		// header("Content-Type: application/vnd.ms-excel");
+  //       redirect(base_url()."assets/excel/".$fileName); 
 
-    }
+  //   }
 
 	public function requisition_insert(){
 		$data = $this->input->post();
