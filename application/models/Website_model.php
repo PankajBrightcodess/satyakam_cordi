@@ -1809,7 +1809,6 @@ class Website_model extends CI_Model{
 			else{
 				return false;
 			}
-
 	}
 
 	public  function uploads_vacency($uploads){

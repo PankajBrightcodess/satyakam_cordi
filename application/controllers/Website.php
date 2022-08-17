@@ -1684,10 +1684,7 @@ class Website extends CI_Controller {
     public function vacencylist_excel(){
     	$fileName = 'vacency.xlsx';
 		$user_id['id'] = $_SESSION['user_id'];
-
 		$vacencylist = $this->Website_model->vacencylist();
-		echo PRE;
-		print_r($vacencylist);die;
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
        	$sheet->setCellValue('A1','Sl.No.');
@@ -5796,6 +5793,10 @@ class Website extends CI_Controller {
     		$this->session->set_flashdata('web_err_msg','Something Error !');
     	}
     	redirect('website/loan_req_form_member');
+    }
+
+    public function check_pull(){
+    	
     }
 
 
