@@ -1718,6 +1718,8 @@ class Website extends CI_Controller {
             $rows++;
         } 
         $writer = new Xlsx($spreadsheet);
+        echo PRE;
+		print_r($writer );die;
 		$writer->save("assets/excel/".$fileName);
 		header("Content-Type: application/vnd.ms-excel");
         redirect(base_url()."assets/excel/".$fileName); 
