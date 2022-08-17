@@ -1778,13 +1778,27 @@ class Website_model extends CI_Model{
 		$records['request_no']=$request_no;
 		$records['added_on'] =  date('Y-m-d');
 		// ..............Records Value....................
-		$uploads['photo'] = $data['photo'];
-		$uploads['signature'] = $data['signature'];
-		$uploads['marksheet'] = $data['marksheet'];
-		$uploads['other_quali'] = $data['other_quali'];
-		$uploads['exprience'] = $data['exprience'];
-		$uploads['aadhar'] = $data['aadhar'];
-		$uploads['thumb'] = $data['thumb'];
+		if(!empty($data['photo'])){
+			$uploads['photo'] = $data['photo'];
+		}
+		if(!empty($data['signature'])){
+			$uploads['signature'] = $data['signature'];
+		}
+		if(!empty($data['marksheet'])){
+			$uploads['marksheet'] = $data['marksheet'];
+		}
+		if(!empty($data['other_quali'])){
+			$uploads['other_quali'] = $data['other_quali'];
+		}
+		if(!empty($data['exprience'])){
+			$uploads['exprience'] = $data['exprience'];
+		}
+		if(!empty($data['aadhar'])){
+			$uploads['aadhar'] = $data['aadhar'];
+		}
+		if(!empty($data['thumb'])){
+			$uploads['thumb'] = $data['thumb'];
+		}
 		$uploads['added_on'] =  date('Y-m-d');
 		// ''''''''''''''''''''Uploads File''''''''''''''''''
 		$status=$this->db->insert('vacency_candidate_details',$records);
