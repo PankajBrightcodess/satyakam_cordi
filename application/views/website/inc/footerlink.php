@@ -8,6 +8,10 @@
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
 
+  <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
  
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -39,6 +43,37 @@
 
   return false;
 });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('.hoverable').mouseenter(function(){
+            //$('[data-toggle="popover"]').popover();
+            $(this).popover('show');                    
+        }); 
+
+        $('.hoverable').mouseleave(function(){
+            $(this).popover('hide');
+        });
+
+    var table=$('.data-table').DataTable({
+            scrollCollapse: true,
+            autoWidth: false,
+            responsive: true,
+              dom: 'Bfrtip',
+                 buttons: [
+                       'excel','pdf','print'
+             ],
+            columnDefs: [{
+                targets: "no-sort",
+                orderable: false,
+            }],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "language": {
+                "info": "_START_-_END_ of _TOTAL_ entries",
+                searchPlaceholder: "Search"
+            },
+        });   
+    });
 </script>
 <script>
  $(document).ready(function(){

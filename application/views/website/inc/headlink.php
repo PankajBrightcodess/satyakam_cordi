@@ -12,6 +12,17 @@
         <link rel="stylesheet" href="<?= base_url('includes/plugins/datatables-responsive/css/responsive.bootstrap4.min.css');?>">
 
 
+   <link rel="stylesheet" href="http://localhost/satyakam_cordi/includes/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"></head>
+      <script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+   <script src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js'></script>
+   <script src='https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js'></script>
+   <script src='https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js'></script>
+   <script src='https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js'></script>
+   <script src='https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js'></script>
+   <script src='https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js'></script>
+
+
         
 
 
