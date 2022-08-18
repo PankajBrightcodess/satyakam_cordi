@@ -54,17 +54,23 @@ class Website_model extends CI_Model{
 	}
 
 	public function deleted_officer($id){
-
-	    $this->db->where("id", $id); 
-	    $query= $this->db->update("officer_details",array('status'=>0)); 
+		$signup_id=$this->db->get_where('officer_details',array('id'=>$id))->row('signup_id');
+		if(!empty($signup_id)){
+			$this->db->where("id",$signup_id);
+	    	$qry=$this->db->delete('signup');
+	    	if($qry==true){
+	    		 $this->db->where("id",$id);
+	    		$query=$this->db->delete('officer_details');
+	    	}
+		}
 		return $query;
 	}
 
 	public function signup_list($signup_id){
-		$this->db->where('t1.id',$signup_id);// where condition line hai 
-		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name'); //ye line select krne ke liye hai isme dikh rha hoga t1,t2,t3,t4 type kaa kuch paas kiye hai ye sare alag alag table ko indecate kr rhe hai aur alag alag table se data le ke aa rhe hai koi doubt is line me hmm alias ke liye hi use kiye hai, wo niche likhenge 
-		$this->db->from('signup t1');// isme signup table kaa naam hai aur  t1 iska alias hai
-		$this->db->join('department t2','t1.depart_id=t2.id','left'); // same waise hi t2 department kaa alias hai  aur isme hmm t1 waale table se join kr rhe hai isme t1 table ke andar jo depart_id hai wo hi id t2 ke andar id ke naam se hai... koi doubt????  ok
+		$this->db->where('t1.id',$signup_id); 
+		$this->db->select('t1.*,t2.department,t3.post,t4.state as state_name'); 
+		$this->db->from('signup t1');
+		$this->db->join('department t2','t1.depart_id=t2.id','left');
 		$this->db->join('post t3','t1.post_id=t3.id','left'); 
 		$this->db->join('state t4','t1.state=t4.id','left'); 
 		// $this->db->order_by('t1.depart_id','desc');

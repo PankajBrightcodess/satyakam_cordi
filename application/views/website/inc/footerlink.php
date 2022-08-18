@@ -8,9 +8,7 @@
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
 
-  <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+ 
 
  
 
