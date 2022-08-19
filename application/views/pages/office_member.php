@@ -102,11 +102,12 @@
                                             <td ><?php echo $val['username'];?></td>
                                             <td ><?php echo $val['password'];?></td>
                                             <td><?php if($val['verify_status']!=1){
-                                                ?><button class="btn btn-warning upd" type="button" data-id="<?php echo $val['id'];?>" data-toggle="modal" data-target="#exampleModal" >Verify</button><?php
+                                                ?><button class="btn btn-warning btn-sm upd mr-3" type="button" data-id="<?php echo $val['id'];?>" data-toggle="modal" data-target="#exampleModal" >Verify</button><?php
 
                                             }else{
-                                                ?><button class="btn btn-success upd" type="button">Verified</button><?php
-                                            }?><a href="<?php echo base_url('admin/delete_officer/'.$val['id']);?>" class="btn btn-sm btn-danger">Delete</a></td>
+                                                ?><button class="btn btn-success btn-sm upd mr-2" type="button">Verified</button><?php
+                                            }?><a href="<?php echo base_url('admin/update_officer/?id='.$val['id']);?>" class="btn btn-sm btn-info mr-2">Edit</a> <a href="<?php echo base_url('admin/delete_officer/'.$val['id']);?>" class="btn btn-sm btn-danger mr-2">Delete</a></td>
+
                                         </tr>
                                        <?php 
                                         }

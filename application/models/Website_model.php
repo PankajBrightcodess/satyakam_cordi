@@ -93,6 +93,20 @@ class Website_model extends CI_Model{
   //   	return $query->result_array();
 	}
 
+	public function get_officerdetails_for_update($id){
+		$this->db->where(['t1.status'=>1,'t1.id'=>$id]);
+		$this->db->select('t1.*,t2.department,t3.post');
+		$this->db->from('officer_details t1');
+		$this->db->join('department t2','t1.department_id=t2.id','left');
+		$this->db->join('post t3','t1.post_id=t3.id','left');
+		$query = $this->db->get();
+		return  $query->result_array();
+	}
+
+	public function get_officer_details(){
+
+	}
+
 	public function update_officerrecords($data){
 		$username =$data['username'];
 		$query=$this->db->get_where('officer_details',array('username' => $username));
@@ -673,10 +687,12 @@ class Website_model extends CI_Model{
 
 	public function pdf_generate_admitcard($id){
 		$this->db->where('t1.id',$id);
-		$this->db->select('t1.*,t2.aadharno,t3.name');
+		$this->db->select('t1.*,t2.aadharno,t3.name,t5.post as post_name');
 		$this->db->from('admitcard t1');
 		$this->db->join('vacency_candidate_details t2','t1.applicant_no=t2.signup_id','left');
 		$this->db->join('all_state t3','t1.state_code=t3.state_code','left');
+		$this->db->join('vacency_signup t4','t2.signup_id=t4.id','left');
+		$this->db->join('stk_post t5','t4.post=t5.id','left');
 		$query = $this->db->get();
 		$result =  $query->row_array();
 		if(!empty($result)){
@@ -781,6 +797,19 @@ class Website_model extends CI_Model{
 		$query = $this->db->get_where('department',array('status'=>1));
 		return  $query->result_array();
 	}
+	public function get_post_list(){
+		$query = $this->db->get_where('post',array('status'=>1));
+		return  $query->result_array();
+		// $query = $this->db->get_where('department',array('status'=>1));
+		// return  $query->result_array();
+	}
+
+	public function update_officerdetails($data){
+		unset($data['save_dep']);
+		$this->db->where('id',$data['id']);
+		 return $this->db->update('officer_details',$data);
+
+	}	
 	public function get_expenselist($depart_id){
 		$this->db->where('t2.department_id',$depart_id['depart_id']);
 		$this->db->select('t1.*,t2.officer_first_name,t2.officer_middle_name,t2.officer_last_name,t2.batch_no,t2.reg_no,t2.mobile_no,t3.name as state_name');
