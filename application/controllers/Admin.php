@@ -1914,20 +1914,20 @@ public function update_submenu(){
 	}
 
 	public function pdf_admitcard(){
-			$id = $this->input->get('id');
-			$result = $this->Website_model->pdf_generate_admitcard($id);
-			$photo = $result['photo'];
-			$signature = $result['signature'];
-			$reporting_time = new DateTime($result['reporting_time']);
-			$reporting =  $reporting_time->format('h:i A');
-			$interview_time = new DateTime($result['interview_time']);
-			$interview =  $interview_time->format('h:i A');
-			$pdf = $this->customfpdf->getInstance();
+		$id = $this->input->get('id');
+		$result = $this->Website_model->pdf_generate_admitcard($id);
+		$photo = $result['photo'];
+		$signature = $result['signature'];
+		$reporting_time = new DateTime($result['reporting_time']);
+		$reporting =  $reporting_time->format('h:i A');
+		$interview_time = new DateTime($result['interview_time']);
+		$interview =  $interview_time->format('h:i A');
+		$pdf = $this->customfpdf->getInstance();
      	$pdf->AliasNbPages();
      	$pdf->AddPage();
-      $pdf->Header('Arial');
+      	$pdf->Header('Arial');
      	$pdf->SetFont('Times','',25);
-   // $pdf->Cell(0,10,'satyakama.',0,0,'C');
+   //   $pdf->Cell(0,10,'satyakama.',0,0,'C');
      	$image="assets/images/logo1.jpg";
      	$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
      	$image1="assets/images/logo4.jpg";
