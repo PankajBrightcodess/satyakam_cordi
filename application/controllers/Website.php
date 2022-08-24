@@ -1323,15 +1323,11 @@ class Website extends CI_Controller {
           redirect('/');
         }  
     }
-        public function success(){
+    public function success(){
       $postdata = $this->input->post();
-      // echo PRE;
-      // print_r($postdata);die;
       $payment_id = $postdata['razorpay_payment_id'];
       $paymentdetail = json_encode($postdata);
       $lastids = $this->session->userdata('lastids');
-      // print_r($lastids);die;
-      //$order_array = json_decode($order_id,true);
       if(!empty($lastids)){
             $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
             if($updatestatus==true){
@@ -1340,8 +1336,7 @@ class Website extends CI_Controller {
                 $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
             }else{
             	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
-            }
-                 
+            }         
       }      
       redirect('/');
     }
@@ -1381,12 +1376,142 @@ class Website extends CI_Controller {
 			      	if($err){
 			        	return false;
 			      	}else{
-			        	$this->session->unset_userdata('lastids');
-     					$d['v'] = 'website/payment_success';
-						$this->load->view('website/template',$d);
+
+			      		redirect('print');
+			        	
 			      	}
 			    }
 			}
+    }
+
+    public function payment_success_print(){
+    	//
+     	$d['v'] = 'website/payment_success';
+		$this->load->view('website/template',$d);
+    }
+
+    public function print_slip(){
+    	 $lastids = $this->session->userdata('lastids');
+     	$result = $this->Website_model->details_sms($lastids);
+     	if(!empty($result)){
+     		$this->session->unset_userdata('lastids');
+     		$pdf = $this->customfpdf->getInstance();
+     		$pdf->AliasNbPages();
+     		$pdf->AddPage();
+      		$pdf->Header('Arial');
+     		$pdf->SetFont('Times','',25);
+     		$image="assets/images/logo1.jpg";
+     		$pdf->Image(base_url($image), 5, $pdf->GetY(), 23.78);
+     		$image1="assets/images/logo4.jpg";
+	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+	     	$image2="assets/images/logo5.jpeg";
+	     	$pdf->Image(base_url($image2), 60, $pdf->GetY(), 83.78);
+	     	$image1="assets/images/logo2.jpg";
+	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+	    	$image1="assets/images/logo3.jpg";
+	    	$pdf->Image(base_url($image1), 173, $pdf->GetY(), 33.78);
+	     	$pdf->Cell(0,30,'',0,1,'C');
+	     	$pdf->Cell(0,0,'',0,1,'C');
+	     	$pdf->SetFont('Arial','B',15);
+	     	$pdf->Cell(189,9,'PAID SLIP',1,1,'C');
+		    $pdf->SetFont('Arial','B',9);
+		    $pdf->Cell(47,7,'CANDIDATE NAME' ,1,0,'C');
+		     $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['candidate_name'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'FATHER NAME',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['father_name'],1,1,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'FATHER OCCUP.' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['father_occupation'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'MOTHER NAME',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['mother_name'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'MOTHER OCCUP.' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['mother_occupqation'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'MOBILE NO.',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['mobile_no'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'Co. ADDRESS' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['correspondent_address'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'Per. ADDRESS' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['permanent_address'],1,1,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'PLACE' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['place'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'NATIONALITY',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['nationality'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'CATEGORY' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['category'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'MARITAL STATUS',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['marital_status'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'AADHAR NO.' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['aadharno'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'PAN NO.',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['panno'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'EXAM PASSED' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['exam_passed'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'UNIVERSITY',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['board_university'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'PASSING YEAR' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['pasing_year'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'TOTAL MARKS',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['total_marks'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'OBTAINED MARKS' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['mark_obtained'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'DIVISION',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['division'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'PAYMENT ID' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['payment_id'],1,0,'C');
+	     	 $pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(48,7,'AMOUNT',1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(47,7,$result['amount'].'.00/-',1,1,'C');
+      		$pdf->SetFont('Arial','B',9);
+     		$pdf->Cell(189,30,'',0,1,'L');
+    		$pdf->Cell(94,5,'',0,0,'L');
+     		// $pdf->Cell(95,5,'AUTHORISED SIGNATURE',0,1,'R');
+    		$file =  date('Ymdhis').'_details.pdf';
+    		 $pdf->Output($file,'I');
+     	}
+     	else{
+     		redirect('/');
+     	}
     }
 
 

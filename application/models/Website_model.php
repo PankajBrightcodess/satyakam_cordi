@@ -752,7 +752,7 @@ class Website_model extends CI_Model{
 
 	public function details_sms($lastids){
 		$this->db->where('t1.id',$lastids);
-		$this->db->select('t2.user_name,t2.password,t1.id,t2.mobile_no');
+		$this->db->select('t2.user_name,t2.password,t1.*,t2.mobile_no');
 		$this->db->from('stk_vacency_candidate_details t1');
 		$this->db->join('stk_vacency_signup t2','t1.signup_id=t2.id','left');
 		$query = $this->db->get();

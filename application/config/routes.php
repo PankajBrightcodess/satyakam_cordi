@@ -58,3 +58,11 @@ $route['enterotp'] = 'login/enterotp';
 $route['resetpassword'] = 'login/resetpassword';
 $route['logout'] = 'login/logout';
 
+// ''''''''website'''''''''''''''
+$route['print'] = 'website/payment_success_print';
+$route['print-slip'] = 'website/print_slip';
+
+
+
+
+
