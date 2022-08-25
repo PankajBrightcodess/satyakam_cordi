@@ -752,9 +752,12 @@ class Website_model extends CI_Model{
 
 	public function details_sms($lastids){
 		$this->db->where('t1.id',$lastids);
-		$this->db->select('t2.user_name,t2.password,t1.*,t2.mobile_no');
+		$this->db->select('t2.user_name,t2.password,t1.*,t2.mobile_no,t3.department as department_name,t4.post as post_name,t5.photo,t5.signature');
 		$this->db->from('stk_vacency_candidate_details t1');
 		$this->db->join('stk_vacency_signup t2','t1.signup_id=t2.id','left');
+		$this->db->join('stk_department t3','t2.depart_id=t3.id','left');
+		$this->db->join('stk_post t4','t2.post=t4.id','left');
+		$this->db->join('stk_upload_candidate_vacency t5','t1.id=t5.details_id','left');
 		$query = $this->db->get();
 		$result =  $query->row_array();
 		return $result;

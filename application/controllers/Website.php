@@ -1394,7 +1394,7 @@ class Website extends CI_Controller {
     	 $lastids = $this->session->userdata('lastids');
      	$result = $this->Website_model->details_sms($lastids);
      	if(!empty($result)){
-     		$this->session->unset_userdata('lastids');
+     		// $this->session->unset_userdata('lastids');
      		$pdf = $this->customfpdf->getInstance();
      		$pdf->AliasNbPages();
      		$pdf->AddPage();
@@ -1414,6 +1414,16 @@ class Website extends CI_Controller {
 	     	$pdf->Cell(0,0,'',0,1,'C');
 	     	$pdf->SetFont('Arial','B',15);
 	     	$pdf->Cell(189,9,'PAID SLIP',1,1,'C');
+
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'DEPARTMENT' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['department_name'],1,1,'C');
+
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'POST' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['post_name'],1,1,'C');
 		    $pdf->SetFont('Arial','B',9);
 		    $pdf->Cell(47,7,'CANDIDATE NAME' ,1,0,'C');
 		     $pdf->SetFont('Arial','',9);
@@ -1502,6 +1512,17 @@ class Website extends CI_Controller {
 	     	$pdf->Cell(48,7,'AMOUNT',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
 	     	$pdf->Cell(47,7,$result['amount'].'.00/-',1,1,'C');
+	     	$pdf->Cell(189,15,'',0,1,'C');
+
+	     	$image1="assets/images/logo4.jpg";
+	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+
+	     	$image1="assets/images/logo2.jpg";
+	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+
+
+
+
       		$pdf->SetFont('Arial','B',9);
      		$pdf->Cell(189,30,'',0,1,'L');
     		$pdf->Cell(94,5,'',0,0,'L');
