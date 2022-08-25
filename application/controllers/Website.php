@@ -1394,7 +1394,7 @@ class Website extends CI_Controller {
     	 $lastids = $this->session->userdata('lastids');
      	$result = $this->Website_model->details_sms($lastids);
      	if(!empty($result)){
-     		// $this->session->unset_userdata('lastids');
+     		$this->session->unset_userdata('lastids');
      		$pdf = $this->customfpdf->getInstance();
      		$pdf->AliasNbPages();
      		$pdf->AddPage();
@@ -1514,11 +1514,11 @@ class Website extends CI_Controller {
 	     	$pdf->Cell(47,7,$result['amount'].'.00/-',1,1,'C');
 	     	$pdf->Cell(189,15,'',0,1,'C');
 
-	     	$image1="assets/images/logo4.jpg";
-	     	$pdf->Image(base_url($image1), 30, $pdf->GetY(), 23.78);
+	     	$photo=$result['photo'];
+	     	$pdf->Image(base_url($photo), 30, $pdf->GetY(), 23.78);
 
-	     	$image1="assets/images/logo2.jpg";
-	     	$pdf->Image(base_url($image1), 148, $pdf->GetY(), 23.78);
+	     	$sign=$result['signature'];
+	     	$pdf->Image(base_url($sign), 148, $pdf->GetY(), 23.78);
 
 
 
