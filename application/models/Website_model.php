@@ -687,7 +687,7 @@ class Website_model extends CI_Model{
 
 	public function pdf_generate_admitcard($id){
 		$this->db->where('t1.id',$id);
-		$this->db->select('t1.*,t2.aadharno,t3.name,t5.post as post_name');
+		$this->db->select('t1.*,t2.aadharno,t3.name,t5.post as post_name,t4.mobile_no');
 		$this->db->from('admitcard t1');
 		$this->db->join('vacency_candidate_details t2','t1.applicant_no=t2.signup_id','left');
 		$this->db->join('all_state t3','t1.state_code=t3.state_code','left');

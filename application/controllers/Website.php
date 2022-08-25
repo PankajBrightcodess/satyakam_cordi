@@ -2180,7 +2180,6 @@ class Website extends CI_Controller {
 		header("Content-Type: application/vnd.ms-excel");
         redirect(base_url()."assets/excel/".$fileName); 
     }
-
    
     public function vacency_login_foradmitcard(){
 			$d['v'] = 'website/vacency_login_admitcard';
@@ -2198,7 +2197,7 @@ class Website extends CI_Controller {
 		if($result['verify']=='true'){
 			$id = $result['id'];
 			$records = $this->Website_model->admitcard_download($id);
-		// print_r($records);die;
+		   // print_r($records);die;
 			$d['datas'] = $records;
 			$d['v'] = 'website/admit_card';
 		    $this->load->view('website/template',$d);

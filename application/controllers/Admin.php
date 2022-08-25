@@ -1916,6 +1916,8 @@ public function update_submenu(){
 	public function pdf_admitcard(){
 		$id = $this->input->get('id');
 		$result = $this->Website_model->pdf_generate_admitcard($id);
+		// echo PRE;
+		// print_r($result);die;
 		$photo = $result['photo'];
 		$signature = $result['signature'];
 		$reporting_time = new DateTime($result['reporting_time']);
@@ -1955,7 +1957,10 @@ public function update_submenu(){
      	$pdf->Cell(63,7,'Issue Date  :'.date('d-m-Y',strtotime($result['added_on'])),1,1,'L');
      	$pdf->Cell(63,7,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
      	$pdf->Cell(63,7,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
-     	$pdf->Image(base_url($photo), 150, $pdf->GetY(), 36.70);
+     	if(!empty($photo)){
+     		$pdf->Image(base_url($photo), 150, $pdf->GetY(), 36.70);
+     	}
+     	
      	$pdf->Cell(63,7,'',0,1,'C');
      	// $images = $result['photo'];
      	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
@@ -1982,7 +1987,9 @@ public function update_submenu(){
      	$pdf->Cell(63,7,'',0,1,'C');
      	$pdf->Cell(63,7,'Reporting Time  :'.$reporting,1,0,'L');
      	$pdf->Cell(63,7,'Interview Start Time  :'.$interview,1,0,'L');
-    		$pdf->Image(base_url($signature), 145, $pdf->GetY(), 45.70);
+     	if(!empty($signature)){
+     	  $pdf->Image(base_url($signature), 145, $pdf->GetY(), 45.70);
+     	}
      	$pdf->Cell(63,7,'',0,1,'C');
      	$pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
       $pdf->Cell(63,10,'',0,1,'C');
