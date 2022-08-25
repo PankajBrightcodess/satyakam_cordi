@@ -1394,7 +1394,7 @@ class Website extends CI_Controller {
     	 $lastids = $this->session->userdata('lastids');
      	$result = $this->Website_model->details_sms($lastids);
      	if(!empty($result)){
-     		$this->session->unset_userdata('lastids');
+     		// $this->session->unset_userdata('lastids');
      		$pdf = $this->customfpdf->getInstance();
      		$pdf->AliasNbPages();
      		$pdf->AddPage();
@@ -1427,43 +1427,39 @@ class Website extends CI_Controller {
 		    $pdf->SetFont('Arial','B',9);
 		    $pdf->Cell(47,7,'CANDIDATE NAME' ,1,0,'C');
 		     $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['candidate_name'],1,0,'C');
+	     	$pdf->Cell(95,7,$result['candidate_name'],1,1,'C');
+	     	$photo=$result['photo'];
+	     	$pdf->Image(base_url($photo), 164, $pdf->GetY(), 23.78);
 	     	 $pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(48,7,'FATHER NAME',1,0,'C');
+	     	$pdf->Cell(47,7,'FATHER NAME',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['father_name'],1,1,'C');
+	     	$pdf->Cell(95,7,$result['father_name'],1,1,'C');
 	     	 $pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(47,7,'FATHER OCCUP.' ,1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['father_occupation'],1,0,'C');
+	     	$pdf->Cell(95,7,$result['father_occupation'],1,1,'C');
 	     	 $pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(48,7,'MOTHER NAME',1,0,'C');
+	     	$pdf->Cell(47,7,'MOTHER NAME',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['mother_name'],1,1,'C');
+	     	$pdf->Cell(95,7,$result['mother_name'],1,1,'C');
 	     	$pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(47,7,'MOTHER OCCUP.' ,1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['mother_occupqation'],1,0,'C');
+	     	$pdf->Cell(95,7,$result['mother_occupqation'],1,1,'C');
+	     		$sign=$result['signature'];
+	     	$pdf->Image(base_url($sign), 164, $pdf->GetY(), 23.78);
 	     	 $pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(48,7,'MOBILE NO.',1,0,'C');
+	     	$pdf->Cell(47,7,'MOBILE NO.',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['mobile_no'],1,1,'C');
-	     	$pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(47,7,'Co. ADDRESS' ,1,0,'C');
-	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(142,7,$result['correspondent_address'],1,1,'C');
-	     	$pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(47,7,'Per. ADDRESS' ,1,0,'C');
-	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(142,7,$result['permanent_address'],1,1,'C');
+	     	$pdf->Cell(95,7,$result['mobile_no'],1,1,'C');
 	     	 $pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(47,7,'PLACE' ,1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['place'],1,0,'C');
+	     	$pdf->Cell(95,7,$result['place'],1,1,'C');
 	     	 $pdf->SetFont('Arial','B',9);
-	     	$pdf->Cell(48,7,'NATIONALITY',1,0,'C');
+	     	$pdf->Cell(47,7,'NATIONALITY',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
-	     	$pdf->Cell(47,7,$result['nationality'],1,1,'C');
+	     	$pdf->Cell(95,7,$result['nationality'],1,1,'C');
 	     	$pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(47,7,'CATEGORY' ,1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
@@ -1512,13 +1508,20 @@ class Website extends CI_Controller {
 	     	$pdf->Cell(48,7,'AMOUNT',1,0,'C');
 	     	 $pdf->SetFont('Arial','',9);
 	     	$pdf->Cell(47,7,$result['amount'].'.00/-',1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'Co. ADDRESS' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['correspondent_address'],1,1,'C');
+	     	$pdf->SetFont('Arial','B',9);
+	     	$pdf->Cell(47,7,'Per. ADDRESS' ,1,0,'C');
+	     	 $pdf->SetFont('Arial','',9);
+	     	$pdf->Cell(142,7,$result['permanent_address'],1,1,'C');
+	     	 $pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(189,15,'',0,1,'C');
 
-	     	$photo=$result['photo'];
-	     	$pdf->Image(base_url($photo), 30, $pdf->GetY(), 23.78);
+	     	
 
-	     	$sign=$result['signature'];
-	     	$pdf->Image(base_url($sign), 148, $pdf->GetY(), 23.78);
+	     
 
 
 
