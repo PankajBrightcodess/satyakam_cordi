@@ -751,7 +751,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function details_sms($lastids){
-		$this->db->where('t1.id',$lastids);
+		$this->db->where(['t1.id'=>$lastids,'t1.payment_status'=>1]);
 		$this->db->select('t2.user_name,t2.password,t1.*,t2.mobile_no,t3.department as department_name,t4.post as post_name,t5.photo,t5.signature');
 		$this->db->from('stk_vacency_candidate_details t1');
 		$this->db->join('stk_vacency_signup t2','t1.signup_id=t2.id','left');

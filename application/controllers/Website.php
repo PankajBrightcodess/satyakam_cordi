@@ -1394,7 +1394,7 @@ class Website extends CI_Controller {
     	 $lastids = $this->session->userdata('lastids');
      	$result = $this->Website_model->details_sms($lastids);
      	if(!empty($result)){
-     		// $this->session->unset_userdata('lastids');
+     		$this->session->unset_userdata('lastids');
      		$pdf = $this->customfpdf->getInstance();
      		$pdf->AliasNbPages();
      		$pdf->AddPage();
@@ -1518,14 +1518,6 @@ class Website extends CI_Controller {
 	     	$pdf->Cell(142,7,$result['permanent_address'],1,1,'C');
 	     	 $pdf->SetFont('Arial','B',9);
 	     	$pdf->Cell(189,15,'',0,1,'C');
-
-	     	
-
-	     
-
-
-
-
       		$pdf->SetFont('Arial','B',9);
      		$pdf->Cell(189,30,'',0,1,'L');
     		$pdf->Cell(94,5,'',0,0,'L');
@@ -1534,6 +1526,7 @@ class Website extends CI_Controller {
     		 $pdf->Output($file,'I');
      	}
      	else{
+     		$this->session->unset_userdata('lastids');
      		redirect('/');
      	}
     }
