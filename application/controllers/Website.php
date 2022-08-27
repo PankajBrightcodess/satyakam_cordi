@@ -1328,16 +1328,18 @@ class Website extends CI_Controller {
       $payment_id = $postdata['razorpay_payment_id'];
       $paymentdetail = json_encode($postdata);
       $lastids = $this->session->userdata('lastids');
-      if(!empty($lastids)){
+      if(!empty($lastids) && !empty($payment_id)){
             $updatestatus= $this->db->update('vacency_candidate_details',array('payment_status'=>'1','payment_details'=>$paymentdetail,'payment_id'=>$payment_id),array('id'=>$lastids));
             if($updatestatus==true){
                 
             	redirect('website/payment_success');
-                $this->session->set_flashdata('request_msg',"Order Placed Successfully !!");
+                $this->session->set_flashdata('web_msg',"Update Successfully !!");
             }else{
-            	$this->session->set_flashdata('request_err_msg',"Order Not Placed");
+            	$this->session->set_flashdata('web_err_msg',"Ont Updated");
             }         
-      }      
+      }  else{
+      	  $this->session->set_flashdata('web_err_msg',"Payment failed");
+      }    
       redirect('/');
     }
 	
