@@ -411,7 +411,7 @@ class Website_model extends CI_Model{
 
 	public function get_vacencydetailsbyidsforresult($id){
 		$this->db->where('t1.applicant_no',$id);
-		$this->db->select('t1.*,t2.email,t3.permanent_address');
+		$this->db->select('t1.*,t2.email,t2.mobile_no,t3.permanent_address');
 		$this->db->from('admitcard t1');
 		$this->db->join('vacency_signup t2','t1.applicant_no=t2.id','left');
 		$this->db->join('vacency_candidate_details t3','t2.id=t3.signup_id','left');
@@ -715,7 +715,6 @@ class Website_model extends CI_Model{
 		else{
 			return false;
 		}
-
 	}
 
 	public function admitcard_updated($data){
