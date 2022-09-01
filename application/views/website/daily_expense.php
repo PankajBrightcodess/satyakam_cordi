@@ -52,10 +52,9 @@
                 </div>
              </div>
               <div class="col-md-12 mb-2">
-                  <table class="table-responsive table">
+                  <!-- <table class="table-responsive table">
                     <thead>
                       <tr>
-                        <!-- <th>SL No.</th> -->
                         <th>Name Of The Equipment/Expense Details</th>
                         <th>Quantity</th>
                         <th>Rate</th>
@@ -83,7 +82,21 @@
                         <td><button class="btn btn-info btn-xs remove_equipment" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> -->
+                  <div class="row">
+                    <div class="col-md-12"><button class="btn-sm btn-success btn add_expense">+</button></div>
+                  </div>
+                  <div class="row expenses">
+                    <div class="col-md-12 mb-2"><input type="text" name="equipment[]" id="equipment" placeholder="Name Of The Equipment/Expense Details" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="quantity[]" placeholder="Quantity" id="quantity" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="rate[]" id="rate" placeholder="Rate" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="amount[]" placeholder="Amount" id="amount" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="bill[]" id="bill" placeholder="Bill No." class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="payment_receipt[]" placeholder="Name Of The Payment Recipient" id="payment_receipt" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="payment_method[]" placeholder="Payment Method(Cash/NEET/UPI Banking)" id="payment_method" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><input type="text" name="neft_check[]" placeholder="UPI Transation To Neft Check No." id="neft_check" class="form-control"></div>
+                    <div class="col-md-12 mb-2"><button class="btn btn-info btn-xs " type="button"><i class="fa fa-trash" aria-hidden="true"></i></button></div>
+                </div>
                   <div class="mb-2">
                   <input type="text" name="total_revenue" class="form-control" placeholder="Total Expense">
                 </div>
