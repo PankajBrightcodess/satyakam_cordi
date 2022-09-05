@@ -80,11 +80,11 @@
                                     </div> 
                                     <div class="col-sm-4">
                                         <label>Officer Middle Name</label>
-                                        <?php echo form_input(array('type'=>'text','name'=>'officer_middle_name','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['officer_middle_name'],'required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'text','name'=>'officer_middle_name','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['officer_middle_name']));?>
                                     </div> 
                                     <div class="col-sm-4 mb-2">
                                         <label>Officer Last Name</label>
-                                        <?php echo form_input(array('type'=>'text','name'=>'officer_last_name','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['officer_last_name'],'required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'text','name'=>'officer_last_name','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['officer_last_name']));?>
                                     </div> 
                                     <div class="col-sm-4 ">
                                         <label>Father's First Name</label>
