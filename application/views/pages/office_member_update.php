@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-sm-4 mb-1">
                                         <label>Branch Code</label>
-                                        <?php echo form_input(array('type'=>'text','name'=>'batch_no','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['branch_code'],'required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'text','name'=>'branch_code','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['branch_code'],'required'=>'true'));?>
                                     </div> 
 
                                      <div class="col-sm-4">
