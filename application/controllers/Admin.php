@@ -1990,7 +1990,8 @@ public function update_submenu(){
      	  $pdf->Image(base_url($signature), 145, $pdf->GetY(), 45.70);
      	}
      	$pdf->Cell(63,7,'',0,1,'C');
-     	$pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,0,'L');
+     	$pdf->Cell(126,10,'Center Address  :'.$result['center_address'],1,1,'L');
+     	$pdf->Cell(126,10,$result['center_address'],0,0,'L');
       $pdf->Cell(63,10,'',0,1,'C');
       $pdf->Cell(189,7,'',0,1,'L');
       $pdf->Cell(189,7,'',0,1,'L');
