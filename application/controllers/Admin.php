@@ -1976,7 +1976,7 @@ public function update_submenu(){
      	$pdf->Cell(63,7,'',0,1,'L');
      	$pdf->SetFont('Arial','B',9);
      	$pdf->Cell(126,7,'INTERVIEW INFOMATION',1,0,'C');
-      $pdf->SetFont('Arial','',9);
+      $pdf->SetFont('Arial','',8);
      	$pdf->Cell(63,7,'',0,1,'C');
      	$pdf->Cell(63,7,'State  :'.$result['name'],1,0,'L');
      	$pdf->Cell(63,7,'Center Unit :'.$result['center_name'],1,0,'L');
