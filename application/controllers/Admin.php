@@ -1812,8 +1812,6 @@ public function update_submenu(){
 		$data['title']="Apply List";
 		$data['datatable'] = true;
 		$data['applylist'] = $this->Website_model->get_applylist($depart_id,$payment_status);
-		// echo PRE;
-		// print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
 	}
 
@@ -1915,6 +1913,7 @@ public function update_submenu(){
 
 	public function pdf_admitcard(){
 		$id = $this->input->get('id');
+		// print_r($id);die;
 		$result = $this->Website_model->pdf_generate_admitcard($id);
 		// echo PRE;
 		// print_r($result);die;
@@ -1980,7 +1979,7 @@ public function update_submenu(){
       $pdf->SetFont('Arial','',9);
      	$pdf->Cell(63,7,'',0,1,'C');
      	$pdf->Cell(63,7,'State  :'.$result['name'],1,0,'L');
-     	$pdf->Cell(63,7,'Center Unit Name  :',1,0,'L');
+     	$pdf->Cell(63,7,'Center Unit Name  :'.$result['center_name'],1,0,'L');
      	$pdf->Cell(63,7,'',0,1,'C');
      	$pdf->Cell(63,7,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
      	$pdf->Cell(63,7,'Interview Date  :'.$result['interviewdate'],1,0,'L');

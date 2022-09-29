@@ -1186,6 +1186,45 @@ class Website extends CI_Controller {
 	}
 
 
+	public function forgot_pass_cnd(){
+		$data = $this->input->post();
+		// echo PRE;
+		// print_r($data);die;
+		$rec = $this->Website_model->forgot_pass_candidate($data);
+	
+		if(!empty($rec['password'])){
+			$d['record']=$rec;
+			// echo PRE;
+			// print_r($d['record']);die;
+			$d['v'] = 'website/forgot_pass_candidate';
+			$this->load->view('website/template',$d);
+
+		}else{
+			$this->session->set_flashdata('web_err_msg','Please Inter Correct Username');
+			redirect('website/vacency_login');
+
+		}
+	}
+
+	public function change_pass_candidate(){
+		$data=$this->input->post();
+		
+		if($data['password']==$data['confirm_password']){
+			$final['id'] = $data['id'];
+			$final['password'] = $data['password'];
+			$updatestatus= $this->db->update('stk_vacency_signup',array('password'=>$final['password']),array('id'=>$final['id']));
+		
+			if($updatestatus==true){
+				$this->session->set_flashdata('web_msg','Update Successfully');
+			redirect('website/vacency_login');
+			}
+		}else{
+			$this->session->set_flashdata('web_err_msg','Please Enter Correct Password');
+			redirect('website/vacency_login');
+		}
+	}
+
+
 	public function vacency_login(){
 			$d['v'] = 'website/vacency_login';
 			$this->load->view('website/template',$d);

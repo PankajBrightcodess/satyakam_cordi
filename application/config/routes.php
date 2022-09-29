@@ -61,6 +61,8 @@ $route['logout'] = 'login/logout';
 // ''''''''website'''''''''''''''
 $route['print'] = 'website/payment_success_print';
 $route['print-slip'] = 'website/print_slip';
+$route['forgot-pass-candidate'] = 'website/forgot_pass_cnd';
+$route['change-pass-candidate'] = 'website/change_pass_candidate';
 
 
 

@@ -31,7 +31,9 @@
                                     <thead>
                                         <tr>    
                                             <th>S.no</th>
-                                            <th>Application Date</th>                
+                                            <th>Application Date</th> 
+                                            <th>User Name</th>               
+                                            <th>Password</th>               
                                             <th>State Unit</th>
                                             <th>Division Unit</th>
                                             <th>Applicant Name</th>
@@ -71,8 +73,11 @@
 
                                             foreach($applylist as $val){$i++; $id=$val['id']; ?>
                                         <tr>
+                                            
                                             <td><?php echo $i ?></td>
                                             <td><?php echo $val['application_date']; ?></td>
+                                            <td><?php echo $val['user_name']; ?></td>
+                                            <td><?php echo $val['password']; ?></td>
                                             <td><?php echo $val['state_unit_name'] ;?></td>
                                             <td><?php echo $val['division_unit_name']; ?></td>
                                             <td><?php echo $val['applicant_name'] ;?></td>
