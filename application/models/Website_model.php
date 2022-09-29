@@ -78,6 +78,7 @@ class Website_model extends CI_Model{
 
 	public function deleted_officer($id){
 		$signup_id=$this->db->get_where('officer_details',array('id'=>$id))->row('signup_id');
+	
 		if(!empty($signup_id)){
 			$this->db->where("id",$signup_id);
 	    	$qry=$this->db->delete('signup');
@@ -85,6 +86,9 @@ class Website_model extends CI_Model{
 	    		 $this->db->where("id",$id);
 	    		$query=$this->db->delete('officer_details');
 	    	}
+		}else{
+			 $this->db->where("id",$id);
+	    	 $query=$this->db->delete('officer_details');
 		}
 		return $query;
 	}
