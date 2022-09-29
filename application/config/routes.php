@@ -63,6 +63,8 @@ $route['print'] = 'website/payment_success_print';
 $route['print-slip'] = 'website/print_slip';
 $route['forgot-pass-candidate'] = 'website/forgot_pass_cnd';
 $route['change-pass-candidate'] = 'website/change_pass_candidate';
+$route['forgot-pass-officer'] = 'website/forgot_pass_officer';
+$route['change-pass-officer'] = 'website/change_pass_officer';
 
 
 

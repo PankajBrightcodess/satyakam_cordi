@@ -56,7 +56,7 @@ class Website_model extends CI_Model{
 
 	public function forgot_pass_candidate($data){
 		// echo PRE;
-		$this->db->select('id,user_name,password,mobile_no');
+		$this->db->select('id,user_name,mobile_no');
 		$this->db->from('stk_vacency_signup');
 		$this->db->where(['user_name'=>$data['user_name'],'status'=>1]);
 		$qry = $this->db->get()->row_array();
@@ -66,6 +66,14 @@ class Website_model extends CI_Model{
 				return $qry;
 			}
 		}
+	}
+
+	public function forgot_pass_officer($data){
+		
+		$this->db->select('id,username,password,mobile_no');
+		$this->db->from('stk_officer_details');
+		$this->db->where(['username'=>$data['user_name'],'status'=>1]);
+		return $this->db->get()->row_array();
 	}
 
 	public function deleted_officer($id){

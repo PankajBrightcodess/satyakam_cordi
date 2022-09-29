@@ -27,44 +27,39 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3"></div>
+          
           <div class="col-md-6">
-            <div class="text-center">
-              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"> </a>
+           <div class="text-center">
+              <a href="<?= base_url('/');?>"><img src="<?= base_url('assets/website/images/logo1Copy-removebg-preview.png');?>" class="logo"></a>
             </div>
             <div class="loginbox">
-              <form method="POST" action="<?= base_url('website/logincheck')?>">  
+              <form method="POST" action="<?= base_url('change-pass-officer');?>">  
               <div class="row">
               <div class="col-md-12">
-                <h5 class="text-center" style="color: black; font-weight: 700;">LOGIN YOUR ID</h5>
+                <h5 class="text-center" style="font-weight: 700;color: black  ;">Password Change</h5>
               </div>
               <div class="col-md-12">
                
-                  <label>USER ID</label>
-                  <input name="txtUserid" type="text" id="txtUserid" class="form-control" required placeholder="User Id">
+                  <label>Enter New Password</label>
+                  <input name="password" type="text" id="new_password" class="form-control" required placeholder="New Password">
+                  <input name="id" type="hidden" readonly="true"  id="id" class="form-control" value="<?php echo $record['id'];?>" required>
+                  <input name="user_name" type="hidden" readonly="true" id="user_name" value="<?php echo $record['username'];?>" class="form-control" required >
+                 
+                  <input name="mobile_no" type="hidden" readonly="true" id="mobile_no" value="<?php echo $record['mobile_no'];?>" class="form-control" required >
                  
               </div>
               <div class="col-md-12 mb-5">
-               
-                  <label>PASSWORD</label>
-                  <input name="txtPassword" type="password" id="txtPassword" class="form-control" required placeholder="Password">
+                  <label>Confirm Password</label>
+                  <input name="confirm_password" type="password" id="confirm_password" class="form-control" required placeholder="Confirm Password">
                 
               </div>
              
-              <div class="col-md-6">
-                   <a href="<?= base_url('website/signup');?>"><input type="button"   name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
-              </div>
-              <div class="col-md-6 mb-3" >
-                <button type="submit" name="btnLogin" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
+             
+              <div class="col-md-12 mb-3 text-center" >
+                <button type="submit" value="LOGIN" class="btn btn-block btn-success">Submit</button>
                  <!--  <input type="button" name="btnLogin" value="LOGIN"  class="btn btn-success btn-block     confrmidpass"> -->
               </div>
-              <div class="col-md-12">
-                <hr>
-              </div>
-               <div class="col-md-12">
-                <div class="form-group text-right">
-                  <a type="button" data-toggle="modal" data-target="#exampleModal" style="color:#000;">Forgot Password?</a>
-                </div>
-              </div>
+               
             </div>
             </form>
             </div>
@@ -75,7 +70,7 @@
       </div>
     </section>
 
-        <!-- Modal -->
+    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -85,7 +80,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="POST" action="<?= base_url('forgot-pass-officer');?>">
+      <form method="POST" action="<?= base_url('forgot-pass-candidate');?>">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12 col-12">

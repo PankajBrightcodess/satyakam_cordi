@@ -1213,7 +1213,6 @@ class Website extends CI_Controller {
 			$final['id'] = $data['id'];
 			$final['password'] = $data['password'];
 			$updatestatus= $this->db->update('stk_vacency_signup',array('password'=>$final['password']),array('id'=>$final['id']));
-		
 			if($updatestatus==true){
 				$this->session->set_flashdata('web_msg','Update Successfully');
 			redirect('website/vacency_login');
@@ -1221,6 +1220,40 @@ class Website extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('web_err_msg','Please Enter Correct Password');
 			redirect('website/vacency_login');
+		}
+	}
+
+
+	public function forgot_pass_officer(){
+
+		$data = $this->input->post();
+		$rec = $this->Website_model->forgot_pass_officer($data);
+		if(!empty($rec['password'])){
+			$d['record']=$rec;
+			
+			$d['v'] = 'website/forgot_pass_officer';
+			$this->load->view('website/template',$d);
+
+		}else{
+			$this->session->set_flashdata('web_err_msg','Please Inter Correct Username');
+			redirect('website/office_login');
+
+		}
+	}
+
+	public function change_pass_officer(){
+		$data = $this->input->post();
+		if($data['password']==$data['confirm_password']){
+			$final['id'] = $data['id'];
+			$final['password'] = $data['password'];
+			$updatestatus= $this->db->update('stk_officer_details',array('password'=>$final['password']),array('id'=>$final['id']));
+			if($updatestatus==true){
+				$this->session->set_flashdata('web_msg','Update Successfully');
+			redirect('website/office_login');
+			}
+		}else{
+			$this->session->set_flashdata('web_err_msg','Please Enter Correct Password');
+			redirect('website/office_login');
 		}
 	}
 
