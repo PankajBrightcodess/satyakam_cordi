@@ -14,7 +14,7 @@
                                 <div class="form-group row">
                                      <div class="col-sm-4">
                                         <label> Issue Date</label>
-                                        <?php echo form_input(array('type'=>'date','name'=>'issue_date','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Applicant No.','value'=>$vacencydetails['id'],'readonly'=>'true','required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'date','name'=>'issue_date','id'=>'activate_menu','class'=>'form-control','placeholder'=>'Enter Applicant No.','value'=>date('Y-m-d'),'required'=>'true'));?>
                                         <?php echo form_input(array('type'=>'hidden','name'=>'admitcard_id','id'=>'activate_menu','class'=>'form-control','value'=>$vacencydetails['id'],'readonly'=>'true','required'=>'true'));?>
                                     </div> 
                                     <div class="col-sm-4">
