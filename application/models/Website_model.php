@@ -732,9 +732,16 @@ class Website_model extends CI_Model{
 	}
 
 	public function pdf_generate_result($id){
-		$this->db->where('id',$id);
-		$this->db->select('*');
-		$this->db->from('result');
+
+		$this->db->where('t1.id',$id);
+		$this->db->select('t1.*,t4.name as state,t2.photo,t2.signature');
+		$this->db->from('result t1');
+		$this->db->join('stk_admitcard t2','t1.admitcard_id=t2.id','left');
+		$this->db->join('vacency_candidate_details t3','t2.applicant_no=t3.signup_id','left');
+		$this->db->join('all_state t4','t2.state_code=t4.state_code','left');
+		$this->db->join('vacency_signup t5','t3.signup_id=t5.id','left');
+		// $this->db->join('stk_post t6','t5.post=t6.id','left');
+
 		$query = $this->db->get();
 		$result =  $query->row_array();
 		if(!empty($result)){
