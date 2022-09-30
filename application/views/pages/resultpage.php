@@ -47,7 +47,7 @@
                                     </div> 
                                     <div class="col-sm-4">
                                         <label>Designation</label>
-                                        <?php echo form_input(array('type'=>'text','name'=>'designation','id'=>'activate_menu','class'=>'form-control','value'=>$vacencydetails['designation'],'readonly'=>'true','placeholder'=>'Profile Job','required'=>'true'));?>
+                                        <?php echo form_input(array('type'=>'text','name'=>'designation','id'=>'activate_menu','class'=>'form-control','value'=>$vacencydetails['post_name'],'readonly'=>'true','placeholder'=>'Profile Job','required'=>'true'));?>
 
                                     </div>
                                     

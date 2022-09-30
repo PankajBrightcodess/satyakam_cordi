@@ -41,7 +41,7 @@
                                             <th>Mobile No.</th>
                                             <th>Email</th>
                                             <th>Designation</th>
-                                            <th>Department Id</th>
+                                           
                                             <th>Father's Name</th>
                                             <th>Father's Occupation</th>
                                             <th>Mother's Name</th>
@@ -51,7 +51,8 @@
                                             <th>Correspondent Address</th>
                                             <th>Permanent Address</th>
                                             <th>Place Area</th>
-                                            <th>Nationality</th>                                            
+                                            <th>Nationality</th>   
+                                             <th>Department Id</th>                                         
                                             <th>Category</th>                                            
                                             <th>Identification Marks</th>                                            
                                             <th>Aadhar No.</th>                                            
@@ -75,17 +76,17 @@
                                         <tr>
                                             
                                             <td><?php echo $i ?></td>
-                                            <td><?php echo $val['application_date']; ?></td>
+                                            <td><?php echo date('d-m-Y',strtotime($val['application_date'])); ?></td>
                                             <td><?php echo $val['user_name']; ?></td>
                                             <td><?php echo $val['password']; ?></td>
-                                            <td><?php echo $val['state_unit_name'] ;?></td>
-                                            <td><?php echo $val['division_unit_name']; ?></td>
+                                            <td><?php echo $val['state'] ;?></td>
+                                            <td><?php echo $val['division']; ?></td>
                                             <td><?php echo $val['applicant_name'] ;?></td>
                                             <td><?php echo $val['dob'] ;?></td>
                                             <td><?php echo $val['mobile_no'] ;?></td>
                                             <td ><?php echo $val['email']; ?></td>
-                                            <td ><?php echo $val['desicination'] ;?></td>
-                                            <td ><?php echo $val['depart_id'] ;?></td>
+                                            <!-- <td ><?php echo $val['desicination'] ;?></td> -->
+                                            <td ><?php echo $val['post_name'] ;?></td>
                                             <td ><?php echo $val['father_name'] ;?></td>
                                             <td ><?php echo $val['father_occupation'] ;?></td>
                                             <td ><?php echo $val['mother_name'] ;?></td>
@@ -96,6 +97,7 @@
                                             <td ><?php echo $val['permanent_address'] ;?></td>
                                             <td ><?php echo $val['place'] ;?></td>
                                             <td ><?php echo $val['nationality'] ;?></td>
+                                            <td ><?php echo $val['depart_id'] ;?></td>
                                             <td ><?php echo $val['category'] ;?></td>
                                             <td ><?php echo $val['identification_marks'] ;?></td>
                                             <td ><?php echo $val['aadharno'] ;?></td>
@@ -114,8 +116,6 @@
                                         }
                                             }
                                             ?>
-                                       
-                                        
                                     </tbody>
                                 </table>
                             </div>

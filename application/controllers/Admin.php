@@ -1812,6 +1812,8 @@ public function update_submenu(){
 		$data['title']="Apply List";
 		$data['datatable'] = true;
 		$data['applylist'] = $this->Website_model->get_applylist($depart_id,$payment_status);
+		// echo PRE;
+		// print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
 	}
 
@@ -1828,6 +1830,8 @@ public function update_submenu(){
 	public function resultpage(){
 		$id = $this->input->get('id');
 		$data['vacencydetails'] = $this->Website_model->get_vacencydetailsbyidsforresult($id);
+		// echo PRE;
+		// print_r($data['vacencydetails']);die;
 		$data['state'] = $this->Website_model->get_state();
 		$data['title']="Create Result";
 		$data['datatable'] = true;
@@ -2045,8 +2049,8 @@ public function update_submenu(){
 	public function pdf_result(){
 		  $id = $this->input->get('id');
 			$result = $this->Website_model->pdf_generate_result($id);
-			// echo PRE;
-			// print_r($result);die;
+			echo PRE;
+			print_r($result);die;
 			$pdf = $this->customfpdf->getInstance();
      	$pdf->AliasNbPages();
      	$pdf->AddPage();
@@ -2079,8 +2083,10 @@ public function update_submenu(){
      	$pdf->Cell(63,5,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
      	$pdf->Cell(63,5,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
      	$pdf->Cell(63,5,'',0,1,'C');
-     	// $images = $result['photo'];
-     	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
+     	if(!empty($result['photo'])){
+     		$images = $result['photo'];
+     		$pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
+     	}
      	$pdf->Cell(63,5,'Email  :'.$result['email'],1,0,'L');
      	$pdf->Cell(63,5,'Mobile No.  :'.$result['mobile_no'],1,1,'L');
      	// $pdf->Cell(63,5,'',0,1,'C');
@@ -2096,7 +2102,7 @@ public function update_submenu(){
      	$pdf->Cell(63,5,'Unit Code No.  :'.$result['unit_code'],1,0,'L');
      	$pdf->Cell(63,5,'Interview Date  :'.$result['interviewdate'],1,0,'L');
      	$pdf->Cell(63,5,'',0,1,'C');
-     	$pdf->Cell(126,5,'Reporting Time  :'.$result['interview_time'],1,0,'L');
+     	$pdf->Cell(126,5,'Reporting Time  :'.date('h:i A', strtotime($result['interview_time'])),1,0,'L');
      	// $pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
      	$pdf->Cell(63,5,'',1,1,'C');
      	$pdf->SetFont('Arial','B',10);
