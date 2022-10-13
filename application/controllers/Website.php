@@ -492,9 +492,8 @@ class Website extends CI_Controller {
 
 	public function logincheck(){
 		$data = $this->input->post();
+
 		$result= $this->Website_model->getlogindetails($data);
-		// echo PRE;
-		// print_r($result);die;
 		if($result['verify']===true || !empty($_SESSION['user_id'])){
 			$this->createsession($result);
 			redirect('website/officer_dashboard');
@@ -1848,11 +1847,12 @@ class Website extends CI_Controller {
 
 	public function vacency_report(){
 		    $id = $_SESSION['user_id'];
+
 			$record= $this->Website_model->getuser($id);
-			$finalrecord = $record[0];
+			$state =$record[0]['state'];			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
-		$d['vacency_details'] = $this->Website_model->vacencylist();
+		$d['vacency_details'] = $this->Website_model->vacencylist_by_state($state);
 		$d['datatable']=true;
 		$d['v'] = 'website/vacency_list';
         $this->load->view('website/template_1',$d);

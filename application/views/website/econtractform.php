@@ -180,13 +180,13 @@
                              <h6 class="tittle">Total Deposit In Words</h6>
                            </div>
                            <div class="col-md-12 mb-3">
-                           <input type="date" name="training_date" placeholder="Date" class="form-control" required>
+                           <input type="text" name="total_deposit" placeholder="Total Deposit In Words" class="form-control" required>
                           </div>
                            <div class="col-md-12 mb-3">
                              <h6 class="tittle">Bank Name</h6>
                            </div>
                            <div class="col-md-12 mb-3">
-                                  <input type="text" name="total_deposit" placeholder="Bank Name" class="form-control" required>
+                                  <input type="text" name="bank_name" placeholder="Bank Name" class="form-control" required>
                           </div>
 
 

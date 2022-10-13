@@ -301,6 +301,25 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function vacencylist_by_state($state){
+
+		$this->db->where(array('t2.payment_status'=>1,'t1.state_unit_name'=>$state));
+		$this->db->select('t1.*,t2.father_name,t2.gender,t2.category,t2.aadharno,t3.photo,t3.signature,t4.department,t5.post as Profile');
+		$this->db->from('stk_vacency_signup t1');
+		$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
+		$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+		$this->db->join('department t4','t1.depart_id=t4.id','left');
+		$this->db->join('stk_post t5','t1.post=t5.id','left');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
+
 	public function myteam_revenuelistbydaily($user_id,$date){
 		$user_id= $user_id['id'];
 		
@@ -390,8 +409,11 @@ class Website_model extends CI_Model{
 	}
 
 	public function getlogindetails($data){
+		// echo PRE;
+		// print_r($data);die;
 		$username = $data['txtUserid'];
-		$query = $this->db->get_where('officer_details',array('username'=>$username));
+		$password = $data['txtPassword'];
+		$query = $this->db->get_where('officer_details',array('username'=>$username,'password'=>$password));
 		$result =  $query->row_array();
 		if(!empty($result)){
 			$result['verify']=true;
