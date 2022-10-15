@@ -1958,13 +1958,15 @@ public function update_submenu(){
      	$pdf->Cell(63,7,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
      	$pdf->SetFont('Arial','',9);
      	$pdf->Cell(63,7,'Issue Date  :'.date('d-m-Y',strtotime($result['added_on'])),1,1,'L');
-     	$pdf->Cell(63,7,'Candidate Name  :'.$result['candidate_name'],1,0,'L');
-     	$pdf->Cell(63,7,'Father/Husband Name  :'.$result['father_name'],1,0,'L');
+     	$pdf->Cell(63,7,'Candidate Name  :',1,0,'L');
+     	$pdf->Cell(63,7,$result['candidate_name'],1,1,'L');
+     	$pdf->Cell(63,7,'Father/Husband Name  :',1,0,'L');
+     	$pdf->Cell(63,7,$result['father_name'],1,1,'L');
      	if(!empty($photo)){
      		$pdf->Image(base_url($photo), 150, $pdf->GetY(), 36.70);
      	}
      	
-     	$pdf->Cell(63,7,'',0,1,'C');
+     	// $pdf->Cell(63,7,'',1,1,'C');
      	// $images = $result['photo'];
      	// $pdf->Image(base_url(), 148, $pdf->GetY(), 23.78);
      	$pdf->Cell(63,7,'Date Of Birth  :'.date('d-m-Y',strtotime($result['dob'])),1,0,'L');

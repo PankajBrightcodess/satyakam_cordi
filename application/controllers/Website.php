@@ -1849,7 +1849,8 @@ class Website extends CI_Controller {
 		    $id = $_SESSION['user_id'];
 
 			$record= $this->Website_model->getuser($id);
-			$state =$record[0]['state'];			$finalrecord = $record[0];
+			$state =$record[0]['state'];
+			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 		$user_id['id'] = $_SESSION['user_id'];
 		$d['vacency_details'] = $this->Website_model->vacencylist_by_state($state);

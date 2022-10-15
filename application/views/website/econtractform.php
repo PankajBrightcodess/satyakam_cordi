@@ -100,7 +100,7 @@
                           <div class="col-md-6 mb-3">
                             <input type="text" name="f_annual_income" placeholder="Annual Income" class="form-control" required>
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-3 col-12 mb-3">
                             <select name="gender" class="form-control" required >
                               <option value="">Sex :</option>
                               <option value="Male">Male</option>
@@ -108,7 +108,7 @@
                               <option value="Other">Other</option>
                             </select>
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-3 col-12 mb-3">
                             <select name="nationality" class="form-control" required >
                               <option value="">Nationality :</option>
                               <option value="Indian">Indian</option>
@@ -116,7 +116,7 @@
                               <option value="Other">Other</option>
                             </select>
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-3 col-12 mb-3">
                             <select name="marriage_status" class="form-control" required >
                               <option value="">Marriage Status :</option>
                               <option value="Married">Married</option>
@@ -124,17 +124,18 @@
                               <option value="Other">Other</option>
                             </select>
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-3 col-12 mb-3">
                             <input type="date" name="dob" placeholder="DOB" class="form-control" required>
                           </div>
-                          <div class="col-md-4 mb-3">
-                            <input type="text" name="aadhar_no" placeholder="AADHAAR No" class="form-control" required>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <input type="text" name="pan_no" placeholder="PAN NO" class="form-control" required>
-                          </div>
+                         
                           <div class="col-md-12 mb-3">
                             <h6 class="tittle">Information Related To Security Fund, Processing & Training Fee</h6>
+                          </div>
+                           <div class="col-md-6 mb-3">
+                            <input type="text" name="aadhar_no" placeholder="AADHAAR No" class="form-control" required>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <input type="text" name="pan_no" placeholder="PAN NO" class="form-control" required>
                           </div>
 
                            <div class="col-md-12 mb-3">
