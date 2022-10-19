@@ -203,9 +203,45 @@
                                         <label>IFSC Code</label>
                                         <?php echo form_input(array('type'=>'text','name'=>'ifsc_code','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['ifsc_code']));?>
                                     </div>
-                                    <div class="col-sm-4 mb-1">
+                                    <div class="col-sm-4 mb-3">
                                         <label>IFSC Code</label>
                                         <?php echo form_input(array('type'=>'text','name'=>'ifsc_code','id'=>'activate_menu','class'=>'form-control','value'=>$officer[0]['ifsc_code']));?>
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 mb-1 text-info">
+                                        <h4 >Document Upload</h4> 
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Aadhar No.</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'aadhar','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Bank Account</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'bank_account','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Pan No.</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'pan','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Security E-Receipt</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'security_e_receipt','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                     <div class="col-sm-4 mb-3">
+                                        <label>Training Receipt</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'training_receipt','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Processing Receipt</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'processing_receipt','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Image</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'image','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
+                                    </div>
+                                    <div class="col-sm-4 mb-3">
+                                        <label>Signature</label>
+                                        <?php echo form_input(array('type'=>'file','name'=>'signature','id'=>'activate_menu','class'=>'form-control','value'=>''));?>
                                     </div>
                                 </div>
                                   
