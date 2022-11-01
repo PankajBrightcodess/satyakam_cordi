@@ -579,7 +579,7 @@ class Website_model extends CI_Model{
 
 	public function admitcard_publish($id){
 		// $id = $id['id'];
-		print_r($id );die;
+		// print_r($id );die;
 		$publish['publish_admitcard'] =1; 
         $this->db->where("id",$id); 
         $query= $this->db->update("admitcard", $publish); 
