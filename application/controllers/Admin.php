@@ -1931,6 +1931,7 @@ public function update_submenu(){
 
 	public function publish_admitcard(){
 		$id = $this->input->get('id');
+		print_r($id);die;
 		$result =  $this->Website_model->admitcard_publish($id);
 		if($result){
 					$this->session->set_flashdata('msg','Published Successfully');
