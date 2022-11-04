@@ -35,7 +35,7 @@
                     <h2 style="border-bottom: 1px solid white;">Social Links</h2>
                     <div class="footer-social" style="margin-bottom: 10px;margin-left: 26px;">
                         <a href="https://twitter.com/Indiasatyakam22/" target="blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/login.php?next=https%3A%2F%2Fwww.facebook.com%2Fsettings%3Ftab%3Daccount%26section%3Dusername" target="blank"><i class="fab fa-facebook-f" target="blank"></i></a>
+                        <a href="https://www.facebook.com/Indiasatyakamfoundationtrust" target="blank"><i class="fab fa-facebook-f" target="blank"></i></a>
                         <a href="" target="blank"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a>
                         <a href="" target="blank"><i class="fab fa-linkedin-in"></i></a>
