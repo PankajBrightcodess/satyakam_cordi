@@ -34,7 +34,7 @@
                 <div class="col-md-3 footer-newsletter">
                     <h2 style="border-bottom: 1px solid white;">Social Links</h2>
                     <div class="footer-social" style="margin-bottom: 10px;margin-left: 26px;">
-                        <a href="https://twitter.com/Indiasatyakam22/" target="blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://twitter.com/Indiasatyakam22" target="blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.facebook.com/Indiasatyakamfoundationtrust" target="blank"><i class="fab fa-facebook-f" target="blank"></i></a>
                         <a href="" target="blank"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a>
