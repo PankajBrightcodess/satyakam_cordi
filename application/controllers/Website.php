@@ -1189,7 +1189,6 @@ class Website extends CI_Controller {
 		}
 
 		$form_4 = json_encode($clubarray);
-		
 		$postdata = $this->Website_model->club($form_4);
 		if($postdata===true){
 			// $this->createsession($result);
