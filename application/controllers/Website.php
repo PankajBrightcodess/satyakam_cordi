@@ -1059,6 +1059,182 @@ class Website extends CI_Controller {
         $this->load->view('website/template_1',$d);
 	}
 
+
+	// ''''''''''''''''''''''''''''''''''''''''Daily Report Indivisualy Insert Area''''''''''''''''''''''''''''''''''''
+
+	public function add_revenue(){
+		$data = $this->input->post();
+		$revenue['registration_no']= $data['registration_no'];
+		$revenue['applicant_name']= $data['applicant_name'];
+		$revenue['father_husband']= $data['father_husband'];
+		$revenue['dob']= $data['dob'];
+		$revenue['post_name']= $data['post_name'];
+		$revenue['fee']= $data['fee'];
+		$revenue['date_payment']= $data['date_payment'];
+		$revenue['banking_id1']= $data['banking_id1'];
+		$revenue['total_revenue']= $data['total_revenue'];
+		$revenue['user_id']= $_SESSION['user_id'];
+		$revenue['batch_no']= $_SESSION['batch_no'];
+		$revenue['added_on']= date('Y-m-d');
+
+		$count = count($revenue['registration_no']);
+		for ($i=0; $i < $count; $i++) { 
+			// code...
+			$arr = array('registration_no'=>$revenue['registration_no'][$i],'applicant_name'=>$revenue['applicant_name'][$i],'father_husband'=>$revenue['father_husband'][$i],'dob'=>$revenue['dob'][$i],'post_name'=>$revenue['post_name'][$i],'fee'=>$revenue['fee'][$i],'date_payment'=>$revenue['date_payment'][$i],'banking_id1'=>$revenue['banking_id1'][$i],'total_revenue'=>$revenue['total_revenue'],'user_id'=>$revenue['user_id'],'batch_no'=>$revenue['batch_no'],'added_on'=>$revenue['added_on']);
+			$revenuearray[]=$arr;
+		}
+		$form_1 = json_encode($revenuearray);
+		
+		$postdata = $this->Website_model->revenue($form_1);
+		if($postdata===true){
+			// $this->createsession($result);
+			redirect('website/open_progress_report/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/open_progress_report/?status=0');
+		}
+	}
+
+	public function add_security(){
+		$data = $this->input->post();
+		$security['reg_no']=$data['reg_no'];
+		$security['name']=$data['name'];
+		$security['name_of_post']=$data['name_of_post'];
+		$security['security_fund']=$data['security_fund'];
+		$security['training_fee']=$data['training_fee'];
+		$security['processing_fee']=$data['processing_fee'];
+		$security['other_fee1']=$data['other_fee1'];
+		$security['total_banking']=$data['total_banking'];
+		$security['banking_id2']=$data['banking_id2'];
+		$security['total_revenue_1']=$data['total_revenue_1'];
+		$security['user_id']= $_SESSION['user_id'];
+		$security['batch_no']= $_SESSION['batch_no'];
+		$security['added_on']= date('Y-m-d');
+		$count1 = count($security['reg_no']);
+		for ($i=0; $i < $count1; $i++) { 
+
+			$arr1 = array('reg_no'=>$security['reg_no'][$i],'name'=>$security['name'][$i],'name_of_post'=>$security['name_of_post'][$i],'security_fund'=>$security['security_fund'][$i],'training_fee'=>$security['training_fee'][$i],'processing_fee'=>$security['processing_fee'][$i],'other_fee1'=>$security['other_fee1'][$i],'total_banking'=>$security['total_banking'][$i],'banking_id2'=>$security['banking_id2'][$i],'total_revenue_1'=>$security['total_revenue_1'],'user_id'=>$security['user_id'],'batch_no'=>$security['batch_no'],'added_on'=>$security['added_on']);
+			$securityarray[]=$arr1;
+		}
+
+		$form_2 = json_encode($securityarray);
+		$postdata = $this->Website_model->security($form_2);
+		if($postdata===true){
+			// $this->createsession($result);
+			redirect('website/open_progress_report/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/open_progress_report/?status=0');
+		}
+
+	}
+
+
+
+	public function add_group(){
+	   	$data = $this->input->post();
+	   	$group['group_no_a'] =$data['group_no_a'];
+		$group['group_name_a'] =$data['group_name_a'];
+		$group['group_address'] =$data['group_address'];
+		$group['meeting_no'] =$data['meeting_no'];
+		$group['passbook_issue_fee'] =$data['passbook_issue_fee'];
+		$group['weekly_saving_deposit'] =$data['weekly_saving_deposit'];
+		$group['emi_deposit'] =$data['emi_deposit'];
+		$group['bouncing_fee'] =$data['bouncing_fee'];
+		$group['late_fine_fee'] =$data['late_fine_fee'];
+		$group['banking_id3'] =$data['banking_id3'];
+		$group['total_revenue_2_'] =$data['total_revenue_2_'];
+		$group['user_id']= $_SESSION['user_id'];
+		$group['batch_no']= $_SESSION['batch_no'];
+		$group['added_on']= date('Y-m-d');
+		$count2 = count($group['group_no_a']);
+		for ($j=0; $j < $count2; $j++) { 
+			$arr2 = array('group_no_a'=>$group['group_no_a'][$j],'group_name_a'=>$group['group_name_a'][$j],'group_address'=>$group['group_address'][$j],'meeting_no'=>$group['meeting_no'][$j],'passbook_issue_fee'=>$group['passbook_issue_fee'][$j],'weekly_saving_deposit'=>$group['weekly_saving_deposit'][$j],'emi_deposit'=>$group['emi_deposit'][$j],'bouncing_fee'=>$group['bouncing_fee'][$j],'late_fine_fee'=>$group['late_fine_fee'][$j],'banking_id3'=>$group['banking_id3'][$j],'total_revenue_2_'=>$group['total_revenue_2_'],'user_id'=>$group['user_id'],'batch_no'=>$group['batch_no'],'added_on'=>$group['added_on']);
+			$grouparray[]=$arr2;
+		}
+		$form_3 = json_encode($grouparray);
+		
+		$postdata = $this->Website_model->group($form_3);
+		if($postdata===true){
+			// $this->createsession($result);
+			redirect('website/open_progress_report/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/open_progress_report/?status=0');
+		}
+	}
+
+	public function add_club(){
+	   $data = $this->input->post();	
+	   $club['group_no_b']=$data['group_no_b'];
+		$club['group_name_b']=$data['group_name_b'];
+		$club['club_id_no']=$data['club_id_no'];
+		$club['club_member_name']=$data['club_member_name'];
+		$club['sponsor_no']=$data['sponsor_no'];
+		$club['sponsor_level']=$data['sponsor_level'];
+		$club['joining_fee']=$data['joining_fee'];
+		$club['banking_id4']=$data['banking_id4'];
+		$club['total_revenue_3']=$data['total_revenue_3'];
+		$club['grand_total_revamue']=$data['grand_total_revamue'];
+		$club['user_id']= $_SESSION['user_id'];
+		$club['batch_no']= $_SESSION['batch_no'];
+		$club['added_on']= date('Y-m-d');
+		$count3 = count($club['group_no_b']);
+		for($k=0; $k < $count3; $k++) { 
+			$arr3 = array('group_no_b'=>$club['group_no_b'][$k],'group_name_b'=>$club['group_name_b'][$k],'club_id_no'=>$club['club_id_no'][$k],'club_member_name'=>$club['club_member_name'][$k],'sponsor_no'=>$club['sponsor_no'][$k],'sponsor_level'=>$club['sponsor_level'][$k],'joining_fee'=>$club['joining_fee'][$k],'banking_id4'=>$club['banking_id4'][$k],'total_revenue_3'=>$club['total_revenue_3'],'grand_total_revamue'=>$club['grand_total_revamue'],'user_id'=>$club['user_id'],'batch_no'=>$club['batch_no'],'added_on'=>$club['added_on']);
+			$clubarray[]=$arr3;
+		}
+
+		$form_4 = json_encode($clubarray);
+		
+		$postdata = $this->Website_model->club($form_4);
+		if($postdata===true){
+			// $this->createsession($result);
+			redirect('website/open_progress_report/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/open_progress_report/?status=0');
+		}
+	}
+
+	public function add_travelling(){
+		$data = $this->input->post();
+		$travelling['inspection_area'] = $data['inspection_area'];
+		$travelling['objective'] = $data['objective'];
+		$travelling['arrival_time'] = $data['arrival_time'];
+		$travelling['arrival_km'] = $data['arrival_km'];
+		$travelling['port_of_department'] = $data['port_of_department'];
+		$travelling['departure_km'] = $data['departure_km'];
+		$travelling['other_fee2'] = $data['other_fee2'];
+		$travelling['result'] = $data['result'];
+		$travelling['user_id']= $_SESSION['user_id'];
+		$travelling['batch_no']= $_SESSION['batch_no'];
+		$travelling['added_on']= date('Y-m-d');
+
+		$count4 = count($travelling['inspection_area']);
+		for($l=0; $l < $count4; $l++) { 
+			$arr4 = array('inspection_area'=>$travelling['inspection_area'][$l],'objective'=>$travelling['objective'][$l],'arrival_time'=>$travelling['arrival_time'][$l],'arrival_km'=>$travelling['arrival_km'][$l],'port_of_department'=>$travelling['port_of_department'][$l],'departure_km'=>$travelling['departure_km'][$l],'other_fee2'=>$travelling['other_fee2'][$l],'result'=>$travelling['result'][$l],'user_id'=>$travelling['user_id'],'batch_no'=>$travelling['batch_no'],'added_on'=>$travelling['added_on']);
+			$travellingarray[]=$arr4;
+		}
+		
+		$form_5 = json_encode($travellingarray);
+		$postdata = $this->Website_model->travelling($form_5);
+		if($postdata===true){
+			// $this->createsession($result);
+			redirect('website/open_progress_report/?status=1');
+		}
+		else{ 
+			$this->session->set_flashdata('err_msg',$result['verify']);
+			redirect('website/open_progress_report/?status=0');
+		}
+	}
+
+
+
 	public function daily_report(){
 		$data = $this->input->post();
 		$revenue['registration_no']= $data['registration_no'];
@@ -1175,6 +1351,8 @@ class Website extends CI_Controller {
 			redirect('website/open_progress_report/?status=0');
 		}
 	}
+
+	// ''''''''''''''''''''''''''''''''''''''''Daily Report Indivisualy Insert Area''''''''''''''''''''''''''''''''''''
 
 	// '''''''''''''''''''''''''''''''''''''vacency Area'''''''''''''''''''''''''''''''
 	public function login_member(){
