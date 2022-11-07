@@ -290,10 +290,12 @@ class Website extends CI_Controller {
 			$this->load->view('website/template',$d);
 		}
 
-
+		// vacencysignup Direct Jump on vacencysignup_create  
 
 		public function vacencysignup_create(){
 			$data = $this->input->post();
+			// echo PRE;
+			// print_r($data);die;
 			   $post = explode("-",$data['post']);
 			   $data['post']=$post[0];
 			   $data['amount']=$post[1];

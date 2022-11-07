@@ -4,8 +4,8 @@
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
             <center class="tittle"><h2>REGISTERED NOW</h2><h4>Vacancy Sign Up Form</h4></center>
-            <!-- <form action="<?= base_url('website/vacencysignup_create')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;"> -->
-              <form action="<?= base_url('website/vacency_signup_otp');?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
+            <form action="<?= base_url('website/vacencysignup_create')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
+             <!--  <form action="<?= base_url('website/vacency_signup_otp');?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;"> -->
               <div class="row">
                  <div class="col-md-12 mb-2">
                   <label for="application_date">Application Date :</label>
@@ -68,19 +68,6 @@
                     <option>Post :</option>
                   </select>
                 </div>
-                
-                 <!-- <div class="col-md-12 mb-2"> 
-                  <label for="user_name">User Name :</label>
-                   <input type="text" name="user_name" placeholder="User Name :" class="form-control" required>
-                </div> -->
-                 <!-- <div class="col-md-6 mb-2"> 
-                  <label for="password">Password :</label>
-                   <input type="password" name="password" placeholder="Password :" class="form-control" required>
-                </div> -->
-                 <!-- <div class="col-md-6 mb-2"> 
-                  <label for="conf_password">Confirm Password :</label>
-                   <input type="password" name="conf_password" placeholder="Confirm Password :" class="form-control" required>
-                </div> -->
                
                  <div class="col-md-12 mb-2">
                   <input type="submit" class="mt-4 btn btn-sm " style="background:#233799;color:white">
