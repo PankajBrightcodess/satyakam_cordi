@@ -36,7 +36,7 @@
                     <div class="footer-social" style="margin-bottom: 10px;margin-left: 26px;">
                         <a href="https://twitter.com/Indiasatyakam22" target="blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.facebook.com/Indiasatyakamfoundationtrust" target="blank"><i class="fab fa-facebook-f" target="blank"></i></a>
-                        <a href="" target="https://www.youtube.com/channel/UCgEJ526SVfQy5PJP77nPdGQ"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/channel/UCgEJ526SVfQy5PJP77nPdGQ" target="blank"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a>
                         <a href="" target="blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
