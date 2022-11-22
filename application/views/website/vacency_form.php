@@ -172,7 +172,7 @@
                                 <tbody>
                                   <tr>
                                   <td ><input type="file" name="marksheet" placeholder="Exam Passed" class="form-control" required></td>
-                                   <td><input type="file" name="other_quali" placeholder="Name Of Board/University" class="form-control" required></td>
+                                   <td><input type="file" name="other_quali" placeholder="Name Of Board/University" class="form-control"></td>
                                     <td colspan="1"><input type="file" name="exprience" placeholder="Year Of Passing" class="form-control"></td>
                                      
                                   </tr>
