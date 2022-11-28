@@ -71,6 +71,8 @@
                                     <tbody>
                                         <?php $i=0;
                                          if(!empty($applylist)){
+                                            echo PRE;
+                                            print_r($applylist);die;
 
                                             foreach($applylist as $val){$i++; $id=$val['id']; ?>
                                         <tr>
