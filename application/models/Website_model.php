@@ -1821,7 +1821,7 @@ class Website_model extends CI_Model{
 				$this->db->join('division t6','t1.division_unit_name=t6.id','left');
 
 				$qry = $this->db->get();
-				retrun $this->db->last_query();
+				echo $this->db->last_query();die;
 				if($qry->num_rows()>0)
 				{
 					return $result = $qry->result_array();
