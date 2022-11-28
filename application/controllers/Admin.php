@@ -1860,7 +1860,6 @@ public function update_submenu(){
 
 		$depart_id = $this->input->post('depart_id');
 		$payment_status = $this->input->post('payment_status');
-		// print_r($depart_id);die;
 		$data['title']="Apply List";
 		$data['datatable'] = true;
 		$data['applylist'] = $this->Website_model->get_applylist($depart_id,$payment_status);
