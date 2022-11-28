@@ -1821,7 +1821,6 @@ class Website_model extends CI_Model{
 				$this->db->join('division t6','t1.division_unit_name=t6.id','left');
 
 				$qry = $this->db->get();
-				echo $this->db->last_query();die;
 				if($qry->num_rows()>0)
 				{
 					return $result = $qry->result_array();
@@ -1834,10 +1833,13 @@ class Website_model extends CI_Model{
 		}
 		else{
 			$this->db->where(['t1.depart_id'=>$depart_id,'t2.payment_status'=>0]);
-			$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb');
+			$this->db->select('t1.*,t2.father_name,t2.father_occupation,t2.mother_name,t2.mother_occupqation,t2.annual_encome,t2.gender	,t2.correspondent_address,t2.permanent_address,t2.place,t2.nationality,t2.category,t2.identification_marks,t2.aadharno,t2.panno,t2.marital_status,t2.ins_details,t2.exam_passed,t2.board_university,t2.pasing_year,t2.total_marks,t2.mark_obtained,t2.division,t2.persentage_marks,t2.confirm_1,t3.photo,t3.signature,t3.marksheet,t3.other_quali,t3.exprience,t3.aadhar,t3.thumb,t4.state as state_name,t5.post as post_name,t6.division');
 			$this->db->from('vacency_signup t1');
 			$this->db->join('vacency_candidate_details t2','t1.id=t2.signup_id','left');
 			$this->db->join('upload_candidate_vacency t3','t2.id=t3.details_id','left');
+			$this->db->join('state t4','t1.state_unit_name=t4.id','left');
+				$this->db->join('stk_post t5','t1.post=t5.id','left');
+				$this->db->join('division t6','t1.division_unit_name=t6.id','left');
 			$qry = $this->db->get();
 			 
 			if($qry->num_rows()>0)

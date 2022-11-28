@@ -1864,8 +1864,6 @@ public function update_submenu(){
 		$data['title']="Apply List";
 		$data['datatable'] = true;
 		$data['applylist'] = $this->Website_model->get_applylist($depart_id,$payment_status);
-		echo PRE;
-		print_r($data['applylist']);die;
 		$this->template->load('pages','online_apply_list',$data);
 	}
 
