@@ -237,7 +237,8 @@
 			responsive: true,
              dom: 'Bfrtip',
                  buttons: [
-                       'excel','pdf','print'
+                       'excel'
+                       // ,'pdf','print'
              ],
 			columnDefs: [{
 				targets: "no-sort",
