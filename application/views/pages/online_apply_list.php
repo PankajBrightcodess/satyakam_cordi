@@ -235,6 +235,10 @@
 			scrollCollapse: true,
 			autoWidth: false,
 			responsive: true,
+             dom: 'Bfrtip',
+                 buttons: [
+                       'excel','pdf','print'
+             ],
 			columnDefs: [{
 				targets: "no-sort",
 				orderable: false,

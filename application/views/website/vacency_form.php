@@ -106,7 +106,7 @@
                               <input type="text" name="aadharno" placeholder="Aadhar Number" class="form-control" required>
                           </div>
                           <div class="col-md-6 mb-3">
-                              <input type="text" name="panno" placeholder="PAN Number" class="form-control" required>
+                              <input type="text" name="panno" placeholder="PAN Number" class="form-control">
                           </div>
                           <div class="col-md-6 mb-3">
                             <select class="form-control" name="marital_status" required> 
