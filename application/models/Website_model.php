@@ -902,9 +902,9 @@ class Website_model extends CI_Model{
     public function savevacencysignup($data){
     	$mobile_no = $data['mobile_no'];
     	if(!empty($mobile_no)){
-    	  $query = $this->db->get_where('vacency_signup',array('mobile_no'=>$mobile_no));
-		   $rows =  $query->num_rows();
-		   if($rows==0){
+    	  // $query = $this->db->get_where('vacency_signup',array('mobile_no'=>$mobile_no));
+		  //  $rows =  $query->num_rows();
+		   // if($rows==0 || $rows!=0){
 		   	$result=$this->create_user_pass_for_candidate();
 		   	if(!empty($result)){
 		   		$table = 'vacency_signup';
@@ -918,8 +918,8 @@ class Website_model extends CI_Model{
 				if(!empty($last_inst_id)){ return $last_inst_id; }
 				else{ return false; }
 		   	}
-		   }
-		   else{ return 'Mobile No. Already Exist!'; }
+		   // }
+		   // else{ return 'Mobile No. Already Exist!'; }
     	}	
     }
 
