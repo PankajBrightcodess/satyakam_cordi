@@ -11,8 +11,8 @@
                     <div class="row">
                       <div class="col-md-2 mt-3">Date</div>
                       <div class="col-md-4"><input type="date" value="<?= date("Y-m-d");?>" class="form-control" name="date" required></div>
-                      <div class="col-md-2">Userid No. :</div>
-                      <div class="col-md-4">  <input type="text" name="member_id" id="member_id" placeholder="Member Id No. :" class="form-control" required></div>
+                      <div class="col-md-2">Membership No. :</div>
+                      <div class="col-md-4">  <input type="text" name="member_id" id="member_id" placeholder="Membership No. :" class="form-control" required></div>
                       <!-- //////////////////// -->
                       <div class="col-md-2 mt-3">User Name :</div>
                       <div class="col-md-4"><input type="text" placeholder="User Name :"  class="form-control" name="username" required></div>

@@ -5168,7 +5168,6 @@ class Website extends CI_Controller {
 			if(!empty($result)){
 				$inst_id = $result;
 				$request = $this->Website_model->get_account_no($inst_id);
-			
 				if(!empty($request)){
 					 $account_no = $request['account_no'];
 		    		 $contact_no = $request['mobile_no'];

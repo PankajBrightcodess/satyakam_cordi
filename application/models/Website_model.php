@@ -621,10 +621,12 @@ class Website_model extends CI_Model{
 	public function account_creates_model($data){
 		 $membership_on = $data['member_id'];
 		 $where = "membership_no='$membership_on'";
+
 		 $query = $this->db->get_where('member_details',$where);
 		 $result =  $query->num_rows();
 		 $ac_no = $this->account_no_create();
 		 if($result>0 && !empty($ac_no)){
+		 
 		 	$final['account_no'] = $ac_no;
 		 	$final['member_id'] = $data['member_id'];
 		 	$final['username'] = $data['username'];
@@ -668,7 +670,6 @@ class Website_model extends CI_Model{
 		 	$final['upi_banking'] = $data['upi_banking'];
 		 	$final['image'] = $data['image'];
 		 	$final['added_on'] = date('Y-m-d');
-		 	
 		 	$table = 'account_details';
 		 	$status=$this->db->insert($table,$final);
 		 	$last_insert_id = $this->db->insert_id();
