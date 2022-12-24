@@ -106,7 +106,6 @@ class Website extends CI_Controller {
 			$d['state'] = $this->Website_model->get_statelist();
 			$d['v'] = 'website/create_team';
 			$this->load->view('website/template_1',$d);
-
 		}
 
 		public function add_team(){
