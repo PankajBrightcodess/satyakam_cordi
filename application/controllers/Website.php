@@ -1220,7 +1220,6 @@ class Website extends CI_Controller {
 			$arr4 = array('inspection_area'=>$travelling['inspection_area'][$l],'objective'=>$travelling['objective'][$l],'arrival_time'=>$travelling['arrival_time'][$l],'arrival_km'=>$travelling['arrival_km'][$l],'port_of_department'=>$travelling['port_of_department'][$l],'departure_km'=>$travelling['departure_km'][$l],'other_fee2'=>$travelling['other_fee2'][$l],'result'=>$travelling['result'][$l],'user_id'=>$travelling['user_id'],'batch_no'=>$travelling['batch_no'],'added_on'=>$travelling['added_on']);
 			$travellingarray[]=$arr4;
 		}
-		
 		$form_5 = json_encode($travellingarray);
 		$postdata = $this->Website_model->travelling($form_5);
 		if($postdata===true){
@@ -3815,6 +3814,7 @@ class Website extends CI_Controller {
 
 		public function addrecord_membership(){
 			$data =  $this->input->post();
+
 			$result = $this->upload_allmember_records($_FILES);
 		
 			$record= $this->Website_model->insert_member_all_records($data,$result);
@@ -3991,18 +3991,22 @@ class Website extends CI_Controller {
 
 	    public function create_membership(){
 			$data= $this->input->post();
-			$otp = $_SESSION['create_otp'];
-			$confirm_otp = $this->input->post('OTP');
-			unset($_SESSION['last_id']);
-			if($otp==$confirm_otp){
-			   // print_r($data);die;
+			// echo PRE;
+			// $otp = $_SESSION['create_otp'];
+			// $confirm_otp = $this->input->post('OTP');
+			// unset($_SESSION['last_id']);
+			$captcha = $data['captcha'];
+			$captcha_confirm = $data['captcha_confirm'];
+			if($captcha==$captcha_confirm){
+				unset($data['captcha']);
+				unset($data['captcha_confirm']);
 
 				$member_data = $this->Website_model->insert_membersignup($data);
 				$d['allsignuprecords'] = $member_data;
-				unset($_SESSION['create_otp']);
+				
+				// unset($_SESSION['create_otp']);
 				$id = $_SESSION['user_id'];
-				$record= $this->Website_model->getuser($id);
-				$finalrecord = $record[0];
+				$record= $this->Website_model->getuser($id);				$finalrecord = $record[0];
 				$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
@@ -4011,7 +4015,7 @@ class Website extends CI_Controller {
 				$this->load->view('website/template_1',$d);
 			}
 			else{
-				$this->session->set_flashdata('err_msg','Your OTP is not Correct');
+				$this->session->set_flashdata('err_msg','Please Inter Your Correct Captcha');
 				redirect('website/membersignup_form');
 			}
 		}
@@ -4468,11 +4472,11 @@ class Website extends CI_Controller {
 		public function create_submembership(){
 			// $last_id=$_SESSION['last_id'];
 			$data= $this->input->post();
-			$otp = $_SESSION['create_otp'];
-			$confirm_otp = $this->input->post('OTP');
-			unset($_SESSION['last_id']);
-			if($otp==$confirm_otp){
-				unset($_SESSION['create_otp']);
+			$captcha = $data['captcha'];
+			$captcha_confirm = $data['captcha_confirm'];
+			if($captcha==$captcha_confirm){
+				unset($data['captcha']);
+				unset($data['captcha_confirm']);
 				$d['allsignuprecords'] =$this->Website_model->insert_submembersignup($data);
 				$d['state'] = $this->Website_model->get_statelist();
 				$state_id['id'] = $this->input->post('state_unit_name');
@@ -4481,7 +4485,7 @@ class Website extends CI_Controller {
 			$this->load->view('website/template_2',$d);
 			}
 			else{
-				$this->session->set_flashdata('err_msg','Your OTP is not Correct');
+				$this->session->set_flashdata('err_msg','Your Captcha is not correct');
 				redirect('website/submember_signup');
 			}
 			// echo PRE;
@@ -5163,7 +5167,9 @@ class Website extends CI_Controller {
 					  $data['image'] = $image['path'];
 				  }
 			  }
+
 			$result = $this->Website_model->account_creates_model($data);
+
 			if(!empty($result)){
 				$inst_id = $result;
 				$request = $this->Website_model->get_account_no($inst_id);

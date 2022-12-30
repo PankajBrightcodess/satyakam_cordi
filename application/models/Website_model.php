@@ -620,11 +620,11 @@ class Website_model extends CI_Model{
 
 	public function account_creates_model($data){
 		 $membership_on = $data['member_id'];
-		 $where = "membership_no='$membership_on'";
+		 $where = "username='$membership_on'";
 
-		 $query = $this->db->get_where('member_details',$where);
-		 $result =  $query->num_rows();
+		 $result = $this->db->get_where('stk_project_member',$where)->num_rows();
 		 $ac_no = $this->account_no_create();
+	
 		 if($result>0 && !empty($ac_no)){
 		 
 		 	$final['account_no'] = $ac_no;
@@ -1948,7 +1948,7 @@ class Website_model extends CI_Model{
 
 	// '''''''''''''''''''''''''PROJECT''''''''''''''''''''''''''''''''
 	public function insert_membersignup($data){
-		unset($data['OTP']);
+		// unset($data['OTP']);
 		$data['added_on']= date('Y-m-d');
 		if($data['applicant_name']!=null){
 			$status=$this->db->insert('project_member',$data);
@@ -1967,7 +1967,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function insert_submembersignup($data){
-		unset($data['OTP']);
+		// unset($data['OTP']);
 		$data['added_on']= date('Y-m-d');
 		if($data['applicant_name']!=null){
 			$status=$this->db->insert('project_member',$data);

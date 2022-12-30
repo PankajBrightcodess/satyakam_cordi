@@ -11,8 +11,8 @@
                     <div class="row">
                       <div class="col-md-2 mt-3">Date</div>
                       <div class="col-md-4"><input type="date" value="<?= date("Y-m-d");?>" class="form-control" name="date" required></div>
-                      <div class="col-md-2">Membership No. :</div>
-                      <div class="col-md-4">  <input type="text" name="member_id" id="member_id" placeholder="Membership No. :" class="form-control" required></div>
+                      <div class="col-md-2">User Id :</div>
+                      <div class="col-md-4">  <input type="text" name="member_id" id="member_id" placeholder="User Id :" class="form-control" required></div>
                       <!-- //////////////////// -->
                       <div class="col-md-2 mt-3">User Name :</div>
                       <div class="col-md-4"><input type="text" placeholder="User Name :"  class="form-control" name="username" required></div>
@@ -73,7 +73,7 @@
                     <option value="other">Other</option>
                   </select></div>
                   <div class="col-md-2 mt-2">Aadhar No</div>
-                  <div class="col-md-10 mt-2"><input type="text" name="aadhar_no" minlength="12" maxlength="14"  id="aadhar_no" placeholder="Aadhar No. :" class="form-control" required></div>
+                  <div class="col-md-10 mt-2"><input type="number" name="aadhar_no" minlength="12" maxlength="14"  id="aadhar_no" placeholder="Aadhar No. :" class="form-control" required></div>
                   <div class="col-md-2 mt-2">PAN No</div>
                   <div class="col-md-10 mt-2"><input type="text" name="pan_no"  id="pan_no" placeholder="PAN No. :" class="form-control" required></div>
                   
@@ -97,7 +97,7 @@
                   <div class="col-md-2 mt-2">District</div>
                   <div class="col-md-10 mt-2"><input type="text" name="district"  id="district" placeholder="District :" class="form-control"></div>
                   <div class="col-md-2 mt-2">Pin Code</div>
-                  <div class="col-md-10 mt-2"><input type="text" name="pin_code"  id="pin_code" placeholder="Pin Code :" class="form-control"></div>
+                  <div class="col-md-10 mt-2"><input type="number" name="pin_code"  id="pin_code" placeholder="Pin Code :" class="form-control"></div>
 
                   <div class="col-md-2 mt-2">Form</div>
                   <div class="col-md-10 mt-2"><span class="mr-1">Rural</span><input type="radio" name="form" value="Rural"  placeholder="Pin Code :" class="mr-5"><span class="mr-1">Urban</span><input type="radio" name="form" value="Urban" class="mr-5"  placeholder="Pin Code :"><span class="mr-1">Other</span><input type="radio" name="form" value="Other"  placeholder="Pin Code :" class="mr-5"></div>

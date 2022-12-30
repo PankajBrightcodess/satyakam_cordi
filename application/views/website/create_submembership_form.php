@@ -328,7 +328,7 @@
                                   </tr>
                                    <tr>
                                     <td> <label>Mobile No.</label><input class="form-control" type="text" name="witness_mobile_no"></td>
-                                    <td><label>Membership No.</label><input class="form-control" required="true" type="text" name="membership_no"></td>
+                                    <!-- <td><label>Membership No.</label><input class="form-control" required="true" type="text" name="membership_no"></td> -->
                                   </tr>
                                   
 
