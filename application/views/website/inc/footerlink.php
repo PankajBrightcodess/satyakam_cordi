@@ -8,7 +8,17 @@
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
 
- 
+ <script src="<?= base_url('confetti.js')?>"></script>
+<script>
+    confetti.start();
+     if(window.outerWidth < 500){
+        confetti.speed = 1;
+        confetti.maxCount = 100;
+      }
+   $(window).on('load',function(){
+          $('#exampleModal').modal('show');
+      });
+</script>
 
  
 
