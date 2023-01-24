@@ -301,6 +301,22 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function getgrouplist(){
+		$this->db->where(array('t1.username!='=>'','t1.password!='=>''));
+		$this->db->select('t1.*,t2.state,t3.division,t4.applicant_name,t4.username as sponsor_id');
+		$this->db->from('stk_group_signup t1');
+		$this->db->join('state t2','t1.state_unit_name=t2.id');
+		$this->db->join('stk_division t3','t1.division_unit_name=t3.id');
+		$this->db->join('stk_project_member t4','t1.sponsor_id=t4.id','left');
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			return $query->result_array();
+		}
+		else{
+			return false;
+		}
+	}
+
 	public function vacencylist_by_state($state){
 
 		$this->db->where(array('t2.payment_status'=>1,'t1.state_unit_name'=>$state));

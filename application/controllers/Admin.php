@@ -45,6 +45,23 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function memberslistongroupid(){
+		$data['title']="Office Member";
+		$ids = $this->input->get('id');
+		$d['ides']=$ids;
+		$data['datatable'] = true;	
+    	$data['member_list']= $this->Website_model->getgroup_memberlist($ids);
+    	
+		$this->template->load('pages','group_member_list',$data);
+	}
+
+	public function grouplist(){
+		$data['title']="Group List";
+		$data['datatable'] = true;	
+		$data['group_list'] = $this->Website_model->getgrouplist();
+		$this->template->load('pages','grouplist',$data);
+		}
+
 	public function update_officerdetails(){
 		$data = $this->input->post();
 		$upload_path = './assets/uploads/team/';	

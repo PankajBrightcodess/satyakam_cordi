@@ -4583,8 +4583,6 @@ class Website extends CI_Controller {
 
 		public function groupsingup_create(){
 			$data = $this->input->post();
-			
-
 			if($data['captcha']==$data['captcha_confirm']){
 				// echo PRE;
 				// print_r($data);die;
@@ -4607,6 +4605,8 @@ class Website extends CI_Controller {
 				redirect('website/groupsignup_form');
 	   		}
 		}
+
+		
 
 		public function group_reg_form(){
 			$data = $this->input->post();

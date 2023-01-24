@@ -8,17 +8,44 @@
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
 
- <script src="<?= base_url('confetti.js')?>"></script>
+<!-- <script type="text/javascript">
+  function myFunction() {
+    $('#newyear').modal('show');
+  document.getElementById("myCheck").click();
+}
+  
+   
+    
+</script> -->
+ <!-- <script src="<?= base_url('confetti.js')?>"></script>
 <script>
     confetti.start();
      if(window.outerWidth < 500){
         confetti.speed = 1;
         confetti.maxCount = 100;
       }
-   $(window).on('load',function(){
-          $('#exampleModal').modal('show');
-      });
+       $(window).on('load',function(){
+           $('#exampleModal').modal('show');
+       });
+
 </script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Brightcode Software Services Pvt. Ltd.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-justify my-2" style="color:#fff;">
+      <img src="images/new-year.jpg" class="img-fluid" alt="gif">  
+      </div>
+    </div>
+  </div>
+</div>  --> 
+
 
  
 
