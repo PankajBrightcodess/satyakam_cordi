@@ -474,6 +474,11 @@ class Website_model extends CI_Model{
 		}
 	}
 
+	public function get_accounts($id){
+		$where = array('sponsor_id'=>$id);
+		return $this->db->get_where('stk_account_details',$where)->result_array();
+	}
+
 	public function get_vacencydetailsbyidsforresult($id){
 		$this->db->where('t1.applicant_no',$id);
 		$this->db->select('t1.*,t2.email,t2.mobile_no,t3.permanent_address,t4.post as post_name');
@@ -2517,6 +2522,11 @@ class Website_model extends CI_Model{
 		$this->db->join('stk_division t4','t1.division_unit=t4.id','left');
 		$qry = $this->db->get();
 		return $qry->row_array();
+	}
+
+	public function get_account_trans($accno){
+		$where = array('account_no'=>$accno);
+		return $this->db->get_where('stk_transaction',$where)->result_array();
 	}
 
 	public function print_e_receipt_model($recpt){

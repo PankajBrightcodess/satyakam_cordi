@@ -1458,6 +1458,23 @@ public function update_submenu(){
 		$this->template->load('pages','memberlist',$data);
 	}
 
+	public function accdetails(){
+		$id = $this->uri->segment(3);
+		$data['accdetails'] = $this->Website_model->get_accounts($id);
+		$data['title']=" Total Account Details";
+		$data['datatable'] = true;	
+		$this->template->load('pages','accountdetails',$data);
+
+	}
+
+	public function transcationdetails(){
+		$accno = $this->input->get('accno');
+		$data['transdetails'] = $this->Website_model->get_account_trans($accno);
+		$data['title']=" Total Account Details";
+		$data['datatable'] = true;	
+		$this->template->load('pages','transcationdetails',$data);
+	}
+
 	public function membership_certificate(){
 		$id = $this->uri->segment(3);
 	  $data['certificate'] = $this->Website_model->get_certificatelist($id);
