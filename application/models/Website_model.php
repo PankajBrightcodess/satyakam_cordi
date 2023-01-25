@@ -475,7 +475,7 @@ class Website_model extends CI_Model{
 	}
 
 	public function get_accounts($id){
-		$where = array('sponsor_id'=>$id);
+		$where = array('member_id'=>$id);
 		return $this->db->get_where('stk_account_details',$where)->result_array();
 	}
 
