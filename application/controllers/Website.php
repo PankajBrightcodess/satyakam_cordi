@@ -354,7 +354,6 @@ class Website extends CI_Controller {
 
 		public function create_signup_otp(){
 			$d['data'] = $this->input->post();
-
 			$mobile_no=$this->input->post('mobile_no');
 			$record = $this->otpgenerate($mobile_no);
 			$d['v'] = 'website/create_sign_otp';
@@ -420,7 +419,6 @@ class Website extends CI_Controller {
 				redirect('website/signup');
 					$this->session->set_flashdata("web_err_msg","Your OTP IS WRONG !!");
 			}
-			
         }
 		
 

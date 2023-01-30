@@ -39,12 +39,9 @@ class Website_model extends CI_Model{
 	}
 
 	public function officer_details_model($data){
-		$table="officer_details"; // ye table  hai officer_details isko ek variable me store kr rhe hai
-
+		$table="officer_details"; 
 		$data['added_on']=date('Y-m-d');
 		$status=$this->db->insert($table,$data);  
-
-
 		if($status){
 			return true;
 		}
