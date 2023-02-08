@@ -25,12 +25,11 @@
                    <div class="col-md-2 mt-2">Total Month(EMI)</div>
                   <div class="col-md-4 mt-2"><select class="form-control" name="total_month">
                       <option>---SELECT---</option>
-                      <option value="3">3</option>
-                      <option value="5">5</option>
-                      <option value="7">7</option>
-                      <option value="9">9</option>
-                      <option value="11">11</option>
-                      <option value="13">13</option>
+                      <option value="12">12</option>
+                      <option value="24">24</option>
+                      <option value="36">36</option>
+                      <option value="48">48</option>
+                      <option value="60">60</option>
                   </select></div>
                   <div class="col-md-2 mt-2">State Unit/Code No.</div>
                   <div class="col-md-4 mt-2">
