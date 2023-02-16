@@ -4,7 +4,7 @@
            <form action="<?= base_url('website/e_deposit_form_submit')?>" enctype="multipart/form-data" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
-            <center class="tittle"><h2>E-DEPOSIT(FORM)</h2><h4><?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4></center>
+            <center class="tittle"><h2>E-DEPOSIT RECEIPT</h2><h4><?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4></center>
               <div class="row " >
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading" >Deposit Date</div>
                   <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= date('d-m-Y',strtotime($details['deposit_date']));?></span></div>

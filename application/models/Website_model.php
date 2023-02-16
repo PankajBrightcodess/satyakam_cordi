@@ -2668,9 +2668,9 @@ class Website_model extends CI_Model{
 
 	public function group_check_loan_details($check){
 		$id = $this->session->userdata('member_id');
-		$qry = $this->db->get_where('member_details',array('membership_no'=>$check['member_id'],'signup_id'=>$id));
-		$request = $qry->result_array();
-		if(!empty($request[0]['id'])){
+		$qry = $this->db->get_where('project_member',array('username'=>$check['member_id'],'id'=>$id));
+		$request = $qry->unbuffered_row('array');
+		if(!empty($request['id'])){
 			$qrys = $this->db->get_where('group_signup',array('username'=>$check['group_id'],'created_by'=>$id));
 			$row = $qrys->num_rows();
 			if($row>0){
@@ -2682,6 +2682,8 @@ class Website_model extends CI_Model{
 	}
 
 	public function get_group_loan_status($check){
+		// echo PRE;
+		// print_r($check);die;
 		$this->db->select('*');
 		$this->db->from('loan_group');
 		$this->db->where(['member_id'=>$check['member_id'],'group_id'=>$check['group_id'],'approvel_status'=>1]);
@@ -2689,7 +2691,7 @@ class Website_model extends CI_Model{
 		$this->db->limit(1);
 
 		$qry = $this->db->get();
-		return $qry->result_array();
+		return $qry->unbuffered_row('array');
 
 	}
 
@@ -2699,7 +2701,8 @@ class Website_model extends CI_Model{
 			$rec = $this->check_member_for_loan($member_id);
 			if($rec){
 				$data['added_on']=date('Y-m-d');
-				return $this->db->insert('loan_member',$data);
+				
+				 return $this->db->insert('loan_member',$data);
 			}else{
 				return false;
 			}
@@ -2708,7 +2711,8 @@ class Website_model extends CI_Model{
 
 	public function check_member_for_loan($member_id){
 		$id = $this->session->userdata('member_id');
-		$qry = $this->db->get_where('member_details',array('membership_no'=>$member_id,'signup_id'=>$id));
+	
+		$qry = $this->db->get_where('project_member',array('username'=>$member_id,'id'=>$id));
 		$row = $qry->num_rows();
 		if($row>0){
 			return true;

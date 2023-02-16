@@ -7,21 +7,21 @@
             <center class="tittle"><h2>Group Loan Status</h2><h4></h4></center>
               <div class="row " >
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading" >Request Date</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= date('d-m-Y',strtotime($details[0]['req_date']));?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= date('d-m-Y',strtotime($details['req_date']));?></span></div>
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Member Id</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['member_id'];?></span></div>
-                  <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Member Id</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['member_name'];?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['member_id'];?></span></div>
+                  <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Member Name</div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['member_name'];?></span></div>
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Group Id</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['group_id'];?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['group_id'];?></span></div>
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Group Name</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['group_name'];?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['group_name'];?></span></div>
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Loan Amount</div>
-                  <div class="col-md-4 col-6  mt-2"><span class="e_deposit"><?= $details[0]['loan_amount'].'.00/-';?></span></div>
+                  <div class="col-md-4 col-6  mt-2"><span class="e_deposit"><?= $details['loan_amount'].'.00/-';?></span></div>
                   <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Loan Amount(In Word)</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['loan_amount_in_word'];?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['loan_amount_in_word'];?></span></div>
                    <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">Total Month</div>
-                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details[0]['total_month'];?></span></div>
+                  <div class="col-md-4 col-6 mt-2"><span class="e_deposit"><?= $details['total_month'];?></span></div>
 
                  <!--  <div class="col-md-2 col-6 text-info mt-2 e_deposit_heading">State Unit/Code No.</div>
                   <div class="col-md-4 col-6 mt-2">
@@ -58,7 +58,7 @@
                  <div class="col-md-3 mb-2"> </div>
                  <div class="col-md-3 mb-2"> </div>
                  <div class="col-md-12 mb-2 text-center">
-                  <!-- <a href="<?= base_url('website/print_e_receipt/?id='.$details[0]['id'])?>" class="mt-4 btn btn-sm btn-success">Print</a> -->
+                  <!-- <a href="<?= base_url('website/print_e_receipt/?id='.$details['id'])?>" class="mt-4 btn btn-sm btn-success">Print</a> -->
                  </div>
               </div>
             </form>

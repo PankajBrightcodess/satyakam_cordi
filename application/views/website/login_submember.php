@@ -39,7 +39,7 @@
               </div>
               <div class="col-md-12">
                
-                  <label>EMAIL ID</label>
+                  <label>USER ID</label>
                   <input name="emailid" type="text" id="emailid" class="form-control" required placeholder="Email Id">
                  
               </div>
