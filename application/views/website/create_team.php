@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <center><h1 class="tittle">Team Create Form</h1></center>
+                    <center><h3 class="tittle">Team Create Form</h3></center>
                     <!-- <h4 class="text-success mb-3">Student's Details</h4> -->
                     <form action="<?= base_url('website/add_team');?>" enctype="multipart/form-data"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">

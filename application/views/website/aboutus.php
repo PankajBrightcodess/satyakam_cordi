@@ -1,13 +1,15 @@
  <section class="misvis">
       <div class="container">
         <div class="row justify-content-center">
+          <div class="col-md-12">
+            <h4 class="tittle">About Satyakam Trust Foundation</h4>
+          </div>
           <div class="col-md-4">
-            <img src="<?= base_url('assets/website/images/aboutusbanner.jpg')?>" width="100%">
+            <img src="<?= base_url('assets/website/images/abbt.png')?>" width="100%">
           </div>
           <div class="col-md-8">
-             <h4 class="tittle">About Satyakam Trust Foundation</h4>
-            <p>Year 2019-20 Satyakam Foundation Trust has been established with the ideologies of solving all these problems of nation and social, which has been in the financial 75 years so far.</p>
-            <ul>
+          <p>Year 2019-20 Satyakam Foundation Trust has been established with the ideologies of solving all these problems of nation and social, which has been in the financial 75 years so far.</p>
+            <ul style="list-style-image: url('<?= base_url('assets/website/images/right-arrow.png')?>');">
               <li>Under the general education policy, our main objective will be to establish a new dimension on the world stage by operating various types of educational institutions throughout India.</li>
               <li>Our main objective will be to restore better healthcare across the country.</li>
               <li>Our main objective will be to create employment all over India.</li>
@@ -17,16 +19,12 @@
               <li>For the prosperity of the farmers, our main objective will be to move forward in the field of prosperity by conducting many public welfare schemes.</li>
               <li>Our main objective will be to conduct many public welfare schemes for the eradication of corruption and social evils.</li>
               <li>Our main objective will be to conduct other welfare schemes for Swachh and Nirmal Bharat Mission.</li>
+              <li><strong>Institution Type :</strong> &nbsp;Voluntary and Private Organization </li>
+              <li><strong>Establishment :</strong> &nbsp;04 October 2019-20</li>
+              <li><strong>Active :</strong> &nbsp;15 January 2020-21</li>
             </ul>
           </div>
           <div class="col-md-12">
-            <ul>
-              <li><strong>Institution Type :</strong> &nbsp;&nbsp;Voluntyary and Private Organization </li>
-              <li><strong>Establishment :</strong> &nbsp;&nbsp;04 October 2019-20</li>
-              <li><strong>Active :</strong> &nbsp;&nbsp;15 January 2020-21</li>
-            </ul>
-          </div>
-          <div class="col-md-9">
             <div class="table-responsive">
                <table class="table table-hover table-bordered" style="background:#898ab547;border:1px solid red">
                 <thead>

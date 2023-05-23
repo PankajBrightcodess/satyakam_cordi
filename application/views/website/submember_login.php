@@ -1,9 +1,14 @@
   <title>LOGIN | Satyakam Foundation</title>
     <link rel="shortcut icon" href="<?= base_url('assets/website/images/logo3.png');?>">
   <style type="text/css">
-      .login{
-             background-image:url(<?= base_url('assets/website/images/491677.jpg');?>); background-size:cover; width:100%; height:100vh;
-      }
+      .login {
+    background-position: center;
+    background-image: url(http://localhost/SATYALAPTOP/satyakam_cordi/assets/website/images/491677.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+}
       .loginbox {
            background-color: white;
           opacity: 77%;

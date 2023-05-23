@@ -11,10 +11,10 @@
           </div>
           <div class="col-md-6">
           <div class="col-md-12 ">
-            <h4  style="font-weight: 900;font-size: 50px;text-align: center; color: white;">VACANCY</h4>
+            <h4  style="font-weight: 900;font-size: 50px;text-align: center; color:#ffca34;">VACANCY</h4>
           </div> 
           <div class="col-md-12 col-12 ">
-             <a class="dropdown-item" href="<?= base_url('website/mainvacency');?>" style="color:white; text-align: center;"><h6 class="tittle">Vacancy</h6></a>
+             <a class="dropdown-item" href="<?= base_url('website/mainvacency');?>" style="color:white;"><h6 class="tittle">Vacancy</h6></a>
           </div>
  
           <div class="col-md-12 col-12 ">

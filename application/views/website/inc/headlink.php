@@ -14,20 +14,22 @@
 
    <link rel="stylesheet" href="http://localhost/satyakam_cordi/includes/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
    <link rel="stylesheet" href="http://localhost/satyakam_cordi/includes/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"></head>
-      <script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+      <!-- <script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
    <script src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js'></script>
    <script src='https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js'></script>
    <script src='https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js'></script>
    <script src='https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js'></script>
    <script src='https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js'></script>
-   <script src='https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js'></script>
+   <script src='https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js'></script> -->
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
         
 
 
-
    <link rel="stylesheet" href="<?= base_url('assets/payment_css/android.css')?>">
+   <link rel="stylesheet" href="<?= base_url('assets/website/css/lightbox.css')?>">
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <?php if(isset($this->session->web_msg)){ ?>
 <script type="text/javascript">
@@ -42,4 +44,4 @@
       <?php }
       ?>
    </head>
-   <body>
+   <body style="background-image: url(<?= base_url('assets/website/images/bg.png')?>);background-attachment:fixed;background-size:cover;background-position:center">

@@ -3,9 +3,9 @@
         <div class="carousel-inner">
           <div class="carousel-item active"><img src="<?= base_url('assets/website/images/ban3.jpeg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
           
-          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban1.jpg')?>" class="d-block w-100" alt="satyakam banner 1"></div>
-          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban2.jpg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
-          <div class="carousel-item"><img src="<?= base_url('assets/website/images/ban4.jpeg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
+          <div class="carousel-item"><img src="<?= base_url('assets/website/images/banner_1.jpg')?>" class="d-block w-100" alt="satyakam banner 1"></div>
+          <div class="carousel-item"><img src="<?= base_url('assets/website/images/banner_2.jpg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
+          <div class="carousel-item"><img src="<?= base_url('assets/website/images/banner_3.jpg')?>" class="d-block w-100" alt="satyakam banner 2"></div>
         </div>
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -18,26 +18,24 @@
       </div>  
     </section>
 
-    <section class="misvis">
+    <section class="misvis ddrm">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-6">
+          <div class="col-md-3 col-6">
             <img src="<?= base_url('assets/website/images/mis.jpg')?>" width="100%">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-9">
              <h4 class="tittle">Satyakam Mission</h4>
-            <p>A leading institution in higher and continuing education committed to engage in quality instruction, development-oriented research sustainable lucrative economic enterprise, and responsive extension and training services through relevant academic programs to empower a human resource that responds effectively to challenges in life and acts as catalyst in the holistoic development of a humane society.</p>
-            <h4 class="tittle">E-Learning Mission</h4>
-            <p>To provide a highly developed form of teaching through maximizing the use of technology which will somehow give an easier and efficient way of learning that will make them to be competitive and productive citizens of the society.</p>
+             <p style="text-align: justify;">A leading institution in higher and continuing education committed to engage in quality instruction, development-oriented research sustainable lucrative economic enterprise, and responsive extension and training services through relevant academic programs to empower a human resource that responds effectively to challenges in life and acts as catalyst in the holistoic development of a humane society.</p>
+            <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Mission :</b> To provide a highly developed form of teaching through maximizing the use of technology which will somehow give an easier and efficient way of learning that will make them to be competitive and productive citizens of the society.</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-9">
             <h4 class="tittle">Satyakam Vision</h4>
-            <p>CHMSC ExCELS: Excellence, Competence, and Educational Leadership in Science and Technology.</p>
-            <p>Driven by its passion for continous improvement, the State College has to vigorously pursue distinction and proficieny in delivering its statutory functions to the Filipino people in the fields of education, business, agro-fishery, industrial, science and technology, through committed and competent human resource, guided by the beacon of innovation and productivity towards the heights of elevated status</p>
-            <h4 class="tittle">E-Learning Vision</h4>
-            <p>To be able to prove to people that Filipinos also know how to cope up with the development in technology this will provide an easier way of teaching and a better form of learning</p>
+             <p style="text-align: justify;">CHMSC ExCELS: Excellence, Competence, and Educational Leadership in Science and Technology. Driven by its passion for continous improvement, the State College has to vigorously pursue distinction and proficieny in delivering its statutory functions to the Filipino people in the fields of education, business, agro-fishery, industrial, science and technology, through committed and competent human resource, guided by the beacon of innovation and productivity towards the heights of elevated status</p>
+            <!-- <h4 class="tittle"></h4> -->
+             <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Vision :</b> To be able to prove to people that Filipinos also know how to cope up with the development in technology this will provide an easier way of teaching and a better form of learning</p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-3 col-6">
             <img src="<?= base_url('assets/website/images/vis.jpg')?>" width="100%">
           </div>
         </div>
@@ -45,11 +43,13 @@
     </section>
 
     <section class="team">
-      <div class="container-fluid">
+      <div class="container">
         
         <div class="row justify-content-center">
-          <div class="col-md-11"><center><div class="section-header text-center"><h2>Directors</h2></div></center></div>
-          <div class="col-md-2">
+          <div class="col-md-12 "><h4 class="tittle">Directors</h4></div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-2 col-6">
             <div class="team-item">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d4.jpg')?>" alt="Image">
@@ -62,11 +62,11 @@
               </div>
               <div class="team-text">
                 <h2>Mr. B Kumar</h2>
-                <p>Chief Managing Director</p>
+                 <p style="text-align: center;">Chief Managing Director</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-6">
             <div class="team-item">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d3.jpg')?>" alt="Image">
@@ -79,11 +79,11 @@
               </div>
               <div class="team-text">
                 <h2>Mr P K Nirala</h2>
-                <p>Chief Project Director</p>
+                 <p style="text-align: center;">Chief Project Director</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-6">
             <div class="team-item">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d5.jpg')?>" alt="Image">
@@ -96,11 +96,11 @@
               </div>
               <div class="team-text">
                 <h2>Mr. R S Paswan</h2>
-                <p>Chief Finance Director</p>
+                 <p style="text-align: center;">Chief Finance Director</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-6">
             <div class="team-item">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d2.jpg')?>" alt="Image">
@@ -113,11 +113,11 @@
               </div>
               <div class="team-text">
                 <h2>Mr. Mukarram Raza</h2>
-                <p>Joint Finance Director</p>
+                 <p style="text-align: center;">Joint Finance Director</p>
               </div>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-6">
             <div class="team-item">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d1.jpg')?>" alt="Image">
@@ -130,7 +130,7 @@
               </div>
               <div class="team-text">
                 <h2>Raza Haider Khan</h2>
-                <p> Managing Director</p>
+                 <p style="text-align: center;"> Managing Director</p>
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@
     <!-- HAPPY NEW WEAR -->
 
 
-   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -155,7 +155,7 @@
     
 </script>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -169,4 +169,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>  -->
