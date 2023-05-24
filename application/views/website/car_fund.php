@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12 mb-2">
+              <!-- <div class="col-md-12 mb-2">
                 <div class="table-responsive">
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
@@ -14,8 +14,9 @@
                     </thead>
                   </table> 
                 </div>
-             </div>
+             </div> -->
              <div class="col-md-12 mb-2">
+             <h5 class="tittle">CAR FUND</h5>
                 <div class="table-responsive">
                  <table class="table table-hover" >
                     <thead>

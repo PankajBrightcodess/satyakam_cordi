@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h1 class="tittle">MEMBER'S LINK</h1>
+            <h3 class="tittle">MEMBER'S LINK</h3>
             <div class="table-responsive">
               <table class="table table-hover" style="text-align: center;">
                 <thead>

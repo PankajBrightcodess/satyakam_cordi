@@ -2,6 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
+          <h3 class="tittle">Daily Activity / Progress Report</h3>
            <!--  <form method="POST" action="<?= base_url('website/daily_report')?>"> -->
             <div class="row">
               <div class="col-md-12 mb-2">
@@ -10,13 +11,14 @@
                     <thead>
                       <tr>
                         <th scope="col">Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
-                        <th scope="col" rowspan="2">Reporting Time : <?php echo date('h:i A');?></th>
-                        <th scope="col" rowspan="2"><h5 class="tittle">Daily Activity / Progress Report</h5></th>
+                        <th scope="col" >Reporting Time : <?php echo date('h:i A');?></th>
+                        <!-- <th scope="col" rowspan="2"><h5 class="tittle">Daily Activity / Progress Report</h5></th> -->
                         <th scope="col">State Unit Code : <?php echo $state_code['code'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col">Day : &nbsp;&nbsp;<?php echo date('l');?></th>
                         <th scope="col">State : <?php  echo $state_code['state'];?></th>
+                        <th scope="col">-</th>
                       </tr>  
                     </thead>
                   </table> 

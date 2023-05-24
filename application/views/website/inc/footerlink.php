@@ -1,13 +1,59 @@
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 <script src="<?php echo file_url("includes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
   <!-- <script src="<?= base_url('includes/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js');?>"></script> -->
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/dataTables.responsive.min.js');?>"></script>
 <script src="<?= base_url('includes/plugins/datatables-responsive/js/responsive.bootstrap4.min.js');?>"></script>
+<script src="<?= base_url('assets/website/js/lightbox.js');?>"></script>
 
+<script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+   <script src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js'></script>
+   <script src='https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js'></script>
+   <script src='https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js'></script>
+   <script src='https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js'></script>
+   <script src='https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js'></script>
+   <script src='https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js'></script>
+   <script src="<?= base_url('assets/website/owlcarousel/owl.carousel.min.js');?>"></script>
+
+    <script>
+        $(document).ready(function() {
+            var owl = $('#partenerrraf');
+            owl.owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                responsive: {
+
+                    0: {
+
+                        items: 1
+                    },
+                    375: {
+
+                        items: 1
+                    },
+                    600: {
+
+                        items: 2
+                    },
+                    960: {
+
+                        items: 2
+                    },
+                    1200: {
+
+                        items: 2
+                    }
+                }
+            });
+        });
+    </script>
 <!-- <script type="text/javascript">
   function myFunction() {
     $('#newyear').modal('show');

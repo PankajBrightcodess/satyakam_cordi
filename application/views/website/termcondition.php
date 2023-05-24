@@ -2,8 +2,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1>Term Condition</h1>
-            <h2>Information we Collect</h2>
+            <h3 class="tittle">Term Condition</h3>
+            <h4>Information we Collect</h4>
             <h4 class="text-success">Log Data</h4>
             <p>When you visit our website, our servers may automatically log the standard data provided by your web browser. It may include your computer's internet protocol (IP) address,your browser type and version,the pages you visit,the time and date of your visit,the time spent on each page,and other details.</p>
              <h4 class="text-success">Device Data</h4>

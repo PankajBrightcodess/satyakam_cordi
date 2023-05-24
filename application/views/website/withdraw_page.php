@@ -4,7 +4,8 @@
            <form action="<?= base_url('website/withdraw_form_submit')?>" enctype="multipart/form-data" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-4">
-            <center class="tittle"><h2>WITHDRAWAL FORM</h2><h4>(<?= date('Y').'-'.date('y',strtotime('+1 year'));?>)</h4></center>
+            <h3 class="tittle">WITHDRAWAL FORM</h3>
+            <h4>(<?= date('Y').'-'.date('y',strtotime('+1 year'));?>)</h4>
            
               <div class="row">
                   <!-- <?= PRE; print_r($account_details);?> -->

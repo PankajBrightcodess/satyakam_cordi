@@ -1,8 +1,8 @@
 <div class="footer">
-    <div class="container">
-        <div class="col-md-12">
+    <div class="container-fluid">
+        
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="footer-newsletter">
                         <h2 style="border-bottom: 1px solid white;">Satyakam Foundation Trust</h2>
                         <p style="text-align:justify">The operation of all the ambitious schemes run by the Satyakam Foundation Trust , mainly to provide many opportunities in the field of health and education and prosperity of rural India, our organization is dedicated to providing help to all sections and communities of the society through its innovative schemes.</p>
@@ -26,12 +26,12 @@
                 <div class="col-md-4">
                     <div class="footer-contact">
                         <h2 style="border-bottom: 1px solid white;">Our Address</h2>
-                        <p><i class="fa fa-map-marker-alt"></i>Satyakam Foundation Trust</p>
-                        <p><i class="fa fa-phone-alt"></i>+91-9031023059, 9031023060</p>
+                        <p><i class="fa fa-map-marker"></i>Maal Godown Road, Near Railway Station, Ward No.-18, Madhubani (Bihar) - 847211</p>
+                        <p><i class="fa fa-phone"></i>+91-9031023059, 9031023060</p>
                         <p><i class="fa fa-envelope"></i>indiaskfoundation468@gmail.com</p>
                     </div>
                 </div>
-                <div class="col-md-3 footer-newsletter">
+                <div class="col-md-2 footer-newsletter">
                     <h2 style="border-bottom: 1px solid white;">Social Links</h2>
                     <div class="footer-social" style="margin-bottom: 10px;margin-left: 26px;">
                         <a href="https://twitter.com/Indiasatyakam22" target="blank"><i class="fab fa-twitter"></i></a>
@@ -42,22 +42,22 @@
                     </div>
                     <div class="form">
                         <input class="form-control" placeholder="Email goes here">
-                        <button class="btn custom-btn" style="background:#ff0000;border: 2px solid #ff0000;color: white;">Submit</button>
+                        <button class="btn custom-btn" style="background:#ffcc2a;color: black;">Submit</button>
                     </div>
                 </div>
                 
                 
             </div>
-        </div>
+        
     </div>
-    <div class="copyright">
-        <div class="container">
+    <div class="copyright" style="border-top: 1px dashed #f8ff00;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <p>All Right Reserved,2022 <a href="#"> Satyakam Foundation Trust</a></p>        
+                    <p>All Right Reserved,2022 <a href="#" style="color:#000"> Satyakam Foundation Trust</a></p>        
                 </div>
                 <div class="col-md-6">
-                    <p>Designed By <a href="https://www.brightcodess.com/"> Brightcode Software Services Pvt Ltd.</a></p>        
+                    <p>Designed By <a href="https://www.brightcodess.com/" style="color:#000"> Brightcode Software Services Pvt Ltd.</a></p>        
                 </div>
             </div>
             

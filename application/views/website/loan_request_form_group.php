@@ -1,10 +1,11 @@
 <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/loan_request_group')?>" enctype="multipart/form-data" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           <form class="fform" action="<?= base_url('website/loan_request_group')?>" enctype="multipart/form-data" method="POST">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
-            <center class="tittle"><h2>LOAN REQUEST FORM(GROUP)</h2><h4><?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4></center>
+            <h3 class="tittle">LOAN REQUEST FORM (GROUP)</h3>
+            <h4><?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4>
            
               <div class="row">
                   <!-- <?= PRE; print_r($account_details);?> -->
@@ -62,7 +63,7 @@
                  <div class="col-md-3 mb-2"></div> 
                  <div class="col-md-3 mb-2"> </div>
                  <div class="col-md-3 mb-2"> </div>
-                 <div class="col-md-12 mb-2 text-center">
+                 <div class="col-md-12 text-center">
                   <input type="submit" class="mt-4 btn btn-sm" style="background:#233799;color:white">
                  </div>
               </div>

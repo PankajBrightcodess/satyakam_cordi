@@ -3,7 +3,8 @@
         <div class="row">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-3">
-            <center class="tittle"><h2>REGISTERED NOW</h2><h4>Vacancy Sign Up Form</h4></center>
+            <h3 class="tittle">REGISTERED NOW</h3>
+            <h4>Vacancy Sign Up Form</h4>
             <form action="<?= base_url('website/vacencysignup_create')?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;">
              <!--  <form action="<?= base_url('website/vacency_signup_otp');?>" method="POST" style="border:1px solid black;padding:10px; margin-top:20px; background:white;"> -->
               <div class="row">

@@ -41,7 +41,7 @@
                   <label>DEPOSIT DATE</label>
                   <input name="dp_date" type="date" id="dp_date" class="form-control" required placeholder="Deposit Date">
               </div>
-              <div class="col-md-12 mb-5">
+              <div class="col-md-12 mb-2">
                
                   <label>RECEIPT NO.</label>
                   <input name="recept_no" type="text"  class="form-control" required placeholder="recept_no">
@@ -49,12 +49,10 @@
               <!-- <div class="col-md-6">
                    <a href="<?= base_url('website/signup');?>"><input type="button"   name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
               </div> -->
-              <div class="col-md-12 text-center mb-3" >
+              <div class="col-md-12 text-center mb-2" >
                 <button type="submit" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
               </div>
-              <div class="col-md-12">
-                <hr>
-              </div>
+              
                
             </div>
             </form>

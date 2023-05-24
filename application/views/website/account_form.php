@@ -1,10 +1,11 @@
 <section class="officialservices">
       <div class="container">
         <div class="row">
-           <form action="<?= base_url('website/create_account')?>" enctype="multipart/form-data" method="POST" style="border:1px solid black;padding-top:10px; margin-top:20px; background:white;">
+           <form action="<?= base_url('website/create_account')?>" enctype="multipart/form-data" method="POST" style="border: 1px solid black;padding-top: 10px;margin-top: 34px;margin-bottom: 50px;background: white;box-shadow: 0px 0px 25px 0px #023dc9;">
               <div class="col-md-12 mb-3"></div>
           <div class="col-md-12 mb-5">
-            <center class="tittle"><h2>4-WS(WEEKLY SAVING)</h2><h4>ACCOUNT OPEN-FORM <?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4></center>
+            <h3 class="tittle">4-WS(WEEKLY SAVING)</h3>
+            <h4>ACCOUNT OPEN-FORM <?= date('Y').'-'.date('y',strtotime('+1 year'));?></h4>
            
               <div class="row">
                   <div class="col-md-9 mt-3">

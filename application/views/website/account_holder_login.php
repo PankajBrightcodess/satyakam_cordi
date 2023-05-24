@@ -41,7 +41,7 @@
                   <label>ACCOUNT NO.</label>
                   <input name="ac_no" type="text" id="ac_no" class="form-control" required placeholder="Account No.">
               </div>
-              <div class="col-md-12 mb-5">
+              <div class="col-md-12 mb-2">
                
                   <label>MOBILE NO.</label>
                   <input name="mobile" type="text" id="mobile" class="form-control" required placeholder="Mobile No.">
@@ -49,12 +49,10 @@
               <!-- <div class="col-md-6">
                    <a href="<?= base_url('website/signup');?>"><input type="button"   name="btnLogin" value="SIGNUP"  class="btn btn-danger btn-block"></a>
               </div> -->
-              <div class="col-md-12 text-center mb-3" >
+              <div class="col-md-12 text-center mb-2" >
                 <button type="submit" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
               </div>
-              <div class="col-md-12">
-                <hr>
-              </div>
+             
                
             </div>
             </form>
