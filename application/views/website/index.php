@@ -45,7 +45,7 @@
             <img src="<?= base_url('assets/website/images/mis.jpg')?>" width="100%">
           </div>
           <div class="col-md-9">
-             <h4 class="tittle">Satyakam Mission.</h4>
+             <h4 class="tittle">Satyakam Mission</h4>
              <p style="text-align: justify;">A leading institution in higher and continuing education committed to engage in quality instruction, development-oriented research sustainable lucrative economic enterprise, and responsive extension and training services through relevant academic programs to empower a human resource that responds effectively to challenges in life and acts as catalyst in the holistoic development of a humane society.</p>
             <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Mission :</b> To provide a highly developed form of teaching through maximizing the use of technology which will somehow give an easier and efficient way of learning that will make them to be competitive and productive citizens of the society.</p>
           </div>
