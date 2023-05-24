@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h4 class="tittle">About Satyakam Trust Foundation</h4>
+            <h4 class="tittle">About Satyakam Trust Foundation | About us</h4>
           </div>
           <div class="col-md-4">
             <img src="<?= base_url('assets/website/images/abbt.png')?>" width="100%">
