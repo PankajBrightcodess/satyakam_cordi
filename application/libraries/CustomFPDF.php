@@ -29,6 +29,7 @@ function txtentities($html){
     $trans = array_flip($trans);
     return strtr($html, $trans);
 }
+#[AllowDynamicProperties]
 class CustomFPDF extends FPDF {
 
     // public function header($family){
