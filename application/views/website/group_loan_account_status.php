@@ -41,17 +41,15 @@
                   <label>Group User Name</label>
                   <input type="text" name="group_id" id="group_id" class="form-control" required placeholder="Group User Name">
               </div>
-              <div class="col-md-12 mb-5">
+              <div class="col-md-12 mb-3">
                
                   <label>Member Id</label>
                   <input name="member_id" type="text"  class="form-control" required placeholder="Member Id">
               </div>
-              <div class="col-md-12 text-center mb-3" >
+              <div class="col-md-12 text-center mb-2">
                 <button type="submit" value="LOGIN" class="btn btn-block btn-success">LOGIN</button>
               </div>
-              <div class="col-md-12">
-                <hr>
-              </div>
+              
                
             </div>
             </form>

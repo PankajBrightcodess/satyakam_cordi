@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
           <div class="col-md-12">
             <div class="row">
-              <div class="col-md-12 mb-2">
+              <!-- <div class="col-md-12 mb-2">
                 <div class="table-responsive">
                  <table class="table table-hover" style="text-align: center;">
                     <thead>
@@ -14,8 +14,10 @@
                     </thead>
                   </table> 
                 </div>
-             </div>
+             </div> -->
               <div class="col-md-12 mb-2">
+              <h5 class="tittle">ACCOUNT HOLDER LIST</h5>
+              <aside><a href="<?php echo base_url('website/print_acc_list');?>" class="btn- btn-sm btn-success mb-2 mt-2">Print</a></aside>
                   <table class="table-responsive table">
                     <thead>
                       <tr>

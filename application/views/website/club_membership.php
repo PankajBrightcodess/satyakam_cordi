@@ -2,8 +2,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <center><h1 class="tittle">Club Membership Form <?= date('Y').'-'.date('y',strtotime('+1 year'));?></h1></center>
-                    <form action="<?php echo base_url('website/add_club_membership');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
+                    <h3 class="tittle">Club Membership Form <?= date('Y').'-'.date('y',strtotime('+1 year'));?></h3>
+                    <form class="fform" action="<?php echo base_url('website/add_club_membership');?>"  method="POST" enctype="multipart/form-data" >
                         <div class="row">
                           <div class="col-md-8">
                             <label>Apply Date</label>

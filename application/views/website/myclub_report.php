@@ -1,10 +1,10 @@
 <section class="officialservices">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
             <form method="POST" action="<?= base_url('website/my_clubreport_insert')?>">
             <div class="row">
-              <div class="col-md-12 mb-2">
+              <!-- <div class="col-md-12 mb-2">
                 <div class="table-responsive">
                 <table class="table table-hover" style="text-align: center;">
                     <thead>
@@ -14,8 +14,9 @@
                     </thead>
                   </table> 
                 </div>
-             </div>
+             </div> -->
              <div class="col-md-12 mb-2">
+             <h5 class="tittle">My Club Report</h5>
                 <div class="table-responsive">
                  <table class="table table-hover" >
                     <thead>

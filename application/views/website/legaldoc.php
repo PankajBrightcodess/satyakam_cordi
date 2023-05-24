@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h4 class="tittle">Legal Documents</h4>
+            <h3 class="tittle">Legal Documents</h3>
           </div>
           <div class="col-md-3">
              <a href="<?= base_url('assets/website/legaldocpdf/NMC21.pdf');?>" target="_blank"><h6 class="btn btn-danger btn-block">NMC21</h6></a>

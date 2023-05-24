@@ -30,6 +30,13 @@
 
    <link rel="stylesheet" href="<?= base_url('assets/payment_css/android.css')?>">
    <link rel="stylesheet" href="<?= base_url('assets/website/css/lightbox.css')?>">
+
+   <link rel="stylesheet" href="<?= base_url('assets/website/owlcarousel/owl.carousel.min.css')?>">
+    <link rel="stylesheet" href="<?= base_url('assets/website/owlcarousel/owl.theme.default.min.css')?>">
+
+
+
+
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <?php if(isset($this->session->web_msg)){ ?>
 <script type="text/javascript">
@@ -43,5 +50,16 @@
 </script>
       <?php }
       ?>
+      <style>
+         /*==================== BANNER MEDIA QUERRY =========================*/
+@media(min-width: 2560px){.mobile{display: none!important;}}
+@media(min-width: 1440px){.mobile{display: none!important;}}
+@media(min-width: 1024px){.mobile{display: none!important;}}
+@media(min-width: 768px){.mobile{display: none!important;}}
+@media(max-width: 576px){.desktopp{ display: none!important;}}
+@media (max-width: 425px){.desktopp{ display: none!important;}}
+@media (max-width: 375px){.desktopp{ display: none!important;}}
+@media (max-width: 320px){.desktopp{ display: none!important;}}
+      </style>
    </head>
    <body style="background-image: url(<?= base_url('assets/website/images/bg.png')?>);background-attachment:fixed;background-size:cover;background-position:center">

@@ -2,7 +2,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <center><h1 class="tittle">APPLICATION</h1><h3 class="tittle">(<?php echo  date('Y').'-'.date('y',strtotime('+1 year'))?>)</h3></center>
+                    <h3 class="tittle">APPLICATION</h3>
+                    <h3>(<?php echo  date('Y').'-'.date('y',strtotime('+1 year'))?>)</h3>
                     <!-- <h4 class="text-success mb-3">Student's Details</h4> -->
                     <form action="<?= base_url('website/vacencyform_submit');?>"  method="POST" enctype="multipart/form-data" style="border:1px solid black;padding: 10px;margin-top: 20px;background: white;">
                         <div class="row">

@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <h1 class="tittle">MY SAVING ACCOUNT FEATURE</h1>
+            <h3 class="tittle">MY SAVING ACCOUNT FEATURE</h3>
             <div class="table-responsive">
               <table class="table table-hover" style="text-align: center;">
                 <thead>
@@ -14,51 +14,51 @@
                 <tbody>
                   <tr>
                       <td>LOAN REQUEST FORM</td>
-                      <td><a href="<?php echo base_url('website/loan_req_form_group');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?php echo base_url('website/loan_req_form_group');?>" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>LOAN REQUEST FORM</td>
-                      <td><a href="<?php echo base_url('website/loan_req_form_member');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?php echo base_url('website/loan_req_form_member');?>" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                    <tr>
                       <td>ACCOUNT STATUS</td>
-                      <td><a href="<?= base_url('website/group_loan_request');?>" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="<?= base_url('website/group_loan_request');?>" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>ACCOUNT STATUS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                    <tr>
                       <td>EMI DEPOSIT</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>EMI DEPOSIT</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                  <tr>
                       <td>NO DUES CERTIFICATE</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>NO DUES CERTIFICATE</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                   <tr>
                       <td>ULTIMATUM</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>ULTIMATUM</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                   <tr>
                       <td>ALL A/C LIST AND STATUS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>ALL A/C LIST AND STATUS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                   <tr>
                       <td>MY REPORT</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>MY REPORT</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                    <tr>
                       <td>MY EVENTS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                       <td>MY EVENTS</td>
-                      <td><a href="#" class="btn btn-sm btn-success ml-2">CLICK HERE</a></td>
+                      <td><a href="#" class="btn btn-sm btn-success btn-block ml-2">CLICK HERE</a></td>
                   </tr>
                 </tbody>
               </table>

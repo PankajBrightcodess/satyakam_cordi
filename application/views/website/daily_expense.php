@@ -2,7 +2,8 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
-            <form method="POST" action="<?= base_url('website/expense_insert')?>">
+          <h5 class="tittle">DAILY EXPENSES</h5>
+            <form method="POST" action="<?= base_url('website/expense_insert')?>" style="background:#fff;padding:10px">
             <div class="row">
               <div class="col-md-12 mb-2">
                 <div class="table-responsive">
@@ -11,7 +12,7 @@
                       <tr>
                         <th scope="col">Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
                         <!-- <th scope="col" rowspan="2">Reporting Time : 10:00 A.M.</th> -->
-                        <th scope="col" rowspan="4"><h5 class="tittle">DAILY EXPENSES</h5></th>
+                        <!-- <th scope="col" rowspan="4"><h5 class="tittle">DAILY EXPENSES</h5></th> -->
                         <th scope="col">State Unit Code :&nbsp;&nbsp;<?php echo $state_code['code'];?></th>
                       </tr> 
                       <tr>
@@ -84,7 +85,7 @@
                     </tbody>
                   </table> -->
                   <div class="row">
-                    <div class="col-md-12"><button class="btn-sm btn-success btn add_expense">+</button></div>
+                    <div class="col-md-12"><button class="btn-sm btn-success btn add_expense mb-2">+ Add More Field</button></div>
                   </div>
                   <div class="row expenses">
                     <div class="col-md-12 mb-2"><input type="text" name="equipment[]" id="equipment" placeholder="Name Of The Equipment/Expense Details" class="form-control"></div>

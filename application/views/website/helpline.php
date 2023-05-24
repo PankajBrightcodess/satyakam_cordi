@@ -1,7 +1,7 @@
 <div class="contact">
    <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="tittle">Helpline Services</h2>
+                    <h3 class="tittle">Helpline Services</h3>
                 </div>
      <div class="row align-items-center contact-information">
               <div class="col-md-6 col-lg-4">

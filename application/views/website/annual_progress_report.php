@@ -4,7 +4,7 @@
              <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title text-center" style="background:#ff0000;color: white;">Annual Progress Report</h3>
+                        <h3 class="tittle">Annual Progress Report</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">

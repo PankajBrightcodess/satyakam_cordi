@@ -17,6 +17,43 @@
    <script src='https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js'></script>
    <script src='https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js'></script>
    <script src='https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js'></script>
+   <script src="<?= base_url('assets/website/owlcarousel/owl.carousel.min.js');?>"></script>
+
+    <script>
+        $(document).ready(function() {
+            var owl = $('#partenerrraf');
+            owl.owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                responsive: {
+
+                    0: {
+
+                        items: 1
+                    },
+                    375: {
+
+                        items: 1
+                    },
+                    600: {
+
+                        items: 2
+                    },
+                    960: {
+
+                        items: 2
+                    },
+                    1200: {
+
+                        items: 2
+                    }
+                }
+            });
+        });
+    </script>
 <!-- <script type="text/javascript">
   function myFunction() {
     $('#newyear').modal('show');

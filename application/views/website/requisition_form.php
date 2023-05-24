@@ -2,6 +2,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12">
+          <h5 class="tittle">OFFICE RESOURCE REQUISITION FORM</h5>
             <form method="POST" action="<?= base_url('website/requisition_insert')?>">
             <div class="row">
               <div class="col-md-12 mb-2">
@@ -10,14 +11,11 @@
                     <thead>
                       <tr>
                         <th scope="col">Date : &nbsp;&nbsp;<?php echo date('d-m-Y');?></th>
-                        <!-- <th scope="col" rowspan="2">Reporting Time : 10:00 A.M.</th> -->
-                        <th scope="col" rowspan="4"><h5 class="tittle">OFFICE RESOURCE REQUISITION FORM</h5></th>
                         <th scope="col">State Unit Code :&nbsp;&nbsp;<?php echo $state_code['code'];?></th>
                       </tr> 
                       <tr>
                         <th scope="col">Day :&nbsp;&nbsp;<?php echo date('l');?></th>
-                       
-                        <th scope="col">State :&nbsp;&nbsp;<?php  echo $state_code['state'];?></th>
+                       <th scope="col">State :&nbsp;&nbsp;<?php  echo $state_code['state'];?></th>
                       </tr>  
                     </thead>
                   </table> 
