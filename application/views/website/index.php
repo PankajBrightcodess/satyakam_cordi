@@ -80,8 +80,8 @@
                 <!-- <h6 style="font-family: 'Paprika', cursive;color:#d39157" class="mb-2"></h6> 
             </div> -->
             
-            <div class="row">
-            <div class="col-md-12"><h4 class="tittle" style="background: #032dbd;
+            <div class="row justify-content-center">
+            <div class="col-md-4"><h4 class="tittle" style="background: #032dbd;
     box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Testimonial</h4></div>
                 <div class="col-md-12" style="margin-top: 20px;">
                     <div class="owl-carousel owl-theme" id="partenerrraf">
@@ -158,7 +158,7 @@
       <div class="container">
         
         <div class="row justify-content-center">
-          <div class="col-md-10 "><h4 class="tittle mb-3" style="background: #032dbd;
+          <div class="col-md-4"><h4 class="tittle mb-3" style="background: #032dbd;
     box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Our Board Of Directors</h4></div>
         </div>
         <div class="row justify-content-center">
