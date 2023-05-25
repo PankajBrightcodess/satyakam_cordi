@@ -75,12 +75,14 @@
     <section class="parent" style="padding-top: 30px; padding-bottom: 30px;background: url(assets/website/images/bggg.png);
     background-attachment: fixed;background-size: cover;">
         <div class="container">
-            <div class="section-header text-center">
+            <!-- <div class="section-header text-center">
                 <h1 style="font-family: 'Paprika', cursive;color:#d39157">Testimonial</h1>
-                <!-- <h6 style="font-family: 'Paprika', cursive;color:#d39157" class="mb-2"></h6> -->
-            </div>
+                <!-- <h6 style="font-family: 'Paprika', cursive;color:#d39157" class="mb-2"></h6> 
+            </div> -->
             <hr style="border: 1px solid white">
             <div class="row">
+            <div class="col-md-12"><h4 class="tittle" style="background: #032dbd;
+    box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Testimonial</h4></div>
                 <div class="col-md-12" style="margin-top: 20px;">
                     <div class="owl-carousel owl-theme" id="partenerrraf">
                         <div class="item">
