@@ -1,15 +1,15 @@
-<div class="header-top pt-1 pb-1" style="background:#0b1538;border-bottom:1px solid #fff">
+<div class="header-top pt-1 pb-1" style="background:#fff;border-bottom:1px solid #fff">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-4 top-center" style="padding-right: 0px;">
         <!-- <p style="font-size: 18px" class="mb-0">Social Development Organisation</p> -->
-        <p style="font-size: 16px;color:#fff" class="mb-0 text-center">Registered By Trust Authority Under GOI</p>
+        <p style="font-size: 16px;color:#000;font-weight:600" class="mb-0 text-center">Registered By Trust Authority Under GOI</p>
       </div>
       <div class="col-md-4" style="padding-right: 0px;padding-left: 0px;">
-        <p style="color:#fff;text-align:center" class="mb-0"><i class="fa fa-envelope" style="color: #ff6c16;"></i> : indiaskfoundation468@gmail.com</p>
+        <p style="color:#000;font-weight:600;text-align:center" class="mb-0"><i class="fa fa-envelope" style="color: #ff6c16;"></i> : indiaskfoundation468@gmail.com</p>
       </div>
       <div class="col-md-2 col-8 top-center" style="padding-right: 0px;padding-left: 0px;">
-        <p style="color:#fff;text-align:center" class="mb-0"><i class="fa fa-phone" style="color: #ff6c16;"></i> : +91-9470879074</p>
+        <p style="color:#000;font-weight:600;text-align:center" class="mb-0"><i class="fa fa-phone" style="color: #ff6c16;"></i> : +91-9470879074</p>
       </div>
       <div class="col-md-2 col-4 top-right" style="padding-left: 0px;">
         <p class="mb-0" style="text-align:center">
