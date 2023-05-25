@@ -50,7 +50,7 @@
             <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Mission :</b> To provide a highly developed form of teaching through maximizing the use of technology which will somehow give an easier and efficient way of learning that will make them to be competitive and productive citizens of the society.</p>
           </div>
           <div class="col-md-9">
-          <h4 class="wow slideInLeft" data-wow-duration="3s" style="
+          <h4 class="wow slideInLeft" data-wow-duration="4s" style="
     color: #fff;
     padding: 10px 20px 10px 0px;
     text-align: right;
