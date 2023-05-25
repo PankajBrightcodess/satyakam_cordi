@@ -30,6 +30,10 @@
 
    <link rel="stylesheet" href="<?= base_url('assets/payment_css/android.css')?>">
    <link rel="stylesheet" href="<?= base_url('assets/website/css/lightbox.css')?>">
+   <link rel="stylesheet" href="<?= base_url('assets/website/css/animate.css')?>">
+   <link rel="stylesheet" href="<?= base_url('assets/website/lib/animate/animate.min.css')?>">
+
+   
 
    <link rel="stylesheet" href="<?= base_url('assets/website/owlcarousel/owl.carousel.min.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/website/owlcarousel/owl.theme.default.min.css')?>">

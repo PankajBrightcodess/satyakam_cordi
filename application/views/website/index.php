@@ -45,12 +45,19 @@
             <img src="<?= base_url('assets/website/images/mis.jpg')?>" width="100%">
           </div>
           <div class="col-md-9">
-             <h4 class="tittle">Satyakam Mission</h4>
+             <h4 class="tittle wow slideInRight" data-wow-duration="3s">Satyakam Mission</h4>
              <p style="text-align: justify;">A leading institution in higher and continuing education committed to engage in quality instruction, development-oriented research sustainable lucrative economic enterprise, and responsive extension and training services through relevant academic programs to empower a human resource that responds effectively to challenges in life and acts as catalyst in the holistoic development of a humane society.</p>
             <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Mission :</b> To provide a highly developed form of teaching through maximizing the use of technology which will somehow give an easier and efficient way of learning that will make them to be competitive and productive citizens of the society.</p>
           </div>
           <div class="col-md-9">
-            <h4 class="tittle">Satyakam Vision</h4>
+          <h4 class="wow slideInLeft" data-wow-duration="3s" style="
+    color: #fff;
+    padding: 10px 20px 10px 0px;
+    text-align: right;
+    margin-top: 10px;
+    border-radius: 38px;
+    background:linear-gradient(269deg, #032dbd, transparent)
+    ">Satyakam Vision</h4>
              <p style="text-align: justify;">CHMSC ExCELS: Excellence, Competence, and Educational Leadership in Science and Technology. Driven by its passion for continous improvement, the State College has to vigorously pursue distinction and proficieny in delivering its statutory functions to the Filipino people in the fields of education, business, agro-fishery, industrial, science and technology, through committed and competent human resource, guided by the beacon of innovation and productivity towards the heights of elevated status</p>
             <!-- <h4 class="tittle"></h4> -->
              <p style="text-align: justify;"><b style="font-weight: 600;">E-Learning Vision :</b> To be able to prove to people that Filipinos also know how to cope up with the development in technology this will provide an easier way of teaching and a better form of learning</p>
@@ -66,7 +73,8 @@
       <div class="container">
         
         <div class="row justify-content-center">
-          <div class="col-md-12 "><h4 class="tittle">Directors</h4></div>
+          <div class="col-md-10 "><h4 class="tittle" style="background: #032dbd;
+    box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Directors</h4></div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-2 col-6">

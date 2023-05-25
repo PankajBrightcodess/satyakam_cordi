@@ -816,6 +816,11 @@ $('body').on('change','.year', function(){
         });
 });
 </script>
+
+<script src="<?= base_url('assets/website/js/wow.min.js');?>"></script>
+      <script>
+        new WOW().init();
+     </script>
 </body>
 </html>
 
