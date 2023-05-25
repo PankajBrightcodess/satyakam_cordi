@@ -69,6 +69,89 @@
       </div>
     </section>
 
+    
+
+
+    <section class="parent" style="padding-top: 30px; padding-bottom: 30px;background: url(assets/website/images/bggg.png);
+    background-attachment: fixed;background-size: cover;">
+        <div class="container">
+            <div class="section-header text-center">
+                <h1 style="font-family: 'Paprika', cursive;color:#d39157">Testimonial</h1>
+                <!-- <h6 style="font-family: 'Paprika', cursive;color:#d39157" class="mb-2"></h6> -->
+            </div>
+            <hr style="border: 1px solid white">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 20px;">
+                    <div class="owl-carousel owl-theme" id="partenerrraf">
+                        <div class="item">
+                            <div class="card">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px;">
+                                        <center><img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px;padding-bottom: 20px;">
+                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
+                                            <p style="color: #fff;text-align:center"> Satya Singh</p>
+
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <center>
+                                            <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px; "> </center>
+                                            <img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;">
+                                        </center>
+                                        <center>
+                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
+                                            <p style="color: #fff;text-align:center"> Khushboo Kumari</p>
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px;"> </center>
+                                        <center><img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;"></center>
+                                        <center>
+                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
+                                            <p style="color: #fff;text-align:center"> Ashok Singh</p>
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-12">
+                                        <center>
+                                            <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px; "> </center>
+                                            <img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;">
+                                        </center>
+                                        <center>
+                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
+                                            <p style="color: #fff;text-align:center"> Shivam Kumar</p>
+
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="team">
       <div class="container">
         
@@ -164,88 +247,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-
-    <section class="parent" style="padding-top: 30px; padding-bottom: 30px;background: url(assets/website/images/bggg.png);
-    background-attachment: fixed;background-size: cover;">
-        <div class="container">
-            <div class="section-header text-center">
-                <h1 style="font-family: 'Paprika', cursive;color:#d39157">Testimonial</h1>
-                <!-- <h6 style="font-family: 'Paprika', cursive;color:#d39157" class="mb-2"></h6> -->
-            </div>
-            <hr style="border: 1px solid white">
-            <div class="row">
-                <div class="col-md-12" style="margin-top: 20px;">
-                    <div class="owl-carousel owl-theme" id="partenerrraf">
-                        <div class="item">
-                            <div class="card">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-                                        <img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px;">
-                                        <center><img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px;padding-bottom: 20px;">
-                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
-                                            <p style="color: #fff;text-align:center"> Satya Singh</p>
-
-
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-                                        <center>
-                                            <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px; "> </center>
-                                            <img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;">
-                                        </center>
-                                        <center>
-                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
-                                            <p style="color: #fff;text-align:center"> Khushboo Kumari</p>
-
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-                                        <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px;"> </center>
-                                        <center><img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;"></center>
-                                        <center>
-                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
-                                            <p style="color: #fff;text-align:center"> Ashok Singh</p>
-
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-                                        <center>
-                                            <center><img src="<?= base_url('assets/website/images/quote.png')?>" class="quote" style="border-radius: 20px;margin-top: -11px; position: absolute; width: 34px; "> </center>
-                                            <img src="<?= base_url('assets/website/images/unnamed.jpg')?>" class="img-fluid" alt="dbms" style="width: 65px; padding-bottom: 20px;">
-                                        </center>
-                                        <center>
-                                            <p style="color: #fff;">To the Social Development Organization, I extend my deepest gratitude for their unwavering dedication, their passion for change, and their commitment to social development. They are an inspiration to us all and a testament to what can be achieved when compassion and determination come together for a greater good.</p>
-                                            <p style="color: #fff;text-align:center"> Shivam Kumar</p>
-
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
 
