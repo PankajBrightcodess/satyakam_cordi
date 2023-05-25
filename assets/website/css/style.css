@@ -687,5 +687,10 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
     .navbar .navbar-brand{
         width: 35%;
     }
+    nav .navbar-nav .nav-item .nav-link {
+        padding: 7px;
+        font-size: 15px;
+        margin-left: 10px;
+    }
 }
 
