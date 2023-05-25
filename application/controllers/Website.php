@@ -50,6 +50,7 @@ class Website extends CI_Controller {
 
 		public function officer_dashboard(){
 			$id = $_SESSION['user_id'];
+			// print_r($id);die;
 			$record= $this->Website_model->getuser($id);
 			$finalrecord = $record[0];
 			$d['records']= $this->Website_model->getmenudetailsbyid($finalrecord);

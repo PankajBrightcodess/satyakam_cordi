@@ -42,7 +42,7 @@
                     </div>
                     <div class="form">
                         <input class="form-control" placeholder="Email goes here">
-                        <button class="btn custom-btn" style="background:#ffcc2a;color: black;">Submit</button>
+                        <button class="btn custom-btn" style="background:#ff6c16;color: black;">Submit</button>
                     </div>
                 </div>
                 

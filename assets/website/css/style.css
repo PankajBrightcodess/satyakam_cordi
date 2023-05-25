@@ -171,7 +171,7 @@
   margin-right: .1rem;
 }
 nav.navbar {
-    background: linear-gradient(180deg, #042abb, #004bd3);
+    background:#0b1538;
     /* padding: 1px; */
 }
 nav .navbar-nav .nav-item .nav-link {
@@ -187,7 +187,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     /* font-weight: 600; */
     /* background-color: #0048d1; */
     /* border: 1px solid white; */
-    color: #ffcc2a!important;
+    color: #ff6c16!important;
     /* padding: 15px; */
 }
 .dropdown-menu {
@@ -213,7 +213,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
 .dropdown-item:focus, .dropdown-item:hover {
     color: #16181b;
     text-decoration: none;
-    background-color: #ffcc2a7a;
+    background-color: #ff6c167a;
     /* border-radius: 10px; */
 }
 .misvis{ 
@@ -246,7 +246,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     width: 100%;
 }
 .misvis table tr th {
-    background: #ffcc2a87;
+    background: #ff6c1687;
     border: 1px solid #2e3192;
     color: #000000;
 }
@@ -282,7 +282,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
 } */
 .tittle {
     background: linear-gradient(90deg, #032dbd, transparent);
-    color: #ffd759;
+    color: #fff;
     padding: 10px 0px 10px 32px;
     /* text-align: center; */
     margin-top: 10px;
@@ -428,7 +428,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     position: relative;
     /* margin-top: 33px; */
     padding-top: 48px;
-    background: #0333c1;
+    background: #0b1538;
 }
 .footer .footer-contact,.footer .footer-link,.footer .footer-newsletter {
     position: relative;
@@ -442,7 +442,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     padding-bottom: 10px;
     font-size: 20px;
     font-weight: 700;
-    color:#ffcc2a;
+    color:#ff6c16;
 }
 /*.footer .footer-contact h2::after,
 .footer .footer-link h2::after,
@@ -475,7 +475,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
 }
 .footer .footer-contact p i {
     width: 30px;
-    color: #ffcc2a;
+    color: #ff6c16;
 }
 .footer .footer-social {
     position: relative;
@@ -508,7 +508,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
 .footer .footer-newsletter input {
     height: 60px;
     background: transparent;
-    border: 1px solid #f8ff00;
+    border:1px solid #ff6c16;
     border-radius: 5px;
 }
 .footer .footer-newsletter .btn {
@@ -525,7 +525,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
     width: 100%;
     padding: 9px 0;
     text-align: center;
-    background:#ffcc2a;
+    background:#ff6c16;
 }
 .footer .copyright p {
     margin: 0;
@@ -577,10 +577,10 @@ nav .navbar-nav .nav-item .nav-link:hover {
     text-align: justify;
 }
 .navbar .fa {
-    color:#ffcc2a;
+    color:#ff6c16;
 }
 nav .navbar-nav .nav-item .nav-link:hover .fa {
-    color:#ffcc2a;
+    color:#ff6c16;
 }
 .fform{
     border: 1px solid black;
@@ -630,7 +630,7 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
  }
  .parent .card {
     padding: 34px 12px 36px 25px;
-    background-color: #b21d0029;
+    background-color: #a3be0c87;
     box-shadow: 2px 2px 5px 2px #d291028f;
     border: none;
 }
@@ -661,8 +661,8 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
 
 @media(max-width:1440px){
     nav .navbar-nav .nav-item .nav-link {
-    padding:7px;
-    font-size: 13px;
+        padding: 10px;
+        font-size: 15px;
 }
 .navbar .navbar-brand{
     width: 10%;
