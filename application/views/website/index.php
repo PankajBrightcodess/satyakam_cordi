@@ -154,6 +154,7 @@
             </div>
         </div>
     </section>
+
     <section class="team">
       <div class="container">
         
@@ -163,7 +164,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-2 col-8">
-            <div class="team-item">
+            <div class="team-item wow slideInDown" data-wow-duration="3s">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d4.jpg')?>" alt="Image">
                 <div class="team-social">
@@ -180,7 +181,7 @@
             </div>
           </div>
           <div class="col-md-2 col-8">
-            <div class="team-item">
+            <div class="team-item wow slideInDown" data-wow-duration="4s">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d3.jpg')?>" alt="Image">
                 <div class="team-social">
@@ -197,7 +198,7 @@
             </div>
           </div>
           <div class="col-md-2 col-8">
-            <div class="team-item">
+            <div class="team-item wow slideInDown" data-wow-duration="5s">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d5.jpg')?>" alt="Image">
                 <div class="team-social">
@@ -214,7 +215,7 @@
             </div>
           </div>
           <div class="col-md-2 col-8">
-            <div class="team-item">
+            <div class="team-item wow slideInDown" data-wow-duration="6s">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d2.jpg')?>" alt="Image">
                 <div class="team-social">
@@ -231,7 +232,7 @@
             </div>
           </div>
           <div class="col-md-2 col-8">
-            <div class="team-item">
+            <div class="team-item wow slideInDown" data-wow-duration="7s">
               <div class="team-img">
                 <img src="<?= base_url('assets/website/images/d1.jpg')?>" alt="Image">
                 <div class="team-social">
