@@ -204,9 +204,9 @@ nav .navbar-nav .nav-item .nav-link:hover {
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #2e3192;
+    background-color: #0b1538;
     background-clip: padding-box;
-    border: 1px solid rgb(46 49 146);
+    border: 1px solid rgb(255 108 22);
     border-radius: 0.25rem;
     color: white;
 }
@@ -530,7 +530,7 @@ nav .navbar-nav .nav-item .nav-link:hover {
 .footer .copyright p {
     margin: 0;
     display: inline-block;
-    color: #000;
+    color:#fff;
 }
 .footer .copyright p a {
     color: #000000;
@@ -638,7 +638,7 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
  @media(max-width:1920px){
     nav .navbar-nav .nav-item .nav-link {
     padding:7px;
-    font-size: 15px;
+    font-size: 20px;
 }
 .navbar .navbar-brand{
     width: 15%;
@@ -646,7 +646,9 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
 }
 
 
-
+.dropdown-item {
+    font-size: 16px;
+}
 
 
 
@@ -667,11 +669,18 @@ nav .navbar-nav .nav-item .nav-link:hover .fa {
 .navbar .navbar-brand{
     width: 10%;
 }
+.dropdown-item {
+    font-size: 15px;
+}
+
 }
 @media(max-width:1024px){
     nav .navbar-nav .nav-item .nav-link {
     padding:7px;
-    font-size: 11px;
+    font-size: 12px;
+}
+.dropdown-item {
+    font-size: 12px;
 }
 }
 @media(max-width:576px){

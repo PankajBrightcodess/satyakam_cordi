@@ -54,10 +54,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <p>All Right Reserved,2022 <a href="#" style="color:#000"> Satyakam Foundation Trust</a></p>        
+                    <p>All Right Reserved,2022 <a href="#" style="color:#fff"> Satyakam Foundation Trust</a></p>        
                 </div>
                 <div class="col-md-6">
-                    <p>Designed By <a href="https://www.brightcodess.com/" style="color:#000"> Brightcode Software Services Pvt Ltd.</a></p>        
+                    <p>Designed By <a href="https://www.brightcodess.com/" style="color:#fff"> Brightcode Software Services Pvt Ltd.</a></p>        
                 </div>
             </div>
             
