@@ -157,7 +157,7 @@
         
         <div class="row justify-content-center">
           <div class="col-md-10 "><h4 class="tittle" style="background: #032dbd;
-    box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Directors</h4></div>
+    box-shadow: 2px 2px 2px 2px #808080cc;text-align:center">Our Board Of Directors</h4></div>
         </div>
         <div class="row justify-content-center">
           <div class="col-md-2 col-6">
