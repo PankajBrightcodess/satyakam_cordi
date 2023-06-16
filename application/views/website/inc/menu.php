@@ -8,7 +8,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active"><a class="nav-link" href="<?= base_url('website');?>"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
       <li class="nav-item dropdown  active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-id-card" aria-hidden="true"></i> About Us</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-id-card" aria-hidden="true"></i> About</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?= base_url('website/aboutus');?>" style="color:white">About Us</a>
           <a class="dropdown-item" href="<?= base_url('website/foundermessage');?>" style="color:white">Founder Message</a>
@@ -22,7 +22,7 @@
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/gallery');?>"><i class="fa fa-film" aria-hidden="true"></i> Gallery</a></li>
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/legaldoc');?>"><i class="fa fa-space-shuttle" aria-hidden="true"></i> Legal Documents</a></li>
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/privacypolicy');?>"><i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Policy</a></li>
-      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/contactus');?>"><i class="fa fa-tty" aria-hidden="true"></i> Contact Us</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/contactus');?>"><i class="fa fa-tty" aria-hidden="true"></i> Contact</a></li>
       <li class="nav-item  active"><a class="nav-link" href="http://satyakamcgp.indiasatyakam.com"><i class="fa fa-tty" aria-hidden="true"></i> Generation Plan</a></li>
     </ul>
   </div>
