@@ -23,6 +23,7 @@
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/legaldoc');?>"><i class="fa fa-space-shuttle" aria-hidden="true"></i> Legal Documents</a></li>
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/privacypolicy');?>"><i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Policy</a></li>
       <li class="nav-item  active"><a class="nav-link" href="<?= base_url('website/contactus');?>"><i class="fa fa-tty" aria-hidden="true"></i> Contact Us</a></li>
+      <li class="nav-item  active"><a class="nav-link" href="http://satyakamcgp.indiasatyakam.com"><i class="fa fa-tty" aria-hidden="true"></i> Generation Plan</a></li>
     </ul>
   </div>
 </nav>
