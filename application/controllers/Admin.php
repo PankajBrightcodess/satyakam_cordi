@@ -2164,10 +2164,10 @@ public function update_submenu(){
      	$pdf->Cell(63,5,'Registration No  :'.$result['registration_no'],1,0,'L');
      	$pdf->SetFont('Arial','B',10);
      	$pdf->Cell(63,5,date('Y').'-'.date('y',strtotime('+1 year')),0,0,'C');
-     	if(!empty($result['photo'])){
-     		$images = $result['photo'];
-     		$pdf->Image(base_url($images), 148, $pdf->GetY(), 30.78);
-     	}
+     	// if(!empty($result['photo'])){
+     	// 	$images = $result['photo'];
+     	// 	$pdf->Image(base_url($images), 148, $pdf->GetY(), 30.78);
+     	// }
 
      	$pdf->SetFont('Arial','',9);
      	$pdf->Cell(63,5,'Issue Date  :'.date('d-m-Y',strtotime($result['issue_date'])),1,1,'L');
