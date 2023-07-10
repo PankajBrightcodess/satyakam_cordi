@@ -2194,10 +2194,10 @@ public function update_submenu(){
 
      	$pdf->Cell(63,5,'Interview Date  :'.date('d-m-Y',strtotime($result['interviewdate'])),1,0,'L');
 
-     	if(!empty($result['signature'])){
-     		$images = $result['signature'];
-     		$pdf->Image(base_url($images), 152, $pdf->GetY(), 20.78);
-     	}
+     	// if(!empty($result['signature'])){
+     	// 	$images = $result['signature'];
+     	// 	$pdf->Image(base_url($images), 152, $pdf->GetY(), 20.78);
+     	// }
      	$pdf->Cell(63,5,'',0,1,'C');
      	$pdf->Cell(126,5,'Reporting Time  :'.date('h:i A', strtotime($result['interview_time'])),1,0,'L');
      	// $pdf->Cell(63,5,'Interview Start Time  :'.$result['interview_time'],1,0,'L');
